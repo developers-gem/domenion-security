@@ -1,0 +1,89 @@
+.application-form{
+
+background:#f8f9fa;
+
+}
+
+.career-form{
+
+background:#fff;
+
+padding:45px;
+
+border-radius:10px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.career-form .form-control,
+.career-form .form-select{
+
+height:56px;
+
+border-radius:6px;
+
+border:1px solid #ddd;
+
+}
+
+.career-form textarea.form-control{
+
+height:auto;
+
+padding-top:15px;
+
+}
+
+.career-form .form-control:focus,
+.career-form .form-select:focus{
+
+box-shadow:none;
+
+border-color:#C8102E;
+
+}
+
+.upload-box{
+
+height:120px;
+
+border:2px dashed #C8102E;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+gap:10px;
+
+border-radius:8px;
+
+transition:.3s;
+
+}
+
+.upload-box:hover{
+
+background:#fff5f6;
+
+}
+
+.upload-box svg{
+
+color:#C8102E;
+
+}
+
+.career-form .btn{
+
+height:56px;
+
+padding:0 40px;
+
+}

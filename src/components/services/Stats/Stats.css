@@ -1,0 +1,49 @@
+.stats-section{
+
+background:#0B0B0B;
+
+padding:120px 0;
+
+}
+
+.stats-box{
+
+padding:45px 20px;
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
+height:100%;
+
+}
+
+.stats-box:hover{
+
+transform:translateY(-8px);
+
+border-color:#C8102E;
+
+}
+
+.stats-box h2{
+
+font-size:64px;
+
+font-weight:800;
+
+color:#C8102E;
+
+margin-bottom:15px;
+
+}
+
+.stats-box p{
+
+color:#fff;
+
+font-size:18px;
+
+margin:0;
+
+}

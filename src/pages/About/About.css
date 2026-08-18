@@ -1,0 +1,591 @@
+/* =========================================
+   ABOUT HERO
+========================================= */
+
+.about-hero {
+  position: relative;
+
+  min-height: 620px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 31, 0.98) 0%,
+      rgba(7, 17, 31, 0.88) 48%,
+      rgba(7, 17, 31, 0.55) 100%
+    ),
+    url("/images/about-hero.jpg") center / cover no-repeat;
+}
+
+.about-hero h1 {
+  max-width: 900px;
+
+  margin-top: 22px;
+
+  font-size: clamp(55px, 7vw, 100px);
+  line-height: 0.96;
+
+  letter-spacing: -5px;
+
+  font-weight: 700;
+}
+
+.about-hero h1 span {
+  color: var(--gold);
+}
+
+.about-hero p {
+  max-width: 650px;
+
+  margin-top: 30px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.about-hero-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 35px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.about-hero-line {
+  width: 80px;
+  height: 1px;
+
+  background: var(--gold);
+}
+
+
+/* =========================================
+   INTRODUCTION
+========================================= */
+
+.about-introduction {
+  background: var(--white);
+}
+
+.about-image-wrap {
+  position: relative;
+
+  width: min(100%, 560px);
+
+  margin-inline: auto;
+}
+
+.about-image-wrap img {
+  width: 100%;
+  height: 650px;
+
+  object-fit: cover;
+}
+
+.about-image-card {
+  position: absolute;
+
+  left: -25px;
+  bottom: 35px;
+
+  width: 195px;
+  min-height: 190px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--primary);
+
+  border-left: 3px solid var(--gold);
+
+  color: var(--white);
+}
+
+.about-image-card span {
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.about-image-card strong {
+  font-family: "Manrope", sans-serif;
+
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.about-content {
+  max-width: 620px;
+}
+
+.about-content .section-title span {
+  color: var(--gold);
+}
+
+.about-content p {
+  margin-top: 22px;
+
+  color: var(--gray-500);
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-content .about-lead {
+  color: var(--primary);
+
+  font-weight: 600;
+}
+
+.about-text-link {
+  margin-top: 25px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--primary);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  transition: gap var(--transition);
+}
+
+.about-text-link:hover {
+  color: var(--gold);
+  gap: 15px;
+}
+
+
+/* =========================================
+   MISSION
+========================================= */
+
+.mission-section {
+  background: #f5f5f2;
+}
+
+.mission-card {
+  position: relative;
+
+  min-height: 430px;
+
+  padding: 45px;
+
+  overflow: hidden;
+
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+.mission-card-light {
+  background: #ecebe7;
+
+  color: var(--primary);
+}
+
+.mission-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(199, 164, 91, 0.4);
+
+  color: var(--gold);
+}
+
+.mission-number {
+  position: absolute;
+
+  top: 45px;
+  right: 45px;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.mission-card-light .mission-number {
+  color: rgba(7, 17, 31, 0.25);
+}
+
+.mission-label {
+  display: block;
+
+  margin-top: 75px;
+
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.mission-card h3 {
+  margin-top: 14px;
+
+  font-size: clamp(30px, 3.5vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.mission-card p {
+  max-width: 520px;
+
+  margin-top: 22px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.mission-card-light p {
+  color: var(--gray-500);
+}
+
+
+/* =========================================
+   VALUES
+========================================= */
+
+.values-section {
+  background: var(--white);
+}
+
+.values-section .section-title span {
+  color: var(--gold);
+}
+
+.values-grid {
+  border-top: 1px solid var(--gray-200);
+  border-left: 1px solid var(--gray-200);
+}
+
+.value-card {
+  min-height: 300px;
+
+  padding: 35px;
+
+  border-right: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.value-card:hover {
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+.value-number {
+  display: block;
+
+  margin-bottom: 55px;
+
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.value-card svg {
+  color: var(--gold);
+}
+
+.value-card h3 {
+  margin-top: 20px;
+
+  font-size: 24px;
+}
+
+.value-card p {
+  margin-top: 12px;
+
+  color: var(--gray-500);
+
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.value-card:hover p {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.timeline-section {
+  background: #f5f5f2;
+}
+
+.timeline {
+  border-top: 1px solid var(--gray-300);
+}
+
+.timeline-item {
+  padding: 28px 0;
+
+  display: grid;
+  grid-template-columns: 55px 1fr;
+
+  gap: 20px;
+
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.timeline-item > span {
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.timeline-item small {
+  color: var(--gray-500);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.timeline-item h3 {
+  margin-top: 7px;
+
+  font-size: 23px;
+}
+
+.timeline-item p {
+  max-width: 550px;
+
+  margin-top: 8px;
+
+  color: var(--gray-500);
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CERTIFICATIONS
+========================================= */
+
+.certification-section {
+  background: var(--white);
+}
+
+.certification-list {
+  border-top: 1px solid var(--gray-200);
+}
+
+.certification-item {
+  padding: 25px 0;
+
+  display: grid;
+  grid-template-columns: 50px 1fr 20px;
+
+  gap: 18px;
+  align-items: center;
+
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.certification-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary);
+
+  color: var(--gold);
+}
+
+.certification-item h3 {
+  font-size: 18px;
+}
+
+.certification-item p {
+  margin-top: 6px;
+
+  color: var(--gray-500);
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.certification-item > svg {
+  color: var(--gold);
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.about-cta {
+  padding: 100px 0;
+
+  background: var(--primary);
+
+  color: var(--white);
+}
+
+.about-cta h2 {
+  margin-top: 18px;
+
+  font-size: clamp(45px, 6vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -3px;
+}
+
+.about-cta p {
+  max-width: 440px;
+
+  margin-bottom: 25px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+  .about-hero {
+    min-height: 560px;
+  }
+
+  .about-image-wrap {
+    width: 100%;
+  }
+
+  .about-image-wrap img {
+    height: 580px;
+  }
+
+  .about-image-card {
+    left: 20px;
+  }
+
+  .mission-card {
+    min-height: 390px;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+
+  .about-hero {
+    min-height: 580px;
+  }
+
+  .about-hero h1 {
+    font-size: 52px;
+    letter-spacing: -2.5px;
+  }
+
+  .about-hero p {
+    font-size: 16px;
+  }
+
+  .about-hero-bottom {
+    display: none;
+  }
+
+  .about-image-wrap img {
+    height: 500px;
+  }
+
+  .about-image-card {
+    left: 12px;
+    bottom: 20px;
+
+    width: 170px;
+    min-height: 165px;
+
+    padding: 20px;
+  }
+
+  .mission-card {
+    min-height: 370px;
+
+    padding: 30px;
+  }
+
+  .mission-number {
+    top: 30px;
+    right: 30px;
+  }
+
+  .mission-label {
+    margin-top: 55px;
+  }
+
+  .value-card {
+    min-height: 260px;
+  }
+
+  .value-number {
+    margin-bottom: 35px;
+  }
+
+  .about-cta {
+    padding: 75px 0;
+  }
+
+}

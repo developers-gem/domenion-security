@@ -1,0 +1,91 @@
+.hiring-process{
+    background:#07111f;
+    color:#fff;
+}
+
+.hiring-process .section-description{
+    color:rgba(255,255,255,.75);
+    max-width:700px;
+}
+
+.process-card{
+
+    position:relative;
+
+    background:#111827;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    height:100%;
+
+    transition:.35s;
+
+    border-top:4px solid transparent;
+
+}
+
+.process-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#C8102E;
+
+}
+
+.process-step{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    color:#C8102E;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.process-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:0 auto 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#C8102E;
+
+    color:#fff;
+
+    border-radius:50%;
+
+}
+
+.process-card h4{
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+.process-card p{
+
+    margin:0;
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+}

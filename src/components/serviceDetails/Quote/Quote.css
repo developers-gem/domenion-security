@@ -1,0 +1,113 @@
+.service-quote{
+
+background:#f8f9fa;
+
+}
+
+.contact-box{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:20px;
+
+padding:25px;
+
+margin-top:20px;
+
+background:#fff;
+
+border-left:4px solid #C8102E;
+
+border-radius:8px;
+
+transition:.35s;
+
+}
+
+.contact-box:hover{
+
+transform:translateX(8px);
+
+}
+
+.contact-box svg{
+
+color:#C8102E;
+
+min-width:24px;
+
+}
+
+.contact-box h5{
+
+margin-bottom:6px;
+
+}
+
+.contact-box p{
+
+margin:0;
+
+color:#666;
+
+}
+
+.quote-card{
+
+background:#fff;
+
+padding:45px;
+
+border-radius:12px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.08);
+
+}
+
+.quote-card .form-control,
+.quote-card .form-select{
+
+height:58px;
+
+border-radius:8px;
+
+}
+
+.quote-card textarea.form-control{
+
+height:auto;
+
+padding-top:15px;
+
+}
+
+.quote-card .form-control:focus,
+.quote-card .form-select:focus{
+
+box-shadow:none;
+
+border-color:#C8102E;
+
+}
+
+.quote-card .btn{
+
+height:58px;
+
+padding:0 35px;
+
+font-weight:600;
+
+}
+
+@media(max-width:768px){
+
+.quote-card{
+
+padding:30px;
+
+}
+
+}

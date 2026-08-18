@@ -1,0 +1,68 @@
+.training-section{
+    background:#07111f;
+    color:#fff;
+}
+
+.training-section .section-description{
+    color:rgba(255,255,255,.75);
+}
+
+.training-card{
+
+    background:#111827;
+
+    padding:35px;
+
+    height:100%;
+
+    transition:.35s;
+
+    border-bottom:4px solid transparent;
+
+}
+
+.training-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#C8102E;
+
+}
+
+.training-icon{
+
+    width:70px;
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#C8102E;
+
+    color:#fff;
+
+    margin-bottom:25px;
+
+}
+
+.training-card h4{
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+.training-card p{
+
+    margin:0;
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+}

@@ -1,0 +1,185 @@
+/* =================================
+   SERVICES GRID
+================================= */
+
+.services-grid {
+    background: #f8f9fa;
+}
+
+
+/* SERVICE CARD */
+
+.service-box {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+    color: inherit;
+
+    border-radius: 0;
+
+    background: #111;
+}
+
+.service-box:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* IMAGE */
+
+.service-box img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .6s ease;
+}
+
+.service-box:hover img {
+    transform: scale(1.08);
+}
+
+
+/* OVERLAY */
+
+.service-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 20%,
+        rgba(0, 0, 0, 0.35) 45%,
+        rgba(0, 0, 0, 0.92) 100%
+    );
+}
+
+
+/* CONTENT */
+
+.service-content {
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+    bottom: 28px;
+
+    z-index: 2;
+
+    color: #fff;
+}
+
+.service-content span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #c8102e;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.service-content h3 {
+    margin: 0 0 15px;
+
+    color: #fff;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.service-content button {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 10px;
+
+    padding: 0;
+
+    background: none;
+    border: none;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.service-content button svg {
+    transition: .3s ease;
+}
+
+.service-box:hover button {
+    color: #c8102e;
+}
+
+.service-box:hover button svg {
+    transform: translateX(5px);
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 991px) {
+
+    .service-box {
+        height: 330px;
+    }
+
+    .service-content {
+        left: 25px;
+        right: 25px;
+        bottom: 25px;
+    }
+
+    .service-content h3 {
+        font-size: 25px;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 576px) {
+
+    .service-box {
+        height: 300px;
+    }
+
+    .service-content {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .service-content h3 {
+        font-size: 23px;
+    }
+
+}

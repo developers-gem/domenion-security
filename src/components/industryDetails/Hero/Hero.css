@@ -1,0 +1,415 @@
+/* =========================================
+   INDUSTRY HERO
+========================================= */
+
+.industry-hero {
+  position: relative;
+
+  min-height: 720px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #07111f;
+
+  color: #fff;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.industry-hero-bg {
+  position: absolute;
+
+  inset: 0;
+
+  background-size: cover;
+  background-position: center;
+
+  transform: scale(1.03);
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.industry-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 10, 18, 0.92),
+      rgba(5, 10, 18, 0.72),
+      rgba(5, 10, 18, 0.88)
+    );
+
+  z-index: 1;
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.industry-hero .container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.industry-hero-content {
+  padding-top: 110px;
+  padding-bottom: 35px;
+}
+
+
+/* =========================================
+   CENTER CONTENT
+========================================= */
+
+.industry-hero-main {
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   TAG
+========================================= */
+
+.industry-hero-tag {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-bottom: 25px;
+
+  color: var(--gold);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+}
+
+
+.industry-hero-tag svg {
+  color: var(--gold);
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.industry-hero h1 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(55px, 7vw, 96px);
+
+  font-weight: 800;
+
+  line-height: 0.98;
+
+  letter-spacing: -3px;
+}
+
+
+.industry-hero h1 span {
+  color: var(--gold);
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.industry-hero-description {
+  max-width: 700px;
+
+  margin-top: 30px;
+
+  color: rgba(255, 255, 255, 0.70);
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.industry-hero-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 38px;
+}
+
+
+.industry-hero-buttons .btn {
+  min-height: 52px;
+
+  padding: 0 24px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* RED BUTTON */
+
+.industry-hero-buttons .btn-danger {
+  background: #c8102e;
+
+  border-color: #c8102e;
+}
+
+
+.industry-hero-buttons .btn-danger:hover {
+  background: #a90d27;
+
+  border-color: #a90d27;
+}
+
+
+/* =========================================
+   STATS
+========================================= */
+
+.industry-hero-stats {
+  max-width: 1050px;
+
+  margin: 75px auto 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+
+.industry-stat {
+  min-height: 105px;
+
+  padding: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+
+.industry-stat:last-child {
+  border-right: none;
+}
+
+
+.industry-stat strong {
+  color: var(--gold);
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+.industry-stat span {
+  margin-top: 9px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.industry-stat {
+  transition: background 0.3s ease;
+}
+
+.industry-stat:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+  .industry-hero {
+    min-height: auto;
+  }
+
+  .industry-hero-content {
+    padding-top: 130px;
+
+    padding-bottom: 40px;
+  }
+
+  .industry-hero h1 {
+    font-size: 62px;
+
+    letter-spacing: -2px;
+  }
+
+  .industry-hero-stats {
+    margin-top: 60px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+  .industry-hero {
+    min-height: auto;
+  }
+
+  .industry-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 10, 18, 0.91),
+        rgba(5, 10, 18, 0.88)
+      );
+  }
+
+  .industry-hero-content {
+    padding-top: 110px;
+
+    padding-bottom: 30px;
+  }
+
+  .industry-hero-tag {
+    margin-bottom: 20px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .industry-hero h1 {
+    font-size: 43px;
+
+    letter-spacing: -1.5px;
+
+    line-height: 1;
+  }
+
+  .industry-hero-description {
+    margin-top: 22px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+  }
+
+  .industry-hero-buttons {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    margin-top: 30px;
+  }
+
+  .industry-hero-buttons .btn {
+    width: 100%;
+  }
+
+  .industry-hero-stats {
+    grid-template-columns: 1fr 1fr;
+
+    margin-top: 45px;
+  }
+
+  .industry-stat {
+    min-height: 90px;
+
+    padding: 15px;
+  }
+
+  .industry-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .industry-stat:nth-child(3),
+  .industry-stat:nth-child(4) {
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .industry-stat strong {
+    font-size: 25px;
+  }
+
+  .industry-stat span {
+    font-size: 8px;
+
+    letter-spacing: 0.6px;
+  }
+
+}

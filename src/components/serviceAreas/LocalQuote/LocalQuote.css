@@ -1,0 +1,85 @@
+.local-quote{
+    background:#f8f9fa;
+}
+
+.quote-feature{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-top:30px;
+
+}
+
+.quote-feature svg{
+
+    color:#C8102E;
+
+    min-width:24px;
+
+}
+
+.quote-feature h5{
+
+    margin-bottom:8px;
+
+    font-size:20px;
+
+}
+
+.quote-feature p{
+
+    margin:0;
+
+    color:#666;
+
+    line-height:1.7;
+
+}
+
+.quote-form{
+
+    background:#fff;
+
+    padding:45px;
+
+    border-radius:10px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.quote-form .form-control,
+.quote-form .form-select{
+
+    height:56px;
+
+    border-radius:8px;
+
+}
+
+.quote-form textarea.form-control{
+
+    height:auto;
+
+    padding-top:15px;
+
+}
+
+.quote-form .form-control:focus,
+.quote-form .form-select:focus{
+
+    box-shadow:none;
+
+    border-color:#C8102E;
+
+}
+
+.quote-form .btn{
+
+    height:56px;
+
+    padding:0 35px;
+
+}

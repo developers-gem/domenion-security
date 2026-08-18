@@ -1,0 +1,89 @@
+.why-section{
+
+    background:#0B0B0B;
+
+    color:#fff;
+
+}
+
+.why-text{
+
+    color:rgba(255,255,255,.70);
+
+    line-height:1.9;
+
+}
+
+.why-box{
+
+    background:#151515;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:45px 35px;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.why-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:5px;
+
+    height:0;
+
+    background:#C8102E;
+
+    transition:.4s;
+
+}
+
+.why-box:hover::before{
+
+    height:100%;
+
+}
+
+.why-box:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#C8102E;
+
+}
+
+.why-icon{
+
+    color:#C8102E;
+
+    margin-bottom:25px;
+
+}
+
+.why-box h3{
+
+    font-size:28px;
+
+    margin-bottom:18px;
+
+}
+
+.why-box p{
+
+    color:rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+}

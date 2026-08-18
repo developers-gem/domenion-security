@@ -1,0 +1,115 @@
+.office-locations{
+    background:#fff;
+}
+
+.office-locations .section-description{
+    max-width:700px;
+}
+
+.office-card{
+
+    background:#f8f9fa;
+
+    padding:35px;
+
+    border-radius:8px;
+
+    height:100%;
+
+    transition:.35s;
+
+    border:1px solid #ececec;
+
+}
+
+.office-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+    border-color:#C8102E;
+
+}
+
+.office-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.office-header h3{
+
+    margin-bottom:5px;
+
+    font-size:30px;
+
+}
+
+.office-header span{
+
+    color:#C8102E;
+
+    font-weight:600;
+
+}
+
+.office-btn{
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    background:#07111f;
+
+    color:#fff;
+
+    transition:.35s;
+
+}
+
+.office-btn:hover{
+
+    background:#C8102E;
+
+}
+
+.office-card ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.office-card li{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-bottom:18px;
+
+    color:#555;
+
+    line-height:1.7;
+
+}
+
+.office-card svg{
+
+    color:#C8102E;
+
+    min-width:18px;
+
+}
