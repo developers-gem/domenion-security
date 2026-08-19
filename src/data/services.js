@@ -5,6 +5,9 @@ import {
   ClipboardCheck,
   Siren,
   ScanFace,
+  LockKeyhole,
+    FileCheck,
+     Radio,
 } from "lucide-react";
 
 export const services = [
@@ -1302,5 +1305,225 @@ export const services = [
   },
 },
 
+{
+   slug: "clearance-security",
+
+  badge: "CLEARANCE SECURITY",
+
+  title: "Clearance Security Solutions",
+
+  shortDescription:
+    "Specialized security solutions for facilities, personnel and operations requiring controlled access, verified personnel and strict security procedures.",
+
+  description:
+    "Our clearance security services provide disciplined physical protection for sensitive facilities and controlled environments where access authorization, personnel verification and security procedures are critical.",
+
+  heroImage:
+    "/images/services/clearance/hero.jpg",
+
+  overviewImage:
+    "/images/services/clearance/overview.jpg",
+
+  benefitsImage:
+    "/images/services/clearance/benefits.jpg",
+
+  stats: {
+    officers: "500+",
+    clients: "150+",
+    support: "24/7",
+    cities: "75+",
+  },
+
+  overviewTitle:
+    "Protecting Cleared Facilities, Personnel & Sensitive Operations",
+
+  overviewDescription:
+    "Our clearance security programs are designed to protect sensitive facilities and operations through controlled access, professional security personnel, strict procedures and continuous monitoring.",
+
+ 
+  highlights: [
+    "Security Clearance Verification",
+    "Controlled Facility Access",
+    "Visitor & Contractor Screening",
+    "Sensitive Area Protection",
+    "24/7 Security Monitoring",
+    "Detailed Incident Reporting",
+  ],
+
+ featuresTitle:
+    "Clearance Security Capabilities",
+
+  featuresDescription:
+    "Our security programs provide disciplined protection for facilities and environments where clearance requirements and strict access procedures are essential.",
+
+  features: [
+    {
+      icon: ShieldCheck,
+      title: "Cleared Security Personnel",
+      text: "Professional security personnel supporting facilities with controlled access and clearance requirements.",
+    },
+    {
+      icon: LockKeyhole,
+      title: "Access Control",
+      text: "Strict verification and access procedures for authorized personnel, contractors and visitors.",
+    },
+    {
+      icon: Users,
+      title: "Personnel Verification",
+      text: "Structured personnel identification and authorization procedures for sensitive environments.",
+    },
+    {
+      icon: Camera,
+      title: "Security Monitoring",
+      text: "Continuous monitoring of entrances, restricted areas and sensitive facility locations.",
+    },
+    {
+      icon: FileCheck,
+      title: "Security Documentation",
+      text: "Detailed activity logs, security records and incident documentation for operational accountability.",
+    },
+    {
+      icon: Siren,
+      title: "Incident Response",
+      text: "Rapid response procedures for unauthorized access, security incidents and emergencies.",
+    },
+  ],
+
+  benefitsTitle:
+    "Disciplined Security for Sensitive Environments",
+
+  benefitsDescription:
+    "Clearance-focused environments require accountability, controlled access and consistent security procedures. Our programs are structured around these requirements.",
+
+  benefits: [
+    "Controlled access to sensitive facilities",
+    "Professional security personnel",
+    "Strict security procedures",
+    "Improved protection of sensitive areas",
+    "24/7 security monitoring",
+    "Detailed security documentation",
+  ],
+benefitStats: {
+  experience: "20+",
+  experienceText: "Years of Security Experience",
+
+  satisfaction: "100%",
+  satisfactionText: "Compliance Focused",
+
+  readiness: "24/7",
+  readinessText: "Security Operations",
+},
+},
+
+  { 
+  slug: "top-secret-security",
+
+  badge: "TOP SECRET SECURITY",
+
+  title: "Top Secret Security Solutions",
+
+  shortDescription:
+    "Highly controlled security solutions designed to protect sensitive facilities, personnel, information and mission-critical operations.",
+
+  description:
+    "Our top secret security solutions provide layered physical protection for highly sensitive environments through strict access control, personnel verification, continuous monitoring and disciplined security operations.",
+
+  heroImage:
+    "/images/services/top-secret/hero.jpg",
+
+  overviewImage:
+    "/images/services/top-secret/overview.jpg",
+
+  benefitsImage:
+    "/images/services/top-secret/benefits.jpg",
+
+  stats: {
+    officers: "400+",
+    clients: "100+",
+    support: "24/7",
+    cities: "50+",
+  },
+
+  overviewTitle:
+    "Protecting Highly Sensitive Facilities & Mission-Critical Operations",
+
+  overviewDescription:
+    "Our top secret security programs focus on protecting highly sensitive facilities and operations through controlled access, professional security personnel, identity verification, continuous monitoring and strict operational procedures.",
+
+  highlights: [
+    "Highly Controlled Facility Access",
+    "Sensitive Area Protection",
+    "Personnel Verification",
+    "24/7 Security Monitoring",
+    "Security Patrols",
+    "Detailed Security Reporting",
+  ],
+
+  featuresTitle:
+    "Top Secret Security Capabilities",
+
+  featuresDescription:
+    "Layered physical security programs designed for environments where sensitive operations and restricted access require a highly disciplined security approach.",
+
+  features: [
+    {
+      icon: ShieldCheck,
+      title: "Sensitive Facility Protection",
+      text: "Professional security personnel providing protection throughout highly controlled facilities and operational areas.",
+    },
+    {
+      icon: LockKeyhole,
+      title: "Restricted Access",
+      text: "Strict access procedures designed to limit entry to authorized personnel and approved visitors.",
+    },
+    {
+      icon: ScanFace,
+      title: "Identity Verification",
+      text: "Controlled identification and verification procedures for personnel and authorized visitors.",
+    },
+    {
+      icon: Camera,
+      title: "Continuous Monitoring",
+      text: "Security monitoring of critical entrances, restricted areas and sensitive facility operations.",
+    },
+    {
+      icon: Radio,
+      title: "Security Communications",
+      text: "Coordinated communication procedures supporting security teams and facility operations.",
+    },
+    {
+      icon: Siren,
+      title: "Emergency Response",
+      text: "Rapid response procedures for security incidents, unauthorized activity and emergency situations.",
+    },
+  ],
+
+  benefitsTitle:
+    "Layered Protection for Highly Sensitive Operations",
+
+  benefitsDescription:
+    "Highly sensitive environments require consistent procedures, controlled access and dependable security personnel. Our programs are structured to support these demanding requirements.",
+
+  benefits: [
+    "Protection of highly sensitive facilities",
+    "Strict access control procedures",
+    "Professional security presence",
+    "Continuous security monitoring",
+    "Reduced unauthorized access risks",
+    "Rapid security response",
+  ],
+
+ benefitStats: {
+  experience: "20+",
+  experienceText: "Years of Security Expertise",
+
+  satisfaction: "100%",
+  satisfactionText: "Clearance Focused",
+
+  readiness: "24/7",
+  readinessText: "Mission-Critical Protection",
+},
+
+},
 
 ];
