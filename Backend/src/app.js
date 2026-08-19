@@ -3,6 +3,8 @@ const cors = require("cors");
 
 const userRoutes = require("../routers/userRoutes");
 const careerRoutes = require("../routers/careerRoutes");
+const { errorHandler } = require("../config/errorHandler");
+const careerForm  =  require("../routers/careerFormRoutes")
 
 const app = express();
 
@@ -19,19 +21,14 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/careers", careerRoutes);
+app.use("/api/career-forms",careerForm);
 
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Route not found" });
 });
 
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(err.statusCode || 500).json({
-    success: false,
-    message: err.message || "Server Error",
-  });
-});
+// Global error handler — must be LAST
+app.use(errorHandler);
 
 module.exports = app;
