@@ -16,7 +16,7 @@ import {
 export const industries = [
 
   /* =====================================================
-     GOVERNMENT
+     01. GOVERNMENT
   ===================================================== */
 
   {
@@ -110,7 +110,7 @@ export const industries = [
 
 
   /* =====================================================
-     HEALTHCARE
+     02. HEALTHCARE
   ===================================================== */
 
   {
@@ -171,7 +171,7 @@ export const industries = [
       },
       {
         icon: Camera,
-        title: "Monitoring",
+        title: "Facility Monitoring",
         text: "Continuous surveillance of entrances, corridors and sensitive areas.",
       },
       {
@@ -204,102 +204,8 @@ export const industries = [
 
 
   /* =====================================================
-     DATA CENTER
+     03. COMMERCIAL
   ===================================================== */
-
-  {
-    slug: "data-center",
-
-    badge: "DATA CENTER SECURITY",
-
-    title: "Data Center Security Solutions",
-
-    shortDescription:
-      "Layered physical security protecting critical data centers, infrastructure, technology assets and sensitive facilities.",
-
-    heroImage:
-      "/images/industries/data-center/hero.jpg",
-
-    overviewImage:
-      "/images/industries/data-center/overview.jpg",
-
-    benefitsImage:
-      "/images/industries/data-center/benefits.jpg",
-
-    overviewTitle:
-      "Protecting Critical Digital Infrastructure",
-
-    overviewDescription:
-      "Data centers require strict physical security controls to protect servers, infrastructure, employees and sensitive technology assets from unauthorized access and physical threats.",
-
-    highlights: [
-      "24/7 Data Center Security",
-      "Strict Access Control",
-      "Visitor & Contractor Screening",
-      "Security Patrols",
-      "Surveillance Monitoring",
-      "Critical Incident Response",
-    ],
-
-    featuresTitle:
-      "Advanced Data Center Security Capabilities",
-
-    featuresDescription:
-      "Our security programs provide multiple layers of physical protection around critical technology infrastructure.",
-
-    features: [
-      {
-        icon: LockKeyhole,
-        title: "Access Control",
-        text: "Strict access verification and authorization procedures for sensitive areas.",
-      },
-      {
-        icon: Camera,
-        title: "Video Surveillance",
-        text: "Continuous monitoring of entrances, server areas and critical zones.",
-      },
-      {
-        icon: ShieldCheck,
-        title: "Physical Protection",
-        text: "Professional officers providing visible protection throughout the facility.",
-      },
-      {
-        icon: Users,
-        title: "Visitor Screening",
-        text: "Controlled visitor and contractor verification procedures.",
-      },
-      {
-        icon: ScanFace,
-        title: "Security Patrols",
-        text: "Scheduled and random patrols throughout critical facility areas.",
-      },
-      {
-        icon: Siren,
-        title: "Incident Response",
-        text: "Rapid response procedures for physical security incidents.",
-      },
-    ],
-
-    benefitsTitle:
-      "Multi-Layer Protection for Critical Infrastructure",
-
-    benefitsDescription:
-      "Our data center security programs combine personnel, technology and strict procedures to reduce physical security risks.",
-
-    benefits: [
-      "Protection of critical infrastructure",
-      "Reduced unauthorized access risks",
-      "24/7 security monitoring",
-      "Professional visitor management",
-      "Rapid incident response",
-      "Detailed security reporting",
-    ],
-  },
-
-
-  /* =====================================================
-     COMMERCIAL
-     =====================================================  */
 
   {
     slug: "commercial",
@@ -392,195 +298,383 @@ export const industries = [
 
 
   /* =====================================================
-     CONSTRUCTION
+     04. RETAIL
   ===================================================== */
 
   {
-    slug: "construction",
+    slug: "retail",
 
-    badge: "CONSTRUCTION SECURITY",
+    badge: "RETAIL SECURITY",
 
-    title: "Construction Site Security",
+    title: "Retail Security Solutions",
 
     shortDescription:
-      "Protect construction sites, equipment, materials and personnel from theft, vandalism and unauthorized access.",
+      "Professional security solutions designed to protect retail stores, shopping centers, employees, customers and valuable merchandise.",
 
     heroImage:
-      "/images/industries/construction/hero.jpg",
+      "/images/industries/retail/hero.jpg",
 
     overviewImage:
-      "/images/industries/construction/overview.jpg",
+      "/images/industries/retail/overview.jpg",
 
     benefitsImage:
-      "/images/industries/construction/benefits.jpg",
+      "/images/industries/retail/benefits.jpg",
 
     overviewTitle:
-      "Securing Construction Sites Around the Clock",
+      "Protecting Retail Businesses & Customers",
 
     overviewDescription:
-      "Construction sites contain valuable equipment, materials and machinery. Our security solutions help prevent theft, vandalism and unauthorized activity.",
+      "Retail environments face unique challenges including theft, unauthorized access, safety concerns and customer incidents. Our security programs provide a professional presence while supporting a welcoming shopping environment.",
 
     highlights: [
-      "Construction Site Security Officers",
-      "Equipment & Material Protection",
-      "Perimeter Patrols",
+      "Retail Store Security",
+      "Loss Prevention Support",
+      "Customer & Employee Safety",
       "Access Control",
-      "After-Hours Security",
-      "Incident Reporting",
+      "Parking & Property Patrols",
+      "Incident Response",
     ],
 
     featuresTitle:
-      "Construction Site Security Capabilities",
+      "Retail Security Capabilities",
 
     featuresDescription:
-      "Flexible security solutions designed to protect construction projects from early development through completion.",
+      "Our retail security programs combine professional officers, surveillance and proactive security procedures to help protect stores and customers.",
 
     features: [
       {
         icon: ShieldCheck,
-        title: "Site Security Officers",
-        text: "Visible security presence throughout construction properties.",
+        title: "Retail Security Officers",
+        text: "Professional security personnel providing a visible presence throughout retail properties.",
       },
       {
-        icon: ScanFace,
-        title: "Perimeter Patrols",
-        text: "Regular patrols around site boundaries and vulnerable areas.",
+        icon: Eye,
+        title: "Loss Prevention",
+        text: "Security support designed to deter theft, unauthorized activity and property loss.",
+      },
+      {
+        icon: Camera,
+        title: "Surveillance Monitoring",
+        text: "Monitoring of entrances, sales floors, parking areas and sensitive locations.",
+      },
+      {
+        icon: Users,
+        title: "Customer Safety",
+        text: "Security personnel supporting a safe and welcoming environment for customers.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Access Management",
+        text: "Controlled access for employees, vendors and authorized personnel.",
+      },
+      {
+        icon: Siren,
+        title: "Incident Response",
+        text: "Rapid response to security incidents, disturbances and emergencies.",
+      },
+    ],
+
+    benefitsTitle:
+      "Safer Stores. Protected Assets. Better Customer Experience.",
+
+    benefitsDescription:
+      "Our retail security solutions help businesses reduce loss, protect people and maintain a professional shopping environment.",
+
+    benefits: [
+      "Reduced theft and property loss",
+      "Improved customer safety",
+      "Professional security presence",
+      "Employee protection",
+      "Incident response support",
+      "Customized retail security programs",
+    ],
+  },
+
+
+  /* =====================================================
+     05. WAREHOUSING
+  ===================================================== */
+
+  {
+    slug: "warehousing",
+
+    badge: "WAREHOUSING SECURITY",
+
+    title: "Warehouse Security Solutions",
+
+    shortDescription:
+      "Comprehensive security solutions protecting warehouses, distribution centers, inventory, employees and logistics operations.",
+
+    heroImage:
+      "/images/industries/warehousing/hero.jpg",
+
+    overviewImage:
+      "/images/industries/warehousing/overview.jpg",
+
+    benefitsImage:
+      "/images/industries/warehousing/benefits.jpg",
+
+    overviewTitle:
+      "Protecting Warehouses & Distribution Operations",
+
+    overviewDescription:
+      "Warehouses and distribution centers contain valuable inventory, equipment and sensitive logistics operations. Our security programs help control access, deter theft and protect facilities around the clock.",
+
+    highlights: [
+      "Warehouse Security Officers",
+      "Inventory & Asset Protection",
+      "Access Control",
+      "Loading Dock Monitoring",
+      "Perimeter Patrols",
+      "24/7 Security Coverage",
+    ],
+
+    featuresTitle:
+      "Warehouse Security Capabilities",
+
+    featuresDescription:
+      "Our warehouse security programs are designed to protect inventory, employees, facilities and logistics operations.",
+
+    features: [
+      {
+        icon: ShieldCheck,
+        title: "Warehouse Officers",
+        text: "Professional security officers protecting warehouse facilities and operations.",
       },
       {
         icon: LockKeyhole,
         title: "Access Control",
-        text: "Control workers, contractors, deliveries and visitors entering the site.",
+        text: "Controlled access for employees, contractors, drivers and visitors.",
       },
       {
         icon: Camera,
-        title: "Site Surveillance",
-        text: "Monitoring of critical areas, equipment and entry points.",
+        title: "Facility Monitoring",
+        text: "Continuous monitoring of warehouse interiors, entrances and critical areas.",
       },
       {
         icon: Truck,
-        title: "Equipment Protection",
-        text: "Security measures designed to protect machinery and valuable materials.",
-      },
-      {
-        icon: Siren,
-        title: "After-Hours Response",
-        text: "Rapid response to unauthorized activity and security incidents.",
-      },
-    ],
-
-    benefitsTitle:
-      "Protect Your Construction Investment",
-
-    benefitsDescription:
-      "Our construction security programs help protect valuable assets while keeping your project site organized and secure.",
-
-    benefits: [
-      "Reduced theft and vandalism",
-      "Protection of equipment and materials",
-      "Controlled site access",
-      "After-hours monitoring",
-      "Visible security deterrence",
-      "Detailed incident reporting",
-    ],
-  },
-
-
-  /* =====================================================
-     RESIDENTIAL
-  ===================================================== */
-
-  {
-    slug: "residential",
-
-    badge: "RESIDENTIAL SECURITY",
-
-    title: "Residential Security Solutions",
-
-    shortDescription:
-      "Professional residential security protecting communities, residents, homes and valuable property.",
-
-    heroImage:
-      "/images/industries/residential/hero.jpg",
-
-    overviewImage:
-      "/images/industries/residential/overview.jpg",
-
-    benefitsImage:
-      "/images/industries/residential/benefits.jpg",
-
-    overviewTitle:
-      "Creating Safer Residential Communities",
-
-    overviewDescription:
-      "Our residential security solutions provide dependable protection for gated communities, apartment complexes, private residences and residential developments.",
-
-    highlights: [
-      "Gated Community Security",
-      "Residential Patrols",
-      "Access Control",
-      "Visitor Management",
-      "Parking & Property Monitoring",
-      "24/7 Security Options",
-    ],
-
-    featuresTitle:
-      "Residential Security Capabilities",
-
-    featuresDescription:
-      "Security programs designed to protect residents, guests and residential properties while maintaining a welcoming community environment.",
-
-    features: [
-      {
-        icon: ShieldCheck,
-        title: "Community Security",
-        text: "Professional security officers protecting residential communities.",
+        title: "Loading Dock Security",
+        text: "Security monitoring for deliveries, shipments and loading dock activity.",
       },
       {
         icon: ScanFace,
-        title: "Mobile Patrol",
-        text: "Routine patrols through residential properties and common areas.",
-      },
-      {
-        icon: LockKeyhole,
-        title: "Gate & Access Control",
-        text: "Controlled entry for residents, visitors and service providers.",
-      },
-      {
-        icon: Users,
-        title: "Visitor Management",
-        text: "Professional guest verification and access procedures.",
-      },
-      {
-        icon: Camera,
-        title: "Property Monitoring",
-        text: "Monitoring of entrances, parking areas and common spaces.",
+        title: "Perimeter Patrol",
+        text: "Regular patrols designed to protect facility boundaries and vulnerable areas.",
       },
       {
         icon: Siren,
         title: "Emergency Response",
-        text: "Fast response to security incidents and emergencies.",
+        text: "Rapid response support for incidents, alarms and unauthorized activity.",
       },
     ],
 
     benefitsTitle:
-      "Peace of Mind for Residents & Property Managers",
+      "Protecting Inventory, People & Logistics Operations",
 
     benefitsDescription:
-      "Our residential security programs provide a visible and professional security presence designed around the needs of each community.",
+      "Our warehouse security solutions help reduce operational risks and protect valuable inventory and infrastructure.",
 
     benefits: [
-      "Improved resident safety",
-      "Visible security deterrence",
-      "Controlled community access",
-      "Reduced property risks",
-      "Professional visitor management",
-      "Reliable patrol coverage",
+      "Reduced theft and inventory loss",
+      "Controlled facility access",
+      "Improved employee safety",
+      "Loading dock protection",
+      "Perimeter security",
+      "24/7 monitoring options",
     ],
   },
 
 
   /* =====================================================
-     TRANSPORTATION
+     06. DATA CENTERS
+  ===================================================== */
+
+  {
+    slug: "data-centers",
+
+    badge: "DATA CENTER SECURITY",
+
+    title: "Data Center Security Solutions",
+
+    shortDescription:
+      "Layered physical security protecting critical data centers, infrastructure, technology assets and sensitive facilities.",
+
+    heroImage:
+      "/images/industries/data-centers/hero.jpg",
+
+    overviewImage:
+      "/images/industries/data-centers/overview.jpg",
+
+    benefitsImage:
+      "/images/industries/data-centers/benefits.jpg",
+
+    overviewTitle:
+      "Protecting Critical Digital Infrastructure",
+
+    overviewDescription:
+      "Data centers require strict physical security controls to protect servers, infrastructure, employees and sensitive technology assets from unauthorized access and physical threats.",
+
+    highlights: [
+      "24/7 Data Center Security",
+      "Strict Access Control",
+      "Visitor & Contractor Screening",
+      "Security Patrols",
+      "Surveillance Monitoring",
+      "Critical Incident Response",
+    ],
+
+    featuresTitle:
+      "Advanced Data Center Security Capabilities",
+
+    featuresDescription:
+      "Our security programs provide multiple layers of physical protection around critical technology infrastructure.",
+
+    features: [
+      {
+        icon: LockKeyhole,
+        title: "Access Control",
+        text: "Strict access verification and authorization procedures for sensitive areas.",
+      },
+      {
+        icon: Camera,
+        title: "Video Surveillance",
+        text: "Continuous monitoring of entrances, server areas and critical zones.",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Physical Protection",
+        text: "Professional officers providing visible protection throughout the facility.",
+      },
+      {
+        icon: Users,
+        title: "Visitor Screening",
+        text: "Controlled visitor and contractor verification procedures.",
+      },
+      {
+        icon: ScanFace,
+        title: "Security Patrols",
+        text: "Scheduled and random patrols throughout critical facility areas.",
+      },
+      {
+        icon: Siren,
+        title: "Incident Response",
+        text: "Rapid response procedures for physical security incidents.",
+      },
+    ],
+
+    benefitsTitle:
+      "Multi-Layer Protection for Critical Infrastructure",
+
+    benefitsDescription:
+      "Our data center security programs combine personnel, technology and strict procedures to reduce physical security risks.",
+
+    benefits: [
+      "Protection of critical infrastructure",
+      "Reduced unauthorized access risks",
+      "24/7 security monitoring",
+      "Professional visitor management",
+      "Rapid incident response",
+      "Detailed security reporting",
+    ],
+  },
+
+
+  /* =====================================================
+     07. AIRPORTS
+  ===================================================== */
+
+  {
+    slug: "airports",
+
+    badge: "AVIATION SECURITY",
+
+    title: "Airport Security Solutions",
+
+    shortDescription:
+      "Specialized security solutions protecting airports, aviation facilities, personnel, passengers and critical infrastructure.",
+
+    heroImage:
+      "/images/industries/airports/hero.jpg",
+
+    overviewImage:
+      "/images/industries/airports/overview.jpg",
+
+    benefitsImage:
+      "/images/industries/airports/benefits.jpg",
+
+    overviewTitle:
+      "Protecting Airports, Passengers & Aviation Operations",
+
+    overviewDescription:
+      "Our aviation security programs provide professional protection for airports, aviation facilities, restricted areas and operational environments.",
+
+    highlights: [
+      "Airport Facility Security",
+      "Restricted Area Access Control",
+      "Passenger & Visitor Screening",
+      "Perimeter Protection",
+      "Surveillance Monitoring",
+      "Emergency Response",
+    ],
+
+    featuresTitle:
+      "Airport Security Capabilities",
+
+    featuresDescription:
+      "Layered security solutions designed to support airport facilities and complex aviation environments.",
+
+    features: [
+      {
+        icon: ShieldCheck,
+        title: "Airport Security Officers",
+        text: "Professional security personnel protecting airport facilities and operational areas.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Restricted Access",
+        text: "Strict access procedures for secure and restricted airport areas.",
+      },
+      {
+        icon: Camera,
+        title: "Surveillance",
+        text: "Continuous monitoring of facilities, entrances and perimeter areas.",
+      },
+      {
+        icon: Users,
+        title: "Passenger Protection",
+        text: "Security presence supporting passenger and employee safety.",
+      },
+      {
+        icon: ScanFace,
+        title: "Perimeter Patrol",
+        text: "Regular patrols around critical aviation facilities and boundaries.",
+      },
+      {
+        icon: Siren,
+        title: "Emergency Response",
+        text: "Rapid response procedures for security incidents and emergencies.",
+      },
+    ],
+
+    benefitsTitle:
+      "Layered Protection for Aviation Environments",
+
+    benefitsDescription:
+      "Our aviation security approach combines trained personnel, controlled access and proactive monitoring to reduce security risks.",
+
+    benefits: [
+      "Enhanced facility security",
+      "Controlled restricted-area access",
+      "Professional security presence",
+      "Continuous monitoring",
+      "Perimeter protection",
+      "Rapid incident response",
+    ],
+  },
+
+
+  /* =====================================================
+     08. TRANSPORTATION
   ===================================================== */
 
   {
@@ -674,189 +768,283 @@ export const industries = [
 
 
   /* =====================================================
-     AVIATION
+     09. CONSTRUCTION
   ===================================================== */
 
   {
-    slug: "airports",
+    slug: "construction",
 
-    badge: "AVIATION SECURITY",
+    badge: "CONSTRUCTION SECURITY",
 
-    title: "Aviation Security Solutions",
+    title: "Construction Site Security",
 
     shortDescription:
-      "Specialized security solutions protecting airports, aviation facilities, personnel, passengers and critical infrastructure.",
+      "Protect construction sites, equipment, materials and personnel from theft, vandalism and unauthorized access.",
 
     heroImage:
-      "/images/industries/aviation/hero.jpg",
+      "/images/industries/construction/hero.jpg",
 
     overviewImage:
-      "/images/industries/aviation/overview.jpg",
+      "/images/industries/construction/overview.jpg",
 
     benefitsImage:
-      "/images/industries/aviation/benefits.jpg",
+      "/images/industries/construction/benefits.jpg",
 
     overviewTitle:
-      "Protecting Aviation Facilities & Operations",
+      "Securing Construction Sites Around the Clock",
 
     overviewDescription:
-      "Our aviation security programs provide professional protection for airports, aviation facilities, restricted areas and operational environments.",
+      "Construction sites contain valuable equipment, materials and machinery. Our security solutions help prevent theft, vandalism and unauthorized activity.",
 
     highlights: [
-      "Airport & Aviation Facility Security",
-      "Restricted Area Access Control",
-      "Passenger & Visitor Screening",
-      "Perimeter Protection",
-      "Surveillance Monitoring",
-      "Emergency Response",
+      "Construction Site Security Officers",
+      "Equipment & Material Protection",
+      "Perimeter Patrols",
+      "Access Control",
+      "After-Hours Security",
+      "Incident Reporting",
     ],
 
     featuresTitle:
-      "Aviation Security Capabilities",
+      "Construction Site Security Capabilities",
 
     featuresDescription:
-      "Layered security solutions designed to support aviation facilities and complex airport environments.",
+      "Flexible security solutions designed to protect construction projects from early development through completion.",
 
     features: [
       {
         icon: ShieldCheck,
-        title: "Airport Security",
-        text: "Professional security personnel protecting airport facilities and operational areas.",
-      },
-      {
-        icon: LockKeyhole,
-        title: "Restricted Access",
-        text: "Strict access procedures for secure and restricted areas.",
-      },
-      {
-        icon: Camera,
-        title: "Surveillance",
-        text: "Continuous monitoring of facilities, entrances and perimeter areas.",
-      },
-      {
-        icon: Users,
-        title: "Passenger Protection",
-        text: "Security presence supporting passenger and employee safety.",
+        title: "Site Security Officers",
+        text: "Visible security presence throughout construction properties.",
       },
       {
         icon: ScanFace,
-        title: "Perimeter Patrol",
-        text: "Regular patrols around critical aviation facilities and boundaries.",
+        title: "Perimeter Patrols",
+        text: "Regular patrols around site boundaries and vulnerable areas.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Access Control",
+        text: "Control workers, contractors, deliveries and visitors entering the site.",
+      },
+      {
+        icon: Camera,
+        title: "Site Surveillance",
+        text: "Monitoring of critical areas, equipment and entry points.",
+      },
+      {
+        icon: Truck,
+        title: "Equipment Protection",
+        text: "Security measures designed to protect machinery and valuable materials.",
       },
       {
         icon: Siren,
-        title: "Emergency Response",
-        text: "Rapid response procedures for security incidents and emergencies.",
+        title: "After-Hours Response",
+        text: "Rapid response to unauthorized activity and security incidents.",
       },
     ],
 
     benefitsTitle:
-      "Layered Protection for Aviation Environments",
+      "Protect Your Construction Investment",
 
     benefitsDescription:
-      "Our aviation security approach combines trained personnel, controlled access and proactive monitoring to reduce security risks.",
+      "Our construction security programs help protect valuable assets while keeping your project site organized and secure.",
 
     benefits: [
-      "Enhanced facility security",
-      "Controlled restricted-area access",
-      "Professional security presence",
-      "Continuous monitoring",
-      "Perimeter protection",
-      "Rapid incident response",
+      "Reduced theft and vandalism",
+      "Protection of equipment and materials",
+      "Controlled site access",
+      "After-hours monitoring",
+      "Visible security deterrence",
+      "Detailed incident reporting",
     ],
   },
 
 
   /* =====================================================
-     CRITICAL INFRASTRUCTURE
+     10. RESIDENTIAL
   ===================================================== */
 
   {
-    slug: "critical-infrastructure",
+    slug: "residential",
 
-    badge: "CRITICAL INFRASTRUCTURE",
+    badge: "RESIDENTIAL SECURITY",
 
-    title: "Critical Infrastructure Security",
+    title: "Residential Security Solutions",
 
     shortDescription:
-      "Comprehensive security solutions protecting critical facilities, infrastructure, personnel and essential operations.",
+      "Professional residential security protecting communities, residents, homes and valuable property.",
 
     heroImage:
-      "/images/industries/critical-infrastructure/hero.jpg",
+      "/images/industries/residential/hero.jpg",
 
     overviewImage:
-      "/images/industries/critical-infrastructure/overview.jpg",
+      "/images/industries/residential/overview.jpg",
 
     benefitsImage:
-      "/images/industries/critical-infrastructure/benefits.jpg",
+      "/images/industries/residential/benefits.jpg",
 
     overviewTitle:
-      "Protecting Essential Infrastructure & Operations",
+      "Creating Safer Residential Communities",
 
     overviewDescription:
-      "Critical infrastructure requires dependable security programs that protect facilities, personnel, equipment and essential operations from physical threats.",
+      "Our residential security solutions provide dependable protection for gated communities, apartment complexes, private residences and residential developments.",
 
     highlights: [
-      "Critical Facility Protection",
-      "Perimeter Security",
+      "Gated Community Security",
+      "Residential Patrols",
       "Access Control",
-      "24/7 Monitoring",
-      "Security Patrols",
-      "Emergency Response",
+      "Visitor Management",
+      "Parking & Property Monitoring",
+      "24/7 Security Options",
     ],
 
     featuresTitle:
-      "Critical Infrastructure Security Capabilities",
+      "Residential Security Capabilities",
 
     featuresDescription:
-      "Our layered security programs help protect essential facilities and infrastructure against physical security threats.",
+      "Security programs designed to protect residents, guests and residential properties while maintaining a welcoming community environment.",
 
     features: [
       {
         icon: ShieldCheck,
-        title: "Facility Protection",
-        text: "Professional security personnel protecting critical infrastructure facilities.",
-      },
-      {
-        icon: LockKeyhole,
-        title: "Access Control",
-        text: "Strict credential and access management for sensitive locations.",
-      },
-      {
-        icon: Camera,
-        title: "Continuous Monitoring",
-        text: "Surveillance and monitoring of critical facility areas.",
+        title: "Community Security",
+        text: "Professional security officers protecting residential communities.",
       },
       {
         icon: ScanFace,
-        title: "Perimeter Security",
-        text: "Patrols and monitoring designed to protect facility boundaries.",
+        title: "Mobile Patrol",
+        text: "Routine patrols through residential properties and common areas.",
       },
       {
-        icon: Radio,
-        title: "Security Communications",
-        text: "Reliable communication procedures for coordinated security operations.",
+        icon: LockKeyhole,
+        title: "Gate & Access Control",
+        text: "Controlled entry for residents, visitors and service providers.",
+      },
+      {
+        icon: Users,
+        title: "Visitor Management",
+        text: "Professional guest verification and access procedures.",
+      },
+      {
+        icon: Camera,
+        title: "Property Monitoring",
+        text: "Monitoring of entrances, parking areas and common spaces.",
       },
       {
         icon: Siren,
         title: "Emergency Response",
-        text: "Rapid response procedures for critical security incidents.",
+        text: "Fast response to security incidents and emergencies.",
       },
     ],
 
     benefitsTitle:
-      "Resilient Security for Critical Operations",
+      "Peace of Mind for Residents & Property Managers",
 
     benefitsDescription:
-      "Our critical infrastructure security programs focus on prevention, detection and rapid response to help maintain operational continuity.",
+      "Our residential security programs provide a visible and professional security presence designed around the needs of each community.",
 
     benefits: [
-      "Protection of essential facilities",
-      "Reduced physical security risks",
-      "24/7 security monitoring",
-      "Controlled access",
-      "Professional patrol operations",
-      "Rapid emergency response",
+      "Improved resident safety",
+      "Visible security deterrence",
+      "Controlled community access",
+      "Reduced property risks",
+      "Professional visitor management",
+      "Reliable patrol coverage",
+    ],
+  },
+
+
+  /* =====================================================
+     11. FINANCIAL INSTITUTIONS
+  ===================================================== */
+
+  {
+    slug: "financial-institutions",
+
+    badge: "FINANCIAL SECURITY",
+
+    title: "Financial Institution Security Solutions",
+
+    shortDescription:
+      "Professional security solutions protecting banks, financial institutions, employees, customers, facilities and sensitive assets.",
+
+    heroImage:
+      "/images/industries/financial-institutions/hero.jpg",
+
+    overviewImage:
+      "/images/industries/financial-institutions/overview.jpg",
+
+    benefitsImage:
+      "/images/industries/financial-institutions/benefits.jpg",
+
+    overviewTitle:
+      "Protecting Financial Institutions & Sensitive Assets",
+
+    overviewDescription:
+      "Financial institutions require a highly professional security presence to protect employees, customers, facilities, sensitive information and valuable assets while maintaining a trusted environment.",
+
+    highlights: [
+      "Bank & Financial Facility Security",
+      "Customer & Employee Protection",
+      "Access Control",
+      "Security Patrols",
+      "Surveillance Monitoring",
+      "Emergency Response",
+    ],
+
+    featuresTitle:
+      "Financial Institution Security Capabilities",
+
+    featuresDescription:
+      "Our financial security programs combine trained personnel, access management, surveillance and emergency response to protect financial environments.",
+
+    features: [
+      {
+        icon: ShieldCheck,
+        title: "Bank Security Officers",
+        text: "Professional officers providing a visible and dependable security presence.",
+      },
+      {
+        icon: LockKeyhole,
+        title: "Access Control",
+        text: "Controlled access procedures for employees, visitors and restricted areas.",
+      },
+      {
+        icon: Camera,
+        title: "Surveillance Monitoring",
+        text: "Monitoring of entrances, customer areas, ATMs and sensitive locations.",
+      },
+      {
+        icon: Users,
+        title: "Customer Protection",
+        text: "Security support designed to protect customers and employees.",
+      },
+      {
+        icon: FileCheck,
+        title: "Incident Documentation",
+        text: "Detailed reporting and documentation of security incidents and activities.",
+      },
+      {
+        icon: Siren,
+        title: "Emergency Response",
+        text: "Rapid response procedures for alarms, disturbances and emergencies.",
+      },
+    ],
+
+    benefitsTitle:
+      "Trusted Security for Financial Environments",
+
+    benefitsDescription:
+      "Our financial institution security programs help protect people, property and sensitive environments while supporting a professional customer experience.",
+
+    benefits: [
+      "Professional security presence",
+      "Improved customer and employee safety",
+      "Controlled access to sensitive areas",
+      "Protection of financial facilities",
+      "Rapid incident response",
+      "Detailed security documentation",
     ],
   },
 

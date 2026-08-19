@@ -124,8 +124,8 @@ function Footer() {
                 </li>
 
                 <li>
-                  <Link to="/coverage">
-                    Coverage Areas
+                  <Link to="/service-areas">
+                    Service Areas
                   </Link>
                 </li>
 

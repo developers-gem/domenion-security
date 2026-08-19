@@ -31,7 +31,7 @@ const stats = [
 ];
 
 const locations = [
- "Government",
+"Government",
 "Healthcare",
 "Commercial",
 "Retail",
@@ -74,21 +74,7 @@ function Coverage() {
                 alt="Coverage Map"
               />
 
-              <div className="pin pin1">
-                <MapPin size={18}/>
-              </div>
-
-              <div className="pin pin2">
-                <MapPin size={18}/>
-              </div>
-
-              <div className="pin pin3">
-                <MapPin size={18}/>
-              </div>
-
-              <div className="pin pin4">
-                <MapPin size={18}/>
-              </div>
+              
 
             </div>
 

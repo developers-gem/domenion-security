@@ -61,7 +61,7 @@ function Hero() {
 
               <img
                 src="/images/industries/hero.png"
-                alt=""
+                alt="industries-hero-image"
               />
 
             </div>

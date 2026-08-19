@@ -9,6 +9,7 @@ import {
 import "./Header.css";
 
 import { services } from "../../data/services";
+import {industries } from "../../data/industries";
 
 function Header() {
   return (
@@ -98,7 +99,54 @@ function Header() {
 
        {/* ================= INDUSTRIES ================= */}
 
-<div className="nav-dropdown">
+        <div className="nav-dropdown">
+
+            <Link
+              to="/industries"
+              className="nav-link nav-dropdown-link"
+            >
+              Industries
+
+              <ChevronDown size={14} />
+            </Link>
+
+
+            <div className="mega-menu services-menu">
+
+              <div className="mega-service-grid">
+
+                {industries.map((industry, index) => (
+
+                  <Link
+                    key={industry.slug}
+                    to={`/industries/${industry.slug}`}
+                    className="industry-service-link"
+                  >
+
+                    <span className="service-menu-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="service-menu-title">
+                      {industry.title}
+                    </span>
+
+                    <ChevronRight
+                      size={15}
+                      className="mega-arrow"
+                    />
+
+                  </Link>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+{/* <div className="nav-dropdown">
 
   <Link
     to="/industries"
@@ -171,7 +219,7 @@ function Header() {
 
   </div>
 
-</div>
+</div> */}
           {/* ================= OTHER LINKS ================= */}
 
           <Link to="/careers" className="nav-link">
