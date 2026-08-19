@@ -1,11 +1,11 @@
-import Hero from "../../components/careers/Hero";
-import WhyJoin from "../../components/careers/WhyJoin";
-import OpenPositions from "../../components/careers/OpenPositions";
-import HiringProcess from "../../components/careers/HiringProcess";
-import Benefits from "../../components/careers/Benefits";
-import Training from "../../components/careers/Training";
-import ApplicationForm from "../../components/careers/ApplicationForm";
-import CTA from '../../components/services/CTA/CTA'
+import Hero from "../../components/Careers/Hero";
+import WhyJoin from "../../components/Careers/WhyJoin";
+import OpenPositions from "../../components/Careers/OpenPositions";
+import HiringProcess from "../../components/Careers/HiringProcess";
+import Benefits from "../../components/Careers/Benefits";
+import Training from "../../components/Careers/Training";
+import ApplicationForm from "../../components/Careers/ApplicationForm";
+import CTA from "../../components/services/CTA/CTA";
 
 function Careers() {
   return (
