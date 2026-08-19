@@ -26,11 +26,11 @@ function ApplicationForm() {
 
             </p>
 
-            <img
+            {/* <img
               src="/images/careers/apply.jpg"
               alt="Apply"
               className="img-fluid rounded mt-4"
-            />
+            /> */}
 
           </div>
 

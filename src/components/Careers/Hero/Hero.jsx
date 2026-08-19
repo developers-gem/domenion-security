@@ -49,7 +49,7 @@ function Hero() {
             <div className="career-image">
 
               <img
-                src="/images/careers/hero.png"
+                src="/images/careers/hero.jpg"
                 alt="Security Career"
               />
 

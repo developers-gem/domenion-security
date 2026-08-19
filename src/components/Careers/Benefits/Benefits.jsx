@@ -54,7 +54,7 @@ function Benefits() {
             <div className="benefits-image">
 
               <img
-                src="/images/careers/benefits.jpg"
+                src="/images/careers/employee-benefits.jpg"
                 alt="Employee Benefits"
               />
 
