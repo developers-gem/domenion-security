@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import "./OpenPositions.css";
 import {
   MapPin,
@@ -5,6 +8,7 @@ import {
   Clock3,
   DollarSign,
   ArrowRight,
+  X,
 } from "lucide-react";
 
 const jobs = [
@@ -39,125 +43,231 @@ const jobs = [
 ];
 
 function OpenPositions() {
+  const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleApply = (job) => {
+    setSelectedJob(job);
+  };
+
+  const closeModal = () => {
+    setSelectedJob(null);
+  };
+
   return (
-    <section className="career-jobs section">
+    <>
+      <section className="career-jobs section">
+        <div className="container">
 
-      <div className="container">
+          <div className="row mb-5 align-items-end">
+            <div className="col-lg-6">
+              <span className="section-label">
+                OPEN POSITIONS
+              </span>
 
-        <div className="row mb-5 align-items-end">
+              <h2 className="section-title">
+                Current Career Opportunities
+              </h2>
+            </div>
 
-          <div className="col-lg-6">
-
-            <span className="section-label">
-              OPEN POSITIONS
-            </span>
-
-            <h2 className="section-title">
-              Current Career Opportunities
-            </h2>
-
+            <div className="col-lg-6">
+              <p className="section-description">
+                Explore available positions and become part of a trusted
+                security team serving clients nationwide.
+              </p>
+            </div>
           </div>
 
-          <div className="col-lg-6">
+          <div className="row g-4">
 
-            <p className="section-description">
-              Explore available positions and become part of a trusted
-              security team serving clients nationwide.
-            </p>
+            {jobs.map((job, index) => (
+              <div className="col-lg-6" key={index}>
 
-          </div>
+                <div className="job-card">
 
-        </div>
+                  <div className="d-flex justify-content-between align-items-start flex-wrap">
 
-        <div className="row g-4">
+                    <div>
+                      <span className="job-department">
+                        {job.department}
+                      </span>
 
-          {jobs.map((job, index) => (
+                      <h3>{job.title}</h3>
+                    </div>
 
-            <div className="col-lg-6" key={index}>
-
-              <div className="job-card">
-
-                <div className="d-flex justify-content-between align-items-start flex-wrap">
-
-                  <div>
-
-                    <span className="job-department">
-
-                      {job.department}
-
+                    <span className="job-type">
+                      {job.type}
                     </span>
-
-                    <h3>
-
-                      {job.title}
-
-                    </h3>
 
                   </div>
 
-                  <span className="job-type">
+                  <div className="job-meta">
 
-                    {job.type}
+                    <span>
+                      <MapPin size={18} />
+                      {job.location}
+                    </span>
 
-                  </span>
+                    <span>
+                      <DollarSign size={18} />
+                      {job.salary}
+                    </span>
 
-                </div>
+                    <span>
+                      <Briefcase size={18} />
+                      Security
+                    </span>
 
-                <div className="job-meta">
+                    <span>
+                      <Clock3 size={18} />
+                      Immediate
+                    </span>
 
-                  <span>
+                  </div>
 
-                    <MapPin size={18}/>
-
-                    {job.location}
-
-                  </span>
-
-                  <span>
-
-                    <DollarSign size={18}/>
-
-                    {job.salary}
-
-                  </span>
-
-                  <span>
-
-                    <Briefcase size={18}/>
-
-                    Security
-
-                  </span>
-
-                  <span>
-
-                    <Clock3 size={18}/>
-
-                    Immediate
-
-                  </span>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => handleApply(job)}
+                  >
+                    Apply Now
+                    <ArrowRight size={18} className="ms-2" />
+                  </button>
 
                 </div>
-
-                <button className="btn btn-danger">
-
-                  Apply Now
-
-                  <ArrowRight size={18} className="ms-2"/>
-
-                </button>
 
               </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* APPLICATION MODAL */}
+
+      {selectedJob && (
+        <div
+          className="application-modal-overlay"
+          onClick={closeModal}
+        >
+          <div
+            className="application-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <button
+              type="button"
+              className="application-modal-close"
+              onClick={closeModal}
+              aria-label="Close application form"
+            >
+              <X size={24} />
+            </button>
+
+            <div className="application-modal-header">
+
+              <span className="section-label">
+                CAREER APPLICATION
+              </span>
+
+              <h2>
+                Apply for this position
+              </h2>
+
+              <p>
+                You are applying for{" "}
+                <strong>{selectedJob.title}</strong>.
+              </p>
 
             </div>
 
-          ))}
+            <form className="application-form">
 
+              <div className="row g-3">
+
+                <div className="col-md-6">
+                  <label htmlFor="applicant-name">
+                    Full Name
+                  </label>
+
+                  <input
+                    id="applicant-name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label htmlFor="applicant-email">
+                    Email Address
+                  </label>
+
+                  <input
+                    id="applicant-email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label htmlFor="applicant-phone">
+                    Phone Number
+                  </label>
+
+                  <input
+                    id="applicant-phone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label htmlFor="applicant-resume">
+                    Resume
+                  </label>
+
+                  <input
+                    id="applicant-resume"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    required
+                  />
+                </div>
+
+                <div className="col-12">
+                  <label htmlFor="applicant-message">
+                    Cover Letter / Message
+                  </label>
+
+                  <textarea
+                    id="applicant-message"
+                    rows={5}
+                    placeholder="Tell us a little about yourself..."
+                  />
+                </div>
+
+                <div className="col-12">
+
+                  <button
+                    type="submit"
+                    className="btn btn-danger application-submit"
+                  >
+                    Submit Application
+                    <ArrowRight size={18} className="ms-2" />
+                  </button>
+
+                </div>
+
+              </div>
+
+            </form>
+
+          </div>
         </div>
-
-      </div>
-
-    </section>
+      )}
+    </>
   );
 }
 
