@@ -1,0 +1,166 @@
+/* Light Enterprise Theme for Admin Components */
+
+:root {
+  --admin-bg: #F7F8FA;
+  --admin-card-bg: #FFFFFF;
+  --admin-text-main: #172033;
+  --admin-text-muted: #64748B;
+  --admin-border: #E5E7EB;
+  --admin-red: #E62F45;
+  --admin-red-hover: #C92539;
+  --admin-red-light: #FFF1F2;
+  --admin-red-border: #FECDD3;
+}
+
+.admin-layout {
+  background-color: var(--admin-bg) !important;
+  color: var(--admin-text-main);
+  font-family: inherit;
+}
+
+.admin-main-content {
+  background-color: var(--admin-bg) !important;
+}
+
+/* Admin Header */
+.admin-header {
+  background-color: var(--admin-card-bg) !important;
+  height: 64px;
+  border-bottom: 1px solid var(--admin-border) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.admin-logout-btn {
+  background-color: #ffffff;
+  border: 1px solid var(--admin-red) !important;
+  color: var(--admin-red) !important;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.admin-logout-btn:hover {
+  background-color: var(--admin-red) !important;
+  color: #ffffff !important;
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+  width: 250px;
+  min-width: 250px;
+  background-color: var(--admin-card-bg) !important;
+  border-right: 1px solid var(--admin-border) !important;
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 767.98px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1040;
+  }
+}
+
+.sidebar-nav-link {
+  color: var(--admin-text-main) !important;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav-link:hover {
+  background-color: var(--admin-red-light) !important;
+  color: var(--admin-red) !important;
+}
+
+.sidebar-nav-link.active {
+  background-color: var(--admin-red) !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav-link.active .sidebar-icon {
+  color: #ffffff !important;
+}
+
+.sidebar-icon {
+  color: var(--admin-text-muted);
+}
+
+/* Stat Cards */
+.admin-stat-card {
+  background-color: var(--admin-card-bg) !important;
+  border: 1px solid var(--admin-border) !important;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.02) !important;
+}
+
+.stat-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Stat Card Tints */
+.stat-tint-blue { background-color: #EFF6FF; color: #2563EB; }
+.stat-tint-green { background-color: #F0FDF4; color: #16A34A; }
+.stat-tint-amber { background-color: #FFFBEB; color: #D97706; }
+.stat-tint-cyan { background-color: #ECFEFF; color: #0891B2; }
+.stat-tint-purple { background-color: #FAF5FF; color: #9333EA; }
+.stat-tint-red { background-color: #FFF1F2; color: #E62F45; }
+
+/* Light Dashboard Cards */
+.admin-card-light {
+  background-color: var(--admin-card-bg) !important;
+  border: 1px solid var(--admin-border) !important;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* Light Table Styling */
+.table-light-custom {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--admin-text-main);
+  border-color: var(--admin-border);
+}
+
+.table-light-custom th {
+  color: var(--admin-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #FAFAFA;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.table-light-custom td {
+  border-bottom: 1px solid #F1F5F9;
+  color: var(--admin-text-main);
+}

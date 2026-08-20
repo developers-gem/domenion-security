@@ -244,20 +244,22 @@ function Footer() {
 
           <form
             className="footer-newsletter-form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Thank you for your interest! Newsletter subscriptions will open soon.");
+            }}
           >
-
             <input
               type="email"
               placeholder="Your email address"
               aria-label="Email address"
+              required
             />
 
             <button type="submit">
               Subscribe
               <ArrowRight size={16} />
             </button>
-
           </form>
 
         </div>

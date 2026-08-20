@@ -1,0 +1,45 @@
+/* Admin Login Page Styling */
+.admin-login-page {
+  min-height: 100vh;
+  background-color: #F7F8FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.admin-login-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+.admin-login-header h2 {
+  color: #172033;
+  letter-spacing: 1px;
+}
+
+.letter-spacing {
+  letter-spacing: 1.5px;
+}
+
+.fs-7 {
+  font-size: 0.75rem;
+}
+
+.fs-8 {
+  font-size: 0.6875rem;
+}
+
+.hover-red:hover {
+  color: #E62F45 !important;
+}
+
+.admin-login-form .form-control:focus {
+  border-color: #E62F45;
+  box-shadow: 0 0 0 0.25rem rgba(230, 47, 69, 0.15);
+}

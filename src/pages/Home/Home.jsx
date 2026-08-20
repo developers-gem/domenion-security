@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Home.css";
 import {
     ArrowRight,
@@ -17,11 +18,60 @@ import {
   LockKeyhole,
   FileCheck2,
   Mail,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/layout/Footer";
+import { quotesAPI } from "../../services/api";
 
 function Home() {
+    const [quoteData, setQuoteData] = useState({
+      name: "",
+      email: "",
+      phone: "",
+      service: "Physical Security",
+      message: "",
+    });
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState("");
+    const [submitSuccess, setSubmitSuccess] = useState("");
+
+    const handleQuoteChange = (e) => {
+      const { name, value } = e.target;
+      setQuoteData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleQuoteSubmit = async (e) => {
+      e.preventDefault();
+      setSubmitError("");
+      setSubmitSuccess("");
+
+      if (!quoteData.name || !quoteData.email || !quoteData.phone) {
+        setSubmitError("Please fill in required fields (Name, Email, Phone).");
+        return;
+      }
+
+      try {
+        setSubmitting(true);
+        await quotesAPI.submitQuote({
+          name: quoteData.name,
+          email: quoteData.email,
+          phone: quoteData.phone,
+          service: quoteData.service,
+          message: quoteData.message,
+        });
+
+        setSubmitSuccess("Quote request submitted successfully! Our team will contact you shortly.");
+        setQuoteData({ name: "", email: "", phone: "", service: "Physical Security", message: "" });
+      } catch (err) {
+        setSubmitError(err.message || "Failed to submit quote request. Please try again.");
+      } finally {
+        setSubmitting(false);
+      }
+    };
+
     return (
         <>
         <main className="home-page">
@@ -116,61 +166,101 @@ function Home() {
                                     </p>
                                 </div>
 
+                                {submitSuccess && (
+                                    <div className="alert alert-success d-flex align-items-center mb-3 p-2 small" role="alert">
+                                        <CheckCircle2 size={16} className="me-2 flex-shrink-0" />
+                                        <div>{submitSuccess}</div>
+                                    </div>
+                                )}
 
-                                <form className="quote-form">
+                                {submitError && (
+                                    <div className="alert alert-danger d-flex align-items-center mb-3 p-2 small" role="alert">
+                                        <AlertCircle size={16} className="me-2 flex-shrink-0" />
+                                        <div>{submitError}</div>
+                                    </div>
+                                )}
+
+                                <form className="quote-form" onSubmit={handleQuoteSubmit}>
 
                                     <div className="row g-3">
 
                                         <div className="col-md-6">
                                             <input
                                                 type="text"
+                                                name="name"
                                                 placeholder="Your Name *"
+                                                value={quoteData.name}
+                                                onChange={handleQuoteChange}
                                                 required
+                                                disabled={submitting}
                                             />
                                         </div>
 
                                         <div className="col-md-6">
                                             <input
                                                 type="email"
+                                                name="email"
                                                 placeholder="Email Address *"
+                                                value={quoteData.email}
+                                                onChange={handleQuoteChange}
                                                 required
+                                                disabled={submitting}
                                             />
                                         </div>
 
                                         <div className="col-12">
                                             <input
                                                 type="tel"
+                                                name="phone"
                                                 placeholder="Phone Number *"
+                                                value={quoteData.phone}
+                                                onChange={handleQuoteChange}
                                                 required
+                                                disabled={submitting}
                                             />
                                         </div>
 
                                         <div className="col-12">
-                                            <select defaultValue="">
-                                                <option value="" disabled>
-                                                    Security Service
-                                                </option>
-                                                <option>Physical Security</option>
-                                                <option>Data Center Security</option>
-                                                <option>Cyber Security</option>
-                                                <option>Mobile Patrol</option>
-                                                <option>Executive Protection</option>
-                                                <option>Security Consulting</option>
-                                                <option>Other</option>
+                                            <select
+                                                name="service"
+                                                value={quoteData.service}
+                                                onChange={handleQuoteChange}
+                                                disabled={submitting}
+                                            >
+                                                <option value="Physical Security">Physical Security</option>
+                                                <option value="Data Center Security">Data Center Security</option>
+                                                <option value="Cyber Security">Cyber Security</option>
+                                                <option value="Mobile Patrol">Mobile Patrol</option>
+                                                <option value="Executive Protection">Executive Protection</option>
+                                                <option value="Security Consulting">Security Consulting</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
 
                                         <div className="col-12">
                                             <textarea
+                                                name="message"
                                                 rows="4"
                                                 placeholder="Tell us about your security requirements"
+                                                value={quoteData.message}
+                                                onChange={handleQuoteChange}
+                                                disabled={submitting}
                                             ></textarea>
                                         </div>
 
                                         <div className="col-12">
-                                            <button type="submit" className="quote-submit">
-                                                Request a Quote
-                                                <ArrowRight size={17} />
+                                            <button type="submit" className="quote-submit" disabled={submitting}>
+                                                {submitting ? (
+                                                    <>
+                                                        <Loader2 size={16} className="me-2 animate-spin" />
+                                                        Submitting...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Request a Quote
+                                                        <ArrowRight size={17} />
+                                                    </>
+                                                )}
                                             </button>
                                         </div>
 
