@@ -1,5 +1,4 @@
 const AuditLog = require("../models/AuditLog");
-
 /**
  * Creates an append-only audit log entry for administrative & security actions.
  */
@@ -21,5 +20,7 @@ const createAuditLog = async (req, action, resource, resourceId = null, metadata
     console.error(`Audit logging failed for action ${action}:`, error.message);
   }
 };
+
+
 
 module.exports = { createAuditLog };
