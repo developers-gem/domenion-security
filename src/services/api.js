@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Standard API client using VITE_API_URL environment variable
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
   headers: {
     "Content-Type": "application/json",
   },
@@ -57,7 +57,7 @@ export const authAPI = {
   },
 };
 
-// --- USERS API (Staff / Admin Listing) ---
+// --- USERS API ---
 export const usersAPI = {
   getUsers: async () => {
     const response = await API.get("/api/users");
@@ -181,6 +181,90 @@ export const leadsAPI = {
   },
   deleteLead: async (id) => {
     const response = await API.delete(`/api/leads/${id}`);
+    return response.data;
+  },
+};
+
+// --- BLOGS API ---
+export const blogsAPI = {
+  getBlogs: async (params = {}) => {
+    const response = await API.get("/api/blogs", { params });
+    return response.data;
+  },
+  getBlogBySlug: async (slug) => {
+    const response = await API.get(`/api/blogs/${slug}`);
+    return response.data;
+  },
+  createBlog: async (data) => {
+    const response = await API.post("/api/blogs", data);
+    return response.data;
+  },
+  updateBlog: async (id, data) => {
+    const response = await API.put(`/api/blogs/${id}`, data);
+    return response.data;
+  },
+  deleteBlog: async (id) => {
+    const response = await API.delete(`/api/blogs/${id}`);
+    return response.data;
+  },
+};
+
+// --- FAQS API ---
+export const faqsAPI = {
+  getFAQs: async (params = {}) => {
+    const response = await API.get("/api/faqs", { params });
+    return response.data;
+  },
+  createFAQ: async (data) => {
+    const response = await API.post("/api/faqs", data);
+    return response.data;
+  },
+  updateFAQ: async (id, data) => {
+    const response = await API.put(`/api/faqs/${id}`, data);
+    return response.data;
+  },
+  deleteFAQ: async (id) => {
+    const response = await API.delete(`/api/faqs/${id}`);
+    return response.data;
+  },
+};
+
+// --- CMS API ---
+export const cmsAPI = {
+  getPageContents: async (params = {}) => {
+    const response = await API.get("/api/cms/pages", { params });
+    return response.data;
+  },
+  getPageBySlug: async (slug) => {
+    const response = await API.get(`/api/cms/pages/${slug}`);
+    return response.data;
+  },
+  createPageContent: async (data) => {
+    const response = await API.post("/api/cms/pages", data);
+    return response.data;
+  },
+  updatePageContent: async (id, data) => {
+    const response = await API.put(`/api/cms/pages/${id}`, data);
+    return response.data;
+  },
+  deletePageContent: async (id) => {
+    const response = await API.delete(`/api/cms/pages/${id}`);
+    return response.data;
+  },
+};
+
+// --- MEDIA API ---
+export const mediaAPI = {
+  getMedia: async (params = {}) => {
+    const response = await API.get("/api/media", { params });
+    return response.data;
+  },
+  createMediaRecord: async (data) => {
+    const response = await API.post("/api/media", data);
+    return response.data;
+  },
+  deleteMediaRecord: async (id) => {
+    const response = await API.delete(`/api/media/${id}`);
     return response.data;
   },
 };

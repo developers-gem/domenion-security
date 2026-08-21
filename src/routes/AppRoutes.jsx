@@ -17,6 +17,10 @@ import AdminApplications from "../pages/Admin/Applications/AdminApplications";
 import AdminContactRequests from "../pages/Admin/ContactRequests/AdminContactRequests";
 import AdminQuoteRequests from "../pages/Admin/QuoteRequests/AdminQuoteRequests";
 import AdminLeads from "../pages/Admin/Leads/AdminLeads";
+import AdminBlogs from "../pages/Admin/Blogs/AdminBlogs";
+import AdminFAQs from "../pages/Admin/FAQs/AdminFAQs";
+import AdminCMS from "../pages/Admin/CMS/AdminCMS";
+import AdminMedia from "../pages/Admin/Media/AdminMedia";
 import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
@@ -42,12 +46,16 @@ function AppRoutes() {
         <Route path="/admin/careers" element={<AdminCareers />} />
       </Route>
 
-      {/* Protected Admin/Staff Routes (Admin, HR, Recruiter Roles) */}
-      <Route element={<ProtectedRoute roles={["admin", "hr", "recruiter"]} />}>
+      {/* Protected Admin/Staff Routes (Admin, HR, Recruiter, Content Manager Roles) */}
+      <Route element={<ProtectedRoute roles={["admin", "hr", "recruiter", "content_manager"]} />}>
         <Route path="/admin/applications" element={<AdminApplications />} />
         <Route path="/admin/contact-requests" element={<AdminContactRequests />} />
         <Route path="/admin/quote-requests" element={<AdminQuoteRequests />} />
         <Route path="/admin/leads" element={<AdminLeads />} />
+        <Route path="/admin/blogs" element={<AdminBlogs />} />
+        <Route path="/admin/faqs" element={<AdminFAQs />} />
+        <Route path="/admin/cms" element={<AdminCMS />} />
+        <Route path="/admin/media" element={<AdminMedia />} />
       </Route>
     </Routes>
   );
