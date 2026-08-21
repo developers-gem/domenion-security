@@ -12,6 +12,8 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
+  FileText,
+  Upload,
 } from "lucide-react";
 import { careersAPI, applicationsAPI } from "../../../services/api";
 
@@ -42,6 +44,7 @@ function OpenPositions() {
     phone: "",
     message: "",
   });
+  const [resumeFile, setResumeFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState("");
@@ -76,6 +79,7 @@ function OpenPositions() {
     setSubmitError("");
     setSubmitSuccess("");
     setFormData({ fullName: "", email: "", phone: "", message: "" });
+    setResumeFile(null);
   };
 
   const closeModal = () => {
@@ -83,6 +87,7 @@ function OpenPositions() {
     setSelectedJob(null);
     setSubmitError("");
     setSubmitSuccess("");
+    setResumeFile(null);
   };
 
   const handleFormChange = (e) => {
@@ -93,28 +98,71 @@ function OpenPositions() {
     if (id === "applicant-message") setFormData((prev) => ({ ...prev, message: value }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSubmitError("");
+
+    if (!file) {
+      setResumeFile(null);
+      return;
+    }
+
+    const allowedExtensions = [".pdf", ".doc", ".docx"];
+    const ext = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+
+    if (!allowedExtensions.includes(ext)) {
+      setSubmitError("Invalid file type. Only PDF, DOC, and DOCX files are allowed.");
+      setResumeFile(null);
+      e.target.value = "";
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setSubmitError("File size exceeds 5 MB limit. Please upload a smaller file.");
+      setResumeFile(null);
+      e.target.value = "";
+      return;
+    }
+
+    setResumeFile(file);
+  };
+
   const handleSubmitApplication = async (e) => {
     e.preventDefault();
     setSubmitError("");
     setSubmitSuccess("");
 
-    if (!formData.fullName || !formData.email || !formData.phone) {
+    if (!formData.fullName.trim() || !formData.email.trim() || !formData.phone.trim()) {
       setSubmitError("Please fill in all required fields (Full Name, Email, Phone Number).");
       return;
     }
 
     try {
       setSubmitting(true);
-      await applicationsAPI.submitApplication({
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-        careerId: selectedJob?._id,
-      });
+
+      if (resumeFile) {
+        const payload = new FormData();
+        payload.append("fullName", formData.fullName.trim());
+        payload.append("email", formData.email.trim());
+        payload.append("phone", formData.phone.trim());
+        if (formData.message) payload.append("message", formData.message.trim());
+        if (selectedJob?._id) payload.append("careerId", selectedJob._id);
+        payload.append("resume", resumeFile);
+
+        await applicationsAPI.submitApplication(payload);
+      } else {
+        await applicationsAPI.submitApplication({
+          fullName: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          message: formData.message.trim() || undefined,
+          careerId: selectedJob?._id,
+        });
+      }
 
       setSubmitSuccess("Your application has been submitted successfully! Our recruitment team will review it shortly.");
       setFormData({ fullName: "", email: "", phone: "", message: "" });
+      setResumeFile(null);
 
       setTimeout(() => {
         setSelectedJob(null);
@@ -331,11 +379,37 @@ function OpenPositions() {
                   />
                 </div>
 
+                {/* Optional Resume / CV Upload Field */}
+                <div className="col-12">
+                  <label htmlFor="applicant-resume" className="d-flex justify-content-between align-items-center">
+                    <span>Resume / CV</span>
+                    <span className="badge bg-light text-muted border fw-normal">Optional</span>
+                  </label>
+                  <div className="input-group">
+                    <input
+                      id="applicant-resume"
+                      type="file"
+                      className="form-control bg-light"
+                      accept=".pdf,.doc,.docx"
+                      onChange={handleFileChange}
+                      disabled={submitting}
+                    />
+                  </div>
+                  <div className="form-text small text-muted mt-1 d-flex justify-content-between align-items-center">
+                    <span>PDF, DOC, or DOCX. Max file size 5 MB.</span>
+                    {resumeFile && (
+                      <span className="text-danger fw-bold d-inline-flex align-items-center gap-1">
+                        <FileText size={14} /> Selected: {resumeFile.name}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
                 <div className="col-12">
                   <label htmlFor="applicant-message">Cover Letter / Message</label>
                   <textarea
                     id="applicant-message"
-                    rows={5}
+                    rows={4}
                     placeholder="Tell us a little about yourself and your security experience..."
                     value={formData.message}
                     onChange={handleFormChange}

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Standard API client using VITE_API_URL environment variable
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
   headers: {
     "Content-Type": "application/json",
   },
@@ -91,8 +91,16 @@ export const careersAPI = {
 
 // --- APPLICATIONS API ---
 export const applicationsAPI = {
-  submitApplication: async (formData) => {
-    const response = await API.post("/api/career-forms/careerform", formData);
+  submitApplication: async (payload) => {
+    if (typeof FormData !== "undefined" && payload instanceof FormData) {
+      const response = await API.post("/api/career-forms/careerform", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    }
+    const response = await API.post("/api/career-forms/careerform", payload);
     return response.data;
   },
   getApplications: async (params = {}) => {
@@ -102,6 +110,12 @@ export const applicationsAPI = {
   getApplicationById: async (id) => {
     const response = await API.get(`/api/career-forms/${id}`);
     return response.data;
+  },
+  downloadResume: async (id) => {
+    const response = await API.get(`/api/career-forms/${id}/resume`, {
+      responseType: "blob",
+    });
+    return response;
   },
   updateApplicationStatus: async (id, status) => {
     const response = await API.put(`/api/career-forms/${id}/status`, { status });

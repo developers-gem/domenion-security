@@ -11,6 +11,8 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
+  FileText,
+  Download,
 } from "lucide-react";
 import { useAuth } from "../../../../context/AuthContext";
 import { applicationsAPI } from "../../../../services/api";
@@ -30,6 +32,7 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
 
   const [currentStatus, setCurrentStatus] = useState(application?.status || "submitted");
   const [updating, setUpdating] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -48,6 +51,39 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
       setError(err.message || "Failed to update application status.");
     } finally {
       setUpdating(false);
+    }
+  };
+
+  const handleDownloadResume = async () => {
+    setError("");
+    try {
+      setDownloading(true);
+      const response = await applicationsAPI.downloadResume(application._id);
+      
+      // Create blob URL for secure download
+      const blob = new Blob([response.data], {
+        type: response.headers["content-type"] || "application/octet-stream",
+      });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      
+      // Determine file extension
+      const filenameHeader = response.headers["content-disposition"];
+      let filename = `${application.fullName.replace(/[^a-zA-Z0-9]/g, "_")}_Resume.pdf`;
+      if (filenameHeader && filenameHeader.includes("filename=")) {
+        filename = filenameHeader.split("filename=")[1].replace(/["']/g, "");
+      }
+
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      setError(err.message || "Failed to download candidate resume.");
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -153,6 +189,44 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Resume / CV Section */}
+            <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded mb-4 d-flex justify-content-between align-items-center">
+              <div>
+                <span className="text-secondary small fw-bold text-uppercase me-2 d-block mb-1">
+                  RESUME / CV ATTACHMENT
+                </span>
+                {application.resumeUrl ? (
+                  <span className="text-white small d-inline-flex align-items-center gap-1 fw-medium">
+                    <FileText size={16} className="text-danger" />
+                    Resume Attached ({application.resumeUrl.split("/").pop()})
+                  </span>
+                ) : (
+                  <span className="text-muted small italic">Not provided</span>
+                )}
+              </div>
+
+              {application.resumeUrl && (
+                <button
+                  type="button"
+                  className="btn btn-danger btn-sm d-inline-flex align-items-center gap-1 px-3 fw-bold"
+                  onClick={handleDownloadResume}
+                  disabled={downloading}
+                >
+                  {downloading ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Downloading...
+                    </>
+                  ) : (
+                    <>
+                      <Download size={14} />
+                      View / Download Resume
+                    </>
+                  )}
+                </button>
+              )}
             </div>
 
             {/* Cover Letter / Message */}
