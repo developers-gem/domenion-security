@@ -1,10 +1,10 @@
-import CareersHero from "../../components/careers/CareersHero";
-import WhyWorkDominion from "../../components/careers/WhyWorkDominion";
-import CareerCulture from "../../components/careers/CareerCulture";
-import CareerValues from "../../components/careers/CareerValues";
-import OpenPositions from "../../components/careers/OpenPositions";
-import CareerExperience from "../../components/careers/CareerExperience";
-import CareerCTA from "../../components/careers/CareerCTA";
+import CareersHero from "../../components/Careers/CareersHero";
+import WhyWorkDominion from "../../components/Careers/WhyWorkDominion";
+import CareerCulture from "../../components/Careers/CareerCulture";
+import CareerValues from "../../components/Careers/CareerValues";
+import OpenPositions from "../../components/Careers/OpenPositions";
+import CareerExperience from "../../components/Careers/CareerExperience";
+import CareerCTA from "../../components/Careers/CareerCTA";
 import "./Careers.css";
 
 /**
