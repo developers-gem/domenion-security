@@ -168,6 +168,7 @@ function CareerFormModal({ career, onClose, onSaved }) {
                     <option value="Internship">Internship</option>
                   </select>
                 </div>
+                  
 
                 <div className="col-md-6">
                   <label className="form-label small text-secondary fw-bold">EXPERIENCE REQUIRED</label>

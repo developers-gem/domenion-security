@@ -1,0 +1,77 @@
+/* =========================================
+   INDUSTRY STORY SECTION STYLES
+========================================= */
+
+.ds-ind-story-section {
+  background: var(--color-white, #ffffff);
+  position: relative;
+}
+
+.ds-ind-story-visual-wrap {
+  position: relative;
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  height: 480px;
+  box-shadow: var(--shadow-lg);
+}
+
+.ds-ind-story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ds-ind-story-visual-wrap:hover .ds-ind-story-img {
+  transform: scale(1.03);
+}
+
+.ds-ind-story-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 17, 31, 0.85) 0%,
+    transparent 60%
+  );
+}
+
+.ds-ind-story-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  padding: 16px 20px;
+  background: var(--color-primary, #07111f);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-md, 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-ind-story-badge span {
+  color: var(--color-gold, #c7a45b);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.ds-ind-story-badge strong {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.ds-ind-story-lead {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary, #07111f);
+  line-height: 1.6;
+}
+
+@media (max-width: 991px) {
+  .ds-ind-story-visual-wrap {
+    height: 340px;
+  }
+}

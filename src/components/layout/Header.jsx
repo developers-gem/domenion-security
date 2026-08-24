@@ -1,267 +1,264 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  ChevronDown,
-  ChevronRight,
-  Menu,
-  X,
-} from "lucide-react";
-
-import "./Header.css";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronRight, Menu, ArrowRight } from "lucide-react";
 
 import { services } from "../../data/services";
 import { industries } from "../../data/industries";
+import Button from "../common/Button";
+import MobileNavDrawer from "./MobileNavDrawer";
+import { dropdownMenu } from "../common/motionVariants";
+import "./Header.css";
 
-function Header() {
+/**
+ * Enterprise Header Component for Dominion Security.
+ * Features sticky scroll state with glassmorphism, viewport-fixed centered mega-menus,
+ * compact typography, active route indicators, and mobile drawer integration.
+ */
+export default function Header() {
+  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'services' | 'industries' | null
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
+  // Sticky header scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Helper to check active route
+  const isCurrentRoute = (path) => {
+    if (path === "/") return location.pathname === "/";
+    return location.pathname.startsWith(path);
   };
 
   return (
-    <header className="site-header">
-
-      <div className="header-inner">
-
-        {/* ================= LOGO ================= */}
-
-        <Link to="/" className="site-logo" onClick={closeMobileMenu}>
-
-          <div className="logo-mark">
-            D
-          </div>
-
-          <div className="logo-text">
-            <strong>DOMENION</strong>
-            <small>SECURITY SERVICES</small>
-          </div>
-
-        </Link>
-
-
-        {/* ================= DESKTOP NAV ================= */}
-
-        <nav className="desktop-nav">
-
-          <Link to="/" className="nav-link">
-            Home
+    <>
+      <header
+        className={`ds-site-header ${isScrolled ? "scrolled" : ""}`}
+        role="banner"
+      >
+        <div className="ds-header-inner">
+          {/* ================= LOGO ================= */}
+          <Link to="/" className="ds-site-logo" aria-label="Dominion Security Home">
+            <div className="ds-logo-mark">
+              <img
+                src="/domenion-logo.png"
+                alt="Dominion Security Shield Logo"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.nextSibling.style.display = "flex";
+                }}
+              />
+              <span className="ds-logo-fallback" style={{ display: "none" }}>
+                DS
+              </span>
+            </div>
+            <div className="ds-logo-text">
+              <strong>DOMENION</strong>
+              <small>SECURITY</small>
+            </div>
           </Link>
 
-
-          <Link to="/about" className="nav-link">
-            About
-          </Link>
-
-
-          {/* ================= SERVICES ================= */}
-
-          <div className="nav-dropdown">
-
+          {/* ================= DESKTOP NAV ================= */}
+          <nav className="ds-desktop-nav" aria-label="Main Navigation">
             <Link
-              to="/services"
-              className="nav-link nav-dropdown-link"
+              to="/"
+              className={`ds-nav-link ${isCurrentRoute("/") ? "active" : ""}`}
             >
-              Services
-
-              <ChevronDown size={14} />
+              <span>Home</span>
             </Link>
 
-
-            <div className="mega-menu services-menu">
-
-              <div className="mega-service-grid">
-
-                {services.map((service, index) => (
-
-                  <Link
-                    key={service.slug}
-                    to={`/services/${service.slug}`}
-                    className="industry-service-link"
-                  >
-
-                    <span className="service-menu-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className="service-menu-title">
-                      {service.title}
-                    </span>
-
-                    <ChevronRight
-                      size={15}
-                      className="mega-arrow"
-                    />
-
-                  </Link>
-
-                ))}
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* ================= INDUSTRIES ================= */}
-
-          <div className="nav-dropdown">
-
             <Link
-              to="/industries"
-              className="nav-link nav-dropdown-link"
+              to="/about"
+              className={`ds-nav-link ${
+                isCurrentRoute("/about") ? "active" : ""
+              }`}
             >
-              Industries
-
-              <ChevronDown size={14} />
+              <span>About</span>
             </Link>
 
+            {/* SERVICES MEGA DROPDOWN */}
+            <div
+              className="ds-nav-dropdown-wrap"
+              onMouseEnter={() => setActiveDropdown("services")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <Link
+                to="/services"
+                className={`ds-nav-link ds-dropdown-trigger ${
+                  isCurrentRoute("/services") || activeDropdown === "services"
+                    ? "active"
+                    : ""
+                }`}
+              >
+                <span>Services</span>
+                <ChevronDown
+                  size={14}
+                  className={`ds-dropdown-arrow ${
+                    activeDropdown === "services" ? "open" : ""
+                  }`}
+                />
+              </Link>
 
-            <div className="mega-menu services-menu">
+              <AnimatePresence>
+                {activeDropdown === "services" && (
+                  <div className="ds-mega-portal">
+                    <motion.div
+                      className="ds-mega-menu ds-services-menu"
+                      variants={dropdownMenu}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <div className="ds-mega-header">
+                        <span>OUR SECURITY CAPABILITIES</span>
+                        <Link to="/services" className="ds-mega-view-all">
+                          View All Services <ArrowRight size={14} />
+                        </Link>
+                      </div>
 
-              <div className="mega-service-grid">
-
-                {industries.map((industry, index) => (
-
-                  <Link
-                    key={industry.slug}
-                    to={`/industries/${industry.slug}`}
-                    className="industry-service-link"
-                  >
-
-                    <span className="service-menu-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className="service-menu-title">
-                      {industry.title}
-                    </span>
-
-                    <ChevronRight
-                      size={15}
-                      className="mega-arrow"
-                    />
-
-                  </Link>
-
-                ))}
-
-              </div>
-
+                      <div className="ds-mega-grid">
+                        {services.map((service, index) => (
+                          <Link
+                            key={service.slug}
+                            to={`/services/${service.slug}`}
+                            className="ds-mega-card-link"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className="ds-mega-number">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span className="ds-mega-card-title">
+                              {service.title}
+                            </span>
+                            <ChevronRight size={14} className="ds-mega-arrow" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+              </AnimatePresence>
             </div>
 
+            {/* INDUSTRIES MEGA DROPDOWN */}
+            <div
+              className="ds-nav-dropdown-wrap"
+              onMouseEnter={() => setActiveDropdown("industries")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <Link
+                to="/industries"
+                className={`ds-nav-link ds-dropdown-trigger ${
+                  isCurrentRoute("/industries") || activeDropdown === "industries"
+                    ? "active"
+                    : ""
+                }`}
+              >
+                <span>Industries</span>
+                <ChevronDown
+                  size={14}
+                  className={`ds-dropdown-arrow ${
+                    activeDropdown === "industries" ? "open" : ""
+                  }`}
+                />
+              </Link>
+
+              <AnimatePresence>
+                {activeDropdown === "industries" && (
+                  <div className="ds-mega-portal">
+                    <motion.div
+                      className="ds-mega-menu ds-industries-menu"
+                      variants={dropdownMenu}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <div className="ds-mega-header">
+                        <span>SECTORS WE PROTECT</span>
+                        <Link to="/industries" className="ds-mega-view-all">
+                          View All Industries <ArrowRight size={14} />
+                        </Link>
+                      </div>
+
+                      <div className="ds-mega-grid">
+                        {industries.map((industry, index) => (
+                          <Link
+                            key={industry.slug}
+                            to={`/industries/${industry.slug}`}
+                            className="ds-mega-card-link"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className="ds-mega-number">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span className="ds-mega-card-title">
+                              {industry.title}
+                            </span>
+                            <ChevronRight size={14} className="ds-mega-arrow" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              to="/careers"
+              className={`ds-nav-link ${
+                isCurrentRoute("/careers") ? "active" : ""
+              }`}
+            >
+              <span>Careers</span>
+            </Link>
+
+            <Link
+              to="/contact"
+              className={`ds-nav-link ${
+                isCurrentRoute("/contact") ? "active" : ""
+              }`}
+            >
+              <span>Contact</span>
+            </Link>
+          </nav>
+
+          {/* ================= HEADER ACTION CTA ================= */}
+          <div className="ds-header-actions">
+            <Button to="/contact" variant="primary" size="sm">
+              Request Quote
+            </Button>
+
+            {/* Mobile Menu Hamburger Toggle */}
+            <button
+              type="button"
+              className="ds-mobile-hamburger"
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <Menu size={24} />
+            </button>
           </div>
-
-
-          {/* ================= OTHER LINKS ================= */}
-
-          <Link to="/careers" className="nav-link">
-            Careers
-          </Link>
-
-          <Link to="/contact" className="nav-link">
-            Contact
-          </Link>
-
-        </nav>
-
-
-        {/* ================= HEADER ACTION ================= */}
-
-        <div className="header-actions">
-
-          <Link
-            to="/contact"
-            className="header-quote"
-          >
-            Request Quote
-          </Link>
-
         </div>
+      </header>
 
-
-        {/* ================= MOBILE BUTTON ================= */}
-
-        <button
-          className="mobile-menu-btn"
-          onClick={toggleMobileMenu}
-          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-
-        {/* ================= MOBILE NAV ================= */}
-
-        <nav className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
-
-          <Link to="/" onClick={closeMobileMenu}>
-            Home
-          </Link>
-
-          <Link to="/about" onClick={closeMobileMenu}>
-            About
-          </Link>
-
-          <Link to="/services" onClick={closeMobileMenu}>
-            Services
-          </Link>
-
-          <div className="mobile-submenu">
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                to={`/services/${service.slug}`}
-                onClick={closeMobileMenu}
-              >
-                {service.title}
-              </Link>
-            ))}
-          </div>
-
-          <Link to="/industries" onClick={closeMobileMenu}>
-            Industries
-          </Link>
-
-          <div className="mobile-submenu">
-            {industries.map((industry) => (
-              <Link
-                key={industry.slug}
-                to={`/industries/${industry.slug}`}
-                onClick={closeMobileMenu}
-              >
-                {industry.title}
-              </Link>
-            ))}
-          </div>
-
-          <Link to="/careers" onClick={closeMobileMenu}>
-            Careers
-          </Link>
-
-          <Link to="/contact" onClick={closeMobileMenu}>
-            Contact
-          </Link>
-
-          <Link
-            to="/contact"
-            className="mobile-quote"
-            onClick={closeMobileMenu}
-          >
-            Request Quote
-          </Link>
-
-        </nav>
-
-      </div>
-
-    </header>
+      {/* ================= MOBILE NAV DRAWER ================= */}
+      <MobileNavDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
+    </>
   );
 }
-
-export default Header;

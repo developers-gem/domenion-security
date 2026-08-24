@@ -1,0 +1,9 @@
+/* =========================================
+   CAREERS PAGE LAYOUT COMPOSITION STYLES
+========================================= */
+
+.ds-careers-page-main {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--color-white, #ffffff);
+}

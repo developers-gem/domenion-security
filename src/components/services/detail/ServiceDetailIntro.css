@@ -1,0 +1,29 @@
+/* =========================================
+   SERVICE DETAIL INTRO STYLES
+========================================= */
+
+.ds-detail-intro-section {
+  background: var(--color-white, #ffffff);
+  position: relative;
+}
+
+.ds-intro-gold-bar {
+  width: 70px;
+  height: 3px;
+  background: var(--color-gold, #c7a45b);
+  border-radius: 2px;
+}
+
+.ds-intro-paragraph-lead {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-primary, #07111f);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.ds-intro-paragraph-sub {
+  font-size: 14.5px;
+  color: var(--color-gray-500, #6b7280);
+  line-height: 1.7;
+}

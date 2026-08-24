@@ -1,0 +1,200 @@
+/* =========================================
+   SERVICES SECTION STYLES (LIGHT BACKGROUND)
+========================================= */
+
+.ds-services-section {
+  background: var(--color-white, #ffffff);
+  color: var(--color-primary, #07111f);
+  position: relative;
+}
+
+/* Featured Large Service Card */
+.ds-featured-service-card {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  text-decoration: none;
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.ds-featured-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.6s ease;
+}
+
+.ds-featured-service-card:hover .ds-featured-bg {
+  transform: scale(1.05);
+}
+
+.ds-featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(7, 17, 31, 0.95) 0%,
+    rgba(7, 17, 31, 0.65) 60%,
+    rgba(7, 17, 31, 0.3) 100%
+  );
+}
+
+.ds-featured-content {
+  position: relative;
+  z-index: 2;
+}
+
+.ds-featured-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--color-gold, #c7a45b);
+  color: var(--color-dark, #050505);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.ds-featured-num {
+  display: block;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 36px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ds-featured-title {
+  color: var(--color-white, #ffffff);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.ds-featured-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  max-width: 440px;
+}
+
+.ds-featured-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  transition: gap var(--transition-fast);
+}
+
+.ds-featured-service-card:hover {
+  border-color: var(--color-gold, #c7a45b);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.ds-featured-service-card:hover .ds-featured-link {
+  gap: 14px;
+}
+
+/* Secondary Subcard */
+.ds-service-subcard {
+  height: 100%;
+  padding: 24px;
+  background: var(--color-gray-50, #f8f9fa);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ds-service-subcard:hover {
+  background: #ffffff;
+  border-color: var(--color-gold, #c7a45b);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.ds-subcard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ds-subcard-num {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-gold, #c7a45b);
+  background: rgba(199, 164, 91, 0.12);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.ds-subcard-arrow {
+  color: var(--color-gray-400, #9ca3af);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.ds-service-subcard:hover .ds-subcard-arrow {
+  color: var(--color-gold, #c7a45b);
+  transform: translateX(3px);
+}
+
+.ds-subcard-title {
+  color: var(--color-primary, #07111f);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.ds-subcard-desc {
+  color: var(--color-gray-500, #6b7280);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ds-services-all-cta {
+  padding: 20px 24px;
+  background: var(--color-gray-50, #f8f9fa);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ds-services-all-cta span {
+  color: var(--color-primary, #07111f);
+  font-size: 14px;
+  font-weight: 600;
+}

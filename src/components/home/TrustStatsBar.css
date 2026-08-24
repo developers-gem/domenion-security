@@ -1,0 +1,80 @@
+/* =========================================
+   TRUST STATISTICS STRIP STYLES
+========================================= */
+
+.ds-trust-stats-section {
+  background: var(--color-primary-light, #0d1b2a);
+  border-top: 1px solid rgba(199, 164, 91, 0.2);
+  border-bottom: 1px solid rgba(199, 164, 91, 0.2);
+  padding: 45px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.ds-stat-card {
+  padding: 20px 24px;
+  background: rgba(7, 17, 31, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md, 8px);
+  transition: 
+    border-color var(--transition-fast, 0.25s ease),
+    transform var(--transition-fast, 0.25s ease),
+    background var(--transition-fast, 0.25s ease);
+}
+
+.ds-stat-card:hover {
+  border-color: rgba(199, 164, 91, 0.35);
+  background: rgba(199, 164, 91, 0.04);
+  transform: translateY(-3px);
+}
+
+.ds-stat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.ds-stat-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(199, 164, 91, 0.12);
+  border: 1px solid rgba(199, 164, 91, 0.25);
+  color: var(--color-gold, #c7a45b);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.ds-stat-number {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-white, #ffffff);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.ds-stat-label {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-gold, #c7a45b);
+  margin-bottom: 4px;
+}
+
+.ds-stat-subtext {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 768px) {
+  .ds-trust-stats-section {
+    padding: 30px 0;
+  }
+
+  .ds-stat-card {
+    padding: 16px;
+  }
+}

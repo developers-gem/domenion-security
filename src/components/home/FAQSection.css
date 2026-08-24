@@ -1,0 +1,122 @@
+/* =========================================
+   FAQ SECTION STYLES
+========================================= */
+
+.ds-faq-section {
+  background: var(--color-white, #ffffff);
+  position: relative;
+}
+
+.ds-faq-consult-card {
+  padding: 20px 24px;
+  background: var(--color-primary, #07111f);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-md, 8px);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.ds-faq-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(199, 164, 91, 0.12);
+  color: var(--color-gold, #c7a45b);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.ds-faq-consult-card strong {
+  color: var(--color-white, #ffffff);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  display: block;
+}
+
+.ds-faq-consult-card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12.5px;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.ds-faq-phone-link {
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.ds-faq-phone-link:hover {
+  text-decoration: underline;
+}
+
+/* Accordion Wrap */
+.ds-accordion-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-accordion-item {
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-gray-50, #f8f9fa);
+  overflow: hidden;
+  transition: 
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.ds-accordion-item.open {
+  border-color: var(--color-gold, #c7a45b);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.ds-accordion-header {
+  width: 100%;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ds-accordion-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary, #07111f);
+  line-height: 1.35;
+}
+
+.ds-accordion-chevron {
+  color: var(--color-gray-500, #6b7280);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.ds-accordion-chevron.open {
+  transform: rotate(180deg);
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-accordion-content {
+  padding: 0 24px 20px 24px;
+}
+
+.ds-accordion-content p {
+  color: var(--color-gray-500, #6b7280);
+  font-size: 14px;
+  line-height: 1.65;
+}

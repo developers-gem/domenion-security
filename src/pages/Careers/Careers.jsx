@@ -1,24 +1,29 @@
-import Hero from "../../components/Careers/Hero";
-import WhyJoin from "../../components/Careers/WhyJoin";
-import OpenPositions from "../../components/Careers/OpenPositions";
-import HiringProcess from "../../components/Careers/HiringProcess";
-import Benefits from "../../components/Careers/Benefits";
-import Training from "../../components/Careers/Training";
-import ApplicationForm from "../../components/Careers/ApplicationForm";
-import CTA from "../../components/services/CTA/CTA";
+import CareersHero from "../../components/careers/CareersHero";
+import WhyWorkDominion from "../../components/careers/WhyWorkDominion";
+import CareerCulture from "../../components/careers/CareerCulture";
+import CareerValues from "../../components/careers/CareerValues";
+import OpenPositions from "../../components/careers/OpenPositions";
+import CareerExperience from "../../components/careers/CareerExperience";
+import CareerCTA from "../../components/careers/CareerCTA";
+import "./Careers.css";
 
+/**
+ * Dominion Security Careers Page.
+ * Composes 7 recruitment-focused enterprise components ("WHO BUILDS DOMINION")
+ * featuring human/team imagery, editorial benefit rows, values, real job integration,
+ * modal application form with optional resume upload, and responsive layout.
+ */
 function Careers() {
   return (
-    <>
-      <Hero />
-      <WhyJoin />
+    <main className="ds-careers-page-main">
+      <CareersHero />
+      <WhyWorkDominion />
+      <CareerCulture />
+      <CareerValues />
       <OpenPositions />
-      <HiringProcess />
-      <Benefits />
-      <Training />
-      <ApplicationForm />
-      <CTA />
-    </>
+      <CareerExperience />
+      <CareerCTA />
+    </main>
   );
 }
 

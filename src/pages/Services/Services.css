@@ -1,0 +1,9 @@
+/* =========================================
+   SERVICES PAGE LAYOUT COMPOSITION STYLES
+========================================= */
+
+.ds-services-page-main {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--color-white, #ffffff);
+}

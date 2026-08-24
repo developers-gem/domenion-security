@@ -1,0 +1,89 @@
+/* =========================================
+   INDUSTRY CHALLENGES SECTION STYLES
+========================================= */
+
+.ds-ind-challenges-section {
+  background: var(--color-primary, #07111f);
+  color: var(--color-white, #ffffff);
+  position: relative;
+}
+
+.text-white {
+  color: var(--color-white, #ffffff) !important;
+}
+
+.ds-challenges-intro-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.ds-challenge-block-card {
+  height: 100%;
+  padding: 36px 30px;
+  background: var(--color-primary-light, #0d1b2a);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md, 8px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: 
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ds-challenge-block-card:hover {
+  border-color: rgba(199, 164, 91, 0.4);
+  background: rgba(199, 164, 91, 0.05);
+  transform: translateY(-5px);
+}
+
+.ds-challenge-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ds-challenge-num {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-challenge-tag {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-gold, #c7a45b);
+  letter-spacing: 3px;
+}
+
+.ds-challenge-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-white, #ffffff);
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.ds-challenge-desc {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.ds-challenge-gold-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--color-gold, #c7a45b),
+    rgba(199, 164, 91, 0.1)
+  );
+}

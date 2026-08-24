@@ -1,22 +1,31 @@
-import Hero from "../../components/contact/Hero/Hero";
-import ContactInfo from "../../components/contact/ContactInfo/ContactInfo";
-import ContactForm from "../../components/contact/ContactForm/ContactForm";
-import OfficeLocations from "../../components/contact/OfficeLocations/OfficeLocations";
-import Emergency from "../../components/contact/Emergency/Emergency";
-import Map from "../../components/contact/Map/Map";
-import CTA from "../../components/services/CTA/CTA";
+import ContactHero from "../../components/contact/ContactHero";
+import ContactOptions from "../../components/contact/ContactOptions";
+import ContactForm from "../../components/contact/ContactForm";
+import ContactProcess from "../../components/contact/ContactProcess";
+import ContactInformation from "../../components/contact/ContactInformation";
+import ContactLocation from "../../components/contact/ContactLocation";
+import ContactFAQ from "../../components/contact/ContactFAQ";
+import ContactCTA from "../../components/contact/ContactCTA";
+import "./Contact.css";
 
+/**
+ * Dominion Security Contact Page.
+ * Composes 8 conversion-focused enterprise components ("CONCIERGE & CONVERSION")
+ * featuring architectural hero, 4 contact options, 2-column quote form with direct API submission,
+ * 4-step onboarding timeline, large typography contact details, location visual, accordion FAQ, and Gold CTA.
+ */
 function Contact() {
   return (
-    <>
-      <Hero />
-      <ContactInfo />
+    <main className="ds-contact-page-main">
+      <ContactHero />
+      <ContactOptions />
       <ContactForm />
-      <OfficeLocations />
-      <Emergency />
-      <Map />
-      <CTA />
-    </>
+      <ContactProcess />
+      <ContactInformation />
+      <ContactLocation />
+      <ContactFAQ />
+      <ContactCTA />
+    </main>
   );
 }
 

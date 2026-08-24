@@ -1,0 +1,284 @@
+/* =========================================
+   CINEMATIC HERO & SLIDER STYLES
+========================================= */
+
+.ds-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  background: var(--color-primary, #07111f);
+  overflow: hidden;
+}
+
+.ds-hero-swiper {
+  width: 100%;
+  min-height: 720px;
+}
+
+.ds-hero-slide-inner {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 60px;
+}
+
+.ds-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.05);
+  transition: transform 7s ease;
+}
+
+.swiper-slide-active .ds-hero-bg-img {
+  transform: scale(1);
+}
+
+.ds-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(
+      135deg, 
+      rgba(7, 17, 31, 0.94) 0%, 
+      rgba(7, 17, 31, 0.72) 50%, 
+      rgba(7, 17, 31, 0.88) 100%
+    );
+  backdrop-filter: blur(2px);
+}
+
+.ds-hero-container {
+  z-index: 2;
+}
+
+/* Eyebrow badge */
+.ds-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(199, 164, 91, 0.12);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+/* Hero Headline */
+.ds-hero-title {
+  font-size: var(--text-hero, clamp(2.5rem, 5.5vw, 4.25rem));
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--color-white, #ffffff);
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.ds-gold-text {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-hero-description {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.ds-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+/* Trust Bar Below Actions */
+.ds-hero-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ds-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ds-trust-icon {
+  color: var(--color-gold, #c7a45b);
+  flex-shrink: 0;
+}
+
+.ds-trust-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-trust-item strong {
+  color: var(--color-white, #ffffff);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ds-trust-item span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+/* =========================================
+   FLOATING CONSULTATION QUOTE CARD
+========================================= */
+.ds-hero-quote-card {
+  background: var(--color-primary-light, #0d1b2a);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-lg, 12px);
+  padding: 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.ds-hero-quote-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-gold, #c7a45b), transparent);
+  border-radius: 3px 3px 0 0;
+}
+
+.ds-quote-card-header {
+  margin-bottom: 20px;
+}
+
+.ds-quote-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-gold, #c7a45b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.ds-quote-card-header h2 {
+  color: var(--color-white, #ffffff);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.ds-quote-card-header p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Form Inputs */
+.ds-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm, 4px);
+  color: var(--color-white, #ffffff);
+  font-size: 13.5px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.ds-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ds-input:focus {
+  border-color: var(--color-gold, #c7a45b);
+  background: rgba(199, 164, 91, 0.05);
+}
+
+.ds-select {
+  cursor: pointer;
+}
+
+.ds-select option {
+  background: var(--color-primary-light, #0d1b2a);
+  color: var(--color-white, #ffffff);
+}
+
+.ds-textarea {
+  height: auto;
+  padding: 10px 14px;
+  resize: none;
+}
+
+.ds-quote-phone-footer {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ds-phone-icon {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-quote-phone-footer a {
+  color: var(--color-gold, #c7a45b);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ds-quote-phone-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Swiper Controls Custom Styling */
+.ds-hero-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+.ds-hero-swiper .swiper-pagination-bullet-active {
+  background: var(--color-gold, #c7a45b);
+  width: 24px;
+  border-radius: 4px;
+}
+
+@media (max-width: 991px) {
+  .ds-hero-section,
+  .ds-hero-swiper,
+  .ds-hero-slide-inner {
+    min-height: auto;
+    padding: 110px 0 60px;
+  }
+
+  .ds-hero-trust-bar {
+    margin-bottom: 30px;
+  }
+
+  .ds-hero-quote-card {
+    padding: 24px;
+  }
+}

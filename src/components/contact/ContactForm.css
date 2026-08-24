@@ -1,0 +1,206 @@
+/* =========================================
+   CONTACT FORM SECTION STYLES
+========================================= */
+
+.ds-contact-form-section {
+  background: var(--color-gray-50, #f8f9fa);
+  position: relative;
+}
+
+.ds-cform-intro-desc {
+  font-size: 14.5px;
+  color: var(--color-gray-600, #4b5563);
+  line-height: 1.65;
+}
+
+.ds-cform-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ds-cform-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.ds-cform-feat-icon {
+  color: var(--color-gold, #c7a45b);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ds-cform-feature-item h4 {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary, #07111f);
+  margin-bottom: 2px;
+}
+
+.ds-cform-feature-item p {
+  font-size: 12.5px;
+  color: var(--color-gray-500, #6b7280);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.ds-cform-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.ds-cform-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary, #07111f);
+}
+
+.ds-check-gold {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-cform-direct-lines {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.ds-direct-line-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-gold, #c7a45b);
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+}
+
+.ds-direct-line-link:hover {
+  transform: translateX(3px);
+}
+
+/* Right Card */
+.ds-cform-card {
+  background: #ffffff;
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-lg, 12px);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.ds-cform-card-eyebrow {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-gold, #c7a45b);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.ds-cform-card-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-primary, #07111f);
+  margin-bottom: 24px;
+}
+
+.ds-cform-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.ds-cform-alert-success {
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  color: #065f46;
+}
+
+.ds-cform-alert-error {
+  background: #fef2f2;
+  border: 1px solid #ef4444;
+  color: #991b1b;
+}
+
+.ds-form-label {
+  display: block;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary, #07111f);
+  margin-bottom: 6px;
+}
+
+.ds-input-field,
+.ds-select-field,
+.ds-textarea-field {
+  width: 100%;
+  padding: 11px 14px;
+  background: #ffffff;
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: var(--radius-sm, 6px);
+  font-size: 13.5px;
+  color: var(--color-primary, #07111f);
+  transition: 
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.ds-input-field:focus,
+.ds-select-field:focus,
+.ds-textarea-field:focus {
+  outline: none;
+  border-color: var(--color-gold, #c7a45b);
+  box-shadow: 0 0 0 3px rgba(199, 164, 91, 0.15);
+}
+
+.ds-submit-quote-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--color-primary, #07111f);
+  border: 1px solid var(--color-gold, #c7a45b);
+  border-radius: var(--radius-sm, 6px);
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ds-submit-quote-btn:hover:not(:disabled) {
+  background: var(--color-gold, #c7a45b);
+  color: #07111f;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 575px) {
+  .ds-cform-card {
+    padding: 24px 18px;
+  }
+}

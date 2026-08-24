@@ -1,0 +1,79 @@
+/* =========================================
+   CAREERS RECRUITMENT BANNER STYLES
+========================================= */
+
+.ds-careers-banner-section {
+  position: relative;
+  padding: 100px 0;
+  background: var(--color-primary, #07111f);
+  overflow: hidden;
+}
+
+.ds-careers-banner-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
+}
+
+.ds-careers-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 17, 31, 0.96) 0%,
+    rgba(7, 17, 31, 0.8) 60%,
+    rgba(7, 17, 31, 0.6) 100%
+  );
+}
+
+.ds-careers-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(199, 164, 91, 0.12);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.ds-careers-banner-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  color: var(--color-white, #ffffff);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.ds-careers-banner-desc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.ds-careers-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ds-careers-perks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+}

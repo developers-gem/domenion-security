@@ -1,0 +1,76 @@
+/* =========================================
+   DOMINION GLOBAL BACK TO TOP BUTTON STYLES
+========================================= */
+
+.ds-back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-gold, #c7a45b);
+  border: 1px solid rgba(199, 164, 91, 0.4);
+  color: var(--color-dark, #07111f);
+  display: grid;
+  place-items: center;
+  z-index: 990;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.9);
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ds-back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.ds-back-to-top:hover {
+  background: var(--color-gold-light, #e2c477);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(199, 164, 91, 0.35);
+}
+
+.ds-back-to-top:focus-visible {
+  outline: 2px solid var(--color-gold, #c7a45b);
+  outline-offset: 3px;
+}
+
+.ds-btt-icon {
+  stroke-width: 2.5px;
+}
+
+/* Tablet position */
+@media (max-width: 1024px) {
+  .ds-back-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Mobile position */
+@media (max-width: 768px) {
+  .ds-back-to-top {
+    width: 42px;
+    height: 42px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .ds-back-to-top {
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    transform: none !important;
+  }
+}

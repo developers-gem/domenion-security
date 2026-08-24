@@ -1,0 +1,88 @@
+/* =========================================
+   FULL-WIDTH CINEMATIC INDUSTRIES HERO STYLES
+========================================= */
+
+.ds-ind-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 680px;
+  background: var(--color-primary, #07111f);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 150px 0 90px;
+}
+
+.ds-ind-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.4);
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+
+.ds-ind-hero-section:hover .ds-ind-hero-bg {
+  transform: scale(1);
+}
+
+.ds-ind-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(3, 9, 18, 0.88) 0%,
+    rgba(3, 9, 18, 0.98) 100%
+  );
+}
+
+.max-w-3xl {
+  max-width: 860px;
+}
+
+.ds-ind-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(199, 164, 91, 0.12);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  border-radius: var(--radius-full, 9999px);
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+.ds-ind-hero-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.12;
+  color: var(--color-white, #ffffff);
+  letter-spacing: -1.5px;
+  margin-bottom: 22px;
+}
+
+.ds-gold-text {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-ind-hero-desc {
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .ds-ind-hero-section {
+    min-height: 560px;
+    padding: 120px 0 60px;
+  }
+}
