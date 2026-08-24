@@ -82,7 +82,7 @@ export default function AboutHero() {
                   </div>
                   <div className="ds-hero-card-info">
                     <strong>PEOPLE • PROPERTY • OPERATIONS</strong>
-                    <span>Protected with purpose.</span>
+                    <span>Protected with purpose</span>
                   </div>
                 </div>
               </div>
