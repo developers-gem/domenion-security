@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { MapPin, Briefcase, Calendar, Award, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import { careersAPI } from "../../services/api";
 import Reveal from "../common/Reveal";
@@ -63,10 +64,13 @@ export default function OpenPositions() {
     <section className="section ds-open-positions-section" id="open-positions">
       <div className="container">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
+        <div className="row align-items-end mb-4">
           <div className="col-lg-7">
             <Reveal direction="up">
-              <span className="section-label">OPEN POSITIONS</span>
+              <div className="ds-open-positions-boxed-tag">
+                <span className="ds-gold-accent-square" />
+                OPEN POSITIONS
+              </div>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
@@ -78,10 +82,10 @@ export default function OpenPositions() {
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="col-lg-5 mt-3 mt-lg-0">
             <Reveal direction="up" delay={0.2}>
               <p className="section-description">
-                Explore current opportunities with Dominion Security. Select any role to view post requirements and submit your application.
+                Explore current opportunities with Dominion Security. Select any role to view position details and submit your application.
               </p>
             </Reveal>
           </div>
@@ -106,7 +110,7 @@ export default function OpenPositions() {
         {/* Jobs Loading State */}
         {loadingJobs ? (
           <div className="text-center py-5">
-            <Loader2 size={32} className="ds-spinner text-gold mb-3" />
+            <Loader2 size={32} className="ds-spinner text-gold mb-3 mx-auto" />
             <p className="text-muted small">Loading open career opportunities...</p>
           </div>
         ) : jobsError ? (
@@ -117,7 +121,7 @@ export default function OpenPositions() {
         ) : filteredJobs.length === 0 ? (
           /* Premium Empty State */
           <div className="ds-empty-jobs-card">
-            <Briefcase size={36} className="ds-empty-icon" />
+            <Briefcase size={36} className="ds-empty-icon mx-auto" />
             <h3 className="ds-empty-title">NO CURRENT OPENINGS</h3>
             <p className="ds-empty-desc">
               We don't have any open positions listed right now. Please check back soon or submit a general inquiry to our recruitment team.
@@ -132,52 +136,88 @@ export default function OpenPositions() {
             </button>
           </div>
         ) : (
-          /* Clean Horizontal Job Rows */
-          <div className="ds-jobs-list-wrap">
+          /* 3-Column Responsive Job Card Grid */
+          <div className="ds-jobs-card-grid">
             {filteredJobs.map((job, idx) => {
               const isClosed = job.status === "closed";
+              const deptText = job.department ? job.department.toUpperCase() : "GENERAL SECURITY";
+              const descText = job.shortDescription || job.description || "";
+
               return (
                 <Reveal key={job._id || idx} direction="up" delay={0.05 * idx}>
-                  <div
-                    className={`ds-job-horizontal-row ${isClosed ? "closed" : ""}`}
-                    onClick={() => !isClosed && setSelectedJob(job)}
-                  >
-                    <div className="ds-job-row-main">
-                      <div className="ds-job-row-tags">
-                        {job.department && (
-                          <span className="ds-job-dept-tag">{job.department}</span>
-                        )}
-                        <span className="ds-job-type-pill">{job.type || "Full-Time"}</span>
-                      </div>
+                  <div className={`ds-job-card ${isClosed ? "closed" : ""}`}>
+                    {/* Card Header: Dept Badge Left, Status Badge Right */}
+                    <div className="ds-job-card-header">
+                      <span className="ds-job-dept-badge">{deptText}</span>
+                      <span className={`ds-job-status-badge ${isClosed ? "closed" : "open"}`}>
+                        <span className="ds-status-dot" />
+                        {isClosed ? "CLOSED" : "OPEN"}
+                      </span>
+                    </div>
 
-                      <h3 className="ds-job-title">{job.title}</h3>
+                    {/* Job Title */}
+                    <h3 className="ds-job-card-title">
+                      <Link to={`/careers/${job._id}`} className="ds-job-title-link">
+                        {job.title}
+                      </Link>
+                    </h3>
 
-                      <div className="ds-job-meta-flex">
-                        <span className="ds-job-meta-item">
-                          <MapPin size={14} className="ds-meta-icon" />
-                          {job.location || "Phoenix, AZ"}
+                    {/* Description Preview */}
+                    {descText && (
+                      <p className="ds-job-card-desc">
+                        {descText}
+                      </p>
+                    )}
+
+                    <div className="ds-job-card-divider" />
+
+                    {/* Metadata Grid */}
+                    <div className="ds-job-card-meta">
+                      <div className="ds-job-meta-row">
+                        <span className="ds-meta-item">
+                          <MapPin size={15} className="ds-meta-icon" />
+                          <span className="ds-meta-text">{job.location || "Location Not Specified"}</span>
                         </span>
                         {job.experience && (
-                          <span className="ds-job-meta-item">
-                            <Award size={14} className="ds-meta-icon" />
-                            {job.experience}
+                          <span className="ds-meta-item">
+                            <Award size={15} className="ds-meta-icon" />
+                            <span className="ds-meta-text">{job.experience}</span>
                           </span>
                         )}
-                        <span className="ds-job-meta-item">
-                          <Calendar size={14} className="ds-meta-icon" />
-                          {formatDeadline(job.applicationDeadline)}
+                      </div>
+
+                      <div className="ds-job-meta-row">
+                        <span className="ds-meta-item">
+                          <Briefcase size={15} className="ds-meta-icon" />
+                          <span className="ds-meta-text">{job.type || "Full-Time"}</span>
+                        </span>
+                        <span className="ds-meta-item">
+                          <Calendar size={15} className="ds-meta-icon" />
+                          <span className="ds-meta-text">{formatDeadline(job.applicationDeadline)}</span>
                         </span>
                       </div>
                     </div>
 
-                    <div className="ds-job-row-action">
+                    <div className="ds-job-card-divider" />
+
+                    {/* Card Footer Buttons */}
+                    <div className="ds-job-card-footer">
+                      <Link
+                        to={`/careers/${job._id}`}
+                        className="ds-card-btn-view"
+                      >
+                        <span>View Details</span>
+                        <ArrowRight size={14} className="ds-btn-arrow" />
+                      </Link>
+
                       <button
                         type="button"
-                        className="ds-job-apply-btn"
+                        className="ds-card-btn-apply"
                         disabled={isClosed}
+                        onClick={() => !isClosed && setSelectedJob(job)}
                       >
-                        <span>{isClosed ? "Position Closed" : "Apply Now"}</span>
-                        <ArrowRight size={15} className="ds-job-arrow" />
+                        <span>{isClosed ? "Closed" : "Apply Now"}</span>
+                        {!isClosed && <ArrowRight size={14} className="ds-btn-arrow" />}
                       </button>
                     </div>
                   </div>

@@ -40,14 +40,14 @@ export default function RelatedServices({ currentSlug }) {
 
         {/* 3 Related Service Cards */}
         <div className="row g-4">
-          {relatedList.map((item, idx) => (
-            <div key={item.slug} className="col-md-4">
+          {relatedList.map((service, idx) => (
+            <div key={service.slug} className="col-md-4">
               <Reveal direction="up" delay={0.1 * idx}>
-                <Link to={`/services/${item.slug}`} className="ds-related-card">
-                  <div className="ds-related-img-wrap">
+                <div className="ds-related-card">
+                  <Link to={`/services/${service.slug}`} className="ds-related-img-wrap">
                     <img
-                      src={item.heroImage || item.overviewImage || "/images/physical-security.jpg"}
-                      alt={item.title}
+                      src={service.heroImage || service.overviewImage || "/images/physical-security.jpg"}
+                      alt={service.title}
                       className="ds-related-img"
                       onError={(e) => {
                         e.target.src = "/images/company-security.jpg";
@@ -57,21 +57,25 @@ export default function RelatedServices({ currentSlug }) {
                     <span className="ds-related-num">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
-                  </div>
+                  </Link>
 
                   <div className="ds-related-body">
-                    <span className="ds-related-badge">{item.badge || "SECURITY"}</span>
-                    <h3 className="ds-related-title">{item.title}</h3>
+                    <span className="ds-related-badge">{service.badge || "SECURITY"}</span>
+                    <h3 className="ds-related-title">
+                      <Link to={`/services/${service.slug}`} className="ds-related-title-link">
+                        {service.title}
+                      </Link>
+                    </h3>
                     <p className="ds-related-desc">
-                      {item.shortDescription || "Enterprise security capability."}
+                      {service.shortDescription || "Enterprise security capability."}
                     </p>
 
-                    <div className="ds-related-link">
+                    <Link to={`/services/${service.slug}`} className="ds-related-link">
                       <span>Explore Capability</span>
                       <ArrowRight size={14} className="ds-related-arrow" />
-                    </div>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </Reveal>
             </div>
           ))}

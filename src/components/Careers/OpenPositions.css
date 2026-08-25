@@ -7,6 +7,32 @@
   position: relative;
 }
 
+/* Compact Boxed OPEN POSITIONS Tag */
+.ds-open-positions-boxed-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: rgba(199, 164, 91, 0.12);
+  border: 1px solid var(--color-gold, #c7a45b);
+  border-radius: var(--radius-sm, 4px);
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.ds-gold-accent-square {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-gold, #c7a45b);
+  display: inline-block;
+}
+
 .ds-spinner {
   animation: dsSpin 1s linear infinite;
   color: var(--color-gold, #c7a45b);
@@ -50,7 +76,7 @@
   color: var(--color-primary, #07111f);
   cursor: pointer;
   white-space: nowrap;
-  transition: 
+  transition:
     border-color var(--transition-fast),
     background var(--transition-fast),
     color var(--transition-fast);
@@ -118,142 +144,260 @@
   transform: translateY(-2px);
 }
 
-/* Horizontal Job Rows */
-.ds-jobs-list-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* =========================================
+   JOB CARDS GRID LAYOUT
+========================================= */
+
+.ds-jobs-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
-.ds-job-horizontal-row {
+@media (max-width: 1199px) {
+  .ds-jobs-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .ds-jobs-card-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* Individual Job Card */
+.ds-job-card {
+  background: #ffffff;
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.04));
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ds-job-card:hover:not(.closed) {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 12px 35px rgba(0, 0, 0, 0.08));
+  border-color: var(--color-gold, #c7a45b);
+}
+
+.ds-job-card.closed {
+  opacity: 0.7;
+}
+
+/* Card Header */
+.ds-job-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 24px 28px;
-  background: #ffffff;
-  border: 1px solid var(--color-gray-200, #e5e7eb);
-  border-radius: var(--radius-md, 8px);
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: 
-    border-color var(--transition-fast),
-    background var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.ds-job-horizontal-row:hover:not(.closed) {
-  border-color: var(--color-gold, #c7a45b);
-  background: rgba(7, 17, 31, 0.03);
-  box-shadow: var(--shadow-md);
-  transform: translateX(4px);
-}
-
-.ds-job-horizontal-row.closed {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.ds-job-row-tags {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.ds-job-dept-tag {
+.ds-job-dept-badge {
   font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
   color: var(--color-gold, #c7a45b);
   background: rgba(199, 164, 91, 0.12);
-  padding: 3px 10px;
-  border-radius: var(--radius-full, 9999px);
-  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm, 4px);
 }
 
-.ds-job-type-pill {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--color-primary, #07111f);
-  background: var(--color-gray-100, #f3f4f6);
-  padding: 3px 10px;
-  border-radius: var(--radius-full, 9999px);
-}
-
-.ds-job-title {
-  font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--color-primary, #07111f);
-  margin-bottom: 8px;
-  line-height: 1.25;
-}
-
-.ds-job-meta-flex {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.ds-job-meta-item {
+.ds-job-status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 12.5px;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full, 9999px);
+}
+
+.ds-job-status-badge.open {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+}
+
+.ds-job-status-badge.closed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+.ds-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* Title */
+.ds-job-card-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary, #07111f);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.ds-job-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.ds-job-title-link:hover {
+  color: var(--color-gold, #c7a45b);
+}
+
+/* Description preview */
+.ds-job-card-desc {
+  font-size: 13.5px;
   color: var(--color-gray-500, #6b7280);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.ds-job-card-divider {
+  height: 1px;
+  background-color: var(--color-gray-200, #e5e7eb);
+  margin: 14px 0;
+}
+
+/* Meta info grid */
+.ds-job-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ds-job-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ds-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--color-gray-700, #374151);
+  font-weight: 500;
 }
 
 .ds-meta-icon {
   color: var(--color-gold, #c7a45b);
+  flex-shrink: 0;
 }
 
-.ds-job-apply-btn {
+.ds-meta-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+/* Footer Buttons */
+.ds-job-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ds-card-btn-view,
+.ds-card-btn-apply {
+  flex: 1;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 10px 18px;
-  background: var(--color-primary, #07111f);
-  border: 1px solid var(--color-gold, #c7a45b);
+  padding: 10px 14px;
   border-radius: var(--radius-sm, 6px);
-  color: var(--color-gold, #c7a45b);
   font-family: var(--font-heading, "Manrope", sans-serif);
   font-size: 12.5px;
   font-weight: 800;
+  text-decoration: none;
   cursor: pointer;
-  flex-shrink: 0;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
-.ds-job-horizontal-row:hover:not(.closed) .ds-job-apply-btn {
+.ds-card-btn-view {
+  background: #ffffff;
+  border: 1px solid var(--color-gold, #c7a45b);
+  color: var(--color-primary, #07111f);
+}
+
+.ds-card-btn-view:hover {
+  background: var(--color-gray-50, #f8f9fa);
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-card-btn-apply {
+  background: var(--color-primary, #07111f);
+  border: 1px solid var(--color-gold, #c7a45b);
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-card-btn-apply:hover:not(:disabled) {
   background: var(--color-gold, #c7a45b);
-  color: #07111f;
+  color: var(--color-primary, #07111f);
 }
 
-.ds-job-arrow {
+.ds-card-btn-apply:disabled {
+  background: var(--color-gray-200, #e5e7eb);
+  border-color: var(--color-gray-300, #d1d5db);
+  color: var(--color-gray-500, #6b7280);
+  cursor: not-allowed;
+}
+
+.ds-btn-arrow {
   transition: transform var(--transition-fast);
 }
 
-.ds-job-horizontal-row:hover:not(.closed) .ds-job-arrow {
-  transform: translateX(4px);
+.ds-card-btn-view:hover .ds-btn-arrow,
+.ds-card-btn-apply:hover:not(:disabled) .ds-btn-arrow {
+  transform: translateX(3px);
 }
 
-@media (max-width: 768px) {
-  .ds-job-horizontal-row {
+@media (max-width: 576px) {
+  .ds-job-card-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ds-card-btn-view,
+  .ds-card-btn-apply {
+    width: 100%;
+  }
+  .ds-job-meta-row {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    gap: 8px;
   }
-
-  .ds-job-row-action {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .ds-job-apply-btn {
-    width: 100%;
-    justify-content: center;
+  .ds-meta-text {
+    max-width: 100%;
   }
 }

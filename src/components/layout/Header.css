@@ -58,10 +58,10 @@
 }
 
 .ds-logo-mark {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 1.5px solid var(--color-gold, #c7a45b);
+  
   display: grid;
   place-items: center;
   background: rgba(199, 164, 91, 0.06);

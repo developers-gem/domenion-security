@@ -5,6 +5,7 @@ import About from "../pages/About/About";
 import Services from "../pages/Services/Services";
 import Industries from "../pages/Industries/Industries";
 import Careers from "../pages/Careers/Careers";
+import CareerDetails from "../pages/Careers/CareerDetails";
 import Contact from "../pages/Contact/Contact";
 import ServiceAreas from "../pages/ServiceAreas/ServiceAreas";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
@@ -32,6 +33,7 @@ function AppRoutes() {
       <Route path="/services" element={<Services />} />
       <Route path="/industries" element={<Industries />} />
       <Route path="/careers" element={<Careers />} />
+      <Route path="/careers/:id" element={<CareerDetails />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/service-areas" element={<ServiceAreas />} />
       <Route path="/services/:slug" element={<ServiceDetails />} />

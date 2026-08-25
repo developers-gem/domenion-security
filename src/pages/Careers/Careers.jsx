@@ -17,10 +17,10 @@ function Careers() {
   return (
     <main className="ds-careers-page-main">
       <CareersHero />
+      <OpenPositions />
       <WhyWorkDominion />
       <CareerCulture />
       <CareerValues />
-      <OpenPositions />
       <CareerExperience />
       <CareerCTA />
     </main>
