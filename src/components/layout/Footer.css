@@ -1,9 +1,9 @@
 /* =========================================
-   DOMINION ENTERPRISE DEEP BLACK FOOTER STYLES
+   DOMINION ENTERPRISE DEEP NAVY FOOTER STYLES
 ========================================= */
 
 .site-footer {
-  background: #030810;
+  background: var(--color-primary, #071a2d);
   color: var(--color-white, #ffffff);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;

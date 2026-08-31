@@ -1,80 +1,88 @@
 /* =========================================
-   TRUST STATISTICS STRIP STYLES
+   TRACK RECORD & TRUST STATS STYLES
 ========================================= */
 
-.ds-trust-stats-section {
-  background: var(--color-primary-light, #0d1b2a);
-  border-top: 1px solid rgba(199, 164, 91, 0.2);
-  border-bottom: 1px solid rgba(199, 164, 91, 0.2);
-  padding: 45px 0;
+.ds-track-record-section {
+  background-color: var(--color-white, #ffffff);
+  padding: 90px 0;
   position: relative;
-  z-index: 10;
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
 }
 
-.ds-stat-card {
-  padding: 20px 24px;
-  background: rgba(7, 17, 31, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.text-navy {
+  color: var(--color-primary, #071a2d) !important;
+}
+
+.ds-track-card {
+  height: 100%;
+  padding: 32px 24px;
+  background: var(--color-gray-50, #f7f8fa);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
   border-radius: var(--radius-md, 8px);
-  transition: 
-    border-color var(--transition-fast, 0.25s ease),
-    transform var(--transition-fast, 0.25s ease),
-    background var(--transition-fast, 0.25s ease);
+  position: relative;
+  transition: all var(--transition-base, 0.35s ease);
 }
 
-.ds-stat-card:hover {
-  border-color: rgba(199, 164, 91, 0.35);
-  background: rgba(199, 164, 91, 0.04);
-  transform: translateY(-3px);
+.ds-track-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold, #c7a45b);
+  box-shadow: 0 15px 35px rgba(7, 26, 45, 0.08);
 }
 
-.ds-stat-header {
+.ds-track-header {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.ds-stat-icon-wrap {
+.ds-track-icon-wrap {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   background: rgba(199, 164, 91, 0.12);
-  border: 1px solid rgba(199, 164, 91, 0.25);
+  border: 1px solid rgba(199, 164, 91, 0.3);
   color: var(--color-gold, #c7a45b);
   display: grid;
   place-items: center;
-  flex-shrink: 0;
 }
 
-.ds-stat-number {
+.ds-track-number {
   font-family: var(--font-heading, "Manrope", sans-serif);
   font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 800;
-  color: var(--color-white, #ffffff);
   line-height: 1;
+  color: var(--color-gold, #c7a45b);
   letter-spacing: -1px;
 }
 
-.ds-stat-label {
+.ds-track-label {
   font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--color-gold, #c7a45b);
-  margin-bottom: 4px;
+  color: var(--color-primary, #071a2d);
+  line-height: 1.3;
+  margin-bottom: 6px;
 }
 
-.ds-stat-subtext {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.55);
+.ds-track-subtext {
+  font-size: 13px;
+  color: var(--color-gray-500, #6b7280);
+  line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-  .ds-trust-stats-section {
-    padding: 30px 0;
-  }
+.ds-track-border-line {
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: var(--color-gold, #c7a45b);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast, 0.25s ease);
+}
 
-  .ds-stat-card {
-    padding: 16px;
-  }
+.ds-track-card:hover .ds-track-border-line {
+  transform: scaleX(1);
 }

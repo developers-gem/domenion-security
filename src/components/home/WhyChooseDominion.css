@@ -3,15 +3,16 @@
 ========================================= */
 
 .ds-why-section {
-  background: var(--color-secondary, #111827);
+  background: var(--color-primary, #071a2d);
   color: var(--color-white, #ffffff);
   position: relative;
+  padding: 100px 0;
 }
 
 .ds-why-card {
   height: 100%;
   padding: 30px 24px;
-  background: var(--color-primary, #07111f);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md, 8px);
   position: relative;
@@ -54,12 +55,12 @@
 .ds-why-card:hover {
   border-color: rgba(199, 164, 91, 0.4);
   transform: translateY(-5px);
-  background: rgba(199, 164, 91, 0.04);
+  background: rgba(199, 164, 91, 0.06);
 }
 
 .ds-why-card:hover .ds-why-icon {
   background: var(--color-gold, #c7a45b);
-  color: var(--color-dark, #050505);
+  color: var(--color-primary, #071a2d);
 }
 
 .ds-why-card:hover .ds-why-num {
@@ -76,14 +77,14 @@
 }
 
 .ds-why-card-desc {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 13.5px;
   line-height: 1.6;
 }
 
 .ds-why-bottom-banner {
   padding: 30px 40px;
-  background: linear-gradient(135deg, rgba(7, 17, 31, 0.95), rgba(13, 27, 42, 0.95));
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(199, 164, 91, 0.3);
   border-radius: var(--radius-lg, 12px);
   display: flex;

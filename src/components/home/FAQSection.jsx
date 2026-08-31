@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, PhoneCall } from "lucide-react";
-import Button from "../common/Button";
+import { ChevronDown, PhoneCall } from "lucide-react";
 import Reveal from "../common/Reveal";
 import { accordionCollapse } from "../common/motionVariants";
 import "./FAQSection.css";

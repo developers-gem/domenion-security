@@ -5,7 +5,6 @@ import { ShieldCheck, Users, Clock3, Award } from "lucide-react";
 import Reveal from "../common/Reveal";
 import "./TrustStatsBar.css";
 
-// Interop check for react-countup default export vs module object
 const CountUp =
   typeof CountUpModule === "function"
     ? CountUpModule
@@ -52,20 +51,32 @@ export default function TrustStatsBar() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="ds-trust-stats-section" ref={ref}>
+    <section className="ds-track-record-section" ref={ref}>
       <div className="container">
-        <div className="row g-4 justify-content-center">
+        {/* Section Header */}
+        <div className="text-center mb-5">
+          <Reveal direction="up">
+            <span className="section-label">OUR TRACK RECORD</span>
+          </Reveal>
+          <Reveal direction="up" delay={0.1}>
+            <h2 className="section-title text-navy mt-2">
+              High-performing security operations across the nation.
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="row g-4 justify-content-center align-items-stretch">
           {STATS_DATA.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <div key={stat.id} className="col-6 col-lg-3">
                 <Reveal direction="up" delay={idx * 0.1}>
-                  <div className="ds-stat-card">
-                    <div className="ds-stat-header">
-                      <div className="ds-stat-icon-wrap">
+                  <div className="ds-track-card">
+                    <div className="ds-track-header">
+                      <div className="ds-track-icon-wrap">
                         {Icon && <Icon size={22} />}
                       </div>
-                      <div className="ds-stat-number">
+                      <div className="ds-track-number">
                         {isInView && CountUp ? (
                           <CountUp
                             start={0}
@@ -79,8 +90,9 @@ export default function TrustStatsBar() {
                         )}
                       </div>
                     </div>
-                    <h3 className="ds-stat-label">{stat.label}</h3>
-                    <p className="ds-stat-subtext">{stat.subtext}</p>
+                    <h3 className="ds-track-label">{stat.label}</h3>
+                    <p className="ds-track-subtext">{stat.subtext}</p>
+                    <div className="ds-track-border-line" />
                   </div>
                 </Reveal>
               </div>

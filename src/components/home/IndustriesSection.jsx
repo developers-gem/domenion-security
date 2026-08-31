@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
 import {
   Building2,
   Landmark,
@@ -10,10 +13,16 @@ import {
   Home as HomeIcon,
   Cpu,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 import { industries } from "../../data/industries";
+
+import "swiper/css";
+import "swiper/css/navigation";
 import "./IndustriesSection.css";
 
 const INDUSTRY_ICONS = {
@@ -30,10 +39,15 @@ const INDUSTRY_ICONS = {
 };
 
 export default function IndustriesSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiperRef, setSwiperRef] = useState(null);
+
+  const totalSlides = industries.length;
+
   return (
     <section className="section ds-industries-section">
       <div className="container">
-        {/* Section Header */}
+        {/* Section Header with Slider Navigation Controls */}
         <div className="row align-items-end mb-5">
           <div className="col-lg-7">
             <Reveal direction="up">
@@ -49,50 +63,113 @@ export default function IndustriesSection() {
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="col-lg-5 mt-4 mt-lg-0 d-flex flex-column align-items-lg-end">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="section-description text-lg-end mb-4">
                 Every sector faces unique threats, regulatory compliance standards, and
                 operational vulnerabilities. Dominion provides custom-tailored security
                 programs built around your specific industry.
               </p>
+
+              {/* Slider Navigation Counter & Arrows */}
+              <div className="ds-industry-nav-controls">
+                <div className="ds-slider-counter">
+                  <span className="ds-current-slide">
+                    {String(activeIndex + 1).padStart(2, "0")}
+                  </span>
+                  <span className="ds-counter-divider">/</span>
+                  <span className="ds-total-slides">
+                    {String(totalSlides).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="ds-slider-arrows">
+                  <button
+                    type="button"
+                    className="ds-slider-arrow ds-prev-arrow"
+                    onClick={() => swiperRef?.slidePrev()}
+                    aria-label="Previous Industry"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    type="button"
+                    className="ds-slider-arrow ds-next-arrow"
+                    onClick={() => swiperRef?.slideNext()}
+                    aria-label="Next Industry"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
             </Reveal>
           </div>
         </div>
 
-        {/* Sectors Grid */}
-        <div className="row g-4">
-          {industries.map((ind, index) => {
-            const Icon = INDUSTRY_ICONS[ind.slug] || Building2;
-            return (
-              <div key={ind.slug} className="col-6 col-md-4 col-lg-3">
-                <Reveal direction="up" delay={0.05 * index}>
+        {/* Premium Industry Swiper Carousel */}
+        <Reveal direction="up" delay={0.3}>
+          <Swiper
+            onSwiper={setSwiperRef}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            modules={[Navigation, Autoplay]}
+            speed={600}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            spaceBetween={24}
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              992: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 },
+            }}
+            loop
+            className="ds-industries-swiper"
+          >
+            {industries.map((ind, index) => {
+              const Icon = INDUSTRY_ICONS[ind.slug] || Building2;
+              return (
+                <SwiperSlide key={ind.slug}>
                   <Link
                     to={`/industries/${ind.slug}`}
-                    className="ds-industry-card"
+                    className="ds-industry-card-premium"
                   >
-                    <div className="ds-industry-icon-wrap">
-                      <Icon size={24} />
+                    <div className="ds-ind-card-img-wrap">
+                      <img
+                        src={ind.heroImage || ind.overviewImage || "/images/company-security.jpg"}
+                        alt={ind.title}
+                        className="ds-ind-card-img"
+                        onError={(e) => {
+                          e.target.src = "/images/company-security.jpg";
+                        }}
+                      />
+                      <div className="ds-ind-card-overlay" />
+                      <span className="ds-ind-num">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="ds-ind-icon-badge">
+                        <Icon size={20} />
+                      </div>
                     </div>
 
-                    <h3 className="ds-industry-title">{ind.title}</h3>
+                    <div className="ds-ind-card-content">
+                      <span className="ds-ind-badge">{ind.badge || "SECURITY SECTOR"}</span>
+                      <h3 className="ds-ind-title">{ind.title}</h3>
+                      <p className="ds-ind-desc">
+                        {ind.shortDescription || "Specialized security coverage"}
+                      </p>
 
-                    <p className="ds-industry-desc">
-                      {ind.shortDescription || "Specialized security coverage"}
-                    </p>
-
-                    <div className="ds-industry-link">
-                      <span>View Sector Details</span>
-                      <ArrowRight size={14} className="ds-ind-arrow" />
+                      <div className="ds-ind-link-bar">
+                        <span>Explore Industry Solutions</span>
+                        <ArrowRight size={16} className="ds-ind-arrow-icon" />
+                      </div>
                     </div>
                   </Link>
-                </Reveal>
-              </div>
-            );
-          })}
-        </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </Reveal>
 
-        {/* Bottom CTA */}
+        {/* Bottom Action CTA */}
         <div className="mt-5 text-center">
           <Reveal direction="up" delay={0.4}>
             <Button to="/industries" variant="primary" icon={ArrowRight}>

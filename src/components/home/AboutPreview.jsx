@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Target, Eye, Award } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 import "./AboutPreview.css";
@@ -56,12 +56,6 @@ export default function AboutPreview() {
                   people, property, facilities and information in an increasingly
                   complex world.
                 </p>
-                {/* <p className="mt-3 text-secondary-custom">
-                  From professional licensed security officers to specialized data
-                  center and cybersecurity operations, our approach combines
-                  experienced personnel, disciplined operational standards, and modern
-                  surveillance technology.
-                </p> */}
               </Reveal>
 
               {/* 3 Credibility Points */}

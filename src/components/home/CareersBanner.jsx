@@ -1,4 +1,4 @@
-import { ArrowRight, UserCheck, Shield } from "lucide-react";
+import { ArrowRight, UserCheck } from "lucide-react";
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 import "./CareersBanner.css";

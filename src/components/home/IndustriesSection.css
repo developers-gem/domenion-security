@@ -1,83 +1,210 @@
 /* =========================================
-   INDUSTRIES SECTION STYLES
+   INDUSTRIES CAROUSEL SECTION STYLES
 ========================================= */
 
 .ds-industries-section {
-  background: var(--color-gray-50, #f8f9fa);
+  background-color: var(--color-gray-50, #f7f8fa);
   position: relative;
 }
 
-.ds-industry-card {
+.ds-industry-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ds-slider-counter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ds-current-slide {
+  color: var(--color-gold, #c7a45b);
+  font-size: 18px;
+}
+
+.ds-counter-divider {
+  color: var(--color-gray-400, #9ca3af);
+}
+
+.ds-total-slides {
+  color: var(--color-gray-500, #6b7280);
+}
+
+.ds-slider-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-slider-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  color: var(--color-primary, #071a2d);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.25s ease);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ds-slider-arrow:hover {
+  background: var(--color-primary, #071a2d);
+  color: var(--color-gold, #c7a45b);
+  border-color: var(--color-primary, #071a2d);
+  transform: translateY(-2px);
+}
+
+/* Premium Card */
+.ds-industry-card-premium {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  padding: 24px 20px;
+  min-height: 420px;
   background: var(--color-white, #ffffff);
   border: 1px solid var(--color-gray-200, #e5e7eb);
   border-radius: var(--radius-md, 8px);
+  overflow: hidden;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: 
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  transition: all var(--transition-base, 0.35s ease);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
-.ds-industry-card:hover {
+.ds-industry-card-premium:hover {
+  transform: translateY(-6px);
   border-color: var(--color-gold, #c7a45b);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(7, 26, 45, 0.12);
 }
 
-.ds-industry-icon-wrap {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm, 4px);
-  background: rgba(199, 164, 91, 0.1);
-  border: 1px solid rgba(199, 164, 91, 0.25);
+/* Card Image Header */
+.ds-ind-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.ds-ind-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ds-industry-card-premium:hover .ds-ind-card-img {
+  transform: scale(1.08);
+}
+
+.ds-ind-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 26, 45, 0.2) 0%,
+    rgba(7, 26, 45, 0.75) 100%
+  );
+}
+
+.ds-ind-num {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 13px;
+  font-weight: 800;
   color: var(--color-gold, #c7a45b);
+  background: rgba(7, 26, 45, 0.85);
+  padding: 3px 10px;
+  border-radius: var(--radius-full, 9999px);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+}
+
+.ds-ind-icon-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-gold, #c7a45b);
+  color: var(--color-primary, #071a2d);
   display: grid;
   place-items: center;
-  margin-bottom: 16px;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.ds-industry-card:hover .ds-industry-icon-wrap {
-  background: var(--color-gold, #c7a45b);
-  color: var(--color-dark, #050505);
-}
-
-.ds-industry-title {
-  font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--color-primary, #07111f);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.ds-industry-desc {
-  font-size: 12.5px;
-  color: var(--color-gray-500, #6b7280);
-  line-height: 1.5;
-  margin-bottom: 20px;
+/* Card Content Body */
+.ds-ind-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
-.ds-industry-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-gold, #c7a45b);
+.ds-ind-badge {
   font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: 12.5px;
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-gold, #c7a45b);
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
-.ds-ind-arrow {
-  transition: transform var(--transition-fast);
+.ds-ind-title {
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary, #071a2d);
+  line-height: 1.3;
+  margin-bottom: 10px;
+  transition: color var(--transition-fast, 0.25s ease);
 }
 
-.ds-industry-card:hover .ds-ind-arrow {
+.ds-industry-card-premium:hover .ds-ind-title {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-ind-desc {
+  font-size: 13.5px;
+  color: var(--color-gray-500, #6b7280);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ds-ind-link-bar {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-gray-200, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary, #071a2d);
+  transition: color var(--transition-fast, 0.25s ease);
+}
+
+.ds-industry-card-premium:hover .ds-ind-link-bar {
+  color: var(--color-gold, #c7a45b);
+}
+
+.ds-ind-arrow-icon {
+  transition: transform var(--transition-fast, 0.25s ease);
+}
+
+.ds-industry-card-premium:hover .ds-ind-arrow-icon {
   transform: translateX(4px);
 }
