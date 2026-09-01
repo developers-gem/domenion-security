@@ -3,6 +3,9 @@ import { ShieldCheck, ChevronRight, LockKeyhole } from "lucide-react";
 import Reveal from "../common/Reveal";
 import "./AboutHero.css";
 
+// REPLACEMENT OFFICER IMAGE ASSET: Component prepared for new corporate security officer image asset
+const CORPORATE_OFFICER_IMAGE_PATH = "/images/about-security.jpg";
+
 export default function AboutHero() {
   return (
     <section className="ds-about-hero-section">
@@ -64,8 +67,8 @@ export default function AboutHero() {
 
                 <div className="ds-hero-img-frame">
                   <img
-                    src="/images/guard-4.jpg"
-                    alt="Dominion Security Professional Guard Operations"
+                    src={CORPORATE_OFFICER_IMAGE_PATH}
+                    alt="Domenion Security Corporate Guard Operations"
                     className="ds-hero-visual-img"
                     onError={(e) => {
                       e.target.src = "/images/about-security.jpg";

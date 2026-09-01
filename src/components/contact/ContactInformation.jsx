@@ -13,15 +13,15 @@ const INFO_CARDS = [
   {
     icon: Mail,
     label: "DIRECT EMAIL",
-    value: "info@domenionsecurity.com",
+    value: "Domenionseurityllc@gmail.com",
     subtext: "RFP & Operational Specifications",
-    href: "mailto:info@domenionsecurity.com",
+    href: "mailto:Domenionseurityllc@gmail.com",
   },
   {
     icon: MapPin,
     label: "SERVICE AREA",
-    value: "Arizona & Nationwide",
-    subtext: "Statewide & Regional Guard Deployments",
+    value: "50-State Coverage",
+    subtext: "Licensed, Bonded & Nationwide Guard Deployments",
     href: "#location-section",
   },
   {

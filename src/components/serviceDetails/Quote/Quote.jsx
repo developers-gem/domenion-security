@@ -92,7 +92,7 @@ function Quote({ service }) {
               <Mail size={22} />
               <div>
                 <h5>Email</h5>
-                <p>DomenionSecurityLLC@gmail.com</p>
+                <p>Domenionseurityllc@gmail.com</p>
               </div>
             </div>
 

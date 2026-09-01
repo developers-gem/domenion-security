@@ -1,6 +1,7 @@
 import ServicesHero from "../../components/services/ServicesHero";
 import ServicesIntro from "../../components/services/ServicesIntro";
 import FeaturedServices from "../../components/services/FeaturedServices";
+import DataCenterBanner from "../../components/home/DataCenterBanner";
 import ServicePortfolio from "../../components/services/ServicePortfolio";
 import WhyChooseServices from "../../components/services/WhyChooseServices";
 import ServicesApproach from "../../components/services/ServicesApproach";
@@ -20,6 +21,7 @@ function Services() {
       <ServicesHero />
       <ServicesIntro />
       <FeaturedServices />
+      <DataCenterBanner />
       <ServicePortfolio />
       <WhyChooseServices />
       <ServicesApproach />

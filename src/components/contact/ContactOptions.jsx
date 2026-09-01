@@ -28,13 +28,13 @@ const CONTACT_OPTIONS = [
     desc: "Send us your security specifications or RFP documents.",
     actionText: "SEND EMAIL",
     actionType: "mailto",
-    href: "mailto:info@domenionsecurity.com",
+    href: "mailto:Domenionseurityllc@gmail.com",
   },
   {
     num: "04",
     icon: MapPin,
     title: "SERVICE AREA",
-    desc: "Providing security services across Arizona & nationwide.",
+    desc: "Licensed, bonded, and providing professional coverage across all 50 states.",
     actionText: "VIEW LOCATION",
     actionType: "scroll",
     targetId: "location-section",
@@ -49,7 +49,7 @@ export default function ContactOptions() {
         el.scrollIntoView({ behavior: "smooth" });
       }
     } else if (item.href) {
-      window.location.href = item.href;
+      window.location.assign(item.href);
     }
   };
 

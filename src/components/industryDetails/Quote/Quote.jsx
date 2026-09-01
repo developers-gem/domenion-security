@@ -99,7 +99,7 @@ function Quote({ industry }) {
                 <Mail size={21} />
                 <div>
                   <h5>Email</h5>
-                  <p>info@domenionsecurity.com</p>
+                  <p>Domenionseurityllc@gmail.com</p>
                 </div>
               </div>
 

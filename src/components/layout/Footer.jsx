@@ -116,13 +116,13 @@ function Footer() {
                   </div>
                 </a>
 
-                <a href="mailto:DomenionSecurityLLC@gmail.com" className="footer-contact-item">
+                <a href="mailto:Domenionseurityllc@gmail.com" className="footer-contact-item">
                   <div className="footer-contact-icon">
                     <Mail size={16} />
                   </div>
                   <div>
                     <small>EMAIL INQUIRIES</small>
-                    <strong>DomenionSecurityLLC@gmail.com</strong>
+                    <strong>Domenionseurityllc@gmail.com</strong>
                   </div>
                 </a>
 
@@ -131,8 +131,8 @@ function Footer() {
                     <MapPin size={16} />
                   </div>
                   <div>
-                    <small>REGIONAL COVERAGE</small>
-                    <strong>Arizona • California • Nationwide</strong>
+                    <small>NATIONWIDE COVERAGE</small>
+                    <strong>Licensed, Bonded & 50-State Coverage</strong>
                   </div>
                 </div>
               </div>

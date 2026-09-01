@@ -53,19 +53,15 @@ function Coverage() {
           <div className="col-lg-6">
 
             <span className="section-label">
-              NATIONWIDE COVERAGE
+              50-STATE SECURITY COVERAGE
             </span>
 
             <h2 className="section-title">
-              Security Services Wherever You Need Them
+              Licensed & Bonded Security Across All 50 States
             </h2>
 
             <p className="section-description">
-
-              Our regional offices and field teams allow us to provide
-              consistent, high-quality protection across multiple
-              states with rapid deployment capabilities.
-
+              Licensed, bonded, and providing professional security coverage across all 50 states with rapid deployment capabilities and 24/7 operational dispatch.
             </p>
 
             <div className="row g-4 mt-2">

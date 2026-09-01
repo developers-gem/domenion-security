@@ -8,7 +8,7 @@ export default function UtilityBar() {
         {/* Left Side: Short Verified Phrase */}
         <div className="ds-utility-left">
           <ShieldCheck size={14} className="ds-utility-icon-gold" />
-          <span className="ds-utility-label">24/7 SECURITY DISPATCH & CONSULTATION</span>
+          <span className="ds-utility-label">LICENSED & BONDED • 50-STATE COVERAGE</span>
         </div>
 
         {/* Right Side: Direct Contact Lines */}
@@ -21,10 +21,10 @@ export default function UtilityBar() {
 
           <span className="ds-utility-divider" />
 
-          <a href="mailto:info@domenionsecurity.com" className="ds-utility-link">
+          <a href="mailto:Domenionseurityllc@gmail.com" className="ds-utility-link">
             <Mail size={13} className="ds-utility-icon-gold" />
             <span className="ds-utility-tag">EMAIL</span>
-            <span className="ds-utility-val">info@domenionsecurity.com</span>
+            <span className="ds-utility-val">Domenionseurityllc@gmail.com</span>
           </a>
         </div>
       </div>

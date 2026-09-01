@@ -150,9 +150,9 @@ export default function ContactForm() {
                   <Phone size={15} />
                   <span>Call: (602) 438-4445</span>
                 </a>
-                <a href="mailto:info@domenionsecurity.com" className="ds-direct-line-link">
+                <a href="mailto:Domenionseurityllc@gmail.com" className="ds-direct-line-link">
                   <Mail size={15} />
-                  <span>Email: info@domenionsecurity.com</span>
+                  <span>Email: Domenionseurityllc@gmail.com</span>
                 </a>
               </div>
             </div>

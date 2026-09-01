@@ -5,6 +5,7 @@ import ServiceDetailHero from "../../components/services/detail/ServiceDetailHer
 import ServiceDetailIntro from "../../components/services/detail/ServiceDetailIntro";
 import ServiceDetailCovers from "../../components/services/detail/ServiceDetailCovers";
 import ServiceDetailCapabilities from "../../components/services/detail/ServiceDetailCapabilities";
+import CyberIntelligenceHighlight from "../../components/services/detail/CyberIntelligenceHighlight";
 import ServiceDetailWhy from "../../components/services/detail/ServiceDetailWhy";
 import ServiceDetailProcess from "../../components/services/detail/ServiceDetailProcess";
 import ServiceDetailAudience from "../../components/services/detail/ServiceDetailAudience";
@@ -39,6 +40,7 @@ function ServiceDetails() {
       <ServiceDetailIntro service={service} />
       <ServiceDetailCovers service={service} />
       <ServiceDetailCapabilities service={service} />
+      {service.slug === "cyber-security" && <CyberIntelligenceHighlight />}
       <ServiceDetailWhy service={service} />
       <ServiceDetailProcess service={service} />
       <ServiceDetailAudience service={service} />

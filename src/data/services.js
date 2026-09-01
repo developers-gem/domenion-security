@@ -24,7 +24,7 @@ export const services = [
     description:
       "Our physical security services combine experienced security professionals, advanced monitoring and customized protection strategies to safeguard commercial, residential and government facilities.",
 
-    heroImage: "/images/services/physical-security/hero.jpg",
+    heroImage: "/images/services/physical-security/security gaurd-1.jpg",
 
     overviewImage: "/images/services/physical-security/overview.jpg",
 
@@ -221,6 +221,93 @@ export const services = [
 
     readiness: "24/7",
     readinessText: "SOC Monitoring",
+  },
+},
+{
+  slug: "intelligence-gathering-security",
+  parentSlug: "cyber-security",
+  badge: "INTELLIGENCE SECURITY",
+  title: "Intelligence Gathering Security Services",
+  shortDescription:
+    "Proactive threat intelligence, digital reconnaissance, OSINT analysis, risk monitoring, and strategic intelligence protection.",
+  description:
+    "Our Intelligence Gathering Security solutions combine digital threat intelligence, open-source reconnaissance, risk monitoring, counter-surveillance, and vulnerability assessments to safeguard enterprise operations, critical data, and leadership decision-making.",
+  heroImage: "/images/services/cyber-security/hero.jpg",
+  overviewImage: "/images/services/cyber-security/overview.jpg",
+  benefitsImage: "/images/services/cyber-security/benefits.jpg",
+  stats: {
+    officers: "200+",
+    clients: "300+",
+    support: "24/7",
+    cities: "Global",
+  },
+  overviewTitle:
+    "Strategic Intelligence Gathering & Proactive Threat Protection",
+  overviewDescription:
+    "We deliver advanced digital threat intelligence, open-source intelligence (OSINT) monitoring, corporate counter-surveillance, and risk analysis to protect enterprise assets before security breaches occur.",
+  highlights: [
+    "Threat Intelligence & OSINT Reconnaissance",
+    "Digital Risk & Asset Monitoring",
+    "Cyber Threat Intelligence Integration",
+    "Executive & Enterprise Counter-Surveillance",
+    "Proactive Risk & Vulnerability Analysis",
+    "24/7 Intelligence Operations Support",
+  ],
+  featuresTitle:
+    "Comprehensive Intelligence Security Capabilities",
+  featuresDescription:
+    "Advanced threat intelligence gathering and risk monitoring designed to protect enterprise infrastructure and decision makers.",
+  features: [
+    {
+      icon: ShieldCheck,
+      title: "Threat Reconnaissance",
+      text: "Continuous digital monitoring to identify external threats and vulnerabilities.",
+    },
+    {
+      icon: Camera,
+      title: "Digital Surveillance & OSINT",
+      text: "Open-source intelligence analysis tracking potential security risks.",
+    },
+    {
+      icon: Users,
+      title: "Corporate Counter-Surveillance",
+      text: "Protecting sensitive communications and executive operations.",
+    },
+    {
+      icon: ClipboardCheck,
+      title: "Risk Analysis & Reporting",
+      text: "Actionable intelligence reports to empower strategic security decisions.",
+    },
+    {
+      icon: Siren,
+      title: "Active Threat Alerting",
+      text: "Real-time alerts on emerging threats targeting your organization.",
+    },
+    {
+      icon: ScanFace,
+      title: "Asset & Personnel Intelligence",
+      text: "Comprehensive risk profiling for critical operations and executives.",
+    },
+  ],
+  benefitsTitle:
+    "Proactive Security Intelligence That Prevents Breaches",
+  benefitsDescription:
+    "Stay ahead of evolving physical and digital threats with strategic security intelligence.",
+  benefits: [
+    "Proactive threat identification before incidents occur",
+    "Real-time digital risk and threat intelligence",
+    "Seamless integration with enterprise Cyber Security",
+    "Enhanced executive and facility protection",
+    "Detailed actionable intelligence reporting",
+    "24/7 continuous intelligence monitoring",
+  ],
+  benefitStats: {
+    experience: "15+",
+    experienceText: "Years in Threat Intelligence",
+    satisfaction: "99.8%",
+    satisfactionText: "Threat Detection Rate",
+    readiness: "24/7",
+    readinessText: "Intelligence Operations",
   },
 },
 {

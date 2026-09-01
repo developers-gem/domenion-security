@@ -27,11 +27,11 @@ function States() {
           <div className="col-lg-6">
 
             <span className="section-label">
-              STATES WE SERVE
+              50-STATE COVERAGE
             </span>
 
             <h2 className="section-title">
-              Security Coverage Across Multiple States
+              Licensed, bonded, and providing professional security coverage across all 50 states.
             </h2>
 
           </div>

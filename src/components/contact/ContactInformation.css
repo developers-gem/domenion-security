@@ -57,7 +57,7 @@
 
 .ds-cinfo-value {
   font-family: var(--font-heading, "Manrope", sans-serif);
-  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  font-size: clamp(1.1rem, 1vw, 1.3rem);
   font-weight: 800;
   color: var(--color-primary, #07111f);
   margin-bottom: 6px;

@@ -3,6 +3,9 @@ import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 import "./FinalCTA.css";
 
+// REPLACEMENT OFFICER IMAGE ASSET: Component prepared for new corporate security officer image asset
+const CORPORATE_OFFICER_IMAGE_PATH = "/images/company-security.jpg";
+
 export default function FinalCTA() {
   return (
     <section className="ds-final-cta-section">
@@ -63,11 +66,11 @@ export default function FinalCTA() {
               <Reveal direction="left" delay={0.2}>
                 <div className="ds-cta-visual-panel">
                   <img
-                    src="/images/guard-3.jpg"
-                    alt="Dominion Security Operations"
+                    src={CORPORATE_OFFICER_IMAGE_PATH}
+                    alt="Domenion Security Operations"
                     className="ds-cta-visual-img"
                     onError={(e) => {
-                      e.target.src = "/images/guard-3.jpg";
+                      e.target.src = "/images/company-security.jpg";
                     }}
                   />
                   <div className="ds-cta-visual-overlay" />

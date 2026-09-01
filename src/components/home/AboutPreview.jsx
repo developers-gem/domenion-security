@@ -3,6 +3,9 @@ import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 import "./AboutPreview.css";
 
+// REPLACEMENT OFFICER IMAGE ASSET: Component prepared for new corporate security officer image asset
+const CORPORATE_OFFICER_IMAGE_PATH = "/images/about-security.jpg";
+
 export default function AboutPreview() {
   return (
     <section className="section ds-about-preview-section">
@@ -13,8 +16,8 @@ export default function AboutPreview() {
             <Reveal direction="left">
               <div className="ds-about-visual-wrap">
                 <img
-                  src="/images/guard-2.jpg"
-                  alt="Dominion Security Professional Operations"
+                  src={CORPORATE_OFFICER_IMAGE_PATH}
+                  alt="Domenion Security Corporate Operations"
                   className="ds-about-main-img"
                   onError={(e) => {
                     e.target.src = "/images/about-security.jpg";

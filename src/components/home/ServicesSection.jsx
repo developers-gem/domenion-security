@@ -5,6 +5,9 @@ import Reveal from "../common/Reveal";
 import { services } from "../../data/services";
 import "./ServicesSection.css";
 
+// REPLACEMENT OFFICER IMAGE ASSET: Component prepared for new corporate security officer image asset
+const CORPORATE_OFFICER_IMAGE_PATH = "/images/physical-security.jpg";
+
 export default function ServicesSection() {
   const featuredPhysical = services.find((s) => s.slug === "physical-security") || services[0];
   const gridServices = services
@@ -53,7 +56,7 @@ export default function ServicesSection() {
                 <div
                   className="ds-featured-bg-img"
                   style={{
-                    backgroundImage: `url(/images/guard-1.jpg)`,
+                    backgroundImage: `url(${CORPORATE_OFFICER_IMAGE_PATH})`,
                   }}
                 />
                 <div className="ds-featured-overlay-navy" />

@@ -336,6 +336,75 @@
   transform: translateX(2px);
 }
 
+.ds-mega-card-link.ds-mega-subitem {
+  border-left: 2px solid var(--color-gold, #c7a45b);
+  margin-left: 8px;
+  background: rgba(199, 164, 91, 0.04);
+}
+
+/* Coverage Dropdown Folder Styling */
+.ds-coverage-menu {
+  width: min(520px, calc(100vw - 48px));
+  max-width: 520px;
+}
+
+.ds-coverage-dropdown-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 4px;
+}
+
+.ds-cov-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold, #c7a45b);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.ds-cov-card-title {
+  color: var(--color-white, #ffffff);
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ds-cov-card-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-cov-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold, #c7a45b);
+  background: rgba(199, 164, 91, 0.1);
+  border: 1px solid rgba(199, 164, 91, 0.3);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm, 4px);
+  text-decoration: none;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  width: fit-content;
+  margin-top: 4px;
+  transition: all var(--transition-fast, 0.25s ease);
+}
+
+.ds-cov-card-btn:hover {
+  background: var(--color-gold, #c7a45b);
+  color: #07111f;
+}
+
 /* =========================================
    HEADER ACTIONS & MOBILE HAMBURGER
 ========================================= */

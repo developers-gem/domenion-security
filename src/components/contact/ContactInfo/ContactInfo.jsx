@@ -16,7 +16,7 @@ const contactData = [
   {
     icon: <Mail size={36} />,
     title: "Email Us",
-    value: "info@domenionsecurity.com",
+    value: "Domenionseurityllc@gmail.com",
     text: "We'll respond within 24 hours",
   },
   {
