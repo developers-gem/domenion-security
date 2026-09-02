@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import "./BackToTop.css";
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +18,6 @@ export default function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -33,12 +31,15 @@ export default function BackToTop() {
   return (
     <button
       type="button"
-      className={`ds-back-to-top ${isVisible ? "visible" : ""}`}
+      className={`fixed bottom-8 right-8 z-40 w-11 h-11 rounded-full bg-domenion-gold text-domenion-blue shadow-lg border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-domenion-blue hover:-translate-y-1 cursor-pointer ${
+        isVisible ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
+      }`}
       onClick={scrollToTop}
       aria-label="Back to top"
       title="Back to top"
     >
-      <ArrowUp size={20} className="ds-btt-icon" />
+      <ArrowUp size={20} className="stroke-[2.5]" />
     </button>
   );
 }
+

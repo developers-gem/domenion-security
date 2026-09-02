@@ -1,5 +1,4 @@
 import Reveal from "../common/Reveal";
-import "./WhyWorkDominion.css";
 
 const VALUE_ROWS = [
   {
@@ -26,27 +25,25 @@ const VALUE_ROWS = [
 
 export default function WhyWorkDominion() {
   return (
-    <section className="section ds-why-careers-section" id="why-dominion">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border" id="why-dominion">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Work that matters.
-                <br />
-                <span>A team that cares.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                Work that matters. <span className="text-domenion-gold">A team that cares.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Security is built on people. We value professionalism, responsibility, situational awareness, and a commitment to doing the job right.
               </p>
             </Reveal>
@@ -54,18 +51,19 @@ export default function WhyWorkDominion() {
         </div>
 
         {/* Large Editorial Value Rows */}
-        <div className="row g-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {VALUE_ROWS.map((row, idx) => (
-            <div key={row.num} className="col-md-6">
+            <div key={row.num}>
               <Reveal direction="up" delay={0.08 * idx}>
-                <div className="ds-career-value-row-card">
-                  <div className="ds-value-row-header">
-                    <span className="ds-value-row-num">{row.num}</span>
-                    <h3 className="ds-value-row-title">{row.title}</h3>
-                  </div>
+                <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-border">
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{row.num}</span>
+                      <h3 className="text-domenion-blue font-heading text-base font-bold uppercase">{row.title}</h3>
+                    </div>
 
-                  <p className="ds-value-row-desc">{row.desc}</p>
-                  <div className="ds-value-row-separator" />
+                    <p className="text-gray-600 text-sm leading-relaxed">{row.desc}</p>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -75,3 +73,4 @@ export default function WhyWorkDominion() {
     </section>
   );
 }
+

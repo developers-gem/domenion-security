@@ -1,6 +1,4 @@
-import { ArrowRight, ShieldCheck } from "lucide-react";
 import Reveal from "../../common/Reveal";
-import "./ServiceDetailCovers.css";
 
 export default function ServiceDetailCovers({ service }) {
   // Extract features or highlights or fallback to 6 structured scope points
@@ -27,27 +25,25 @@ export default function ServiceDetailCovers({ service }) {
       ];
 
   return (
-    <section className="section ds-detail-covers-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">WHAT THIS SERVICE COVERS</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHAT THIS SERVICE COVERS</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Comprehensive scope built for
-                <br />
-                <span>your operational environment.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+                Comprehensive scope built for <span className="text-domenion-gold">your operational environment.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Our scope encompasses physical guarding, electronic monitoring, and structured response procedures tailored specifically for {service.badge || "your organization"}.
               </p>
             </Reveal>
@@ -55,16 +51,16 @@ export default function ServiceDetailCovers({ service }) {
         </div>
 
         {/* 6-Item Numbered Scope Grid */}
-        <div className="row g-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {coversList.map((item, idx) => (
-            <div key={item.num} className="col-md-6 col-lg-4">
+            <div key={item.num}>
               <Reveal direction="up" delay={0.06 * idx}>
-                <div className="ds-cover-item-card">
-                  <div className="ds-cover-card-header">
-                    <span className="ds-cover-num">{item.num}</span>
-                    <h3 className="ds-cover-title">{item.title}</h3>
+                <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-domenion-gold font-heading text-lg font-extrabold">{item.num}</span>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">{item.title}</h3>
                   </div>
-                  <p className="ds-cover-desc">{item.desc}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             </div>
@@ -74,3 +70,4 @@ export default function ServiceDetailCovers({ service }) {
     </section>
   );
 }
+

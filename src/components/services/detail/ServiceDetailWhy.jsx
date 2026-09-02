@@ -1,6 +1,5 @@
 import { ShieldCheck, Clock3, Layers3, MapPinned } from "lucide-react";
 import Reveal from "../../common/Reveal";
-import "./ServiceDetailWhy.css";
 
 const REASONS = [
   {
@@ -31,27 +30,25 @@ const REASONS = [
 
 export default function ServiceDetailWhy({ service }) {
   return (
-    <section className="section ds-detail-why-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-domenion-blue text-white border-b border-domenion-gold/20">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title text-white">
-                Protection built around
-                <br />
-                <span>your environment.</span>
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+                Protection built around <span className="text-domenion-gold">your environment.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="ds-detail-why-desc">
+              <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
                 Dominion Security combines rigorous personnel selection, standardized post execution, and modern surveillance technology to deliver unyielding protection.
               </p>
             </Reveal>
@@ -59,22 +56,22 @@ export default function ServiceDetailWhy({ service }) {
         </div>
 
         {/* 4 Numbered Differentiator Cards */}
-        <div className="row g-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {REASONS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div key={item.num} className="col-md-6 col-lg-3">
+              <div key={item.num}>
                 <Reveal direction="up" delay={0.08 * idx}>
-                  <div className="ds-detail-why-card">
-                    <div className="ds-detail-why-top">
-                      <span className="ds-detail-why-num">{item.num}</span>
-                      <div className="ds-detail-why-icon">
+                  <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-domenion-gold font-heading text-xl font-extrabold">{item.num}</span>
+                      <div className="w-9 h-9 rounded bg-domenion-gold/15 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
                         <Icon size={18} />
                       </div>
                     </div>
 
-                    <h3 className="ds-detail-why-title">{item.title}</h3>
-                    <p className="ds-detail-why-text">{item.desc}</p>
+                    <h3 className="text-white font-heading text-lg font-bold mb-2">{item.title}</h3>
+                    <p className="text-white/75 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </Reveal>
               </div>
@@ -85,3 +82,4 @@ export default function ServiceDetailWhy({ service }) {
     </section>
   );
 }
+

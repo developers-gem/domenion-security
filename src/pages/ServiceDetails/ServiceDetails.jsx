@@ -35,7 +35,7 @@ function ServiceDetails() {
   }
 
   return (
-    <main className="ds-service-detail-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <ServiceDetailHero service={service} />
       <ServiceDetailIntro service={service} />
       <ServiceDetailCovers service={service} />

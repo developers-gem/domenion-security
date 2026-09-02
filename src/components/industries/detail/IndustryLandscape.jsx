@@ -1,29 +1,26 @@
 import Reveal from "../../common/Reveal";
-import "./IndustryLandscape.css";
 
 export default function IndustryLandscape({ industry }) {
   return (
-    <section className="section ds-ind-landscape-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">THE SECURITY LANDSCAPE</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">THE SECURITY LANDSCAPE</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Understanding the operational realities of
-                <br />
-                <span>{industry.badge || "your environment"}.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                Understanding the operational realities of <span className="text-domenion-gold">{industry.badge || "your environment"}.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Security in {industry.title.toLowerCase()} must balance public access or high occupant volume with strict access controls, asset protection, and continuous threat monitoring.
               </p>
             </Reveal>
@@ -31,37 +28,37 @@ export default function IndustryLandscape({ industry }) {
         </div>
 
         {/* 3 Editorial Narrative Cards */}
-        <div className="row g-4">
-          <div className="col-md-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
             <Reveal direction="up" delay={0.1}>
-              <div className="ds-landscape-card">
-                <span className="ds-landscape-num">01</span>
-                <h3 className="ds-landscape-title">Public vs. Restricted Access</h3>
-                <p className="ds-landscape-desc">
+              <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                <span className="text-domenion-gold font-heading text-2xl font-extrabold mb-3">01</span>
+                <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">Public vs. Restricted Access</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
                   Managing public ingress while isolating high-security zones, administrative offices, and sensitive infrastructure.
                 </p>
               </div>
             </Reveal>
           </div>
 
-          <div className="col-md-4">
+          <div>
             <Reveal direction="up" delay={0.2}>
-              <div className="ds-landscape-card">
-                <span className="ds-landscape-num">02</span>
-                <h3 className="ds-landscape-title">Occupant & Asset Safety</h3>
-                <p className="ds-landscape-desc">
+              <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                <span className="text-domenion-gold font-heading text-2xl font-extrabold mb-3">02</span>
+                <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">Occupant & Asset Safety</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
                   Protecting employees, guests, patients, and physical inventory with licensed security officers trained in de-escalation.
                 </p>
               </div>
             </Reveal>
           </div>
 
-          <div className="col-md-4">
+          <div>
             <Reveal direction="up" delay={0.3}>
-              <div className="ds-landscape-card">
-                <span className="ds-landscape-num">03</span>
-                <h3 className="ds-landscape-title">Operational Continuity</h3>
-                <p className="ds-landscape-desc">
+              <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                <span className="text-domenion-gold font-heading text-2xl font-extrabold mb-3">03</span>
+                <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">Operational Continuity</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
                   Preventing disruption, unauthorized trespass, and security breaches through 24/7 monitoring and rapid dispatch.
                 </p>
               </div>
@@ -72,3 +69,4 @@ export default function IndustryLandscape({ industry }) {
     </section>
   );
 }
+

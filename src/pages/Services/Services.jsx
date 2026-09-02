@@ -8,16 +8,9 @@ import ServicesApproach from "../../components/services/ServicesApproach";
 import ServiceCategories from "../../components/services/ServiceCategories";
 import ServicesImageStatement from "../../components/services/ServicesImageStatement";
 import ServicesCTA from "../../components/services/ServicesCTA";
-import "./Services.css";
-
-/**
- * Dominion Security Main Services Landing Page.
- * Composes 9 modular, high-impact enterprise UI components introducing
- * all 14 security capabilities with responsive motion and clean section alternation.
- */
 function Services() {
   return (
-    <main className="ds-services-page-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <ServicesHero />
       <ServicesIntro />
       <FeaturedServices />

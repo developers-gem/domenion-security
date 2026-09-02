@@ -7,7 +7,6 @@ import Reveal from "../common/Reveal";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
-import "./TestimonialsSlider.css";
 
 const TESTIMONIALS = [
   {
@@ -61,108 +60,105 @@ export default function TestimonialsSlider() {
   const totalSlides = TESTIMONIALS.length;
 
   return (
-    <section className="section ds-testimonials-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-domenion-blue text-white overflow-hidden border-b border-domenion-gold/20">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <Reveal direction="up">
-            <div className="ds-testimonials-badge">
-              <ShieldCheck size={14} />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest">
+              <ShieldCheck size={14} className="text-domenion-gold" />
               <span>CLIENT TRUST & REPUTATION</span>
             </div>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="section-title text-white mt-2">
+            <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-3">
               Trusted by leading organizations.
             </h2>
           </Reveal>
         </div>
 
-        <div className="row justify-content-center">
-          <div className="col-lg-10 col-xl-9">
-            <Reveal direction="up" delay={0.2}>
-              <div className="ds-testimonial-card-premium">
-                <Quote size={64} className="ds-quote-icon-bg" />
+        <div className="max-w-4xl mx-auto">
+          <Reveal direction="up" delay={0.2}>
+            <div className="relative bg-white/5 border border-domenion-gold/30 rounded-2xl p-8 sm:p-12 shadow-2xl backdrop-blur-md">
+              <Quote size={64} className="absolute top-6 right-6 text-domenion-gold/10" />
 
-                <Swiper
-                  onSwiper={setSwiperRef}
-                  onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                  modules={[Autoplay, EffectFade, Navigation]}
-                  effect="fade"
-                  fadeEffect={{ crossFade: true }}
-                  speed={600}
-                  autoplay={{ delay: 6500, disableOnInteraction: false }}
-                  loop
-                  className="ds-testimonials-swiper"
-                >
-                  {TESTIMONIALS.map((item) => (
-                    <SwiperSlide key={item.id}>
-                      <div className="ds-testimonial-slide-inner">
-                        <div className="ds-stars-row">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              size={18}
-                              className="ds-star-gold"
-                              fill="currentColor"
-                            />
-                          ))}
-                        </div>
-
-                        <blockquote className="ds-testimonial-quote-text">
-                          "{item.quote}"
-                        </blockquote>
-
-                        <div className="ds-testimonial-author-box">
-                          <strong className="ds-author-name-text">
-                            {item.author}
-                          </strong>
-                          <span className="ds-author-org-text">
-                            {item.organization}
-                          </span>
-                        </div>
+              <Swiper
+                onSwiper={setSwiperRef}
+                onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                modules={[Autoplay, EffectFade, Navigation]}
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                speed={600}
+                autoplay={{ delay: 6500, disableOnInteraction: false }}
+                loop
+              >
+                {TESTIMONIALS.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={18}
+                            className="text-domenion-gold fill-domenion-gold"
+                          />
+                        ))}
                       </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
 
-                {/* Slider Controls Bar */}
-                <div className="ds-testimonial-controls-bar">
-                  <div className="ds-testimonial-counter">
-                    <span className="ds-t-active">
-                      {String(activeIndex + 1).padStart(2, "0")}
-                    </span>
-                    <span className="ds-t-sep">/</span>
-                    <span className="ds-t-total">
-                      {String(totalSlides).padStart(2, "0")}
-                    </span>
-                  </div>
+                      <blockquote className="text-white font-heading text-lg sm:text-xl md:text-2xl font-semibold leading-relaxed my-2 italic">
+                        "{item.quote}"
+                      </blockquote>
 
-                  <div className="ds-testimonial-arrows">
-                    <button
-                      type="button"
-                      className="ds-t-arrow"
-                      onClick={() => swiperRef?.slidePrev()}
-                      aria-label="Previous Testimonial"
-                    >
-                      <ChevronLeft size={18} />
-                    </button>
-                    <button
-                      type="button"
-                      className="ds-t-arrow"
-                      onClick={() => swiperRef?.slideNext()}
-                      aria-label="Next Testimonial"
-                    >
-                      <ChevronRight size={18} />
-                    </button>
-                  </div>
+                      <div className="flex flex-col mt-2">
+                        <strong className="text-domenion-gold font-heading text-base font-bold">
+                          {item.author}
+                        </strong>
+                        <span className="text-white/70 text-xs sm:text-sm">
+                          {item.organization}
+                        </span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Slider Controls Bar */}
+              <div className="flex items-center justify-between pt-6 mt-6 border-t border-white/10">
+                <div className="flex items-center gap-1 font-heading text-xs font-bold">
+                  <span className="text-domenion-gold">
+                    {String(activeIndex + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-white/40">/</span>
+                  <span className="text-white/60">
+                    {String(totalSlides).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    className="w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white hover:bg-domenion-gold hover:text-domenion-blue hover:border-domenion-gold transition-colors flex items-center justify-center cursor-pointer"
+                    onClick={() => swiperRef?.slidePrev()}
+                    aria-label="Previous Testimonial"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    type="button"
+                    className="w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white hover:bg-domenion-gold hover:text-domenion-blue hover:border-domenion-gold transition-colors flex items-center justify-center cursor-pointer"
+                    onClick={() => swiperRef?.slideNext()}
+                    aria-label="Next Testimonial"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
                 </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 }
+

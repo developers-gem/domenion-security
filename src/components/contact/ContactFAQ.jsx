@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../common/Reveal";
-import "./ContactFAQ.css";
 
 const FAQ_ITEMS = [
   {
@@ -35,52 +34,53 @@ export default function ContactFAQ() {
   };
 
   return (
-    <section className="section ds-contact-faq-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-5">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="section-label">HELPFUL INFORMATION</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">HELPFUL INFORMATION</span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="section-title">
-              Frequently asked
-              <br />
-              <span>questions & answers.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+              Frequently asked <span className="text-domenion-gold">questions & answers.</span>
             </h2>
           </Reveal>
         </div>
 
         {/* Clean Accordion List */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-4">
           {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <Reveal key={idx} direction="up" delay={0.06 * idx}>
-                <div className={`ds-faq-item ${isOpen ? "open" : ""}`}>
+                <div className={`rounded-xl border transition-all duration-200 overflow-hidden ${
+                  isOpen ? "bg-neutral-light border-domenion-gold/50 shadow-md" : "bg-white border-neutral-border hover:border-domenion-gold/30"
+                }`}>
                   <button
                     type="button"
-                    className="ds-faq-question-btn"
+                    className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none"
                     onClick={() => toggleFAQ(idx)}
                     aria-expanded={isOpen}
                   >
-                    <span className="ds-faq-question-text">{item.q}</span>
-                    <div className="ds-faq-toggle-icon">
-                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                    <span className="text-domenion-blue font-heading text-base font-bold pr-4">{item.q}</span>
+                    <div className="w-8 h-8 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center flex-shrink-0">
+                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                     </div>
                   </button>
 
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
-                        className="ds-faq-answer-wrap"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <p className="ds-faq-answer-text">{item.a}</p>
+                        <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-neutral-border/60 pt-4">
+                          <p>{item.a}</p>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -93,3 +93,4 @@ export default function ContactFAQ() {
     </section>
   );
 }
+

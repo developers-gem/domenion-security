@@ -11,7 +11,6 @@ import IndustryServiceLinks from "../../components/industries/detail/IndustrySer
 import IndustryVisualBreak from "../../components/industries/detail/IndustryVisualBreak";
 import RelatedIndustries from "../../components/industries/detail/RelatedIndustries";
 import IndustryDetailCTA from "../../components/industries/detail/IndustryDetailCTA";
-import "./IndustryDetails.css";
 
 /**
  * Dominion Security Individual Industry Detail Page System.
@@ -32,7 +31,7 @@ function IndustryDetails() {
   }
 
   return (
-    <main className="ds-industry-detail-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <IndustryDetailHero industry={industry} />
       <IndustryOverview industry={industry} />
       <IndustryLandscape industry={industry} />

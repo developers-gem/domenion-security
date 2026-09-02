@@ -5,36 +5,18 @@ import { ChevronDown, ChevronRight, Menu, ArrowRight, ShieldCheck, MapPin } from
 
 import { services } from "../../data/services";
 import { industries } from "../../data/industries";
-import Button from "../common/Button";
 import MobileNavDrawer from "./MobileNavDrawer";
 import { dropdownMenu } from "../common/motionVariants";
-import "./Header.css";
 
 /**
  * Enterprise Header Component for Domenion Security.
- * Features sticky scroll state with glassmorphism, viewport-fixed centered mega-menus,
- * continuous hover timer, 50-state coverage dropdown, active route indicators, and mobile drawer integration.
+ * Styled purely with Tailwind CSS (Light Enterprise Theme).
  */
 export default function Header() {
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // 'services' | 'industries' | 'coverage' | null
   const closeTimerRef = useRef(null);
-
-  // Sticky header scroll detection
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Cleanup close timer on unmount
   useEffect(() => {
@@ -72,110 +54,118 @@ export default function Header() {
   return (
     <>
       <header
-        className={`ds-site-header ${isScrolled ? "scrolled" : ""}`}
+        className="sticky top-0 z-40 bg-white border-b border-neutral-border shadow-sm transition-all duration-300 relative"
         role="banner"
       >
-        <div className="ds-header-inner">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between">
           {/* ================= LOGO ================= */}
-          <Link to="/" className="ds-site-logo" aria-label="Domenion Security Home">
-            <div className="ds-logo-mark">
-              <img
-                src="/domenion-logo.png"
-                alt="Domenion Security Shield Logo"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextSibling.style.display = "flex";
-                }}
-              />
-              <span className="ds-logo-fallback" style={{ display: "none" }}>
-                DS
-              </span>
-            </div>
-            <div className="ds-logo-text">
-              <strong>DOMENION</strong>
-              <small>SECURITY</small>
+          <Link to="/" className="flex items-center gap-3 text-decoration-none group" aria-label="Domenion Security Home">
+            <img
+              src="/new-logo.jpg"
+              alt="Domenion Security Shield Logo"
+              className="h-10 sm:h-12 lg:h-[58px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              onError={(e) => {
+                e.target.src = "/domenion-logo.png";
+              }}
+            />
+            <div className="flex flex-col justify-center leading-none">
+              <strong className="text-domenion-blue font-heading text-base sm:text-lg lg:text-xl font-extrabold tracking-wider">DOMENION</strong>
+              <small className="text-domenion-gold font-heading text-[9px] sm:text-[10px] lg:text-[11px] font-bold tracking-[0.22em] mt-0.5">SECURITY</small>
             </div>
           </Link>
 
           {/* ================= DESKTOP NAV ================= */}
-          <nav className="ds-desktop-nav" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-x-6 xl:gap-x-7 ml-auto mr-6 xl:mr-8" aria-label="Main Navigation">
+            {/* HOME */}
             <Link
               to="/"
-              className={`ds-nav-link ${isCurrentRoute("/") ? "active" : ""}`}
+              className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
+                isCurrentRoute("/") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
+              }`}
             >
               <span>Home</span>
+              {isCurrentRoute("/") && (
+                <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+              )}
             </Link>
 
+            {/* ABOUT */}
             <Link
               to="/about"
-              className={`ds-nav-link ${
-                isCurrentRoute("/about") ? "active" : ""
+              className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
+                isCurrentRoute("/about") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
               }`}
             >
               <span>About</span>
+              {isCurrentRoute("/about") && (
+                <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+              )}
             </Link>
 
             {/* SERVICES MEGA DROPDOWN */}
             <div
-              className="ds-nav-dropdown-wrap"
+              className="static"
               onMouseEnter={() => handleOpenDropdown("services")}
               onMouseLeave={handleCloseDropdown}
             >
               <Link
                 to="/services"
-                className={`ds-nav-link ds-dropdown-trigger ${
+                className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/services") || activeDropdown === "services"
-                    ? "active"
-                    : ""
+                    ? "text-domenion-gold"
+                    : "text-domenion-blue hover:text-domenion-gold"
                 }`}
               >
                 <span>Services</span>
                 <ChevronDown
                   size={14}
-                  className={`ds-dropdown-arrow ${
-                    activeDropdown === "services" ? "open" : ""
+                  className={`transition-transform duration-200 ${
+                    activeDropdown === "services" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/60"
                   }`}
                 />
+                {(isCurrentRoute("/services") || activeDropdown === "services") && (
+                  <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+                )}
               </Link>
 
               <AnimatePresence>
                 {activeDropdown === "services" && (
                   <div
-                    className="ds-mega-portal"
+                    className="absolute top-full left-0 right-0 flex justify-center pointer-events-none z-50 px-4 pt-1"
                     onMouseEnter={() => handleOpenDropdown("services")}
                     onMouseLeave={handleCloseDropdown}
                   >
                     <motion.div
-                      className="ds-mega-menu ds-services-menu"
+                      className="pointer-events-auto w-full max-w-[920px] max-h-[calc(100vh-120px)] overflow-y-auto bg-white border border-domenion-gold/30 rounded-xl shadow-2xl p-6 text-domenion-blue"
                       variants={dropdownMenu}
                       initial="hidden"
                       animate="visible"
                       exit="exit"
                     >
-                      <div className="ds-mega-header">
-                        <span>OUR SECURITY CAPABILITIES</span>
-                        <Link to="/services" className="ds-mega-view-all" onClick={() => setActiveDropdown(null)}>
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-neutral-border">
+                        <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR SECURITY CAPABILITIES</span>
+                        <Link to="/services" className="inline-flex items-center gap-1.5 text-xs font-bold text-domenion-blue hover:text-domenion-gold transition-colors" onClick={() => setActiveDropdown(null)}>
                           View All Services <ArrowRight size={14} />
                         </Link>
                       </div>
 
-                      <div className="ds-mega-grid">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
                         {services.map((service, index) => (
                           <Link
                             key={service.slug}
                             to={`/services/${service.slug}`}
-                            className={`ds-mega-card-link ${
-                              service.parentSlug ? "ds-mega-subitem" : ""
+                            className={`flex items-center gap-3.5 p-3.5 rounded-lg border border-neutral-border/60 hover:border-domenion-gold/50 hover:bg-neutral-light transition-all duration-200 group min-h-[58px] ${
+                              service.parentSlug ? "ml-4 border-l-2 border-l-domenion-gold bg-domenion-gold/5" : ""
                             }`}
                             onClick={() => setActiveDropdown(null)}
                           >
-                            <span className="ds-mega-number">
+                            <span className="w-7 h-7 rounded-full bg-domenion-gold/15 text-domenion-gold font-heading text-xs font-extrabold flex items-center justify-center flex-shrink-0">
                               {String(index + 1).padStart(2, "0")}
                             </span>
-                            <span className="ds-mega-card-title">
+                            <span className="flex-1 text-domenion-blue font-heading text-[16px] font-semibold truncate group-hover:text-domenion-gold">
                               {service.title}
                             </span>
-                            <ChevronRight size={14} className="ds-mega-arrow" />
+                            <ChevronRight size={15} className="text-domenion-blue/30 opacity-0 group-hover:opacity-100 group-hover:text-domenion-gold transition-all flex-shrink-0" />
                           </Link>
                         ))}
                       </div>
@@ -187,63 +177,66 @@ export default function Header() {
 
             {/* INDUSTRIES MEGA DROPDOWN */}
             <div
-              className="ds-nav-dropdown-wrap"
+              className="static"
               onMouseEnter={() => handleOpenDropdown("industries")}
               onMouseLeave={handleCloseDropdown}
             >
               <Link
                 to="/industries"
-                className={`ds-nav-link ds-dropdown-trigger ${
+                className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/industries") || activeDropdown === "industries"
-                    ? "active"
-                    : ""
+                    ? "text-domenion-gold"
+                    : "text-domenion-blue hover:text-domenion-gold"
                 }`}
               >
                 <span>Industries</span>
                 <ChevronDown
                   size={14}
-                  className={`ds-dropdown-arrow ${
-                    activeDropdown === "industries" ? "open" : ""
+                  className={`transition-transform duration-200 ${
+                    activeDropdown === "industries" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/60"
                   }`}
                 />
+                {(isCurrentRoute("/industries") || activeDropdown === "industries") && (
+                  <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+                )}
               </Link>
 
               <AnimatePresence>
                 {activeDropdown === "industries" && (
                   <div
-                    className="ds-mega-portal"
+                    className="absolute top-full left-0 right-0 flex justify-center pointer-events-none z-50 px-4 pt-1"
                     onMouseEnter={() => handleOpenDropdown("industries")}
                     onMouseLeave={handleCloseDropdown}
                   >
                     <motion.div
-                      className="ds-mega-menu ds-industries-menu"
+                      className="pointer-events-auto w-full max-w-[920px] max-h-[calc(100vh-120px)] overflow-y-auto bg-white border border-domenion-gold/30 rounded-xl shadow-2xl p-6 text-domenion-blue"
                       variants={dropdownMenu}
                       initial="hidden"
                       animate="visible"
                       exit="exit"
                     >
-                      <div className="ds-mega-header">
-                        <span>SECTORS WE PROTECT</span>
-                        <Link to="/industries" className="ds-mega-view-all" onClick={() => setActiveDropdown(null)}>
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-neutral-border">
+                        <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">SECTORS WE PROTECT</span>
+                        <Link to="/industries" className="inline-flex items-center gap-1.5 text-xs font-bold text-domenion-blue hover:text-domenion-gold transition-colors" onClick={() => setActiveDropdown(null)}>
                           View All Industries <ArrowRight size={14} />
                         </Link>
                       </div>
 
-                      <div className="ds-mega-grid">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
                         {industries.map((industry, index) => (
                           <Link
                             key={industry.slug}
                             to={`/industries/${industry.slug}`}
-                            className="ds-mega-card-link"
+                            className="flex items-center gap-3.5 p-3.5 rounded-lg border border-neutral-border/60 hover:border-domenion-gold/50 hover:bg-neutral-light transition-all duration-200 group min-h-[58px]"
                             onClick={() => setActiveDropdown(null)}
                           >
-                            <span className="ds-mega-number">
+                            <span className="w-7 h-7 rounded-full bg-domenion-gold/15 text-domenion-gold font-heading text-xs font-extrabold flex items-center justify-center flex-shrink-0">
                               {String(index + 1).padStart(2, "0")}
                             </span>
-                            <span className="ds-mega-card-title">
+                            <span className="flex-1 text-domenion-blue font-heading text-[16px] font-semibold truncate group-hover:text-domenion-gold">
                               {industry.title}
                             </span>
-                            <ChevronRight size={14} className="ds-mega-arrow" />
+                            <ChevronRight size={15} className="text-domenion-blue/30 opacity-0 group-hover:opacity-100 group-hover:text-domenion-gold transition-all flex-shrink-0" />
                           </Link>
                         ))}
                       </div>
@@ -255,61 +248,64 @@ export default function Header() {
 
             {/* 50-STATE COVERAGE DROPDOWN */}
             <div
-              className="ds-nav-dropdown-wrap"
+              className="static"
               onMouseEnter={() => handleOpenDropdown("coverage")}
               onMouseLeave={handleCloseDropdown}
             >
               <Link
                 to="/service-areas"
-                className={`ds-nav-link ds-dropdown-trigger ${
+                className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/service-areas") || activeDropdown === "coverage"
-                    ? "active"
-                    : ""
+                    ? "text-domenion-gold"
+                    : "text-domenion-blue hover:text-domenion-gold"
                 }`}
               >
                 <span>Coverage</span>
                 <ChevronDown
                   size={14}
-                  className={`ds-dropdown-arrow ${
-                    activeDropdown === "coverage" ? "open" : ""
+                  className={`transition-transform duration-200 ${
+                    activeDropdown === "coverage" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/60"
                   }`}
                 />
+                {(isCurrentRoute("/service-areas") || activeDropdown === "coverage") && (
+                  <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+                )}
               </Link>
 
               <AnimatePresence>
                 {activeDropdown === "coverage" && (
                   <div
-                    className="ds-mega-portal"
+                    className="absolute top-full left-0 right-0 flex justify-center pointer-events-none z-50 px-4 pt-1"
                     onMouseEnter={() => handleOpenDropdown("coverage")}
                     onMouseLeave={handleCloseDropdown}
                   >
                     <motion.div
-                      className="ds-mega-menu ds-coverage-menu"
+                      className="pointer-events-auto w-full max-w-[560px] max-h-[calc(100vh-120px)] overflow-y-auto bg-white border border-domenion-gold/30 rounded-xl shadow-2xl p-6 text-domenion-blue"
                       variants={dropdownMenu}
                       initial="hidden"
                       animate="visible"
                       exit="exit"
                     >
-                      <div className="ds-mega-header">
-                        <span>NATIONWIDE COVERAGE</span>
-                        <Link to="/service-areas" className="ds-mega-view-all" onClick={() => setActiveDropdown(null)}>
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-neutral-border">
+                        <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">NATIONWIDE COVERAGE</span>
+                        <Link to="/service-areas" className="inline-flex items-center gap-1.5 text-xs font-bold text-domenion-blue hover:text-domenion-gold transition-colors" onClick={() => setActiveDropdown(null)}>
                           Explore All 50 States <ArrowRight size={14} />
                         </Link>
                       </div>
 
-                      <div className="ds-coverage-dropdown-card">
-                        <div className="ds-cov-card-badge">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold tracking-wider">
                           <ShieldCheck size={18} />
                           <span>50-STATE COVERAGE</span>
                         </div>
-                        <h4 className="ds-cov-card-title">
+                        <h4 className="text-domenion-blue font-heading text-base font-bold leading-snug">
                           Licensed, bonded, and providing professional security coverage across all 50 states.
                         </h4>
-                        <p className="ds-cov-card-desc">
+                        <p className="text-gray-600 text-[16px] leading-relaxed">
                           Domenion Security operates nationwide, offering rapid guard deployment, mobile patrols, and critical infrastructure protection.
                         </p>
-                        <Link to="/service-areas" className="ds-cov-card-btn" onClick={() => setActiveDropdown(null)}>
-                          <MapPin size={15} />
+                        <Link to="/service-areas" className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-domenion-blue text-white font-heading text-xs font-bold hover:bg-domenion-blue/90 transition-colors w-fit mt-1" onClick={() => setActiveDropdown(null)}>
+                          <MapPin size={15} className="text-domenion-gold" />
                           <span>View State Coverage & Locations</span>
                           <ArrowRight size={14} />
                         </Link>
@@ -320,40 +316,51 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
+            {/* CAREERS */}
             <Link
               to="/careers"
-              className={`ds-nav-link ${
-                isCurrentRoute("/careers") ? "active" : ""
+              className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
+                isCurrentRoute("/careers") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
               }`}
             >
               <span>Careers</span>
+              {isCurrentRoute("/careers") && (
+                <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+              )}
             </Link>
 
+            {/* CONTACT */}
             <Link
               to="/contact"
-              className={`ds-nav-link ${
-                isCurrentRoute("/contact") ? "active" : ""
+              className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
+                isCurrentRoute("/contact") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
               }`}
             >
               <span>Contact</span>
+              {isCurrentRoute("/contact") && (
+                <span className="absolute bottom-1 left-1.5 right-1.5 h-0.5 bg-domenion-gold rounded-full" />
+              )}
             </Link>
           </nav>
 
           {/* ================= HEADER ACTION CTA ================= */}
-          <div className="ds-header-actions">
-            <Button to="/contact" variant="primary" size="sm">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center h-11 lg:h-12 px-4 sm:px-6 rounded-lg bg-domenion-gold text-white font-heading text-xs lg:text-[16px] font-extrabold tracking-wider uppercase hover:bg-domenion-gold-hover transition-colors shadow-sm no-underline text-decoration-none"
+            >
               Request Quote
-            </Button>
+            </Link>
 
             {/* Mobile Menu Hamburger Toggle */}
             <button
               type="button"
-              className="ds-mobile-hamburger"
+              className="lg:hidden w-11 h-11 rounded-lg bg-neutral-light border border-neutral-border text-domenion-blue hover:text-domenion-gold hover:border-domenion-gold transition-colors flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
-              <Menu size={24} />
+              <Menu size={22} />
             </button>
           </div>
         </div>
@@ -367,3 +374,4 @@ export default function Header() {
     </>
   );
 }
+

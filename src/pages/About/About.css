@@ -1,9 +1,0 @@
-/* =========================================
-   ABOUT PAGE LAYOUT COMPOSITION STYLES
-========================================= */
-
-.ds-about-page-main {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: var(--color-white, #ffffff);
-}

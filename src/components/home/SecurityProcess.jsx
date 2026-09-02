@@ -1,6 +1,5 @@
 import { Search, ClipboardList, ShieldAlert, BadgeCheck } from "lucide-react";
 import Reveal from "../common/Reveal";
-import "./SecurityProcess.css";
 
 const PROCESS_STEPS = [
   {
@@ -35,22 +34,22 @@ const PROCESS_STEPS = [
 
 export default function SecurityProcess() {
   return (
-    <section className="section ds-process-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-5">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="section-label">HOW WE PROTECT</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">HOW WE PROTECT</span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="section-title">
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
               A disciplined, 4-step security process.
             </h2>
           </Reveal>
 
           <Reveal direction="up" delay={0.2}>
-            <p className="section-description mt-3">
+            <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mt-3">
               From initial risk assessment to 24/7 active protection, our operational
               framework ensures your organization is prepared for every situation.
             </p>
@@ -58,34 +57,32 @@ export default function SecurityProcess() {
         </div>
 
         {/* 4-Step Timeline Workflow */}
-        <div className="ds-process-timeline-wrap">
-          <div className="ds-process-connecting-line" />
-
-          <div className="row g-4">
-            {PROCESS_STEPS.map((step, idx) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.step} className="col-md-6 col-lg-3">
-                  <Reveal direction="up" delay={0.1 * idx}>
-                    <div className="ds-process-card">
-                      <div className="ds-process-badge-wrap">
-                        <div className="ds-process-num">{step.step}</div>
-                        <div className="ds-process-icon">
-                          <Icon size={20} />
-                        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PROCESS_STEPS.map((step, idx) => {
+            const Icon = step.icon;
+            return (
+              <div key={step.step}>
+                <Reveal direction="up" delay={0.1 * idx}>
+                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group relative">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{step.step}</span>
+                      <div className="w-10 h-10 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                        <Icon size={20} />
                       </div>
-
-                      <span className="ds-process-action">{step.title}</span>
-                      <h3 className="ds-process-subtitle">{step.subtitle}</h3>
-                      <p className="ds-process-desc">{step.desc}</p>
                     </div>
-                  </Reveal>
-                </div>
-              );
-            })}
-          </div>
+
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{step.title}</span>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2 leading-snug">{step.subtitle}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                    <div className="h-0.5 w-8 bg-domenion-gold/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
+                  </div>
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+

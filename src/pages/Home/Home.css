@@ -1,9 +1,0 @@
-/* =========================================
-   HOMEPAGE MAIN LAYOUT COMPOSITION STYLES
-========================================= */
-
-.ds-homepage-main {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: var(--color-white, #ffffff);
-}

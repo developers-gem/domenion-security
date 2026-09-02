@@ -1,6 +1,4 @@
-import { ShieldCheck, Target, Award, Users } from "lucide-react";
 import Reveal from "../common/Reveal";
-import "./CoreValues.css";
 
 const VALUES_DATA = [
   {
@@ -43,27 +41,25 @@ const VALUES_DATA = [
 
 export default function CoreValues() {
   return (
-    <section className="section ds-values-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-domenion-blue text-white border-b border-domenion-gold/20">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">OUR VALUES</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR VALUES</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title text-white">
-                The principles behind
-                <br />
-                every protection decision.
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                The principles behind <span className="text-domenion-gold">every protection decision.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="ds-values-intro-desc">
+              <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
                 Effective security requires more than personnel and surveillance systems.
                 It requires a corporate culture built around unyielding accountability,
                 thorough preparation, and mutual trust.
@@ -73,18 +69,18 @@ export default function CoreValues() {
         </div>
 
         {/* Editorial Value List Layout */}
-        <div className="row g-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {VALUES_DATA.map((val, idx) => (
-            <div key={val.num} className="col-md-6 col-lg-4">
+            <div key={val.num}>
               <Reveal direction="up" delay={0.08 * idx}>
-                <div className="ds-value-editorial-card">
-                  <div className="ds-val-card-header">
-                    <span className="ds-val-num">{val.num}</span>
-                    <span className="ds-val-title">{val.title}</span>
+                <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                    <span className="text-domenion-gold font-heading text-xl font-extrabold">{val.num}</span>
+                    <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">{val.title}</span>
                   </div>
 
-                  <h3 className="ds-val-subtitle">{val.subtitle}</h3>
-                  <p className="ds-val-desc">{val.desc}</p>
+                  <h3 className="text-white font-heading text-lg font-bold mb-2">{val.subtitle}</h3>
+                  <p className="text-white/75 text-sm leading-relaxed">{val.desc}</p>
                 </div>
               </Reveal>
             </div>
@@ -94,3 +90,4 @@ export default function CoreValues() {
     </section>
   );
 }
+

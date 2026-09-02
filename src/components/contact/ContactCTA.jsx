@@ -1,7 +1,6 @@
 import { ArrowRight, Phone, ShieldCheck } from "lucide-react";
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
-import "./ContactCTA.css";
 
 export default function ContactCTA() {
   const handleScrollToForm = () => {
@@ -12,38 +11,36 @@ export default function ContactCTA() {
   };
 
   return (
-    <section className="ds-contact-cta-section">
-      <div className="container">
-        <div className="ds-contact-cta-card">
-          <div className="row align-items-center g-4 lg:g-5">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-domenion-blue to-domenion-blue/90 text-white rounded-2xl p-8 sm:p-12 shadow-2xl border border-domenion-gold/30 relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             {/* Left Column: Copy */}
-            <div className="col-lg-7">
-              <div className="ds-contact-cta-content">
+            <div className="lg:col-span-7">
+              <div className="flex flex-col">
                 <Reveal direction="fade">
-                  <div className="ds-contact-cta-eyebrow">
-                    <ShieldCheck size={16} />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/20 border border-domenion-gold/40 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-4">
+                    <ShieldCheck size={16} className="text-domenion-gold" />
                     <span>START A CONVERSATION</span>
                   </div>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="ds-contact-cta-title">
-                    Let's build the right
-                    <br />
-                    security approach together.
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                    Let's build the right <span className="text-domenion-gold">security approach together.</span>
                   </h2>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.2}>
-                  <p className="ds-contact-cta-desc">
+                  <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                     Tell us what matters most and take the first step toward a more focused, dependable security strategy for your site.
                   </p>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.3}>
-                  <div className="ds-contact-cta-actions">
+                  <div className="flex flex-wrap items-center gap-4">
                     <Button
-                      variant="dark"
+                      variant="primary"
                       size="lg"
                       onClick={handleScrollToForm}
                       icon={ArrowRight}
@@ -58,7 +55,7 @@ export default function ContactCTA() {
                       icon={Phone}
                       iconPosition="left"
                     >
-                      Call Dominion
+                      Call Domenion
                     </Button>
                   </div>
                 </Reveal>
@@ -66,21 +63,21 @@ export default function ContactCTA() {
             </div>
 
             {/* Right Column: Visual Panel */}
-            <div className="col-lg-5">
+            <div className="lg:col-span-5">
               <Reveal direction="left" delay={0.2}>
-                <div className="ds-contact-cta-visual-panel">
+                <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
                     src="/images/company-security.jpg"
                     alt="Dominion Security Officer"
-                    className="ds-contact-cta-img"
+                    className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
-                      e.target.src = "/images/about-security.jpg";
+                      e.target.src = "/images/company-security.jpg";
                     }}
                   />
-                  <div className="ds-contact-cta-overlay" />
-                  <div className="ds-contact-cta-badge">
-                    <span>24/7 DISPATCH DESK</span>
-                    <strong>(602) 438-4445</strong>
+                  <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 DISPATCH DESK</span>
+                    <strong className="text-xs font-bold font-heading">(602) 438-4445</strong>
                   </div>
                 </div>
               </Reveal>
@@ -91,3 +88,4 @@ export default function ContactCTA() {
     </section>
   );
 }
+

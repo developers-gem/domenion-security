@@ -1,6 +1,5 @@
 import { Search, ClipboardList, ShieldAlert, BadgeCheck } from "lucide-react";
 import Reveal from "../common/Reveal";
-import "./SecurityApproach.css";
 
 const APPROACH_STAGES = [
   {
@@ -35,25 +34,25 @@ const APPROACH_STAGES = [
 
 export default function SecurityApproach() {
   return (
-    <section className="section ds-approach-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-domenion-blue text-white border-b border-domenion-gold/20">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">OUR APPROACH</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR APPROACH</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title text-white">
-                Security isn't one-size-fits-all.
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+                Security isn't <span className="text-domenion-gold">one-size-fits-all.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="ds-approach-desc">
+              <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
                 Effective protection starts with understanding the environment, identifying
                 risks, and building a custom operational strategy around the people,
                 assets, and operations that matter most.
@@ -63,34 +62,31 @@ export default function SecurityApproach() {
         </div>
 
         {/* 4-Stage Horizontal / Vertical Timeline */}
-        <div className="ds-approach-timeline-wrap">
-          <div className="ds-approach-connecting-line" />
-
-          <div className="row g-4">
-            {APPROACH_STAGES.map((stage, idx) => {
-              const Icon = stage.icon;
-              return (
-                <div key={stage.step} className="col-md-6 col-lg-3">
-                  <Reveal direction="up" delay={0.1 * idx}>
-                    <div className="ds-approach-card">
-                      <div className="ds-approach-card-top">
-                        <span className="ds-approach-num">{stage.step}</span>
-                        <div className="ds-approach-icon">
-                          <Icon size={20} />
-                        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {APPROACH_STAGES.map((stage, idx) => {
+            const Icon = stage.icon;
+            return (
+              <div key={stage.step}>
+                <Reveal direction="up" delay={0.1 * idx}>
+                  <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{stage.step}</span>
+                      <div className="w-9 h-9 rounded bg-domenion-gold/15 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
+                        <Icon size={20} />
                       </div>
-
-                      <span className="ds-approach-action">{stage.title}</span>
-                      <h3 className="ds-approach-subtitle">{stage.subtitle}</h3>
-                      <p className="ds-approach-text">{stage.desc}</p>
                     </div>
-                  </Reveal>
-                </div>
-              );
-            })}
-          </div>
+
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.title}</span>
+                    <h3 className="text-white font-heading text-lg font-bold mb-2">{stage.subtitle}</h3>
+                    <p className="text-white/75 text-sm leading-relaxed">{stage.desc}</p>
+                  </div>
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+

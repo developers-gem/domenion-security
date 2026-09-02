@@ -16,7 +16,6 @@ import {
 import { careersAPI } from "../../services/api";
 import ApplicationModal from "../../components/Careers/ApplicationModal";
 import Reveal from "../../components/common/Reveal";
-import "./CareerDetails.css";
 
 function formatDeadline(dateString) {
   if (!dateString) return "Rolling Recruitment";
@@ -98,12 +97,10 @@ export default function CareerDetails() {
 
   if (loading) {
     return (
-      <main className="ds-career-details-page">
-        <div className="container py-5">
-          <div className="ds-career-details-loading text-center py-5">
-            <Loader2 size={36} className="ds-spinner text-gold mb-3 mx-auto" />
-            <p className="text-muted">Loading position details...</p>
-          </div>
+      <main className="w-full min-h-screen bg-white py-20">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+          <Loader2 size={36} className="animate-spin text-domenion-gold mb-3 mx-auto" />
+          <p className="text-gray-500 text-sm font-medium">Loading position details...</p>
         </div>
       </main>
     );
@@ -111,20 +108,20 @@ export default function CareerDetails() {
 
   if (error || !career) {
     return (
-      <main className="ds-career-details-page">
-        <div className="container py-5">
-          <div className="ds-career-details-error-card text-center py-5">
-            <AlertCircle size={48} className="text-gold mb-3 mx-auto" />
-            <h2 className="ds-error-title">POSITION NOT FOUND</h2>
-            <p className="ds-error-desc text-muted mb-4">
+      <main className="w-full min-h-screen bg-white py-20">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+          <div className="bg-neutral-light border border-neutral-border rounded-2xl p-10 max-w-xl mx-auto shadow-sm">
+            <AlertCircle size={48} className="text-domenion-gold mb-3 mx-auto" />
+            <h2 className="text-domenion-blue font-heading text-2xl font-extrabold mb-2">POSITION NOT FOUND</h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6">
               {error || "The career position you are looking for does not exist or may have been removed."}
             </p>
-            <div className="d-flex justify-content-center gap-3">
-              <Link to="/careers" className="ds-career-back-btn">
+            <div className="flex justify-center gap-4">
+              <Link to="/careers" className="inline-flex items-center gap-2 px-5 py-2.5 bg-domenion-blue text-white rounded-lg text-xs font-heading font-bold hover:bg-domenion-gold hover:text-domenion-blue transition-colors text-decoration-none">
                 <ArrowLeft size={16} />
                 <span>Back to Careers</span>
               </Link>
-              <button type="button" onClick={fetchCareer} className="ds-career-retry-btn">
+              <button type="button" onClick={fetchCareer} className="px-5 py-2.5 bg-neutral-light border border-neutral-border text-domenion-blue rounded-lg text-xs font-heading font-bold hover:border-domenion-gold transition-colors cursor-pointer">
                 <span>Try Again</span>
               </button>
             </div>
@@ -137,54 +134,57 @@ export default function CareerDetails() {
   const isClosed = career.status === "closed";
 
   return (
-    <main className="ds-career-details-page">
+    <main className="w-full min-h-screen bg-white">
       {/* Header Banner */}
-      <section className="ds-career-details-header">
-        <div className="container">
+      <section className="relative py-16 sm:py-24 lg:py-28 bg-domenion-blue text-white overflow-hidden border-b border-domenion-gold/20">
+        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal direction="up">
-            <Link to="/careers" className="ds-career-back-link mb-4">
+            <Link to="/careers" className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold hover:underline mb-6 text-decoration-none">
               <ArrowLeft size={16} />
               <span>Back to Open Positions</span>
             </Link>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <div className="ds-career-header-tags">
-              <span className="ds-open-positions-boxed-tag">
-                <span className="ds-gold-accent-square" />
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
                 CAREER OPPORTUNITY
               </span>
-              <span className={`ds-career-status-pill ${isClosed ? "closed" : "open"}`}>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-heading font-extrabold ${
+                isClosed ? "bg-gray-200 text-gray-700" : "bg-emerald-100 text-emerald-800"
+              }`}>
                 {isClosed ? "CLOSED" : "OPEN"}
               </span>
-              <span className="ds-career-type-pill">{career.type || "Full-Time"}</span>
+              <span className="px-2.5 py-0.5 bg-white/10 border border-white/20 rounded-full text-xs font-heading font-bold text-white">
+                {career.type || "Full-Time"}
+              </span>
             </div>
           </Reveal>
 
           <Reveal direction="up" delay={0.15}>
-            <h1 className="ds-career-details-title">{career.title}</h1>
+            <h1 className="text-white font-heading text-4xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">{career.title}</h1>
           </Reveal>
 
           <Reveal direction="up" delay={0.2}>
-            <div className="ds-career-header-meta">
+            <div className="flex flex-wrap items-center gap-6 text-xs font-heading font-semibold text-white/80">
               {career.department && (
-                <span className="ds-meta-pill">
-                  <Building2 size={15} className="text-gold" />
+                <span className="flex items-center gap-2">
+                  <Building2 size={16} className="text-domenion-gold" />
                   {career.department}
                 </span>
               )}
-              <span className="ds-meta-pill">
-                <MapPin size={15} className="text-gold" />
+              <span className="flex items-center gap-2">
+                <MapPin size={16} className="text-domenion-gold" />
                 {career.location || "Location Not Specified"}
               </span>
               {career.experience && (
-                <span className="ds-meta-pill">
-                  <Award size={15} className="text-gold" />
+                <span className="flex items-center gap-2">
+                  <Award size={16} className="text-domenion-gold" />
                   {career.experience}
                 </span>
               )}
-              <span className="ds-meta-pill">
-                <Calendar size={15} className="text-gold" />
+              <span className="flex items-center gap-2">
+                <Calendar size={16} className="text-domenion-gold" />
                 Deadline: {formatDeadline(career.applicationDeadline)}
               </span>
             </div>
@@ -193,21 +193,19 @@ export default function CareerDetails() {
       </section>
 
       {/* Main Content Layout */}
-      <section className="section ds-career-details-body">
-        <div className="container">
-          <div className="row g-5">
+      <section className="py-20 sm:py-28 bg-white text-domenion-blue">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Column: Job Description & Requirements */}
-            <div className="col-lg-8">
+            <div className="lg:col-span-8 space-y-8">
               {/* Job Description */}
               <Reveal direction="up">
-                <div className="ds-details-card mb-4">
-                  <h2 className="ds-details-card-title">
-                    <Briefcase size={20} className="text-gold" />
+                <div className="bg-neutral-light border border-neutral-border rounded-2xl p-8 shadow-sm">
+                  <h2 className="text-domenion-blue font-heading text-xl font-extrabold mb-4 flex items-center gap-3">
+                    <Briefcase size={22} className="text-domenion-gold" />
                     JOB DESCRIPTION
                   </h2>
-                  <div className="ds-details-card-content">
-                    <p className="ds-description-text">{career.description}</p>
-                  </div>
+                  <p className="text-gray-700 font-sans text-base leading-relaxed whitespace-pre-line">{career.description}</p>
                 </div>
               </Reveal>
 
@@ -217,68 +215,70 @@ export default function CareerDetails() {
                   ? career.requirements.length > 0
                   : String(career.requirements).trim().length > 0) && (
                   <Reveal direction="up" delay={0.1}>
-                    <div className="ds-details-card mb-4">
-                      <h2 className="ds-details-card-title">
-                        <ShieldCheck size={20} className="text-gold" />
+                    <div className="bg-neutral-light border border-neutral-border rounded-2xl p-8 shadow-sm">
+                      <h2 className="text-domenion-blue font-heading text-xl font-extrabold mb-4 flex items-center gap-3">
+                        <ShieldCheck size={22} className="text-domenion-gold" />
                         REQUIREMENTS & QUALIFICATIONS
                       </h2>
-                      <div className="ds-details-card-content">
-                        {Array.isArray(career.requirements) ? (
-                          <ul className="ds-requirements-list">
-                            {career.requirements.map((req, idx) => (
-                              <li key={idx} className="ds-requirement-item">
-                                <CheckCircle2 size={16} className="text-gold flex-shrink-0 mt-1" />
-                                <span>{req}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="ds-description-text">{career.requirements}</p>
-                        )}
-                      </div>
+                      {Array.isArray(career.requirements) ? (
+                        <ul className="space-y-3">
+                          {career.requirements.map((req, idx) => (
+                            <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm leading-relaxed">
+                              <CheckCircle2 size={18} className="text-domenion-gold flex-shrink-0 mt-0.5" />
+                              <span>{req}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-gray-700 font-sans text-base leading-relaxed whitespace-pre-line">{career.requirements}</p>
+                      )}
                     </div>
                   </Reveal>
                 )}
             </div>
 
             {/* Right Column: Position Information Sidebar & Apply CTA */}
-            <div className="col-lg-4">
+            <div className="lg:col-span-4">
               <Reveal direction="up" delay={0.15}>
-                <div className="ds-sidebar-card">
-                  <h3 className="ds-sidebar-title">POSITION INFORMATION</h3>
-                  <div className="ds-info-grid">
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Department</span>
-                      <span className="ds-info-val">{career.department || "General Security"}</span>
+                <div className="bg-white border border-neutral-border p-6 rounded-2xl shadow-xl sticky top-28">
+                  <h3 className="text-domenion-blue font-heading text-lg font-extrabold pb-4 mb-4 border-b border-neutral-border">POSITION INFORMATION</h3>
+                  <div className="space-y-3 text-xs">
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Department</span>
+                      <span className="text-domenion-blue font-bold">{career.department || "General Security"}</span>
                     </div>
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Location</span>
-                      <span className="ds-info-val">{career.location || "Not Specified"}</span>
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Location</span>
+                      <span className="text-domenion-blue font-bold">{career.location || "Not Specified"}</span>
                     </div>
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Employment Type</span>
-                      <span className="ds-info-val">{career.type || "Full-Time"}</span>
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Employment Type</span>
+                      <span className="text-domenion-blue font-bold">{career.type || "Full-Time"}</span>
                     </div>
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Experience</span>
-                      <span className="ds-info-val">{career.experience || "Not Specified"}</span>
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Experience</span>
+                      <span className="text-domenion-blue font-bold">{career.experience || "Not Specified"}</span>
                     </div>
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Status</span>
-                      <span className={`ds-info-val ${isClosed ? "text-danger" : "text-success"}`}>
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Status</span>
+                      <span className={`font-bold ${isClosed ? "text-rose-600" : "text-emerald-600"}`}>
                         {isClosed ? "Closed" : "Open"}
                       </span>
                     </div>
-                    <div className="ds-info-row">
-                      <span className="ds-info-label">Application Deadline</span>
-                      <span className="ds-info-val">{formatDeadline(career.applicationDeadline)}</span>
+                    <div className="flex justify-between py-1 border-b border-neutral-border">
+                      <span className="text-gray-500 font-medium">Deadline</span>
+                      <span className="text-domenion-blue font-bold">{formatDeadline(career.applicationDeadline)}</span>
                     </div>
                   </div>
 
-                  <div className="ds-sidebar-action mt-4">
+                  <div className="mt-6 pt-4 border-t border-neutral-border">
                     <button
                       type="button"
-                      className="ds-detail-apply-btn"
+                      className={`w-full py-4 rounded-xl font-heading text-sm font-extrabold tracking-wider uppercase transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2 ${
+                        isClosed
+                          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          : "bg-domenion-gold text-domenion-blue hover:bg-domenion-gold/90"
+                      }`}
                       disabled={isClosed}
                       onClick={() => setShowApplyModal(true)}
                     >
@@ -303,3 +303,4 @@ export default function CareerDetails() {
     </main>
   );
 }
+

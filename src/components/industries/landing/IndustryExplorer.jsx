@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "../../common/Reveal";
 import { industries } from "../../../data/industries";
-import "./IndustryExplorer.css";
 
 export default function IndustryExplorer() {
   const [activeSlug, setActiveSlug] = useState(industries[0]?.slug || "government");
@@ -12,27 +11,25 @@ export default function IndustryExplorer() {
   const activeIndustry = industries.find((i) => i.slug === activeSlug) || industries[0];
 
   return (
-    <section className="section ds-ind-explorer-section" id="industry-explorer">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border" id="industry-explorer">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">INTERACTIVE SECTOR EXPLORER</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">INTERACTIVE SECTOR EXPLORER</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Explore protection tailored
-                <br />
-                <span>for your environment.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                Explore protection tailored <span className="text-domenion-gold">for your environment.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Hover on desktop or tap on mobile to inspect Dominion Security's specialized capabilities across sectors.
               </p>
             </Reveal>
@@ -40,27 +37,32 @@ export default function IndustryExplorer() {
         </div>
 
         {/* Explorer Split Panel Layout */}
-        <div className="row g-4 lg:g-5 align-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Vertical Industry Nav List */}
-          <div className="col-lg-5">
-            <div className="ds-explorer-nav-list">
+          <div className="lg:col-span-5">
+            <div className="flex flex-col gap-2 max-h-[460px] overflow-y-auto pr-2 custom-scrollbar">
               {industries.map((ind, index) => {
                 const isActive = ind.slug === activeSlug;
                 return (
                   <button
                     key={ind.slug}
                     type="button"
-                    className={`ds-explorer-item ${isActive ? "active" : ""}`}
+                    className={`w-full flex items-center justify-between p-4 rounded-xl text-left border transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-domenion-blue text-white border-domenion-gold/40 shadow-md"
+                        : "bg-white text-domenion-blue border-neutral-border hover:border-domenion-gold/40"
+                    }`}
                     onMouseEnter={() => setActiveSlug(ind.slug)}
                     onClick={() => setActiveSlug(ind.slug)}
                   >
-                    <span className="ds-explorer-item-num">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className={`font-heading text-sm font-extrabold ${isActive ? "text-domenion-gold" : "text-domenion-gold"}`}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-heading text-base font-bold">{ind.title}</span>
+                    </div>
 
-                    <span className="ds-explorer-item-title">{ind.title}</span>
-
-                    <ChevronRight size={16} className="ds-explorer-item-arrow" />
+                    <ChevronRight size={16} className={`transition-transform ${isActive ? "text-domenion-gold translate-x-1" : "text-gray-400"}`} />
                   </button>
                 );
               })}
@@ -68,12 +70,12 @@ export default function IndustryExplorer() {
           </div>
 
           {/* Right Column: Dynamic Crossfading Visual Image Frame */}
-          <div className="col-lg-7">
-            <div className="ds-explorer-visual-panel">
+          <div className="lg:col-span-7">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-neutral-border bg-domenion-blue h-[460px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndustry.slug}
-                  className="ds-explorer-frame"
+                  className="relative w-full h-full"
                   initial={{ opacity: 0, scale: 1.02 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
@@ -82,29 +84,29 @@ export default function IndustryExplorer() {
                   <img
                     src={activeIndustry.heroImage || activeIndustry.overviewImage || "/images/company-security.jpg"}
                     alt={activeIndustry.title}
-                    className="ds-explorer-img"
+                    className="w-full h-full object-cover"
                     onError={(e) => {
                       e.target.src = "/images/company-security.jpg";
                     }}
                   />
-                  <div className="ds-explorer-overlay" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue via-domenion-blue/60 to-transparent" />
 
                   {/* Active Industry Statement Overlay */}
-                  <div className="ds-explorer-content-overlay">
-                    <span className="ds-explorer-badge">
+                  <div className="absolute bottom-6 left-6 right-6 text-white flex flex-col items-start">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-domenion-gold/20 border border-domenion-gold/40 rounded-full text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-2">
                       {activeIndustry.badge || "SECURITY SECTOR"}
                     </span>
-                    <h3 className="ds-explorer-active-title">
+                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold mb-2 text-white">
                       {activeIndustry.title}
                     </h3>
-                    <p className="ds-explorer-active-desc">
+                    <p className="text-white/85 font-sans text-sm leading-relaxed mb-4 line-clamp-2 max-w-xl">
                       {activeIndustry.shortDescription ||
                         "Tailored security post orders and operational procedures for this specific environment."}
                     </p>
 
                     <Link
                       to={`/industries/${activeIndustry.slug}`}
-                      className="ds-explorer-link-btn"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-domenion-gold text-domenion-blue rounded-lg font-heading text-xs font-bold hover:bg-white transition-colors text-decoration-none"
                     >
                       <span>Explore {activeIndustry.badge || "Sector"}</span>
                       <ArrowRight size={16} />
@@ -119,3 +121,4 @@ export default function IndustryExplorer() {
     </section>
   );
 }
+

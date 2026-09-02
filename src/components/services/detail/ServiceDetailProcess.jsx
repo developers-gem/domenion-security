@@ -1,6 +1,5 @@
 import { Search, ClipboardList, ShieldAlert, BadgeCheck } from "lucide-react";
 import Reveal from "../../common/Reveal";
-import "./ServiceDetailProcess.css";
 
 const PROCESS_STAGES = [
   {
@@ -35,52 +34,47 @@ const PROCESS_STAGES = [
 
 export default function ServiceDetailProcess({ service }) {
   return (
-    <section className="section ds-detail-proc-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-5">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="section-label">OUR PROCESS</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR PROCESS</span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="section-title">
-              A clear approach to
-              <br />
-              <span>security planning.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+              A clear approach to <span className="text-domenion-gold">security planning.</span>
             </h2>
           </Reveal>
         </div>
 
-        {/* Horizontal Timeline on Desktop / Vertical on Mobile */}
-        <div className="ds-detail-proc-timeline">
-          <div className="ds-detail-proc-connecting-line" />
-
-          <div className="row g-4">
-            {PROCESS_STAGES.map((stage, idx) => {
-              const Icon = stage.icon;
-              return (
-                <div key={stage.step} className="col-md-6 col-lg-3">
-                  <Reveal direction="up" delay={0.08 * idx}>
-                    <div className="ds-proc-stage-card">
-                      <div className="ds-proc-card-top">
-                        <span className="ds-proc-step-num">{stage.step}</span>
-                        <div className="ds-proc-icon">
-                          <Icon size={18} />
-                        </div>
+        {/* 4-Step Timeline Workflow */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PROCESS_STAGES.map((stage, idx) => {
+            const Icon = stage.icon;
+            return (
+              <div key={stage.step}>
+                <Reveal direction="up" delay={0.08 * idx}>
+                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{stage.step}</span>
+                      <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                        <Icon size={18} />
                       </div>
-
-                      <span className="ds-proc-action">{stage.action}</span>
-                      <h3 className="ds-proc-title">{stage.title}</h3>
-                      <p className="ds-proc-desc">{stage.desc}</p>
                     </div>
-                  </Reveal>
-                </div>
-              );
-            })}
-          </div>
+
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.action}</span>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">{stage.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{stage.desc}</p>
+                  </div>
+                </Reveal>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+

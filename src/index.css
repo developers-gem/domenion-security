@@ -1,21 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-domenion-blue: #14335A;
+  --color-domenion-blue-dark: #0F2644;
+  --color-domenion-gold: #C7A45B;
+  --color-domenion-gold-hover: #D4B46E;
+  --color-neutral-light: #F7F9FC;
+  --color-neutral-border: #E5E7EB;
+
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: "Manrope", system-ui, -apple-system, sans-serif;
+}
 
 /* =========================================
    DOMINION SECURITY DESIGN SYSTEM TOKENS
 ========================================= */
 :root {
   /* Brand Palette */
-  --color-primary: #07111f;
-  --color-primary-light: #0d1b2a;
-  --color-secondary: #111827;
+  --color-primary: #14335a;
+  --color-primary-light: #14335a;
+  --color-secondary: #14335a;
   
   --color-gold: #c7a45b;
-  --color-gold-light: #e2c477;
+  --color-gold-light: #d4b46e;
   --color-gold-dark: #a3823d;
   
   --color-white: #ffffff;
   --color-black: #050505;
-  --color-dark: #07111f;
+  --color-dark: #14335a;
 
   /* Neutral Scale */
   --color-gray-50: #f8f9fa;
@@ -87,203 +100,215 @@
 }
 
 /* =========================================
-   BASE RESET & ACCESSIBILITY
+   BASE RESET & ACCESSIBILITY (LAYERED BASE)
 ========================================= */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-white);
-  color: var(--color-primary);
-  overflow-x: hidden;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body,
-button,
-input,
-textarea,
-select {
-  font-family: inherit;
-}
+  body,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
 
-button,
-input,
-textarea,
-select {
-  outline: none;
-}
+  button,
+  input,
+  textarea,
+  select {
+    outline: none;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
-}
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
 
-button {
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-}
+  button {
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-img,
-video {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 
-ul,
-ol {
-  list-style: none;
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  /* Typography Defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.15;
+    color: inherit;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.7;
+  }
 }
 
 /* =========================================
-   TYPOGRAPHY HIERARCHY
-========================================= */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.15;
-  color: inherit;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-}
-
 /* =========================================
-   LAYOUT & CONTAINER UTILITIES
+   LAYOUT & CONTAINER UTILITIES (LAYERED COMPONENTS)
 ========================================= */
-.container {
-  width: min(100% - 40px, var(--container-width));
-  margin-inline: auto;
-}
-
-.section {
-  padding: 100px 0;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--color-gold);
-  font-family: var(--font-heading);
-  font-size: var(--text-eyebrow);
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.section-label::before {
-  content: "";
-  width: 24px;
-  height: 2px;
-  background: currentColor;
-}
-
-.section-title {
-  margin-top: 14px;
-  font-size: var(--text-h1);
-  line-height: 1.1;
-  letter-spacing: -1.5px;
-  font-weight: 700;
-}
-
-.section-description {
-  color: var(--color-gray-500);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-}
-
-/* Base button legacy compatibility */
-.btn {
-  min-height: 50px;
-  padding: 0 26px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
-  transition: transform var(--transition-fast),
-              background-color var(--transition-fast),
-              color var(--transition-fast),
-              border-color var(--transition-fast);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--color-gold);
-  color: var(--color-dark);
-}
-
-.btn-primary:hover {
-  background: var(--color-gold-light);
-  color: var(--color-dark);
-}
-
-.btn-dark {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-.btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: var(--color-white);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--color-white);
-  color: var(--color-primary);
-}
-
-@media (max-width: 768px) {
+@layer components {
   .container {
-    width: min(100% - 30px, var(--container-width));
+    width: 100%;
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   .section {
-    padding: 65px 0;
+    padding: 5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 3.5rem 0;
+    }
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-gold);
+    font-family: var(--font-heading);
+    font-size: var(--text-eyebrow);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .section-label::before {
+    content: "";
+    width: 24px;
+    height: 2px;
+    background: currentColor;
   }
 
   .section-title {
-    letter-spacing: -1px;
+    margin-top: 14px;
+    font-size: var(--text-h1);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    font-weight: 700;
+  }
+
+  .section-description {
+    color: var(--color-gray-500);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* Base button legacy compatibility */
+  .btn {
+    min-height: 50px;
+    padding: 0 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition-fast),
+                background-color var(--transition-fast),
+                color var(--transition-fast),
+                border-color var(--transition-fast);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: var(--color-gold);
+    color: var(--color-dark);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-gold-light);
+    color: var(--color-dark);
+  }
+
+  .btn-dark {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-white);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    background: var(--color-white);
+    color: var(--color-primary);
   }
 }

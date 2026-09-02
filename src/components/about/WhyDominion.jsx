@@ -1,6 +1,5 @@
 import { ShieldCheck, Clock3, Layers3, MapPinned } from "lucide-react";
 import Reveal from "../common/Reveal";
-import "./WhyDominion.css";
 
 const FEATURE_BLOCKS = [
   {
@@ -31,27 +30,25 @@ const FEATURE_BLOCKS = [
 
 export default function WhyDominion() {
   return (
-    <section className="section ds-why-dominion-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Protection backed by
-                <br />
-                <span>discipline and readiness.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                Protection backed by <span className="text-domenion-gold">discipline and readiness.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 We combine experienced security personnel, proven operational procedures,
                 and modern surveillance technology to deliver complete peace of mind.
               </p>
@@ -60,23 +57,22 @@ export default function WhyDominion() {
         </div>
 
         {/* 4 Feature Blocks */}
-        <div className="row g-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURE_BLOCKS.map((block, idx) => {
             const Icon = block.icon;
             return (
-              <div key={block.num} className="col-md-6 col-lg-3">
+              <div key={block.num}>
                 <Reveal direction="up" delay={0.1 * idx}>
-                  <div className="ds-why-dom-card">
-                    <div className="ds-why-dom-header">
-                      <span className="ds-why-dom-num">{block.num}</span>
-                      <div className="ds-why-dom-icon">
+                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{block.num}</span>
+                      <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
                         <Icon size={20} />
                       </div>
                     </div>
 
-                    <h3 className="ds-why-dom-title">{block.title}</h3>
-                    <p className="ds-why-dom-desc">{block.desc}</p>
-                    <div className="ds-why-dom-accent" />
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">{block.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{block.desc}</p>
                   </div>
                 </Reveal>
               </div>
@@ -87,3 +83,4 @@ export default function WhyDominion() {
     </section>
   );
 }
+

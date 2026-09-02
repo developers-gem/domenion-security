@@ -5,17 +5,15 @@ import CareerValues from "../../components/Careers/CareerValues";
 import OpenPositions from "../../components/Careers/OpenPositions";
 import CareerExperience from "../../components/Careers/CareerExperience";
 import CareerCTA from "../../components/Careers/CareerCTA";
-import "./Careers.css";
 
 /**
  * Dominion Security Careers Page.
- * Composes 7 recruitment-focused enterprise components ("WHO BUILDS DOMINION")
- * featuring human/team imagery, editorial benefit rows, values, real job integration,
- * modal application form with optional resume upload, and responsive layout.
+ * Composes recruitment-focused enterprise components featuring human/team imagery,
+ * editorial benefit rows, values, real job integration, modal application form, and responsive layout.
  */
 function Careers() {
   return (
-    <main className="ds-careers-page-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <CareersHero />
       <OpenPositions />
       <WhyWorkDominion />

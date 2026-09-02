@@ -1,5 +1,4 @@
 import Reveal from "../../common/Reveal";
-import "./IndustryChallengePanels.css";
 
 const CHALLENGES = [
   {
@@ -30,46 +29,44 @@ const CHALLENGES = [
 
 export default function IndustryChallengePanels({ industry }) {
   return (
-    <section className="section ds-ind-chal-panels-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-domenion-blue text-white border-b border-domenion-gold/20">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">ENVIRONMENTAL CHALLENGES</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">ENVIRONMENTAL CHALLENGES</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title text-white">
-                4 core security pillars for
-                <br />
-                <span>{industry.badge || "this sector"}.</span>
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                4 core security pillars for <span className="text-domenion-gold">{industry.badge || "this sector"}.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="ds-chal-panels-desc">
+              <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
                 Dominion structures every security deployment around 4 critical operational dimensions to eliminate security blind spots.
               </p>
             </Reveal>
           </div>
         </div>
 
-        {/* 4 Horizontal Panels on Desktop / Stacking Vertically on Mobile */}
-        <div className="row g-4">
+        {/* 4 Horizontal Panels */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {CHALLENGES.map((item, idx) => (
-            <div key={item.num} className="col-md-6 col-lg-3">
+            <div key={item.num}>
               <Reveal direction="up" delay={0.08 * idx}>
-                <div className="ds-chal-panel-card">
-                  <div className="ds-chal-panel-header">
-                    <span className="ds-chal-panel-num">{item.num}</span>
-                    <span className="ds-chal-panel-tag">{item.tag}</span>
+                <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                    <span className="text-domenion-gold font-heading text-2xl font-extrabold">{item.num}</span>
+                    <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">{item.tag}</span>
                   </div>
 
-                  <h3 className="ds-chal-panel-title">{item.title}</h3>
-                  <p className="ds-chal-panel-text">{item.desc}</p>
+                  <h3 className="text-white font-heading text-lg font-bold mb-2">{item.title}</h3>
+                  <p className="text-white/75 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             </div>
@@ -79,3 +76,4 @@ export default function IndustryChallengePanels({ industry }) {
     </section>
   );
 }
+

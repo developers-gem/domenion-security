@@ -10,16 +10,9 @@ import CareersBanner from "../../components/home/CareersBanner";
 import TestimonialsSlider from "../../components/home/TestimonialsSlider";
 import FAQSection from "../../components/home/FAQSection";
 import FinalCTA from "../../components/home/FinalCTA";
-import "./Home.css";
-
-/**
- * Dominion Security Homepage.
- * Composes modular enterprise UI components with full motion, responsive layouts,
- * and preserved backend API integrations.
- */
 function Home() {
   return (
-    <main className="ds-homepage-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <HomeHero />
       <TrustStatsBar />
       <AboutPreview />

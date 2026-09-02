@@ -7,7 +7,6 @@ import IndustryPriorities from "../../components/industries/landing/IndustryPrio
 import IndustryGrid from "../../components/industries/landing/IndustryGrid";
 import IndustryCrossServices from "../../components/industries/landing/IndustryCrossServices";
 import IndustriesCTA from "../../components/industries/landing/IndustriesCTA";
-import "./Industries.css";
 
 /**
  * Dominion Security Main Industries Landing Page.
@@ -17,7 +16,7 @@ import "./Industries.css";
  */
 function Industries() {
   return (
-    <main className="ds-industries-page-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <IndustriesHero />
       <IndustriesSnapshot />
       <IndustryExplorer />

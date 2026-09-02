@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, PhoneCall } from "lucide-react";
 import Reveal from "../common/Reveal";
 import { accordionCollapse } from "../common/motionVariants";
-import "./FAQSection.css";
 
 const DEFAULT_FAQS = [
   {
@@ -46,80 +45,84 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="section ds-faq-section">
-      <div className="container">
-        <div className="row g-5">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Title & Prompt */}
-          <div className="col-lg-5">
-            <Reveal direction="up">
-              <span className="section-label">FREQUENTLY ASKED QUESTIONS</span>
-            </Reveal>
+          <div className="lg:col-span-5">
+            <div className="flex flex-col">
+              <Reveal direction="up">
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">FREQUENTLY ASKED QUESTIONS</span>
+              </Reveal>
 
-            <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Security questions,
-                <br />
-                <span>answered clearly.</span>
-              </h2>
-            </Reveal>
+              <Reveal direction="up" delay={0.1}>
+                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+                  Security questions, <span className="text-domenion-gold">answered clearly.</span>
+                </h2>
+              </Reveal>
 
-            <Reveal direction="up" delay={0.2}>
-              <p className="section-description mt-3">
-                Have specific operational questions about our security guard services,
-                cyber defense, or emergency response capabilities? Find answers below or
-                speak with our specialists.
-              </p>
-            </Reveal>
+              <Reveal direction="up" delay={0.2}>
+                <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mt-4">
+                  Have specific operational questions about our security guard services,
+                  cyber defense, or emergency response capabilities? Find answers below or
+                  speak with our specialists.
+                </p>
+              </Reveal>
 
-            <Reveal direction="up" delay={0.3}>
-              <div className="ds-faq-consult-card mt-4">
-                <div className="ds-faq-icon-badge">
-                  <PhoneCall size={20} />
+              <Reveal direction="up" delay={0.3}>
+                <div className="mt-8 p-6 rounded-xl bg-white border border-neutral-border shadow-sm flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center flex-shrink-0">
+                    <PhoneCall size={22} />
+                  </div>
+                  <div className="flex flex-col">
+                    <strong className="text-domenion-blue font-heading text-base font-bold">Need Immediate Assistance?</strong>
+                    <p className="text-gray-500 text-xs sm:text-sm mt-0.5">Our security directors are available 24/7.</p>
+                    <a href="tel:+16024384445" className="text-domenion-gold font-heading text-base font-extrabold mt-1 hover:underline">
+                      (602) 438-4445
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <strong>Need Immediate Assistance?</strong>
-                  <p>Our security directors are available 24/7.</p>
-                  <a href="tel:+16024384445" className="ds-faq-phone-link">
-                    (602) 438-4445
-                  </a>
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
 
           {/* Right Column: Framer Motion Accordion */}
-          <div className="col-lg-7">
-            <div className="ds-accordion-wrap">
+          <div className="lg:col-span-7">
+            <div className="flex flex-col">
               {DEFAULT_FAQS.map((faq, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <Reveal key={faq.id} direction="up" delay={index * 0.05}>
-                    <div className={`ds-accordion-item ${isOpen ? "open" : ""}`}>
+                    <div className={`bg-white border rounded-xl mb-4 overflow-hidden shadow-sm transition-all duration-200 ${
+                      isOpen ? "border-domenion-gold/60 shadow-md" : "border-neutral-border hover:border-domenion-gold/30"
+                    }`}>
                       <button
                         type="button"
-                        className="ds-accordion-header"
+                        className="w-full p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-base text-domenion-blue hover:text-domenion-gold cursor-pointer"
                         onClick={() => toggleAccordion(index)}
                         aria-expanded={isOpen}
                       >
-                        <span className="ds-accordion-title">
+                        <span className="flex-1">
                           {faq.question}
                         </span>
                         <ChevronDown
                           size={18}
-                          className={`ds-accordion-chevron ${isOpen ? "open" : ""}`}
+                          className={`transition-transform duration-200 flex-shrink-0 ${
+                            isOpen ? "rotate-180 text-domenion-gold" : "text-gray-400"
+                          }`}
                         />
                       </button>
 
                       <AnimatePresence>
                         {isOpen && (
                           <motion.div
-                            className="ds-accordion-content"
+                            className="px-5 pb-5 pt-0 overflow-hidden"
                             variants={accordionCollapse}
                             initial="hidden"
                             animate="visible"
                             exit="exit"
                           >
-                            <p>{faq.answer}</p>
+                            <p className="text-gray-600 text-sm leading-relaxed border-t border-neutral-border/60 pt-3">{faq.answer}</p>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -134,3 +137,4 @@ export default function FAQSection() {
     </section>
   );
 }
+

@@ -6,12 +6,10 @@ import { ChevronDown, ChevronRight, X, Phone, ShieldCheck } from "lucide-react";
 import { services } from "../../data/services";
 import { industries } from "../../data/industries";
 import Button from "../common/Button";
-import "./MobileNavDrawer.css";
 
 /**
  * Mobile Navigation Drawer component.
- * Features slide-over animation, dark navy backdrop blur, body scroll lock,
- * and expandable submenus for Services and Industries.
+ * Styled purely with Tailwind CSS (Light Enterprise Theme).
  */
 export default function MobileNavDrawer({ isOpen, onClose }) {
   const location = useLocation();
@@ -57,10 +55,10 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="ds-mobile-drawer-root">
+        <div className="relative z-50">
           {/* Backdrop Blur Overlay */}
           <motion.div
-            className="ds-mobile-drawer-backdrop"
+            className="fixed inset-0 bg-domenion-blue/60 backdrop-blur-sm z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -70,7 +68,7 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
 
           {/* Slide-over Drawer Panel */}
           <motion.div
-            className="ds-mobile-drawer-panel"
+            className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl z-50 flex flex-col text-domenion-blue border-l border-neutral-border"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -80,34 +78,34 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
             aria-label="Mobile Navigation"
           >
             {/* Header */}
-            <div className="ds-mobile-drawer-header">
-              <Link to="/" className="ds-mobile-logo" onClick={onClose}>
-                <div className="ds-mobile-logo-badge">
+            <div className="flex items-center justify-between p-5 border-b border-neutral-border">
+              <Link to="/" className="flex items-center gap-3 text-decoration-none" onClick={onClose}>
+                <div className="w-9 h-9 rounded-full bg-domenion-blue/10 border border-domenion-gold/40 grid place-items-center text-domenion-gold">
                   <ShieldCheck size={18} />
                 </div>
-                <div className="ds-mobile-logo-text">
-                  <strong>DOMENION</strong>
-                  <span>SECURITY</span>
+                <div className="flex flex-col leading-none">
+                  <strong className="text-domenion-blue font-heading font-extrabold text-base tracking-wider">DOMENION</strong>
+                  <span className="text-domenion-gold font-heading font-bold text-[9px] tracking-widest mt-0.5">SECURITY</span>
                 </div>
               </Link>
 
               <button
                 type="button"
-                className="ds-mobile-drawer-close"
+                className="p-2 rounded-md bg-neutral-light border border-neutral-border text-domenion-blue hover:text-domenion-gold hover:border-domenion-gold transition-colors"
                 onClick={onClose}
                 aria-label="Close navigation menu"
               >
-                <X size={24} />
+                <X size={22} />
               </button>
             </div>
 
             {/* Navigation Body */}
-            <nav className="ds-mobile-drawer-body">
+            <nav className="flex-1 py-4 px-5 flex flex-col gap-1 overflow-y-auto">
               {/* Home */}
               <Link
                 to="/"
-                className={`ds-mobile-nav-link ${
-                  isCurrentRoute("/") ? "active" : ""
+                className={`flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                  isCurrentRoute("/") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                 }`}
                 onClick={onClose}
               >
@@ -117,8 +115,8 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
               {/* About */}
               <Link
                 to="/about"
-                className={`ds-mobile-nav-link ${
-                  isCurrentRoute("/about") ? "active" : ""
+                className={`flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                  isCurrentRoute("/about") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                 }`}
                 onClick={onClose}
               >
@@ -126,30 +124,29 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
               </Link>
 
               {/* Services Collapsible Accordion */}
-              <div className="ds-mobile-accordion-item">
+              <div>
                 <button
                   type="button"
-                  className={`ds-mobile-accordion-btn ${
-                    isCurrentRoute("/services") ? "active" : ""
+                  className={`w-full flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                    isCurrentRoute("/services") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                   }`}
                   onClick={() => toggleSubmenu("services")}
                   aria-expanded={openSubmenu === "services"}
                 >
-                  <div className="ds-mobile-accordion-title">
-                    <Link
-                      to="/services"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onClose();
-                      }}
-                    >
-                      Services
-                    </Link>
-                  </div>
+                  <Link
+                    to="/services"
+                    className="flex-1 text-left"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onClose();
+                    }}
+                  >
+                    Services
+                  </Link>
                   <ChevronDown
                     size={18}
-                    className={`ds-mobile-chevron ${
-                      openSubmenu === "services" ? "open" : ""
+                    className={`transition-transform duration-200 ${
+                      openSubmenu === "services" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/50"
                     }`}
                   />
                 </button>
@@ -157,7 +154,7 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                 <AnimatePresence>
                   {openSubmenu === "services" && (
                     <motion.div
-                      className="ds-mobile-submenu"
+                      className="overflow-hidden flex flex-col gap-0.5 mt-1 ml-2 border-l-2 border-domenion-gold/30 pl-2"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -167,20 +164,18 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                         <Link
                           key={service.slug}
                           to={`/services/${service.slug}`}
-                          className={`ds-mobile-sublink ${
+                          className={`flex items-center gap-2.5 py-2 px-3 rounded font-heading text-sm transition-colors ${
                             location.pathname === `/services/${service.slug}`
-                              ? "active"
-                              : ""
+                              ? "text-domenion-gold font-bold bg-neutral-light"
+                              : "text-gray-700 hover:text-domenion-gold hover:bg-neutral-light"
                           }`}
                           onClick={onClose}
                         >
-                          <span className="ds-mobile-subnum">
+                          <span className="text-[10px] font-bold text-domenion-gold bg-domenion-gold/10 px-1.5 py-0.5 rounded">
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <span className="ds-mobile-subtext">
-                            {service.title}
-                          </span>
-                          <ChevronRight size={14} className="ds-mobile-arrow" />
+                          <span className="flex-1 truncate">{service.title}</span>
+                          <ChevronRight size={14} className="text-gray-400" />
                         </Link>
                       ))}
                     </motion.div>
@@ -189,30 +184,29 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
               </div>
 
               {/* Industries Collapsible Accordion */}
-              <div className="ds-mobile-accordion-item">
+              <div>
                 <button
                   type="button"
-                  className={`ds-mobile-accordion-btn ${
-                    isCurrentRoute("/industries") ? "active" : ""
+                  className={`w-full flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                    isCurrentRoute("/industries") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                   }`}
                   onClick={() => toggleSubmenu("industries")}
                   aria-expanded={openSubmenu === "industries"}
                 >
-                  <div className="ds-mobile-accordion-title">
-                    <Link
-                      to="/industries"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onClose();
-                      }}
-                    >
-                      Industries
-                    </Link>
-                  </div>
+                  <Link
+                    to="/industries"
+                    className="flex-1 text-left"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onClose();
+                    }}
+                  >
+                    Industries
+                  </Link>
                   <ChevronDown
                     size={18}
-                    className={`ds-mobile-chevron ${
-                      openSubmenu === "industries" ? "open" : ""
+                    className={`transition-transform duration-200 ${
+                      openSubmenu === "industries" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/50"
                     }`}
                   />
                 </button>
@@ -220,7 +214,7 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                 <AnimatePresence>
                   {openSubmenu === "industries" && (
                     <motion.div
-                      className="ds-mobile-submenu"
+                      className="overflow-hidden flex flex-col gap-0.5 mt-1 ml-2 border-l-2 border-domenion-gold/30 pl-2"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -230,21 +224,18 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                         <Link
                           key={industry.slug}
                           to={`/industries/${industry.slug}`}
-                          className={`ds-mobile-sublink ${
-                            location.pathname ===
-                            `/industries/${industry.slug}`
-                              ? "active"
-                              : ""
+                          className={`flex items-center gap-2.5 py-2 px-3 rounded font-heading text-sm transition-colors ${
+                            location.pathname === `/industries/${industry.slug}`
+                              ? "text-domenion-gold font-bold bg-neutral-light"
+                              : "text-gray-700 hover:text-domenion-gold hover:bg-neutral-light"
                           }`}
                           onClick={onClose}
                         >
-                          <span className="ds-mobile-subnum">
+                          <span className="text-[10px] font-bold text-domenion-gold bg-domenion-gold/10 px-1.5 py-0.5 rounded">
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <span className="ds-mobile-subtext">
-                            {industry.title}
-                          </span>
-                          <ChevronRight size={14} className="ds-mobile-arrow" />
+                          <span className="flex-1 truncate">{industry.title}</span>
+                          <ChevronRight size={14} className="text-gray-400" />
                         </Link>
                       ))}
                     </motion.div>
@@ -252,11 +243,22 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                 </AnimatePresence>
               </div>
 
+              {/* Coverage / Service Areas */}
+              <Link
+                to="/service-areas"
+                className={`flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                  isCurrentRoute("/service-areas") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
+                }`}
+                onClick={onClose}
+              >
+                <span>50-State Coverage</span>
+              </Link>
+
               {/* Careers */}
               <Link
                 to="/careers"
-                className={`ds-mobile-nav-link ${
-                  isCurrentRoute("/careers") ? "active" : ""
+                className={`flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                  isCurrentRoute("/careers") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                 }`}
                 onClick={onClose}
               >
@@ -266,8 +268,8 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
               {/* Contact */}
               <Link
                 to="/contact"
-                className={`ds-mobile-nav-link ${
-                  isCurrentRoute("/contact") ? "active" : ""
+                className={`flex items-center justify-between py-3 px-3 rounded-md font-heading font-bold text-base transition-colors ${
+                  isCurrentRoute("/contact") ? "text-domenion-gold bg-neutral-light" : "text-domenion-blue hover:text-domenion-gold hover:bg-neutral-light"
                 }`}
                 onClick={onClose}
               >
@@ -276,7 +278,7 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
             </nav>
 
             {/* Footer / CTA Actions */}
-            <div className="ds-mobile-drawer-footer">
+            <div className="p-5 border-t border-neutral-border flex flex-col gap-3 bg-neutral-light">
               <Button
                 to="/contact"
                 variant="primary"
@@ -286,8 +288,8 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
                 Request Security Quote
               </Button>
 
-              <a href="tel:+16024384445" className="ds-mobile-phone-link">
-                <Phone size={15} />
+              <a href="tel:+16024384445" className="flex items-center justify-center gap-2 py-2 text-domenion-blue font-heading font-bold text-sm hover:text-domenion-gold transition-colors">
+                <Phone size={15} className="text-domenion-gold" />
                 <span>Call Us: (602) 438-4445</span>
               </a>
             </div>
@@ -297,3 +299,4 @@ export default function MobileNavDrawer({ isOpen, onClose }) {
     </AnimatePresence>
   );
 }
+

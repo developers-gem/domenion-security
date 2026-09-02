@@ -9,7 +9,6 @@ import CapabilitiesSection from "../../components/about/CapabilitiesSection";
 import SecurityPhilosophy from "../../components/about/SecurityPhilosophy";
 import AboutCareersCTA from "../../components/about/AboutCareersCTA";
 import FinalCTA from "../../components/home/FinalCTA";
-import "./About.css";
 
 /**
  * Dominion Security About Page.
@@ -18,7 +17,7 @@ import "./About.css";
  */
 function About() {
   return (
-    <main className="ds-about-page-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <AboutHero />
       <AboutStory />
       <AboutHighlights />

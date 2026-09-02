@@ -1,9 +1,0 @@
-/* =========================================
-   INDUSTRY DETAILS PAGE LAYOUT STYLES
-========================================= */
-
-.ds-industry-detail-main {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: var(--color-white, #ffffff);
-}

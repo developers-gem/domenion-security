@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Layers, ShieldCheck, Check } from "lucide-react";
+import { ArrowRight, Layers, Check } from "lucide-react";
 import Reveal from "../../common/Reveal";
-import "./IndustryCrossServices.css";
 
 const MAP_ITEMS = [
   {
@@ -32,44 +31,46 @@ const MAP_ITEMS = [
 
 export default function IndustryCrossServices() {
   return (
-    <section className="section ds-cross-services-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-5">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="section-label">MULTI-LAYERED DEFENSE</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">MULTI-LAYERED DEFENSE</span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="section-title">
-              One environment.
-              <br />
-              <span>Multiple layers of protection.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+              One environment. <span className="text-domenion-gold">Multiple layers of protection.</span>
             </h2>
           </Reveal>
         </div>
 
         {/* Industry -> Security Needs -> Dominion Services Map */}
-        <div className="row g-4 justify-content-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {MAP_ITEMS.map((item, idx) => (
-            <div key={item.sector} className="col-md-6 col-lg-4">
+            <div key={item.sector}>
               <Reveal direction="up" delay={0.1 * idx}>
-                <div className="ds-cross-map-card">
-                  <div className="ds-cross-card-header">
-                    <Layers size={18} className="ds-cross-icon" />
-                    <span className="ds-cross-sector">{item.sector}</span>
+                <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                  <div className="flex items-center gap-3 pb-4 mb-4 border-b border-neutral-border">
+                    <div className="w-8 h-8 rounded bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
+                      <Layers size={16} />
+                    </div>
+                    <span className="text-domenion-blue font-heading text-xs font-extrabold tracking-widest uppercase">{item.sector}</span>
                   </div>
 
-                  <div className="ds-cross-services-list">
+                  <div className="flex flex-col gap-3">
                     {item.services.map((svc) => (
                       <Link
                         key={svc.slug}
                         to={`/services/${svc.slug}`}
-                        className="ds-cross-svc-link"
+                        className="flex items-center justify-between p-3 rounded-lg bg-neutral-light border border-neutral-border hover:border-domenion-gold text-domenion-blue text-xs font-heading font-bold transition-all duration-200 group/link text-decoration-none"
                       >
-                        <Check size={14} className="ds-check-icon" />
-                        <span>{svc.name}</span>
-                        <ArrowRight size={13} className="ds-arrow-icon" />
+                        <div className="flex items-center gap-2">
+                          <Check size={14} className="text-domenion-gold flex-shrink-0" />
+                          <span className="group-hover/link:text-domenion-gold transition-colors">{svc.name}</span>
+                        </div>
+                        <ArrowRight size={13} className="text-domenion-gold group-hover/link:translate-x-1 transition-transform flex-shrink-0" />
                       </Link>
                     ))}
                   </div>
@@ -82,3 +83,4 @@ export default function IndustryCrossServices() {
     </section>
   );
 }
+

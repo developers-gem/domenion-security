@@ -1,7 +1,6 @@
 import { ArrowRight, Phone, ShieldCheck } from "lucide-react";
 import Button from "../../common/Button";
 import Reveal from "../../common/Reveal";
-import "./ServiceDetailCTA.css";
 
 export default function ServiceDetailCTA({ service }) {
   const ctaHeadline = service.badge
@@ -9,37 +8,37 @@ export default function ServiceDetailCTA({ service }) {
     : `Ready to strengthen your security posture?`;
 
   return (
-    <section className="ds-detail-cta-section">
-      <div className="container">
-        <div className="ds-detail-cta-card">
-          <div className="row align-items-center g-4 lg:g-5">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-domenion-blue to-domenion-blue/90 text-white rounded-2xl p-8 sm:p-12 shadow-2xl border border-domenion-gold/30 relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             {/* Left Column: Copy */}
-            <div className="col-lg-7">
-              <div className="ds-detail-cta-content">
+            <div className="lg:col-span-7">
+              <div className="flex flex-col">
                 <Reveal direction="fade">
-                  <div className="ds-detail-cta-eyebrow">
-                    <ShieldCheck size={16} />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/20 border border-domenion-gold/40 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-4">
+                    <ShieldCheck size={16} className="text-domenion-gold" />
                     <span>SECURITY CONSULTATION</span>
                   </div>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="ds-detail-cta-title">
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
                     {ctaHeadline}
                   </h2>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.2}>
-                  <p className="ds-detail-cta-desc">
+                  <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
                     Tell us about your environment, operational risks, and facility requirements. Our security specialists will help design the right protection plan.
                   </p>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.3}>
-                  <div className="ds-detail-cta-actions">
+                  <div className="flex flex-wrap items-center gap-4">
                     <Button
                       to="/contact"
-                      variant="dark"
+                      variant="primary"
                       size="lg"
                       icon={ArrowRight}
                     >
@@ -53,7 +52,7 @@ export default function ServiceDetailCTA({ service }) {
                       icon={Phone}
                       iconPosition="left"
                     >
-                      Call Dominion
+                      Call Domenion
                     </Button>
                   </div>
                 </Reveal>
@@ -61,21 +60,21 @@ export default function ServiceDetailCTA({ service }) {
             </div>
 
             {/* Right Column: Visual Image Panel */}
-            <div className="col-lg-5">
+            <div className="lg:col-span-5">
               <Reveal direction="left" delay={0.2}>
-                <div className="ds-detail-cta-visual-panel">
+                <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
                     src={service.heroImage || service.overviewImage || "/images/company-security.jpg"}
                     alt={service.title}
-                    className="ds-detail-cta-img"
+                    className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "/images/company-security.jpg";
                     }}
                   />
-                  <div className="ds-detail-cta-overlay" />
-                  <div className="ds-detail-cta-badge">
-                    <span>24/7 CONSULTATION</span>
-                    <strong>(602) 438-4445</strong>
+                  <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 CONSULTATION</span>
+                    <strong className="text-xs font-bold font-heading">(602) 438-4445</strong>
                   </div>
                 </div>
               </Reveal>
@@ -86,3 +85,4 @@ export default function ServiceDetailCTA({ service }) {
     </section>
   );
 }
+

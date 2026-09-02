@@ -1,6 +1,5 @@
 import { FileText, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import Reveal from "../common/Reveal";
-import "./ContactOptions.css";
 
 const CONTACT_OPTIONS = [
   {
@@ -54,55 +53,57 @@ export default function ContactOptions() {
   };
 
   return (
-    <section className="section ds-contact-options-section">
-      <div className="container">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="row align-items-end mb-5">
-          <div className="col-lg-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="section-label">HOW CAN WE HELP?</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">HOW CAN WE HELP?</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="section-title">
-                Choose the way that
-                <br />
-                <span>works best for you.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                Choose the way that <span className="text-domenion-gold">works best for you.</span>
               </h2>
             </Reveal>
           </div>
 
-          <div className="col-lg-5 mt-4 mt-lg-0">
+          <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
-              <p className="section-description">
+              <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Whether you need an immediate security quote, 24/7 dispatch support, or an initial operational consultation, we are here to assist.
               </p>
             </Reveal>
           </div>
         </div>
 
-        {/* 4 Editorial Column Cards */}
-        <div className="row g-4">
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {CONTACT_OPTIONS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div key={item.num} className="col-md-6 col-lg-3">
+              <div key={item.num}>
                 <Reveal direction="up" delay={0.08 * idx}>
                   <div
-                    className="ds-contact-option-card"
+                    className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group cursor-pointer"
                     onClick={() => handleAction(item)}
                   >
-                    <div className="ds-opt-card-header">
-                      <span className="ds-opt-num">{item.num}</span>
-                      <Icon size={20} className="ds-opt-icon" />
+                    <div>
+                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-border">
+                        <span className="text-domenion-gold font-heading text-2xl font-extrabold">{item.num}</span>
+                        <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                          <Icon size={18} />
+                        </div>
+                      </div>
+
+                      <h3 className="text-domenion-blue font-heading text-base font-bold mb-2 uppercase">{item.title}</h3>
+                      <p className="text-gray-600 text-xs leading-relaxed mb-6">{item.desc}</p>
                     </div>
 
-                    <h3 className="ds-opt-title">{item.title}</h3>
-                    <p className="ds-opt-desc">{item.desc}</p>
-
-                    <div className="ds-opt-action-link">
+                    <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold group-hover:translate-x-1 transition-transform">
                       <span>{item.actionText}</span>
-                      <ArrowRight size={15} className="ds-opt-arrow" />
+                      <ArrowRight size={15} />
                     </div>
                   </div>
                 </Reveal>
@@ -114,3 +115,4 @@ export default function ContactOptions() {
     </section>
   );
 }
+

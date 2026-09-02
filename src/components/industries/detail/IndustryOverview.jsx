@@ -1,55 +1,52 @@
 import Reveal from "../../common/Reveal";
-import "./IndustryOverview.css";
 
 export default function IndustryOverview({ industry }) {
   const panelImg = industry.overviewImage || industry.benefitsImage || "/images/company-security.jpg";
 
   return (
-    <section className="section ds-ind-ov-section">
-      <div className="container">
-        <div className="row align-items-center g-5">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Statement & Copy */}
-          <div className="col-lg-6">
-            <div className="ds-ind-ov-content">
+          <div className="lg:col-span-6">
+            <div className="flex flex-col">
               <Reveal direction="up">
-                <span className="section-label">{industry.badge || "SECTOR OVERVIEW"}</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">{industry.badge || "SECTOR OVERVIEW"}</span>
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
-                <h2 className="section-title">
+                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight">
                   {industry.overviewTitle || `Protecting ${industry.title} with purpose & precision.`}
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
-                <p className="ds-ind-ov-lead mt-3">
+                <p className="text-gray-700 font-sans text-base sm:text-lg leading-relaxed mb-3 font-medium">
                   {industry.overviewDescription || industry.shortDescription}
                 </p>
-                <p className="mt-3 text-secondary-custom">
+                <p className="text-gray-600 font-sans text-base leading-relaxed">
                   Dominion Security establishes rigorous post orders, entry point access controls, visitor verification rules, and emergency escalation protocols specifically engineered for {industry.title.toLowerCase()}.
                 </p>
               </Reveal>
-
-              <div className="ds-ind-ov-gold-line mt-4" />
             </div>
           </div>
 
           {/* Right Column: Architectural Visual Panel */}
-          <div className="col-lg-6">
+          <div className="lg:col-span-6">
             <Reveal direction="left" delay={0.2}>
-              <div className="ds-ind-ov-visual">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src={panelImg}
                   alt={industry.title}
-                  className="ds-ind-ov-img"
+                  className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
                   }}
                 />
-                <div className="ds-ind-ov-overlay" />
-                <div className="ds-ind-ov-badge">
-                  <span>ENVIRONMENTAL DEFENSE</span>
-                  <strong>{industry.badge || "DOMINION SECURITY"}</strong>
+                <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">ENVIRONMENTAL DEFENSE</span>
+                  <strong className="text-xs font-bold font-heading">{industry.badge || "DOMINION SECURITY"}</strong>
                 </div>
               </div>
             </Reveal>
@@ -59,3 +56,4 @@ export default function IndustryOverview({ industry }) {
     </section>
   );
 }
+

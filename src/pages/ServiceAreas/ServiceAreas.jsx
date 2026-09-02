@@ -3,19 +3,19 @@ import Coverage from "../../components/serviceAreas/Coverage";
 import States from "../../components/serviceAreas/States";
 import Cities from "../../components/serviceAreas/Cities";
 import LocalQuote from "../../components/serviceAreas/LocalQuote";
-import CTA from "../../components/services/CTA";
+import ServicesCTA from "../../components/services/ServicesCTA";
 
 function ServiceAreas() {
-    return (
-        <>
-            <Hero />
-            <Coverage />
-            <States />
-            <Cities />
-            <LocalQuote />
-            <CTA />
-        </>
-    );
+  return (
+    <main className="w-full overflow-x-hidden bg-white">
+      <Hero />
+      <Coverage />
+      <States />
+      <Cities />
+      <LocalQuote />
+      <ServicesCTA />
+    </main>
+  );
 }
 
 export default ServiceAreas;

@@ -1,63 +1,59 @@
-import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
-import Button from "../common/Button";
 import Reveal from "../common/Reveal";
-import "./ServicesIntro.css";
 
 export default function ServicesIntro() {
   return (
-    <section className="section ds-services-intro-section">
-      <div className="container">
-        <div className="row align-items-center g-5">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Intro Copy */}
-          <div className="col-lg-6">
-            <div className="ds-services-intro-content">
+          <div className="lg:col-span-6">
+            <div className="flex flex-col">
               <Reveal direction="up">
-                <span className="section-label">OUR CAPABILITIES</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR CAPABILITIES</span>
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
-                <h2 className="section-title">
-                  Security designed
-                  <br />
-                  <span>for real-world risk.</span>
+                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight">
+                  Security designed <span className="text-domenion-gold">for real-world risk.</span>
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
-                <p className="ds-intro-lead mt-3">
+                <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mb-4">
                   Every environment presents distinct operational threats, access control
                   challenges, and regulatory compliance standards. Dominion Security
                   delivers customized defense solutions tailored to your organization.
                 </p>
-                <p className="mt-3 text-secondary-custom">
+                <p className="text-gray-600 font-sans text-base leading-relaxed">
                   Combining trained security officers, advanced surveillance monitoring,
                   mobile patrols, and enterprise cybersecurity, our integrated approach
                   ensures total operational preparedness.
                 </p>
               </Reveal>
 
-              <div className="ds-intro-line-accent mt-4" />
+              <div className="h-0.5 w-16 bg-domenion-gold mt-6 rounded-full" />
             </div>
           </div>
 
           {/* Right Column: Architectural Visual Panel */}
-          <div className="col-lg-6">
+          <div className="lg:col-span-6">
             <Reveal direction="left" delay={0.2}>
-              <div className="ds-services-intro-visual">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/about-security.jpg"
                   alt="Dominion Security Operations Officer"
-                  className="ds-services-intro-img"
+                  className="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
                   }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
 
-                <div className="ds-intro-visual-card">
-                  <span className="ds-intro-num">01</span>
-                  <div className="ds-intro-badge-info">
-                    <strong>INTEGRATED PROTECTION</strong>
-                    <span>Physical • Cyber • Infrastructure</span>
+                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex items-center gap-4 text-domenion-blue">
+                  <span className="w-10 h-10 rounded-lg bg-domenion-gold text-domenion-blue font-heading font-extrabold text-sm flex items-center justify-center flex-shrink-0">01</span>
+                  <div className="flex flex-col">
+                    <strong className="text-domenion-blue font-heading text-xs font-extrabold tracking-wider">INTEGRATED PROTECTION</strong>
+                    <span className="text-gray-600 text-xs mt-0.5">Physical • Cyber • Infrastructure</span>
                   </div>
                 </div>
               </div>
@@ -68,3 +64,4 @@ export default function ServicesIntro() {
     </section>
   );
 }
+

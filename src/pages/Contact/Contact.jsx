@@ -6,17 +6,15 @@ import ContactInformation from "../../components/contact/ContactInformation";
 import ContactLocation from "../../components/contact/ContactLocation";
 import ContactFAQ from "../../components/contact/ContactFAQ";
 import ContactCTA from "../../components/contact/ContactCTA";
-import "./Contact.css";
 
 /**
  * Dominion Security Contact Page.
- * Composes 8 conversion-focused enterprise components ("CONCIERGE & CONVERSION")
- * featuring architectural hero, 4 contact options, 2-column quote form with direct API submission,
- * 4-step onboarding timeline, large typography contact details, location visual, accordion FAQ, and Gold CTA.
+ * Composes conversion-focused enterprise components featuring architectural hero, 4 contact options,
+ * quote form, 4-step onboarding timeline, contact details, location visual, accordion FAQ, and Gold CTA.
  */
 function Contact() {
   return (
-    <main className="ds-contact-page-main">
+    <main className="w-full overflow-x-hidden bg-white">
       <ContactHero />
       <ContactOptions />
       <ContactForm />

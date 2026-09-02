@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { X, Loader2, CheckCircle2, AlertCircle, Upload, FileText, Send } from "lucide-react";
+import { X, Loader2, CheckCircle2, AlertCircle, Upload, Send } from "lucide-react";
 import { applicationsAPI } from "../../services/api";
-import "./ApplicationModal.css";
 
 export default function ApplicationModal({ selectedJob, onClose }) {
   const [formData, setFormData] = useState({
@@ -108,56 +107,56 @@ export default function ApplicationModal({ selectedJob, onClose }) {
   };
 
   return (
-    <div className="ds-app-modal-overlay" onClick={onClose}>
-      <div className="ds-app-modal-dialog" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-domenion-blue/80 backdrop-blur-sm animate-fadeIn" onClick={onClose}>
+      <div className="relative w-full max-w-2xl bg-white border border-neutral-border rounded-2xl shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto text-domenion-blue" onClick={(e) => e.stopPropagation()}>
         {/* Close Button */}
         <button
           type="button"
-          className="ds-app-modal-close-btn"
+          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-neutral-light border border-neutral-border text-gray-500 hover:text-domenion-blue hover:border-domenion-gold grid place-items-center transition-colors cursor-pointer"
           onClick={onClose}
           disabled={submitting}
           aria-label="Close application modal"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {/* Modal Header */}
-        <div className="ds-app-modal-header">
-          <span className="ds-app-modal-eyebrow">CAREER APPLICATION</span>
-          <h2 className="ds-app-modal-title">Apply for Position</h2>
-          <p className="ds-app-modal-subtitle">
-            You are applying for <strong>{selectedJob?.title || "General Security Position"}</strong>
+        <div className="mb-6 pb-4 border-b border-neutral-border pr-8">
+          <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">CAREER APPLICATION</span>
+          <h2 className="text-domenion-blue font-heading text-2xl font-extrabold mt-1">Apply for Position</h2>
+          <p className="text-gray-600 text-xs mt-1">
+            You are applying for <strong className="text-domenion-blue font-bold">{selectedJob?.title || "General Security Position"}</strong>
             {selectedJob?.location ? ` • ${selectedJob.location}` : ""}
           </p>
         </div>
 
         {/* Alerts */}
         {submitSuccess && (
-          <div className="ds-app-alert ds-app-alert-success">
-            <CheckCircle2 size={18} className="flex-shrink-0" />
-            <span>{submitSuccess}</span>
+          <div className="flex items-center gap-3 p-4 mb-6 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-sm font-medium">
+            <CheckCircle2 size={20} className="text-emerald-600 flex-shrink-0" />
+            <div>{submitSuccess}</div>
           </div>
         )}
 
         {submitError && (
-          <div className="ds-app-alert ds-app-alert-error">
-            <AlertCircle size={18} className="flex-shrink-0" />
-            <span>{submitError}</span>
+          <div className="flex items-center gap-3 p-4 mb-6 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-sm font-medium">
+            <AlertCircle size={20} className="text-rose-600 flex-shrink-0" />
+            <div>{submitError}</div>
           </div>
         )}
 
         {/* Application Form */}
-        <form onSubmit={handleSubmit} className="ds-app-form">
-          <div className="row g-3">
-            <div className="col-md-6">
-              <label htmlFor="modal-name" className="ds-input-label">
-                Full Name <span className="ds-req">*</span>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="modal-name" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                Full Name *
               </label>
               <input
                 id="modal-name"
                 type="text"
                 name="fullName"
-                className="ds-form-input"
+                className="w-full px-4 py-3 bg-neutral-light border border-neutral-border rounded-xl text-domenion-blue text-sm focus:outline-none focus:border-domenion-gold transition-colors"
                 placeholder="John Doe"
                 value={formData.fullName}
                 onChange={handleChange}
@@ -166,15 +165,15 @@ export default function ApplicationModal({ selectedJob, onClose }) {
               />
             </div>
 
-            <div className="col-md-6">
-              <label htmlFor="modal-email" className="ds-input-label">
-                Email Address <span className="ds-req">*</span>
+            <div>
+              <label htmlFor="modal-email" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                Email Address *
               </label>
               <input
                 id="modal-email"
                 type="email"
                 name="email"
-                className="ds-form-input"
+                className="w-full px-4 py-3 bg-neutral-light border border-neutral-border rounded-xl text-domenion-blue text-sm focus:outline-none focus:border-domenion-gold transition-colors"
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={handleChange}
@@ -182,17 +181,19 @@ export default function ApplicationModal({ selectedJob, onClose }) {
                 disabled={submitting}
               />
             </div>
+          </div>
 
-            <div className="col-md-6">
-              <label htmlFor="modal-phone" className="ds-input-label">
-                Phone Number <span className="ds-req">*</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="modal-phone" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                Phone Number *
               </label>
               <input
                 id="modal-phone"
                 type="tel"
                 name="phone"
-                className="ds-form-input"
-                placeholder="(602) 555-0199"
+                className="w-full px-4 py-3 bg-neutral-light border border-neutral-border rounded-xl text-domenion-blue text-sm focus:outline-none focus:border-domenion-gold transition-colors"
+                placeholder="(602) 438-4445"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -200,87 +201,88 @@ export default function ApplicationModal({ selectedJob, onClose }) {
               />
             </div>
 
-            <div className="col-md-6">
-              <label htmlFor="modal-position" className="ds-input-label">
+            <div>
+              <label htmlFor="modal-position" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
                 Target Position
               </label>
               <input
                 id="modal-position"
                 type="text"
-                className="ds-form-input ds-readonly-input"
+                className="w-full px-4 py-3 bg-neutral-100 border border-neutral-border rounded-xl text-gray-500 text-sm font-semibold cursor-not-allowed"
                 value={selectedJob?.title || "Security Officer"}
                 readOnly
                 disabled
               />
             </div>
+          </div>
 
-            {/* Resume Upload File Box */}
-            <div className="col-12">
-              <label htmlFor="modal-resume" className="ds-input-label d-flex justify-content-between">
-                <span>Resume / CV</span>
-                <span className="ds-opt-badge">Optional</span>
+          {/* Resume Upload File Box */}
+          <div>
+            <div className="flex justify-between items-center mb-1">
+              <label htmlFor="modal-resume" className="text-xs font-heading font-extrabold text-domenion-blue uppercase">
+                Resume / CV
               </label>
-
-              <div className="ds-file-upload-box">
-                <input
-                  id="modal-resume"
-                  type="file"
-                  className="ds-file-input-hidden"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  disabled={submitting}
-                />
-                <label htmlFor="modal-resume" className="ds-file-upload-label">
-                  <Upload size={18} className="ds-upload-icon" />
-                  <span>
-                    {resumeFile ? (
-                      <strong className="text-gold">{resumeFile.name}</strong>
-                    ) : (
-                      "Click to upload resume (PDF, DOC, DOCX up to 5 MB)"
-                    )}
-                  </span>
-                </label>
-              </div>
+              <span className="text-[10px] font-bold text-gray-400 uppercase">Optional</span>
             </div>
 
-            <div className="col-12">
-              <label htmlFor="modal-message" className="ds-input-label">
-                Cover Letter / Message
-              </label>
-              <textarea
-                id="modal-message"
-                name="message"
-                rows={4}
-                className="ds-form-textarea"
-                placeholder="Briefly describe your security experience and availability..."
-                value={formData.message}
-                onChange={handleChange}
+            <div className="relative border-2 border-dashed border-neutral-border hover:border-domenion-gold/60 rounded-xl p-4 text-center bg-neutral-light transition-colors">
+              <input
+                id="modal-resume"
+                type="file"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
                 disabled={submitting}
               />
-            </div>
-
-            <div className="col-12 mt-4">
-              <button
-                type="submit"
-                className="ds-app-submit-btn"
-                disabled={submitting}
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    <span>Submitting Application...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>SUBMIT APPLICATION</span>
-                    <Send size={15} />
-                  </>
-                )}
-              </button>
+              <div className="flex items-center justify-center gap-2 text-xs font-medium text-gray-600 pointer-events-none">
+                <Upload size={18} className="text-domenion-gold" />
+                <span>
+                  {resumeFile ? (
+                    <strong className="text-domenion-blue font-bold">{resumeFile.name}</strong>
+                  ) : (
+                    "Click to upload resume (PDF, DOC, DOCX up to 5 MB)"
+                  )}
+                </span>
+              </div>
             </div>
           </div>
+
+          <div>
+            <label htmlFor="modal-message" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+              Cover Letter / Message
+            </label>
+            <textarea
+              id="modal-message"
+              name="message"
+              rows={4}
+              className="w-full px-4 py-3 bg-neutral-light border border-neutral-border rounded-xl text-domenion-blue text-sm focus:outline-none focus:border-domenion-gold transition-colors"
+              placeholder="Briefly describe your security experience and availability..."
+              value={formData.message}
+              onChange={handleChange}
+              disabled={submitting}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-4 bg-domenion-gold text-domenion-blue rounded-xl font-heading text-sm font-extrabold tracking-wider uppercase hover:bg-domenion-gold/90 transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2"
+            disabled={submitting}
+          >
+            {submitting ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                <span>Submitting Application...</span>
+              </>
+            ) : (
+              <>
+                <span>SUBMIT APPLICATION</span>
+                <Send size={15} />
+              </>
+            )}
+          </button>
         </form>
       </div>
     </div>
   );
 }
+
