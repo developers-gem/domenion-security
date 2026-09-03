@@ -32,6 +32,23 @@ const careerFormSchema = new mongoose.Schema(
       trim: true,
       default: null,
     },
+    screeningAnswers: [
+      {
+        questionId: {
+          type: mongoose.Schema.Types.ObjectId,
+        },
+        question: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        answer: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+      },
+    ],
     status: {
       type: String,
       enum: [

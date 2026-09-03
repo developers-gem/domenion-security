@@ -1,4 +1,5 @@
 const CareerForm = require("../models/CareerForm");
+const Career = require("../models/Career");
 const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
@@ -18,18 +19,105 @@ const VALID_STATUSES = [
 // @access  Public
 const createCareerForm = async (req, res) => {
   try {
-    const { fullName, email, phone, message, careerId } = req.body;
+    const { fullName, email, phone, message, careerId, screeningAnswers } = req.body;
     if (!fullName || !email || !phone) {
-      // If a file was uploaded before validation failed, clean it up
       if (req.file) {
         fs.unlink(req.file.path, () => {});
       }
       return res.status(400).json({ success: false, message: "Please fill all required fields (Full Name, Email, Phone Number)" });
     }
 
+    // Parse screeningAnswers if string (from FormData) or object/array
+    let parsedAnswers = [];
+    if (screeningAnswers) {
+      if (typeof screeningAnswers === "string") {
+        try {
+          parsedAnswers = JSON.parse(screeningAnswers);
+        } catch {
+          parsedAnswers = [];
+        }
+      } else if (Array.isArray(screeningAnswers)) {
+        parsedAnswers = screeningAnswers;
+      }
+    }
+
+    let validatedSnapshotAnswers = [];
+
+    // Backend Screening Question Validation against Career record
+    if (careerId) {
+      if (!mongoose.Types.ObjectId.isValid(careerId)) {
+        if (req.file) fs.unlink(req.file.path, () => {});
+        return res.status(400).json({ success: false, message: "Invalid career ID format" });
+      }
+
+      const targetCareer = await Career.findById(careerId);
+      if (!targetCareer) {
+        if (req.file) fs.unlink(req.file.path, () => {});
+        return res.status(404).json({ success: false, message: "Selected position does not exist or may have been removed" });
+      }
+
+      const activeQuestions = (targetCareer.screeningQuestions || []).filter((q) => q.isActive === true);
+
+      // Create lookup map of applicant's submitted answers by questionId
+      const submittedMap = new Map();
+      if (Array.isArray(parsedAnswers)) {
+        for (const item of parsedAnswers) {
+          if (item && item.questionId) {
+            submittedMap.set(String(item.questionId), String(item.answer || "").trim());
+          }
+        }
+      }
+
+      // Check each active question
+      for (const question of activeQuestions) {
+        const questionIdStr = String(question._id);
+        const submittedAnswer = submittedMap.get(questionIdStr);
+
+        // Required question validation
+        if (question.required && (!submittedAnswer || submittedAnswer === "")) {
+          if (req.file) fs.unlink(req.file.path, () => {});
+          return res.status(400).json({
+            success: false,
+            message: `Screening question '${question.question}' is required. Please select an answer.`,
+          });
+        }
+
+        // Option validity check
+        if (submittedAnswer) {
+          const isValidOption = question.options.includes(submittedAnswer);
+          if (!isValidOption) {
+            if (req.file) fs.unlink(req.file.path, () => {});
+            return res.status(400).json({
+              success: false,
+              message: `Invalid answer selected for '${question.question}'.`,
+            });
+          }
+
+          validatedSnapshotAnswers.push({
+            questionId: question._id,
+            question: question.question,
+            answer: submittedAnswer,
+          });
+        }
+      }
+
+      // Check for arbitrary question IDs not belonging to active questions of this career
+      if (Array.isArray(parsedAnswers)) {
+        const activeQuestionIds = new Set(activeQuestions.map((q) => String(q._id)));
+        for (const item of parsedAnswers) {
+          if (item && item.questionId && !activeQuestionIds.has(String(item.questionId))) {
+            if (req.file) fs.unlink(req.file.path, () => {});
+            return res.status(400).json({
+              success: false,
+              message: "Submitted answer references a screening question that is invalid for this position.",
+            });
+          }
+        }
+      }
+    }
+
     let resumeUrl = null;
     if (req.file) {
-      // Store relative path in database
       resumeUrl = `uploads/resumes/${req.file.filename}`;
     }
 
@@ -40,6 +128,7 @@ const createCareerForm = async (req, res) => {
       message,
       careerId: careerId || undefined,
       resumeUrl,
+      screeningAnswers: validatedSnapshotAnswers,
       status: "submitted",
     });
 

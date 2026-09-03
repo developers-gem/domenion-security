@@ -1,5 +1,35 @@
 const mongoose = require("mongoose");
 
+const screeningQuestionSchema = new mongoose.Schema(
+  {
+    question: {
+      type: String,
+      required: [true, "Question text is required"],
+      trim: true,
+    },
+    options: {
+      type: [String],
+      validate: [
+        (val) => Array.isArray(val) && val.length >= 2,
+        "Screening question must have at least 2 options",
+      ],
+    },
+    required: {
+      type: Boolean,
+      default: true,
+    },
+    order: {
+      type: Number,
+      default: 0,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  { timestamps: true }
+);
+
 const careerSchema = new mongoose.Schema(
   {
     title: {
@@ -48,6 +78,10 @@ const careerSchema = new mongoose.Schema(
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    screeningQuestions: {
+      type: [screeningQuestionSchema],
+      default: [],
     },
   },
   { timestamps: true }
