@@ -13,6 +13,7 @@ import {
   AlertCircle,
   FileText,
   Download,
+  HelpCircle,
 } from "lucide-react";
 import { useAuth } from "../../../../context/AuthContext";
 import { applicationsAPI } from "../../../../services/api";
@@ -226,6 +227,36 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
                     </>
                   )}
                 </button>
+              )}
+            </div>
+
+            {/* Screening Questions Answers Section */}
+            <div className="mb-4">
+              <label className="form-label text-secondary small fw-bold text-uppercase d-flex align-items-center gap-1">
+                <HelpCircle size={16} className="text-danger" />
+                SCREENING QUESTIONS & CANDIDATE ANSWERS
+              </label>
+              {Array.isArray(application.screeningAnswers) && application.screeningAnswers.length > 0 ? (
+                <div className="d-flex flex-column gap-2">
+                  {application.screeningAnswers.map((item, idx) => (
+                    <div key={item._id || idx} className="p-3 bg-secondary bg-opacity-15 border border-secondary rounded">
+                      <div className="fw-bold text-white small mb-1">
+                        <span className="text-danger me-1">{idx + 1}.</span>
+                        {item.question}
+                      </div>
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="text-secondary fs-8 uppercase fw-bold">Applicant Answer:</span>
+                        <span className="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-30 fw-bold fs-7">
+                          {item.answer}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded text-muted small italic">
+                  No screening questions were answered for this application.
+                </div>
               )}
             </div>
 

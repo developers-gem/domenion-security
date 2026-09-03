@@ -264,8 +264,9 @@
     line-height: 1.7;
   }
 
-  /* Base button legacy compatibility */
-  .btn {
+  /* Base button legacy compatibility (scoped to public site to prevent Bootstrap Admin clashes) */
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn,
+  .site-btn {
     min-height: 50px;
     padding: 0 26px;
     display: inline-flex;
@@ -282,32 +283,32 @@
                 border-color var(--transition-fast);
   }
 
-  .btn:hover {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn:hover {
     transform: translateY(-2px);
   }
 
-  .btn-primary {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn-primary {
     background: var(--color-gold);
     color: var(--color-dark);
   }
 
-  .btn-primary:hover {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn-primary:hover {
     background: var(--color-gold-light);
     color: var(--color-dark);
   }
 
-  .btn-dark {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn-dark {
     background: var(--color-primary);
     color: var(--color-white);
   }
 
-  .btn-outline {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn-outline {
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: var(--color-white);
     background: transparent;
   }
 
-  .btn-outline:hover {
+  :not(.admin-layout):not(.admin-login-page):not(.modal) > .btn-outline:hover {
     background: var(--color-white);
     color: var(--color-primary);
   }

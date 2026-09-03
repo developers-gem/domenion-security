@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { MapPin, Briefcase, Calendar, Award, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import { careersAPI } from "../../services/api";
 import Reveal from "../common/Reveal";
-import ApplicationModal from "./ApplicationModal";
 
 function formatDeadline(dateString) {
   if (!dateString) return "Rolling Recruitment";
@@ -24,7 +23,6 @@ export default function OpenPositions() {
   const [jobs, setJobs] = useState([]);
   const [loadingJobs, setLoadingJobs] = useState(true);
   const [jobsError, setJobsError] = useState("");
-  const [selectedJob, setSelectedJob] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
 
   const fetchJobs = async () => {
@@ -126,14 +124,13 @@ export default function OpenPositions() {
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
               We don't have any open positions listed right now. Please check back soon or submit a general inquiry to our recruitment team.
             </p>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-domenion-gold text-domenion-blue rounded-xl font-heading text-xs font-extrabold tracking-wider uppercase hover:bg-domenion-gold/90 transition-colors shadow-md cursor-pointer mx-auto"
-              onClick={() => setSelectedJob({ title: "General Security Application" })}
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-domenion-gold text-domenion-blue rounded-xl font-heading text-xs font-extrabold tracking-wider uppercase hover:bg-domenion-gold/90 transition-colors shadow-md text-decoration-none mx-auto"
             >
-              <span>Submit General Application</span>
+              <span>Submit General Inquiry</span>
               <ArrowRight size={15} />
-            </button>
+            </Link>
           </div>
         ) : (
           /* 3-Column Responsive Job Card Grid */
@@ -212,19 +209,23 @@ export default function OpenPositions() {
                         <ArrowRight size={13} />
                       </Link>
 
-                      <button
-                        type="button"
-                        className={`inline-flex items-center justify-center gap-1 py-2.5 rounded-lg text-xs font-heading font-bold transition-colors cursor-pointer ${
-                          isClosed
-                            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                            : "bg-domenion-gold text-domenion-blue hover:bg-domenion-gold/90 shadow-sm"
-                        }`}
-                        disabled={isClosed}
-                        onClick={() => !isClosed && setSelectedJob(job)}
-                      >
-                        <span>{isClosed ? "Closed" : "Apply"}</span>
-                        {!isClosed && <ArrowRight size={13} />}
-                      </button>
+                      {isClosed ? (
+                        <button
+                          type="button"
+                          className="inline-flex items-center justify-center gap-1 py-2.5 rounded-lg text-xs font-heading font-bold bg-gray-200 text-gray-500 cursor-not-allowed"
+                          disabled
+                        >
+                          <span>Closed</span>
+                        </button>
+                      ) : (
+                        <Link
+                          to={`/careers/${job._id}/apply`}
+                          className="inline-flex items-center justify-center gap-1 py-2.5 rounded-lg text-xs font-heading font-bold transition-colors bg-domenion-gold text-domenion-blue hover:bg-domenion-gold/90 shadow-sm text-decoration-none"
+                        >
+                          <span>Apply</span>
+                          <ArrowRight size={13} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </Reveal>
@@ -233,14 +234,6 @@ export default function OpenPositions() {
           </div>
         )}
       </div>
-
-      {/* Application Modal */}
-      {selectedJob && (
-        <ApplicationModal
-          selectedJob={selectedJob}
-          onClose={() => setSelectedJob(null)}
-        />
-      )}
     </section>
   );
 }

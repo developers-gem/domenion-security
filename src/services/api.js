@@ -87,6 +87,31 @@ export const careersAPI = {
     const response = await API.delete(`/api/careers/${id}`);
     return response.data;
   },
+  // --- SCREENING QUESTIONS ---
+  getPublicQuestions: async (jobId) => {
+    const response = await API.get(`/api/careers/${jobId}/questions?activeOnly=true`);
+    return response.data;
+  },
+  getAdminQuestions: async (jobId) => {
+    const response = await API.get(`/api/careers/${jobId}/questions`);
+    return response.data;
+  },
+  addQuestion: async (jobId, questionData) => {
+    const response = await API.post(`/api/careers/${jobId}/questions`, questionData);
+    return response.data;
+  },
+  updateQuestion: async (jobId, questionId, questionData) => {
+    const response = await API.put(`/api/careers/${jobId}/questions/${questionId}`, questionData);
+    return response.data;
+  },
+  deleteQuestion: async (jobId, questionId) => {
+    const response = await API.delete(`/api/careers/${jobId}/questions/${questionId}`);
+    return response.data;
+  },
+  toggleQuestionStatus: async (jobId, questionId) => {
+    const response = await API.patch(`/api/careers/${jobId}/questions/${questionId}/toggle`);
+    return response.data;
+  },
 };
 
 // --- APPLICATIONS API ---

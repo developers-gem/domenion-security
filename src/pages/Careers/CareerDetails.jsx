@@ -14,7 +14,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { careersAPI } from "../../services/api";
-import ApplicationModal from "../../components/Careers/ApplicationModal";
 import Reveal from "../../components/common/Reveal";
 
 function formatDeadline(dateString) {
@@ -37,7 +36,6 @@ export default function CareerDetails() {
   const [career, setCareer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [showApplyModal, setShowApplyModal] = useState(false);
 
   const fetchCareer = async () => {
     try {
@@ -272,19 +270,23 @@ export default function CareerDetails() {
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-neutral-border">
-                    <button
-                      type="button"
-                      className={`w-full py-4 rounded-xl font-heading text-sm font-extrabold tracking-wider uppercase transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2 ${
-                        isClosed
-                          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                          : "bg-domenion-gold text-domenion-blue hover:bg-domenion-gold/90"
-                      }`}
-                      disabled={isClosed}
-                      onClick={() => setShowApplyModal(true)}
-                    >
-                      <span>{isClosed ? "Position Closed" : "Apply Now"}</span>
-                      {!isClosed && <ArrowRight size={16} />}
-                    </button>
+                    {isClosed ? (
+                      <button
+                        type="button"
+                        className="w-full py-4 rounded-xl font-heading text-sm font-extrabold tracking-wider uppercase bg-gray-200 text-gray-500 cursor-not-allowed flex items-center justify-center gap-2"
+                        disabled
+                      >
+                        <span>Position Closed</span>
+                      </button>
+                    ) : (
+                      <Link
+                        to={`/careers/${career._id}/apply`}
+                        className="w-full py-4 rounded-xl font-heading text-sm font-extrabold tracking-wider uppercase transition-colors shadow-lg flex items-center justify-center gap-2 bg-domenion-gold text-domenion-blue hover:bg-domenion-gold/90 text-decoration-none"
+                      >
+                        <span>Apply Now</span>
+                        <ArrowRight size={16} />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </Reveal>
@@ -292,14 +294,6 @@ export default function CareerDetails() {
           </div>
         </div>
       </section>
-
-      {/* Application Modal */}
-      {showApplyModal && (
-        <ApplicationModal
-          selectedJob={career}
-          onClose={() => setShowApplyModal(false)}
-        />
-      )}
     </main>
   );
 }

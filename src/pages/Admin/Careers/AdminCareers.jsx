@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminLayout from "../components/AdminLayout";
 import CareerFormModal from "./components/CareerFormModal";
+import ScreeningQuestionsModal from "./components/ScreeningQuestionsModal";
 import {
   Briefcase,
   Plus,
@@ -15,6 +16,7 @@ import {
   Loader2,
   AlertCircle,
   CheckCircle2,
+  HelpCircle,
 } from "lucide-react";
 import { careersAPI } from "../../../services/api";
 
@@ -31,6 +33,10 @@ function AdminCareers() {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
+
+  // Screening questions modal state
+  const [showQuestionsModal, setShowQuestionsModal] = useState(false);
+  const [questionsCareer, setQuestionsCareer] = useState(null);
 
   const fetchCareers = async () => {
     setLoading(true);
@@ -234,6 +240,18 @@ function AdminCareers() {
                         <td className="text-end">
                           <div className="btn-group btn-group-sm">
                             <button
+                              className="btn btn-outline-info d-flex align-items-center gap-1"
+                              onClick={() => {
+                                setQuestionsCareer(item);
+                                setShowQuestionsModal(true);
+                              }}
+                              title="Manage Screening Questions"
+                              disabled={actionLoading}
+                            >
+                              <HelpCircle size={14} />
+                              <span className="d-none d-xl-inline">Questions ({item.screeningQuestions?.length || 0})</span>
+                            </button>
+                            <button
                               className="btn btn-outline-secondary"
                               onClick={() => handleOpenEditModal(item)}
                               title="Edit Career Posting"
@@ -303,6 +321,20 @@ function AdminCareers() {
             onClose={() => setShowModal(false)}
             onSaved={() => {
               setShowModal(false);
+              fetchCareers();
+            }}
+          />
+        )}
+
+        {/* Screening Questions Management Modal */}
+        {showQuestionsModal && questionsCareer && (
+          <ScreeningQuestionsModal
+            career={questionsCareer}
+            onClose={() => {
+              setShowQuestionsModal(false);
+              setQuestionsCareer(null);
+            }}
+            onUpdated={() => {
               fetchCareers();
             }}
           />
