@@ -17,7 +17,7 @@ export default function HomeHero() {
           className="w-full h-full object-cover object-center"
           src="/videos/hero-bg.mp4"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue/80 via-domenion-blue/50 to-domenion-blue/20" />
+        <div className="absolute inset-0 " />
       </div>
 
       {/* Content Overlay */}

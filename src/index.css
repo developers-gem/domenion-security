@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-domenion-blue: #14335A;
+  --color-domenion-blue: #07111ff5;
   --color-domenion-blue-dark: #0F2644;
   --color-domenion-gold: #C7A45B;
   --color-domenion-gold-hover: #D4B46E;

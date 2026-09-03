@@ -54,14 +54,14 @@ export default function Header() {
   return (
     <>
       <header
-        className="sticky top-0 z-40 bg-white border-b border-neutral-border shadow-sm transition-all duration-300 relative"
+        className="sticky top-0 z-40 bg-[#07111ff5]  shadow-sm transition-all duration-300 relative"
         role="banner"
       >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between">
           {/* ================= LOGO ================= */}
           <Link to="/" className="flex items-center gap-3 text-decoration-none group" aria-label="Domenion Security Home">
             <img
-              src="/new-logo.jpg"
+              src="/500 security logo.png"
               alt="Domenion Security Shield Logo"
               className="h-10 sm:h-12 lg:h-[58px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               onError={(e) => {
@@ -69,7 +69,7 @@ export default function Header() {
               }}
             />
             <div className="flex flex-col justify-center leading-none">
-              <strong className="text-domenion-blue font-heading text-base sm:text-lg lg:text-xl font-extrabold tracking-wider">DOMENION</strong>
+              <strong className="text-white font-heading text-base sm:text-lg lg:text-xl font-extrabold tracking-wider">DOMENION</strong>
               <small className="text-domenion-gold font-heading text-[9px] sm:text-[10px] lg:text-[11px] font-bold tracking-[0.22em] mt-0.5">SECURITY</small>
             </div>
           </Link>
@@ -80,7 +80,7 @@ export default function Header() {
             <Link
               to="/"
               className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
-                isCurrentRoute("/") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
+                isCurrentRoute("/") ? "text-white" : "text-white hover:text-domenion-gold"
               }`}
             >
               <span>Home</span>
@@ -93,7 +93,7 @@ export default function Header() {
             <Link
               to="/about"
               className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
-                isCurrentRoute("/about") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
+                isCurrentRoute("/about") ? "text-white" : "text-white hover:text-domenion-gold"
               }`}
             >
               <span>About</span>
@@ -112,15 +112,15 @@ export default function Header() {
                 to="/services"
                 className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/services") || activeDropdown === "services"
-                    ? "text-domenion-gold"
-                    : "text-domenion-blue hover:text-domenion-gold"
+                    ? "text-white"
+                    : "text-white hover:text-domenion-gold"
                 }`}
               >
                 <span>Services</span>
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-200 ${
-                    activeDropdown === "services" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/60"
+                    activeDropdown === "services" ? "rotate-180 text-white" : "text-white"
                   }`}
                 />
                 {(isCurrentRoute("/services") || activeDropdown === "services") && (
@@ -185,15 +185,15 @@ export default function Header() {
                 to="/industries"
                 className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/industries") || activeDropdown === "industries"
-                    ? "text-domenion-gold"
-                    : "text-domenion-blue hover:text-domenion-gold"
+                    ? "text-white"
+                    : "text-white hover:text-domenion-gold"
                 }`}
               >
                 <span>Industries</span>
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-200 ${
-                    activeDropdown === "industries" ? "rotate-180 text-domenion-gold" : "text-domenion-blue/60"
+                    activeDropdown === "industries" ? "rotate-180 text-white" : "text-white"
                   }`}
                 />
                 {(isCurrentRoute("/industries") || activeDropdown === "industries") && (
@@ -257,7 +257,7 @@ export default function Header() {
                 className={`relative h-12 flex items-center justify-center gap-1.5 font-heading text-[16px] font-bold transition-colors duration-200 ${
                   isCurrentRoute("/service-areas") || activeDropdown === "coverage"
                     ? "text-domenion-gold"
-                    : "text-domenion-blue hover:text-domenion-gold"
+                    : "text-white hover:text-domenion-gold"
                 }`}
               >
                 <span>Coverage</span>
@@ -320,7 +320,7 @@ export default function Header() {
             <Link
               to="/careers"
               className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
-                isCurrentRoute("/careers") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
+                isCurrentRoute("/careers") ? "text-white" : "text-white hover:text-domenion-gold"
               }`}
             >
               <span>Careers</span>
@@ -333,7 +333,7 @@ export default function Header() {
             <Link
               to="/contact"
               className={`relative h-12 flex items-center justify-center font-heading text-[16px] font-bold transition-colors duration-200 ${
-                isCurrentRoute("/contact") ? "text-domenion-blue" : "text-domenion-blue hover:text-domenion-gold"
+                isCurrentRoute("/contact") ? "text-white" : "text-white hover:text-domenion-gold"
               }`}
             >
               <span>Contact</span>
