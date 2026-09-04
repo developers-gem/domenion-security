@@ -247,7 +247,7 @@ export default function Header() {
             </div>
 
             {/* 50-STATE COVERAGE DROPDOWN */}
-            <div
+            {/* <div
               className="static"
               onMouseEnter={() => handleOpenDropdown("coverage")}
               onMouseLeave={handleCloseDropdown}
@@ -314,7 +314,7 @@ export default function Header() {
                   </div>
                 )}
               </AnimatePresence>
-            </div>
+            </div> */}
 
             {/* CAREERS */}
             <Link
