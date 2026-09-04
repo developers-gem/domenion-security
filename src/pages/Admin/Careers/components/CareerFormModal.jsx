@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 import { careersAPI } from "../../../../services/api";
+import "../../admin-bootstrap-scoped.css";
 
 function CareerFormModal({ career, onClose, onSaved }) {
   const isEditing = Boolean(career && career._id);

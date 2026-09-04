@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import { careersAPI } from "../../../../services/api";
+import "../../admin-bootstrap-scoped.css";
 
 export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) {
   const [questions, setQuestions] = useState([]);

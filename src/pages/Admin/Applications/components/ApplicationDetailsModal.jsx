@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../../../context/AuthContext";
 import { applicationsAPI } from "../../../../services/api";
+import "../../admin-bootstrap-scoped.css";
 
 const STATUS_OPTIONS = [
   { value: "submitted", label: "Submitted", color: "secondary" },

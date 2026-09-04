@@ -64,7 +64,7 @@ export default function AboutHero() {
                   alt="Domenion Security Corporate Guard Operations"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
-                    e.target.src = "/images/about-security.jpg";
+                    e.target.src = "/images/about-hero.jpg";
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />

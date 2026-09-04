@@ -17,7 +17,7 @@ export default function HomeHero() {
           className="w-full h-full object-cover object-center"
           src="/videos/hero-bg.mp4"
         />
-        <div className="absolute inset-0 " />
+        <div className="absolute inset-0  " />
       </div>
 
       {/* Content Overlay */}

@@ -12,7 +12,7 @@ export default function AboutStory() {
             <Reveal direction="left">
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
-                  src="/images/about-security.jpg"
+                  src="/images/about-hero.jpg"
                   alt="Dominion Security Professional Guard Operations"
                   className="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
