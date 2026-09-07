@@ -11,7 +11,7 @@ export default function CareerCulture() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/guard-6.jpg"
-                  alt="Dominion Security Guard Team Briefing"
+                  alt="Domenion Security Guard Team Briefing"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
@@ -20,7 +20,7 @@ export default function CareerCulture() {
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/70 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
                   <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">OUR PEOPLE</span>
-                  <strong className="text-xs font-bold font-heading">DOMINION TEAM READINESS</strong>
+                  <strong className="text-xs font-bold font-heading">Domenion TEAM READINESS</strong>
                 </div>
               </div>
             </Reveal>
@@ -44,7 +44,7 @@ export default function CareerCulture() {
                   Every successful security operation depends on professionals who are alert, prepared, and committed to their post orders.
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
-                  At Dominion Security, our people are at the center of everything we protect. We support our security personnel with clear post operational guidelines, continuous readiness oversight, and strong leadership.
+                  At Domenion Security, our people are at the center of everything we protect. We support our security personnel with clear post operational guidelines, continuous readiness oversight, and strong leadership.
                 </p>
               </Reveal>
             </div>

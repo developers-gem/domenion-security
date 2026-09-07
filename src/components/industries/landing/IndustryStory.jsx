@@ -11,7 +11,7 @@ export default function IndustryStory() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/industries/story-context.jpg"
-                  alt="Dominion Security Environmental Protection"
+                  alt="Domenion Security Environmental Protection"
                   className="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
@@ -30,7 +30,7 @@ export default function IndustryStory() {
           <div className="lg:col-span-5">
             <div className="flex flex-col">
               <Reveal direction="up">
-                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">THE DOMINION DIFFERENCE</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">THE Domenion DIFFERENCE</span>
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
@@ -44,7 +44,7 @@ export default function IndustryStory() {
                   A high-occupancy hospital emergency room cannot be secured like a remote data center or a commercial office tower.
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
-                  Dominion Security designs custom post orders, visitor verification protocols, and emergency escalation matrices tailored around the physical layout, operational pace, and regulatory requirements of each facility we protect.
+                  Domenion Security designs custom post orders, visitor verification protocols, and emergency escalation matrices tailored around the physical layout, operational pace, and regulatory requirements of each facility we protect.
                 </p>
               </Reveal>
             </div>

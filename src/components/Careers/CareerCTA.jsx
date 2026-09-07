@@ -21,7 +21,7 @@ export default function CareerCTA() {
                 <Reveal direction="fade">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/20 border border-domenion-gold/40 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-4">
                     <ShieldCheck size={16} className="text-domenion-gold" />
-                    <span>JOIN DOMINION SECURITY</span>
+                    <span>JOIN Domenion SECURITY</span>
                   </div>
                 </Reveal>
 
@@ -66,7 +66,7 @@ export default function CareerCTA() {
                 <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
                     src="/images/guard-8.jpg"
-                    alt="Dominion Security Guard Officer"
+                    alt="Domenion Security Guard Officer"
                     className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "/images/company-security.jpg";

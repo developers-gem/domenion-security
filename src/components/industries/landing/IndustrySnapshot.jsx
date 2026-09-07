@@ -24,7 +24,7 @@ export default function IndustrySnapshot() {
                   transportation, and critical infrastructure, security requirements change with the environment.
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
-                  Dominion Security analyzes post orders, access vectors, visitor flows, and threat models for each specific sector—deploying trained personnel and integrated surveillance engineered specifically for that environment.
+                  Domenion Security analyzes post orders, access vectors, visitor flows, and threat models for each specific sector—deploying trained personnel and integrated surveillance engineered specifically for that environment.
                 </p>
               </Reveal>
             </div>

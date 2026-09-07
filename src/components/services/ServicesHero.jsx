@@ -44,7 +44,7 @@ export default function ServicesHero() {
               <Reveal direction="right" delay={0.3}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl">
                   From professional physical security to specialized enterprise defense,
-                  Dominion delivers security solutions designed around the environments
+                  Domenion delivers security solutions designed around the environments
                   and operations we protect.
                 </p>
               </Reveal>
@@ -57,7 +57,7 @@ export default function ServicesHero() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-domenion-gold/30 group">
                 <img
                   src="/images/physical-security.jpg"
-                  alt="Dominion Security Operations"
+                  alt="Domenion Security Operations"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";

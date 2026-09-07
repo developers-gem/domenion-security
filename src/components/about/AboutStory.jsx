@@ -13,7 +13,7 @@ export default function AboutStory() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/about-hero.jpg"
-                  alt="Dominion Security Professional Guard Operations"
+                  alt="Domenion Security Professional Guard Operations"
                   className="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
@@ -47,7 +47,7 @@ export default function AboutStory() {
 
               <Reveal direction="up" delay={0.3}>
                 <p className="text-gray-700 font-sans text-base sm:text-lg leading-relaxed mb-3 font-medium">
-                  Dominion Security delivers professional security solutions built
+                  Domenion Security delivers professional security solutions built
                   around the real-world requirements of the commercial enterprises,
                   facilities, and communities we protect.
                 </p>

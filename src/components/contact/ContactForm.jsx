@@ -59,7 +59,7 @@ export default function ContactForm() {
         message: formData.message.trim(),
       });
 
-      setSubmitSuccess("REQUEST RECEIVED — Thank you for contacting Dominion Security! Our security representatives have received your request and will follow up shortly.");
+      setSubmitSuccess("REQUEST RECEIVED — Thank you for contacting Domenion Security! Our security representatives have received your request and will follow up shortly.");
       setFormData({
         name: "",
         email: "",
@@ -69,7 +69,7 @@ export default function ContactForm() {
         message: "",
       });
     } catch (err) {
-      setSubmitError(err.message || "We couldn't submit your request right now. Please try again or contact Dominion directly.");
+      setSubmitError(err.message || "We couldn't submit your request right now. Please try again or contact Domenion directly.");
     } finally {
       setSubmitting(false);
     }

@@ -32,7 +32,7 @@ export default function ContactLocation() {
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
                   <div className="flex items-center gap-2 mb-1">
                     <ShieldCheck size={16} className="text-domenion-gold" />
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">DOMINION SECURITY HEADQUARTERS</span>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">Domenion SECURITY HEADQUARTERS</span>
                   </div>
                   <strong className="text-xs font-extrabold font-heading text-domenion-blue uppercase">50-STATE COVERAGE & NATIONWIDE OPERATIONS</strong>
                   <span className="text-gray-600 text-xs mt-0.5">24/7 Command Dispatch & Guard Operations</span>
@@ -56,7 +56,7 @@ export default function ContactLocation() {
 
               <Reveal direction="up" delay={0.2}>
                 <p className="text-gray-700 font-sans text-base sm:text-lg leading-relaxed mb-6 font-medium">
-                  Dominion Security provides licensed physical guarding, mobile patrol, data center defense, and security management across commercial centers, industrial sites, and critical infrastructure.
+                  Domenion Security provides licensed physical guarding, mobile patrol, data center defense, and security management across commercial centers, industrial sites, and critical infrastructure.
                 </p>
               </Reveal>
 

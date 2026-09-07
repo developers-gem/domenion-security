@@ -14,7 +14,7 @@ export default function IndustryServiceLinks({ industry }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">RELEVANT DOMINION SERVICES</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">RELEVANT Domenion SERVICES</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>

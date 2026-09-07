@@ -61,8 +61,8 @@ export default function ServicesCTA() {
               <Reveal direction="left" delay={0.2}>
                 <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
-                    src="/images/services/cyber-security/hero.jpg"
-                    alt="Dominion Security Operations Team"
+                    src="/images/services/cyber-security/cyber-1.jpg"
+                    alt="Domenion Security Operations Team"
                     className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "/images/company-security.jpg";

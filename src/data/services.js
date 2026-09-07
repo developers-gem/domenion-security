@@ -232,7 +232,7 @@ export const services = [
     "Proactive threat intelligence, digital reconnaissance, OSINT analysis, risk monitoring, and strategic intelligence protection.",
   description:
     "Our Intelligence Gathering Security solutions combine digital threat intelligence, open-source reconnaissance, risk monitoring, counter-surveillance, and vulnerability assessments to safeguard enterprise operations, critical data, and leadership decision-making.",
-  heroImage: "/images/services/cyber-security/hero.jpg",
+  heroImage: "/images/services/cyber-security/cyber-1.jpg",
   overviewImage: "/images/services/cyber-security/overview.jpg",
   benefitsImage: "/images/services/cyber-security/benefits.jpg",
   stats: {

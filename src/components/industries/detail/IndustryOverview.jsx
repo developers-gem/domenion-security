@@ -25,7 +25,7 @@ export default function IndustryOverview({ industry }) {
                   {industry.overviewDescription || industry.shortDescription}
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
-                  Dominion Security establishes rigorous post orders, entry point access controls, visitor verification rules, and emergency escalation protocols specifically engineered for {industry.title.toLowerCase()}.
+                  Domenion Security establishes rigorous post orders, entry point access controls, visitor verification rules, and emergency escalation protocols specifically engineered for {industry.title.toLowerCase()}.
                 </p>
               </Reveal>
             </div>
@@ -46,7 +46,7 @@ export default function IndustryOverview({ industry }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
                   <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">ENVIRONMENTAL DEFENSE</span>
-                  <strong className="text-xs font-bold font-heading">{industry.badge || "DOMINION SECURITY"}</strong>
+                  <strong className="text-xs font-bold font-heading">{industry.badge || "Domenion SECURITY"}</strong>
                 </div>
               </div>
             </Reveal>

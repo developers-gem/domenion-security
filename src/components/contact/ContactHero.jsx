@@ -26,7 +26,7 @@ export default function ContactHero() {
               <Reveal direction="fade">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-6">
                   <ShieldCheck size={15} className="text-domenion-gold" />
-                  <span>CONTACT DOMINION SECURITY</span>
+                  <span>CONTACT Domenion SECURITY</span>
                 </div>
               </Reveal>
 
@@ -72,7 +72,7 @@ export default function ContactHero() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-domenion-gold/30 group">
                 <img
                   src="/images/guard-10.jpg"
-                  alt="Dominion Security Headquarters Operations"
+                  alt="Domenion Security Headquarters Operations"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";

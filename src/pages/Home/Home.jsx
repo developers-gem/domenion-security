@@ -4,7 +4,7 @@ import AboutPreview from "../../components/home/AboutPreview";
 import ServicesSection from "../../components/home/ServicesSection";
 import DataCenterBanner from "../../components/home/DataCenterBanner";
 import IndustriesSection from "../../components/home/IndustriesSection";
-import WhyChooseDominion from "../../components/home/WhyChooseDominion";
+import WhyChooseDomenion from "../../components/home/WhyChooseDominion";
 import SecurityProcess from "../../components/home/SecurityProcess";
 import CareersBanner from "../../components/home/CareersBanner";
 import TestimonialsSlider from "../../components/home/TestimonialsSlider";
@@ -19,7 +19,7 @@ function Home() {
       <ServicesSection />
       <DataCenterBanner />
       <IndustriesSection />
-      <WhyChooseDominion />
+      <WhyChooseDomenion />
       <SecurityProcess />
       <CareersBanner />
       <FAQSection />

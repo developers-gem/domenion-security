@@ -30,7 +30,7 @@ export default function IndustryPriorities() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Regardless of industry type, Dominion Security structures every operational program around 6 core security pillars.
+                Regardless of industry type, Domenion Security structures every operational program around 6 core security pillars.
               </p>
             </Reveal>
           </div>

@@ -34,7 +34,7 @@ export default function ServiceDetailHero({ service }) {
               <Reveal direction="right" delay={0.1}>
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-4">
                   <ShieldCheck size={15} className="text-domenion-gold" />
-                  <span>{service.badge || "DOMINION SECURITY"}</span>
+                  <span>{service.badge || "Domenion SECURITY"}</span>
                 </div>
               </Reveal>
 
@@ -86,7 +86,7 @@ export default function ServiceDetailHero({ service }) {
                     <LockKeyhole size={14} />
                     <span>24/7 READINESS</span>
                   </div>
-                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">{service.badge || "DOMINION PROTECTION"}</strong>
+                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">{service.badge || "Domenion PROTECTION"}</strong>
                   <span className="text-gray-600 text-xs mt-0.5">Protected with purpose.</span>
                 </div>
               </div>

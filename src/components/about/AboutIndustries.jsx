@@ -49,7 +49,7 @@ export default function AboutIndustries() {
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
                 Every sector faces unique threat vectors, regulatory compliance standards,
-                and operational risks. Dominion designs custom-tailored protection programs
+                and operational risks. Domenion designs custom-tailored protection programs
                 for critical environments.
               </p>
             </Reveal>

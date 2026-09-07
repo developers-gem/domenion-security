@@ -47,7 +47,7 @@ export default function AboutHero() {
               {/* Description */}
               <Reveal direction="right" delay={0.3}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl">
-                  Dominion Security provides disciplined, comprehensive security solutions
+                  Domenion Security provides disciplined, comprehensive security solutions
                   designed around the people, property, facilities and critical operations
                   we protect across commercial and enterprise environments.
                 </p>

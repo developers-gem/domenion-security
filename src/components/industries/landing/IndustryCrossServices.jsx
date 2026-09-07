@@ -46,7 +46,7 @@ export default function IndustryCrossServices() {
           </Reveal>
         </div>
 
-        {/* Industry -> Security Needs -> Dominion Services Map */}
+        {/* Industry -> Security Needs -> Domenion Services Map */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {MAP_ITEMS.map((item, idx) => (
             <div key={item.sector}>

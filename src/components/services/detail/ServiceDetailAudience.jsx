@@ -49,7 +49,7 @@ export default function ServiceDetailAudience({ service }) {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Dominion customizes post orders, guard credentials, and emergency escalation workflows for the operational realities of your environment.
+                Domenion customizes post orders, guard credentials, and emergency escalation workflows for the operational realities of your environment.
               </p>
             </Reveal>
           </div>

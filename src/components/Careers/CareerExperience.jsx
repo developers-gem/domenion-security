@@ -28,7 +28,7 @@ export default function CareerExperience() {
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-2xl">
               From sharp uniforms and punctual shift reporting to vigilant post order execution,
-              Dominion Security officers represent trust and discipline at every location.
+              Domenion Security officers represent trust and discipline at every location.
             </p>
           </Reveal>
         </div>

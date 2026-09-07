@@ -48,7 +48,7 @@ export default function IndustryChallengePanels({ industry }) {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                Dominion structures every security deployment around 4 critical operational dimensions to eliminate security blind spots.
+                Domenion structures every security deployment around 4 critical operational dimensions to eliminate security blind spots.
               </p>
             </Reveal>
           </div>

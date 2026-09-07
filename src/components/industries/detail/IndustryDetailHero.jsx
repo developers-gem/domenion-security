@@ -31,7 +31,7 @@ export default function IndustryDetailHero({ industry }) {
           <Reveal direction="up" delay={0.1}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6">
               <ShieldCheck size={15} className="text-domenion-gold" />
-              <span>{industry.badge || "DOMINION INDUSTRY PROTECTION"}</span>
+              <span>{industry.badge || "Domenion INDUSTRY PROTECTION"}</span>
             </div>
           </Reveal>
 

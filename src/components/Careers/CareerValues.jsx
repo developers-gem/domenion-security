@@ -48,7 +48,7 @@ export default function CareerValues() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                We seek individuals who take pride in their duty, demonstrate high operational integrity, and embody Dominion's security standards.
+                We seek individuals who take pride in their duty, demonstrate high operational integrity, and embody Domenion's security standards.
               </p>
             </Reveal>
           </div>

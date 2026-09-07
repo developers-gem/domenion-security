@@ -5,11 +5,11 @@ import Reveal from "../common/Reveal";
 
 const FAQ_ITEMS = [
   {
-    q: "What types of security services does Dominion Security provide?",
-    a: "Dominion Security provides professional physical security guarding, mobile patrol services, executive protection, data center security, government security solutions, site clearance security, and comprehensive risk assessment services.",
+    q: "What types of security services does Domenion Security provide?",
+    a: "Domenion Security provides professional physical security guarding, mobile patrol services, executive protection, data center security, government security solutions, site clearance security, and comprehensive risk assessment services.",
   },
   {
-    q: "How quickly can Dominion deploy security officers to a new site?",
+    q: "How quickly can Domenion deploy security officers to a new site?",
     a: "We can deploy licensed security personnel rapidly depending on facility location and post order requirements. In urgent cases, emergency response security teams can be dispatched within 24 hours.",
   },
   {
@@ -17,11 +17,11 @@ const FAQ_ITEMS = [
     a: "To help us prepare an accurate proposal, please provide your facility type, location, estimated coverage hours or shift structure, and any specific post requirements (e.g., access control, visitor logging, patrol requirements).",
   },
   {
-    q: "Does Dominion Security tailor post orders for specific industry sectors?",
+    q: "Does Domenion Security tailor post orders for specific industry sectors?",
     a: "Yes. Every security deployment begins with an environmental threat assessment. We build customized post orders, visitor verification rules, and emergency escalation matrices tailored around your specific sector.",
   },
   {
-    q: "How can I apply for a career or submit a resume to Dominion Security?",
+    q: "How can I apply for a career or submit a resume to Domenion Security?",
     a: "You can view current career opportunities on our Careers page or submit a general security application directly through our online recruitment portal.",
   },
 ];

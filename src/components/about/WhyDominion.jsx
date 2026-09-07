@@ -28,7 +28,7 @@ const FEATURE_BLOCKS = [
   },
 ];
 
-export default function WhyDominion() {
+export default function WhyDomenion() {
   return (
     <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +36,7 @@ export default function WhyDominion() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY Domenion</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>

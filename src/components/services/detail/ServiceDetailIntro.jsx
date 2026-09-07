@@ -29,7 +29,7 @@ export default function ServiceDetailIntro({ service }) {
                 <p className="text-gray-700 font-sans text-base sm:text-lg leading-relaxed font-medium">
                   {service.overviewDescription ||
                     service.description ||
-                    `Dominion Security delivers tailored ${service.title} designed around the operational demands, entry vectors, and regulatory standards of your facility.`}
+                    `Domenion Security delivers tailored ${service.title} designed around the operational demands, entry vectors, and regulatory standards of your facility.`}
                 </p>
               </Reveal>
 

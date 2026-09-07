@@ -30,7 +30,7 @@ export default function IndustryExplorer() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Hover on desktop or tap on mobile to inspect Dominion Security's specialized capabilities across sectors.
+                Hover on desktop or tap on mobile to inspect Domenion Security's specialized capabilities across sectors.
               </p>
             </Reveal>
           </div>

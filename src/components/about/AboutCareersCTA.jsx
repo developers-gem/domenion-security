@@ -28,7 +28,7 @@ export default function AboutCareersCTA() {
 
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed mb-8">
-              Explore career opportunities with Dominion Security and build a professional
+              Explore career opportunities with Domenion Security and build a professional
               future grounded in responsibility, operational excellence, continuous
               training, and purpose.
             </p>

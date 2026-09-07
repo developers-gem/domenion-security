@@ -36,7 +36,7 @@ export default function ServiceDetailWhy({ service }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY Domenion</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
@@ -49,7 +49,7 @@ export default function ServiceDetailWhy({ service }) {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                Dominion Security combines rigorous personnel selection, standardized post execution, and modern surveillance technology to deliver unyielding protection.
+                Domenion Security combines rigorous personnel selection, standardized post execution, and modern surveillance technology to deliver unyielding protection.
               </p>
             </Reveal>
           </div>

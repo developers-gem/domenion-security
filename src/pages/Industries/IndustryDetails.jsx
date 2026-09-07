@@ -13,7 +13,7 @@ import RelatedIndustries from "../../components/industries/detail/RelatedIndustr
 import IndustryDetailCTA from "../../components/industries/detail/IndustryDetailCTA";
 
 /**
- * Dominion Security Individual Industry Detail Page System.
+ * Domenion Security Individual Industry Detail Page System.
  * Renders the 10-part environmental-focused enterprise layout for any of the 11 protected sectors.
  */
 function IndustryDetails() {

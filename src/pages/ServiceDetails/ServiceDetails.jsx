@@ -13,7 +13,7 @@ import RelatedServices from "../../components/services/detail/RelatedServices";
 import ServiceDetailCTA from "../../components/services/detail/ServiceDetailCTA";
 
 /**
- * Dominion Security Individual Service Detail Page System.
+ * Domenion Security Individual Service Detail Page System.
  * Renders the 9-part modular enterprise layout for any of the 14 service capabilities.
  * Includes canonical slug and alias resolution.
  */

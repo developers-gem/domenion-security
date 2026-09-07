@@ -24,7 +24,7 @@ export default function IndustryGrid() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Click any sector to review environment-specific threat vectors, security post orders, and recommended Dominion services.
+                Click any sector to review environment-specific threat vectors, security post orders, and recommended Domenion services.
               </p>
             </Reveal>
           </div>

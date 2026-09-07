@@ -51,7 +51,7 @@ export default function AboutPreview() {
 
               <Reveal direction="up" delay={0.3}>
                 <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mb-8">
-                  Dominion Security provides comprehensive physical, digital and
+                  Domenion Security provides comprehensive physical, digital and
                   critical infrastructure security solutions designed to protect
                   people, property, facilities and information in an increasingly
                   complex world.

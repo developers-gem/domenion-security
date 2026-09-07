@@ -19,19 +19,19 @@ const VALUE_ROWS = [
   {
     num: "04",
     title: "OPPORTUNITY",
-    desc: "Explore roles across Dominion's physical guarding, mobile patrol, data center defense, and security management operations.",
+    desc: "Explore roles across Domenion's physical guarding, mobile patrol, data center defense, and security management operations.",
   },
 ];
 
-export default function WhyWorkDominion() {
+export default function WhyWorkDomenion() {
   return (
-    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border" id="why-dominion">
+    <section className="py-20 sm:py-28 bg-white text-domenion-blue border-b border-neutral-border" id="why-Domenion">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY DOMINION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY Domenion</span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>

@@ -77,7 +77,7 @@ export default function OpenPositions() {
               <h2 className="section-title">
                 Find your next
                 <br />
-                <span>opportunity with Dominion.</span>
+                <span>opportunity with Domenion.</span>
               </h2>
             </Reveal>
           </div>
@@ -85,7 +85,7 @@ export default function OpenPositions() {
           <div className="col-lg-5 mt-3 mt-lg-0">
             <Reveal direction="up" delay={0.2}>
               <p className="section-description">
-                Explore current opportunities with Dominion Security. Select any role to view position details and submit your application.
+                Explore current opportunities with Domenion Security. Select any role to view position details and submit your application.
               </p>
             </Reveal>
           </div>

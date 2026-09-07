@@ -5,7 +5,7 @@
   --color-domenion-blue: #07111ff5;
   --color-domenion-blue-dark: #0F2644;
   --color-domenion-gold: #C7A45B;
-  --color-domenion-gold-hover: #D4B46E;
+  --color-domenion-gold-hover: #C7A45B;
   --color-neutral-light: #F7F9FC;
   --color-neutral-border: #E5E7EB;
 
@@ -14,7 +14,7 @@
 }
 
 /* =========================================
-   DOMINION SECURITY DESIGN SYSTEM TOKENS
+   Domenion SECURITY DESIGN SYSTEM TOKENS
 ========================================= */
 :root {
   /* Brand Palette */
@@ -23,8 +23,8 @@
   --color-secondary: #14335a;
   
   --color-gold: #c7a45b;
-  --color-gold-light: #d4b46e;
-  --color-gold-dark: #a3823d;
+  --color-gold-light: #C7A45B;
+  --color-gold-dark: #C7A45B;
   
   --color-white: #ffffff;
   --color-black: #050505;

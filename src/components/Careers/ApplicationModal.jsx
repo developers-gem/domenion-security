@@ -92,7 +92,7 @@ export default function ApplicationModal({ selectedJob, onClose }) {
         });
       }
 
-      setSubmitSuccess("APPLICATION RECEIVED — Thank you for your interest in joining Dominion Security. Your application has been submitted successfully!");
+      setSubmitSuccess("APPLICATION RECEIVED — Thank you for your interest in joining Domenion Security. Your application has been submitted successfully!");
       setFormData({ fullName: "", email: "", phone: "", message: "" });
       setResumeFile(null);
 

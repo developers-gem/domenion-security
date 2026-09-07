@@ -14,7 +14,7 @@ const CONTACT_OPTIONS = [
   {
     num: "02",
     icon: Phone,
-    title: "CALL DOMINION",
+    title: "CALL Domenion",
     desc: "Speak directly with our security directors and dispatch team.",
     actionText: "(602) 438-4445",
     actionType: "tel",

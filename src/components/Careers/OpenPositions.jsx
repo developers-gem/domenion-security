@@ -77,7 +77,7 @@ export default function OpenPositions() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Explore current opportunities with Dominion Security. Select any role to view position details and submit your application.
+                Explore current opportunities with Domenion Security. Select any role to view position details and submit your application.
               </p>
             </Reveal>
           </div>

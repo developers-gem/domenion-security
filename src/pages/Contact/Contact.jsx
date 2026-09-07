@@ -8,7 +8,7 @@ import ContactFAQ from "../../components/contact/ContactFAQ";
 import ContactCTA from "../../components/contact/ContactCTA";
 
 /**
- * Dominion Security Contact Page.
+ * Domenion Security Contact Page.
  * Composes conversion-focused enterprise components featuring architectural hero, 4 contact options,
  * quote form, 4-step onboarding timeline, contact details, location visual, accordion FAQ, and Gold CTA.
  */

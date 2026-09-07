@@ -45,7 +45,7 @@ export default function ContactInformation() {
 
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-                Direct lines to <span className="text-domenion-gold">Dominion Security operations.</span>
+                Direct lines to <span className="text-domenion-gold">Domenion Security operations.</span>
               </h2>
             </Reveal>
           </div>

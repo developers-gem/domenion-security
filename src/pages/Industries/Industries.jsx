@@ -9,7 +9,7 @@ import IndustryCrossServices from "../../components/industries/landing/IndustryC
 import IndustriesCTA from "../../components/industries/landing/IndustriesCTA";
 
 /**
- * Dominion Security Main Industries Landing Page.
+ * Domenion Security Main Industries Landing Page.
  * Composes 9 environmental-focused enterprise UI components introducing
  * all protected sectors with full-width cinematic hero, signature interactive explorer,
  * challenge blocks, and cross-service mappings.

@@ -29,7 +29,7 @@ const WHY_CARDS = [
   },
 ];
 
-export default function WhyChooseDominion() {
+export default function WhyChooseDomenion() {
   return (
     <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">

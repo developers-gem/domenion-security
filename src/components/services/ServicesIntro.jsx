@@ -21,7 +21,7 @@ export default function ServicesIntro() {
               <Reveal direction="up" delay={0.2}>
                 <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mb-4">
                   Every environment presents distinct operational threats, access control
-                  challenges, and regulatory compliance standards. Dominion Security
+                  challenges, and regulatory compliance standards. Domenion Security
                   delivers customized defense solutions tailored to your organization.
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
@@ -41,7 +41,7 @@ export default function ServicesIntro() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/about-security.jpg"
-                  alt="Dominion Security Operations Officer"
+                  alt="Domenion Security Operations Officer"
                   className="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";

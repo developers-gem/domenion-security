@@ -11,7 +11,7 @@ export default function CareersHero() {
   };
 
   const handleScrollToWhy = () => {
-    const el = document.getElementById("why-dominion");
+    const el = document.getElementById("why-Domenion");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
@@ -34,7 +34,7 @@ export default function CareersHero() {
               <Reveal direction="fade">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-6">
                   <ShieldCheck size={15} className="text-domenion-gold" />
-                  <span>CAREERS AT DOMINION SECURITY</span>
+                  <span>CAREERS AT Domenion SECURITY</span>
                 </div>
               </Reveal>
 
@@ -68,7 +68,7 @@ export default function CareersHero() {
                     size="lg"
                     onClick={handleScrollToWhy}
                   >
-                    Why Dominion?
+                    Why Domenion?
                   </Button>
                 </div>
               </Reveal>
@@ -81,7 +81,7 @@ export default function CareersHero() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-domenion-gold/30 group">
                 <img
                   src="/images/guard-5.jpg"
-                  alt="Dominion Security Professional Guards Team"
+                  alt="Domenion Security Professional Guards Team"
                   className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
@@ -91,7 +91,7 @@ export default function CareersHero() {
 
                 {/* Floating Information Block */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
-                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">WHO BUILDS DOMINION</span>
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">WHO BUILDS Domenion</span>
                   <strong className="text-xs font-extrabold font-heading text-domenion-blue uppercase">PEOPLE • DISCIPLINE • TRUST</strong>
                   <span className="text-gray-600 text-xs mt-0.5">Professional security personnel nationwide.</span>
                 </div>

@@ -24,7 +24,7 @@ export default function ServicePortfolio() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Explore Dominion Security's full portfolio of 14 core protection capabilities.
+                Explore Domenion Security's full portfolio of 14 core protection capabilities.
                 Each service is tailored to your facility's operational risks and regulatory standards.
               </p>
             </Reveal>

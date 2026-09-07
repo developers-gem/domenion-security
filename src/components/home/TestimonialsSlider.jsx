@@ -12,14 +12,14 @@ const TESTIMONIALS = [
   {
     id: 1,
     quote:
-      "Dominion Security provided exceptional physical security officers for our commercial data center. Their disciplined personnel and strict access control procedures gave us total operational confidence.",
+      "Domenion Security provided exceptional physical security officers for our commercial data center. Their disciplined personnel and strict access control procedures gave us total operational confidence.",
     author: "Director of Enterprise Security",
     organization: "Commercial Infrastructure Client",
   },
   {
     id: 2,
     quote:
-      "Fast response times, highly professional officers, and detailed daily reporting. Dominion has been an invaluable security partner for our multi-facility property portfolio.",
+      "Fast response times, highly professional officers, and detailed daily reporting. Domenion has been an invaluable security partner for our multi-facility property portfolio.",
     author: "VP of Property Operations",
     organization: "Commercial Real Estate Firm",
   },
@@ -33,21 +33,21 @@ const TESTIMONIALS = [
   {
     id: 4,
     quote:
-      "The consistency and discipline of Dominion's security officers across our retail locations has been outstanding. They seamlessly integrate with our loss prevention operations.",
+      "The consistency and discipline of Domenion's security officers across our retail locations has been outstanding. They seamlessly integrate with our loss prevention operations.",
     author: "Corporate Security Director",
     organization: "National Retail Enterprise",
   },
   {
     id: 5,
     quote:
-      "Outstanding responsiveness and transparent communication. Whenever an operational security requirement arises, Dominion dispatches qualified personnel and resolves it immediately.",
+      "Outstanding responsiveness and transparent communication. Whenever an operational security requirement arises, Domenion dispatches qualified personnel and resolves it immediately.",
     author: "Facilities & Operations Manager",
     organization: "Commercial Real Estate Portfolio",
   },
   {
     id: 6,
     quote:
-      "Dominion's security team maintains rigorous physical security standards for our high-security technology facilities. Their 24/7 post coverage and access management give us complete peace of mind.",
+      "Domenion's security team maintains rigorous physical security standards for our high-security technology facilities. Their 24/7 post coverage and access management give us complete peace of mind.",
     author: "Director of Facility Operations",
     organization: "Critical Infrastructure Client",
   },

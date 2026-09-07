@@ -68,7 +68,7 @@ export default function ContactCTA() {
                 <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
                     src="/images/company-security.jpg"
-                    alt="Dominion Security Officer"
+                    alt="Domenion Security Officer"
                     className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.target.src = "/images/company-security.jpg";

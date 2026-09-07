@@ -14,7 +14,7 @@ export default function CapabilitiesSection() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-neutral-border group">
                 <img
                   src="/images/physical-security.jpg"
-                  alt="Dominion Security Guard Capabilities"
+                  alt="Domenion Security Guard Capabilities"
                   className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";

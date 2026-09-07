@@ -7,13 +7,13 @@ import { accordionCollapse } from "../common/motionVariants";
 const DEFAULT_FAQS = [
   {
     id: 1,
-    question: "What security services does Dominion Security provide?",
+    question: "What security services does Domenion Security provide?",
     answer:
-      "Dominion Security provides comprehensive physical security officers (armed and unarmed), data center critical infrastructure defense, enterprise cybersecurity monitoring, mobile patrols, executive protection, and security risk consulting.",
+      "Domenion Security provides comprehensive physical security officers (armed and unarmed), data center critical infrastructure defense, enterprise cybersecurity monitoring, mobile patrols, executive protection, and security risk consulting.",
   },
   {
     id: 2,
-    question: "How quickly can Dominion Security deploy security officers?",
+    question: "How quickly can Domenion Security deploy security officers?",
     answer:
       "We offer rapid operational deployment capabilities. For standard commercial or residential property requirements, deployment can occur within 24-48 hours. Emergency response units can be mobilized immediately.",
   },
@@ -21,7 +21,7 @@ const DEFAULT_FAQS = [
     id: 3,
     question: "Are your security officers licensed and background checked?",
     answer:
-      "Yes. 100% of Dominion Security officers undergo rigorous background verification, state security licensing, drug screening, and continuous operational training in de-escalation, emergency response, and access control.",
+      "Yes. 100% of Domenion Security officers undergo rigorous background verification, state security licensing, drug screening, and continuous operational training in de-escalation, emergency response, and access control.",
   },
   {
     id: 4,

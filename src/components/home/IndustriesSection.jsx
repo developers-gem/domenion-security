@@ -64,7 +64,7 @@ export default function IndustriesSection() {
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base leading-relaxed lg:text-right mb-6">
                 Every sector faces unique threats, regulatory compliance standards, and
-                operational vulnerabilities. Dominion provides custom-tailored security
+                operational vulnerabilities. Domenion provides custom-tailored security
                 programs built around your specific industry.
               </p>
 
