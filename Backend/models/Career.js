@@ -7,12 +7,14 @@ const screeningQuestionSchema = new mongoose.Schema(
       required: [true, "Question text is required"],
       trim: true,
     },
+    type: {
+      type: String,
+      enum: ["single_choice", "multiple_choice", "text"],
+      default: "single_choice",
+    },
     options: {
       type: [String],
-      validate: [
-        (val) => Array.isArray(val) && val.length >= 2,
-        "Screening question must have at least 2 options",
-      ],
+      default: [],
     },
     required: {
       type: Boolean,
@@ -25,6 +27,11 @@ const screeningQuestionSchema = new mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    scope: {
+      type: String,
+      enum: ["global", "job"],
+      default: "job",
     },
   },
   { timestamps: true }

@@ -143,19 +143,26 @@ const getCareerQuestions = async (req, res) => {
 // @access  Private/Admin
 const createCareerQuestion = async (req, res) => {
   try {
-    const { question, options, required, order, isActive } = req.body;
+    const { question, type, options, required, order, isActive, active } = req.body;
 
     if (!question || typeof question !== "string" || !question.trim()) {
       return res.status(400).json({ success: false, message: "Question text is required" });
     }
 
-    if (!Array.isArray(options) || options.length < 2) {
-      return res.status(400).json({ success: false, message: "A multiple-choice question must contain at least 2 options" });
-    }
+    const validTypes = ["single_choice", "multiple_choice", "text"];
+    const qType = validTypes.includes(type) ? type : "single_choice";
 
-    const cleanOptions = options.map((opt) => String(opt).trim()).filter(Boolean);
-    if (cleanOptions.length < 2) {
-      return res.status(400).json({ success: false, message: "Each option must contain non-empty text (at least 2 valid options required)" });
+    let cleanOptions = [];
+    if (qType === "text") {
+      cleanOptions = [];
+    } else {
+      if (!Array.isArray(options) || options.length < 2) {
+        return res.status(400).json({ success: false, message: "A choice question must contain at least 2 options" });
+      }
+      cleanOptions = options.map((opt) => String(opt).trim()).filter(Boolean);
+      if (cleanOptions.length < 2) {
+        return res.status(400).json({ success: false, message: "Each option must contain non-empty text (at least 2 valid options required)" });
+      }
     }
 
     const career = await Career.findById(req.params.id);
@@ -163,12 +170,15 @@ const createCareerQuestion = async (req, res) => {
       return res.status(404).json({ success: false, message: "Career position not found" });
     }
 
+    const activeState = active !== undefined ? Boolean(active) : (isActive !== undefined ? Boolean(isActive) : true);
+
     const newQuestion = {
       question: question.trim(),
+      type: qType,
       options: cleanOptions,
       required: required !== undefined ? Boolean(required) : true,
       order: Number.isInteger(Number(order)) ? Number(order) : (career.screeningQuestions.length || 0),
-      isActive: isActive !== undefined ? Boolean(isActive) : true,
+      isActive: activeState,
     };
 
     career.screeningQuestions.push(newQuestion);
@@ -192,20 +202,10 @@ const createCareerQuestion = async (req, res) => {
 // @access  Private/Admin
 const updateCareerQuestion = async (req, res) => {
   try {
-    const { question, options, required, order, isActive } = req.body;
+    const { question, type, options, required, order, isActive, active } = req.body;
 
     if (question !== undefined && (!question || typeof question !== "string" || !question.trim())) {
       return res.status(400).json({ success: false, message: "Question text cannot be empty" });
-    }
-
-    if (options !== undefined) {
-      if (!Array.isArray(options) || options.length < 2) {
-        return res.status(400).json({ success: false, message: "A multiple-choice question must contain at least 2 options" });
-      }
-      const cleanOpts = options.map((opt) => String(opt).trim()).filter(Boolean);
-      if (cleanOpts.length < 2) {
-        return res.status(400).json({ success: false, message: "Each option must contain non-empty text" });
-      }
     }
 
     const career = await Career.findById(req.params.id);
@@ -218,11 +218,33 @@ const updateCareerQuestion = async (req, res) => {
       return res.status(404).json({ success: false, message: "Screening question not found" });
     }
 
+    const validTypes = ["single_choice", "multiple_choice", "text"];
+    const newType = type !== undefined ? (validTypes.includes(type) ? type : targetQuestion.type) : targetQuestion.type;
+
+    if (newType === "text") {
+      targetQuestion.options = [];
+    } else {
+      const optsToValidate = options !== undefined ? options : targetQuestion.options;
+      if (!Array.isArray(optsToValidate) || optsToValidate.length < 2) {
+        return res.status(400).json({ success: false, message: "A choice question must contain at least 2 options" });
+      }
+      const cleanOpts = optsToValidate.map((opt) => String(opt).trim()).filter(Boolean);
+      if (cleanOpts.length < 2) {
+        return res.status(400).json({ success: false, message: "Each option must contain non-empty text" });
+      }
+      targetQuestion.options = cleanOpts;
+    }
+
+    targetQuestion.type = newType;
     if (question !== undefined) targetQuestion.question = question.trim();
-    if (options !== undefined) targetQuestion.options = options.map((opt) => String(opt).trim()).filter(Boolean);
     if (required !== undefined) targetQuestion.required = Boolean(required);
     if (order !== undefined) targetQuestion.order = Number(order);
-    if (isActive !== undefined) targetQuestion.isActive = Boolean(isActive);
+    
+    if (active !== undefined) {
+      targetQuestion.isActive = Boolean(active);
+    } else if (isActive !== undefined) {
+      targetQuestion.isActive = Boolean(isActive);
+    }
 
     await career.save();
 

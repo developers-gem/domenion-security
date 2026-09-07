@@ -1,5 +1,6 @@
 const CareerForm = require("../models/CareerForm");
 const Career = require("../models/Career");
+const GlobalQuestion = require("../models/GlobalQuestion");
 const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
@@ -43,7 +44,18 @@ const createCareerForm = async (req, res) => {
 
     let validatedSnapshotAnswers = [];
 
-    // Backend Screening Question Validation against Career record
+    // Backend Screening Question Validation: Global questions + Job-specific questions
+    const activeGlobalDocs = await GlobalQuestion.find({ isActive: true }).sort({ order: 1, createdAt: 1 });
+    const activeGlobalQuestions = activeGlobalDocs.map((q) => ({
+      _id: q._id,
+      question: q.question,
+      type: q.type || "single_choice",
+      options: q.options || [],
+      required: q.required,
+      scope: "global",
+    }));
+
+    let activeJobQuestions = [];
     if (careerId) {
       if (!mongoose.Types.ObjectId.isValid(careerId)) {
         if (req.file) fs.unlink(req.file.path, () => {});
@@ -56,25 +68,95 @@ const createCareerForm = async (req, res) => {
         return res.status(404).json({ success: false, message: "Selected position does not exist or may have been removed" });
       }
 
-      const activeQuestions = (targetCareer.screeningQuestions || []).filter((q) => q.isActive === true);
+      activeJobQuestions = (targetCareer.screeningQuestions || [])
+        .filter((q) => q.isActive === true)
+        .map((q) => ({
+          _id: q._id,
+          question: q.question,
+          type: q.type || "single_choice",
+          options: q.options || [],
+          required: q.required,
+          scope: "job",
+        }));
+    }
 
-      // Create lookup map of applicant's submitted answers by questionId
-      const submittedMap = new Map();
-      if (Array.isArray(parsedAnswers)) {
-        for (const item of parsedAnswers) {
-          if (item && item.questionId) {
-            submittedMap.set(String(item.questionId), String(item.answer || "").trim());
-          }
+    const allActiveQuestions = [...activeGlobalQuestions, ...activeJobQuestions];
+
+    // Create lookup map of applicant's submitted answers by questionId
+    const submittedMap = new Map();
+    if (Array.isArray(parsedAnswers)) {
+      for (const item of parsedAnswers) {
+        if (item && item.questionId) {
+          submittedMap.set(String(item.questionId), item.answer);
         }
       }
+    }
 
-      // Check each active question
-      for (const question of activeQuestions) {
-        const questionIdStr = String(question._id);
-        const submittedAnswer = submittedMap.get(questionIdStr);
+    // Check each active question (global + job-specific)
+    for (const question of allActiveQuestions) {
+      const questionIdStr = String(question._id);
+      const submittedRawAnswer = submittedMap.get(questionIdStr);
+      const qType = question.type || "single_choice";
 
-        // Required question validation
-        if (question.required && (!submittedAnswer || submittedAnswer === "")) {
+      if (qType === "multiple_choice") {
+        let selectedArray = [];
+        if (Array.isArray(submittedRawAnswer)) {
+          selectedArray = submittedRawAnswer.map((s) => String(s).trim()).filter(Boolean);
+        } else if (typeof submittedRawAnswer === "string" && submittedRawAnswer.trim()) {
+          selectedArray = [submittedRawAnswer.trim()];
+        }
+
+        if (question.required && selectedArray.length === 0) {
+          if (req.file) fs.unlink(req.file.path, () => {});
+          return res.status(400).json({
+            success: false,
+            message: `Screening question '${question.question}' is required. Please select at least one answer.`,
+          });
+        }
+
+        if (selectedArray.length > 0) {
+          for (const opt of selectedArray) {
+            if (!question.options.includes(opt)) {
+              if (req.file) fs.unlink(req.file.path, () => {});
+              return res.status(400).json({
+                success: false,
+                message: `Invalid option '${opt}' selected for screening question '${question.question}'.`,
+              });
+            }
+          }
+
+          validatedSnapshotAnswers.push({
+            questionId: question._id,
+            question: question.question,
+            type: qType,
+            scope: question.scope,
+            answer: selectedArray,
+          });
+        }
+      } else if (qType === "text") {
+        const textAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+
+        if (question.required && !textAnswer) {
+          if (req.file) fs.unlink(req.file.path, () => {});
+          return res.status(400).json({
+            success: false,
+            message: `Screening question '${question.question}' is required. This field is required.`,
+          });
+        }
+
+        if (textAnswer) {
+          validatedSnapshotAnswers.push({
+            questionId: question._id,
+            question: question.question,
+            type: qType,
+            scope: question.scope,
+            answer: textAnswer,
+          });
+        }
+      } else {
+        const singleAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+
+        if (question.required && !singleAnswer) {
           if (req.file) fs.unlink(req.file.path, () => {});
           return res.status(400).json({
             success: false,
@@ -82,9 +164,8 @@ const createCareerForm = async (req, res) => {
           });
         }
 
-        // Option validity check
-        if (submittedAnswer) {
-          const isValidOption = question.options.includes(submittedAnswer);
+        if (singleAnswer) {
+          const isValidOption = question.options.includes(singleAnswer);
           if (!isValidOption) {
             if (req.file) fs.unlink(req.file.path, () => {});
             return res.status(400).json({
@@ -96,22 +177,24 @@ const createCareerForm = async (req, res) => {
           validatedSnapshotAnswers.push({
             questionId: question._id,
             question: question.question,
-            answer: submittedAnswer,
+            type: qType,
+            scope: question.scope,
+            answer: singleAnswer,
           });
         }
       }
+    }
 
-      // Check for arbitrary question IDs not belonging to active questions of this career
-      if (Array.isArray(parsedAnswers)) {
-        const activeQuestionIds = new Set(activeQuestions.map((q) => String(q._id)));
-        for (const item of parsedAnswers) {
-          if (item && item.questionId && !activeQuestionIds.has(String(item.questionId))) {
-            if (req.file) fs.unlink(req.file.path, () => {});
-            return res.status(400).json({
-              success: false,
-              message: "Submitted answer references a screening question that is invalid for this position.",
-            });
-          }
+    // Reject answers referencing invalid question IDs not in allActiveQuestions
+    if (Array.isArray(parsedAnswers)) {
+      const activeQuestionIds = new Set(allActiveQuestions.map((q) => String(q._id)));
+      for (const item of parsedAnswers) {
+        if (item && item.questionId && !activeQuestionIds.has(String(item.questionId))) {
+          if (req.file) fs.unlink(req.file.path, () => {});
+          return res.status(400).json({
+            success: false,
+            message: "Submitted answer references a screening question that is invalid for this application.",
+          });
         }
       }
     }

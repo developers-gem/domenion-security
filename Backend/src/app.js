@@ -16,6 +16,7 @@ const cmsRoutes = require("../routers/cmsRoutes");
 const mediaRoutes = require("../routers/mediaRoutes");
 const documentRoutes = require("../routers/documentRoutes");
 const employeeRoutes = require("../routers/employeeRoutes");
+const globalQuestionRoutes = require("../routers/globalQuestionRoutes");
 const auditLogRoutes = require("../routers/auditLogRoutes");
 const { errorHandler } = require("../config/errorHandler");
 
@@ -87,6 +88,7 @@ app.use("/api/cms", cmsRoutes);
 app.use("/api/media", mediaRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/employees", employeeRoutes);
+app.use("/api/global-questions", globalQuestionRoutes);
 app.use("/api/audit-logs", auditLogRoutes);
 
 // 404 handler
