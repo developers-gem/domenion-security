@@ -210,15 +210,23 @@ export default function OpenPositions() {
                         <ArrowRight size={14} className="ds-btn-arrow" />
                       </Link>
 
-                      <button
-                        type="button"
-                        className="ds-card-btn-apply"
-                        disabled={isClosed}
-                        onClick={() => !isClosed && setSelectedJob(job)}
-                      >
-                        <span>{isClosed ? "Closed" : "Apply Now"}</span>
-                        {!isClosed && <ArrowRight size={14} className="ds-btn-arrow" />}
-                      </button>
+                      {isClosed ? (
+                        <button
+                          type="button"
+                          className="ds-card-btn-apply opacity-50 cursor-not-allowed"
+                          disabled
+                        >
+                          <span>Closed</span>
+                        </button>
+                      ) : (
+                        <Link
+                          to={`/careers/${job._id}/apply`}
+                          className="ds-card-btn-apply text-decoration-none"
+                        >
+                          <span>Apply Now</span>
+                          <ArrowRight size={14} className="ds-btn-arrow" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </Reveal>

@@ -11,15 +11,17 @@ import {
   AlertCircle,
   Loader2,
   Send,
+  Globe,
 } from "lucide-react";
-import { careersAPI, applicationsAPI } from "../../services/api";
+import { careersAPI, applicationsAPI, globalQuestionsAPI } from "../../services/api";
 import Reveal from "../../components/common/Reveal";
 
 export default function CareerApply() {
   const { id } = useParams();
 
   const [job, setJob] = useState(null);
-  const [questions, setQuestions] = useState([]);
+  const [globalQuestions, setGlobalQuestions] = useState([]);
+  const [jobQuestions, setJobQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -45,13 +47,15 @@ export default function CareerApply() {
         setLoading(true);
         setError("");
 
-        const [jobRes, questRes] = await Promise.all([
+        const [jobRes, globalQuestRes, jobQuestRes] = await Promise.all([
           careersAPI.getCareerById(id),
+          globalQuestionsAPI.getPublicGlobalQuestions().catch(() => ({ data: [] })),
           careersAPI.getPublicQuestions(id).catch(() => ({ data: [] })),
         ]);
 
         const jobData = jobRes?.data || jobRes;
-        const questionsData = questRes?.data || questRes || [];
+        const globalData = globalQuestRes?.data || globalQuestRes || [];
+        const jobDataQuestions = jobQuestRes?.data || jobQuestRes || [];
 
         if (!isMounted) return;
 
@@ -60,10 +64,15 @@ export default function CareerApply() {
           setJob(null);
         } else {
           setJob(jobData);
-          const sorted = Array.isArray(questionsData)
-            ? [...questionsData].sort((a, b) => (a.order || 0) - (b.order || 0))
+          const sortedGlobal = Array.isArray(globalData)
+            ? [...globalData].map((q) => ({ ...q, scope: "global" })).sort((a, b) => (a.order || 0) - (b.order || 0))
             : [];
-          setQuestions(sorted);
+          const sortedJob = Array.isArray(jobDataQuestions)
+            ? [...jobDataQuestions].map((q) => ({ ...q, scope: "job" })).sort((a, b) => (a.order || 0) - (b.order || 0))
+            : [];
+
+          setGlobalQuestions(sortedGlobal);
+          setJobQuestions(sortedJob);
         }
       } catch (err) {
         if (!isMounted) return;
@@ -82,11 +91,45 @@ export default function CareerApply() {
     };
   }, [id]);
 
-  const handleAnswerChange = (questionId, selectedOption) => {
+  const handleSingleChoiceChange = (questionId, option) => {
     setAnswers((prev) => ({
       ...prev,
-      [questionId]: selectedOption,
+      [questionId]: option,
     }));
+    if (validationErrors[questionId]) {
+      setValidationErrors((prev) => {
+        const updated = { ...prev };
+        delete updated[questionId];
+        return updated;
+      });
+    }
+  };
+
+  const handleTextChange = (questionId, textVal) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [questionId]: textVal,
+    }));
+    if (validationErrors[questionId]) {
+      setValidationErrors((prev) => {
+        const updated = { ...prev };
+        delete updated[questionId];
+        return updated;
+      });
+    }
+  };
+
+  const handleMultipleChoiceToggle = (questionId, option) => {
+    setAnswers((prev) => {
+      const current = Array.isArray(prev[questionId]) ? prev[questionId] : [];
+      const updated = current.includes(option)
+        ? current.filter((item) => item !== option)
+        : [...current, option];
+      return {
+        ...prev,
+        [questionId]: updated,
+      };
+    });
     if (validationErrors[questionId]) {
       setValidationErrors((prev) => {
         const updated = { ...prev };
@@ -134,12 +177,24 @@ export default function CareerApply() {
     }
     if (!phone.trim()) errors.phone = "Phone number is required.";
 
-    // Validate required screening questions
-    questions.forEach((q) => {
+    const allQuestions = [...globalQuestions, ...jobQuestions];
+    allQuestions.forEach((q) => {
       if (q.required && q.isActive) {
         const val = answers[q._id];
-        if (!val || String(val).trim() === "") {
-          errors[q._id] = "This screening question is required.";
+        const qType = q.type || "single_choice";
+
+        if (qType === "multiple_choice") {
+          if (!Array.isArray(val) || val.length === 0) {
+            errors[q._id] = "Please select at least one answer.";
+          }
+        } else if (qType === "text") {
+          if (!val || String(val).trim() === "") {
+            errors[q._id] = "This field is required.";
+          }
+        } else {
+          if (!val || String(val).trim() === "") {
+            errors[q._id] = "Please select an answer.";
+          }
         }
       }
     });
@@ -161,13 +216,30 @@ export default function CareerApply() {
     try {
       setSubmitting(true);
 
-      const formattedAnswers = questions
-        .filter((q) => q.isActive && answers[q._id])
-        .map((q) => ({
-          questionId: q._id,
-          question: q.question,
-          answer: answers[q._id],
-        }));
+      const allQuestions = [...globalQuestions, ...jobQuestions];
+      const formattedAnswers = allQuestions
+        .filter((q) => {
+          if (!q.isActive) return false;
+          const val = answers[q._id];
+          if (q.type === "multiple_choice") {
+            return Array.isArray(val) && val.length > 0;
+          }
+          return val !== undefined && val !== null && String(val).trim() !== "";
+        })
+        .map((q) => {
+          const qType = q.type || "single_choice";
+          let finalAns = answers[q._id];
+          if (qType === "text") {
+            finalAns = String(finalAns).trim();
+          }
+          return {
+            questionId: q._id,
+            question: q.question,
+            type: qType,
+            scope: q.scope || "global",
+            answer: finalAns,
+          };
+        });
 
       const formData = new FormData();
       formData.append("fullName", fullName.trim());
@@ -260,7 +332,7 @@ export default function CareerApply() {
               </div>
               <div className="flex justify-between">
                 <span className="font-bold text-domenion-blue">Screening Questions Answered:</span>
-                <span>{questions.length} questions submitted</span>
+                <span>{globalQuestions.length + jobQuestions.length} questions submitted</span>
               </div>
             </div>
 
@@ -283,6 +355,120 @@ export default function CareerApply() {
       </main>
     );
   }
+
+  const renderQuestionItem = (q, idx, prefix = "") => {
+    const hasError = Boolean(validationErrors[q._id]);
+    const qType = q.type || "single_choice";
+    const currentAnswer = answers[q._id];
+
+    return (
+      <div
+        key={q._id}
+        className={`p-6 rounded-xl bg-white border ${
+          hasError ? "border-rose-500 ring-1 ring-rose-500" : "border-neutral-border"
+        } transition-all`}
+      >
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <h3 className="text-domenion-blue font-heading text-base font-bold leading-snug">
+            <span className="text-domenion-gold me-2">{prefix}{idx + 1}.</span>
+            {q.question}
+            {q.required && <span className="text-rose-500 ms-1">*</span>}
+          </h3>
+          <span
+            className={`px-2.5 py-0.5 rounded-full text-[10px] font-heading font-extrabold uppercase flex-shrink-0 ${
+              q.required ? "bg-amber-100 text-amber-800" : "bg-gray-100 text-gray-600"
+            }`}
+          >
+            {q.required ? "Required" : "Optional"}
+          </span>
+        </div>
+
+        {/* TYPE: MULTIPLE CHOICE (CHECKBOXES) */}
+        {qType === "multiple_choice" && (
+          <div className="space-y-2.5">
+            {(q.options || []).map((option, optIdx) => {
+              const selectedList = Array.isArray(currentAnswer) ? currentAnswer : [];
+              const isChecked = selectedList.includes(option);
+
+              return (
+                <label
+                  key={optIdx}
+                  className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer ${
+                    isChecked
+                      ? "bg-domenion-blue/5 border-domenion-gold shadow-xs"
+                      : "bg-neutral-light/50 border-neutral-border hover:border-domenion-gold/50"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={isChecked}
+                    onChange={() => handleMultipleChoiceToggle(q._id, option)}
+                    className="w-4 h-4 text-domenion-gold focus:ring-domenion-gold accent-domenion-gold rounded cursor-pointer"
+                  />
+                  <span className={`text-sm ${isChecked ? "font-bold text-domenion-blue" : "text-gray-700"}`}>
+                    {option}
+                  </span>
+                </label>
+              );
+            })}
+          </div>
+        )}
+
+        {/* TYPE: TEXT ANSWER (INPUT OR TEXTAREA) */}
+        {qType === "text" && (
+          <div>
+            <textarea
+              rows={3}
+              className="w-full px-4 py-3 rounded-xl bg-neutral-light/50 border border-neutral-border focus:border-domenion-gold text-domenion-blue text-sm focus:outline-none transition-colors"
+              placeholder="Type your answer here..."
+              value={typeof currentAnswer === "string" ? currentAnswer : ""}
+              onChange={(e) => handleTextChange(q._id, e.target.value)}
+            />
+          </div>
+        )}
+
+        {/* TYPE: SINGLE CHOICE (RADIO BUTTONS) */}
+        {qType === "single_choice" && (
+          <div className="space-y-2.5">
+            {(q.options || []).map((option, optIdx) => {
+              const isChecked = currentAnswer === option;
+
+              return (
+                <label
+                  key={optIdx}
+                  className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer ${
+                    isChecked
+                      ? "bg-domenion-blue/5 border-domenion-gold shadow-xs"
+                      : "bg-neutral-light/50 border-neutral-border hover:border-domenion-gold/50"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name={`question_${q._id}`}
+                    value={option}
+                    checked={isChecked}
+                    onChange={() => handleSingleChoiceChange(q._id, option)}
+                    className="w-4 h-4 text-domenion-gold focus:ring-domenion-gold accent-domenion-gold cursor-pointer"
+                  />
+                  <span className={`text-sm ${isChecked ? "font-bold text-domenion-blue" : "text-gray-700"}`}>
+                    {option}
+                  </span>
+                </label>
+              );
+            })}
+          </div>
+        )}
+
+        {hasError && (
+          <span className="text-rose-600 text-xs font-medium mt-2.5 block flex items-center gap-1">
+            <AlertCircle size={14} />
+            <span>{validationErrors[q._id]}</span>
+          </span>
+        )}
+      </div>
+    );
+  };
 
   return (
     <main className="w-full min-h-screen bg-white">
@@ -447,11 +633,53 @@ export default function CareerApply() {
                 </div>
               </div>
 
-              {/* 2. RESUME / CV UPLOAD */}
+              {/* 2. GLOBAL SCREENING QUESTIONS */}
+              {globalQuestions.length > 0 && (
+                <div className="bg-neutral-light border border-neutral-border rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-border">
+                    <div className="w-9 h-9 rounded-lg bg-domenion-gold/20 text-domenion-gold font-heading font-bold text-sm flex items-center justify-center flex-shrink-0">
+                      02
+                    </div>
+                    <div>
+                      <h2 className="text-domenion-blue font-heading text-xl font-extrabold flex items-center gap-2">
+                        <span>GLOBAL CAREER QUESTIONS</span>
+                      </h2>
+                      <p className="text-gray-500 text-xs mt-0.5">General security applicant background and consent questions.</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-8">
+                    {globalQuestions.map((q, idx) => renderQuestionItem(q, idx, "G"))}
+                  </div>
+                </div>
+              )}
+
+              {/* 3. JOB-SPECIFIC SCREENING QUESTIONS */}
+              {jobQuestions.length > 0 && (
+                <div className="bg-neutral-light border border-neutral-border rounded-2xl p-6 sm:p-8 shadow-sm">
+                  <div className="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-border">
+                    <div className="w-9 h-9 rounded-lg bg-domenion-gold/20 text-domenion-gold font-heading font-bold text-sm flex items-center justify-center flex-shrink-0">
+                      03
+                    </div>
+                    <div>
+                      <h2 className="text-domenion-blue font-heading text-xl font-extrabold flex items-center gap-2">
+                        <span>JOB-SPECIFIC QUESTIONS</span>
+                      </h2>
+                      <p className="text-gray-500 text-xs mt-0.5">Questions specific to the {job.title} role.</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-8">
+                    {jobQuestions.map((q, idx) => renderQuestionItem(q, idx, "J"))}
+                  </div>
+                </div>
+              )}
+
+              {/* 4. RESUME / CV UPLOAD */}
               <div className="bg-neutral-light border border-neutral-border rounded-2xl p-6 sm:p-8 shadow-sm">
                 <div className="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-border">
                   <div className="w-9 h-9 rounded-lg bg-domenion-gold/20 text-domenion-gold font-heading font-bold text-sm flex items-center justify-center flex-shrink-0">
-                    02
+                    {globalQuestions.length > 0 && jobQuestions.length > 0 ? "04" : (globalQuestions.length > 0 || jobQuestions.length > 0 ? "03" : "02")}
                   </div>
                   <div>
                     <h2 className="text-domenion-blue font-heading text-xl font-extrabold">RESUME / CV ATTACHMENT</h2>
@@ -475,93 +703,11 @@ export default function CareerApply() {
                 </div>
               </div>
 
-              {/* 3. SCREENING QUESTIONS */}
-              {questions.length > 0 && (
-                <div className="bg-neutral-light border border-neutral-border rounded-2xl p-6 sm:p-8 shadow-sm">
-                  <div className="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-border">
-                    <div className="w-9 h-9 rounded-lg bg-domenion-gold/20 text-domenion-gold font-heading font-bold text-sm flex items-center justify-center flex-shrink-0">
-                      03
-                    </div>
-                    <div>
-                      <h2 className="text-domenion-blue font-heading text-xl font-extrabold">SCREENING QUESTIONS</h2>
-                      <p className="text-gray-500 text-xs mt-0.5">Please answer the following multiple-choice questions for this position.</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-8">
-                    {questions.map((q, idx) => {
-                      const hasError = Boolean(validationErrors[q._id]);
-                      const currentSelected = answers[q._id] || "";
-
-                      return (
-                        <div
-                          key={q._id}
-                          className={`p-6 rounded-xl bg-white border ${
-                            hasError ? "border-rose-500 ring-1 ring-rose-500" : "border-neutral-border"
-                          } transition-all`}
-                        >
-                          <div className="flex items-start justify-between gap-3 mb-4">
-                            <h3 className="text-domenion-blue font-heading text-base font-bold leading-snug">
-                              <span className="text-domenion-gold me-2">{idx + 1}.</span>
-                              {q.question}
-                            </h3>
-                            <span
-                              className={`px-2.5 py-0.5 rounded-full text-[10px] font-heading font-extrabold uppercase flex-shrink-0 ${
-                                q.required ? "bg-amber-100 text-amber-800" : "bg-gray-100 text-gray-600"
-                              }`}
-                            >
-                              {q.required ? "Required" : "Optional"}
-                            </span>
-                          </div>
-
-                          {/* Options Radio List */}
-                          <div className="space-y-2.5">
-                            {q.options.map((option, optIdx) => {
-                              const isChecked = currentSelected === option;
-
-                              return (
-                                <label
-                                  key={optIdx}
-                                  className={`flex items-center gap-3 p-3.5 rounded-xl border transition-all cursor-pointer ${
-                                    isChecked
-                                      ? "bg-domenion-blue/5 border-domenion-gold shadow-xs"
-                                      : "bg-neutral-light/50 border-neutral-border hover:border-domenion-gold/50"
-                                  }`}
-                                >
-                                  <input
-                                    type="radio"
-                                    name={`question_${q._id}`}
-                                    value={option}
-                                    checked={isChecked}
-                                    onChange={() => handleAnswerChange(q._id, option)}
-                                    className="w-4 h-4 text-domenion-gold focus:ring-domenion-gold accent-domenion-gold cursor-pointer"
-                                  />
-                                  <span className={`text-sm ${isChecked ? "font-bold text-domenion-blue" : "text-gray-700"}`}>
-                                    {option}
-                                  </span>
-                                </label>
-                              );
-                            })}
-                          </div>
-
-                          {hasError && (
-                            <span className="text-rose-600 text-xs font-medium mt-2.5 block flex items-center gap-1">
-                              <AlertCircle size={14} />
-                              <span>{validationErrors[q._id]}</span>
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* 4. COVER LETTER / STATEMENT (OPTIONAL) */}
+              {/* 5. COVER LETTER / STATEMENT (OPTIONAL) */}
               <div className="bg-neutral-light border border-neutral-border rounded-2xl p-6 sm:p-8 shadow-sm">
                 <div className="flex items-center gap-3 pb-4 mb-6 border-b border-neutral-border">
                   <div className="w-9 h-9 rounded-lg bg-domenion-gold/20 text-domenion-gold font-heading font-bold text-sm flex items-center justify-center flex-shrink-0">
-                    {questions.length > 0 ? "04" : "03"}
+                    {globalQuestions.length > 0 && jobQuestions.length > 0 ? "05" : "04"}
                   </div>
                   <div>
                     <h2 className="text-domenion-blue font-heading text-xl font-extrabold">ADDITIONAL NOTES / COVER LETTER</h2>

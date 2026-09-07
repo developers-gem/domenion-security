@@ -114,6 +114,34 @@ export const careersAPI = {
   },
 };
 
+// --- GLOBAL SCREENING QUESTIONS API ---
+export const globalQuestionsAPI = {
+  getPublicGlobalQuestions: async () => {
+    const response = await API.get("/api/global-questions?activeOnly=true");
+    return response.data;
+  },
+  getAdminGlobalQuestions: async () => {
+    const response = await API.get("/api/global-questions");
+    return response.data;
+  },
+  addGlobalQuestion: async (questionData) => {
+    const response = await API.post("/api/global-questions", questionData);
+    return response.data;
+  },
+  updateGlobalQuestion: async (id, questionData) => {
+    const response = await API.put(`/api/global-questions/${id}`, questionData);
+    return response.data;
+  },
+  deleteGlobalQuestion: async (id) => {
+    const response = await API.delete(`/api/global-questions/${id}`);
+    return response.data;
+  },
+  toggleGlobalQuestionStatus: async (id) => {
+    const response = await API.patch(`/api/global-questions/${id}/toggle`);
+    return response.data;
+  },
+};
+
 // --- APPLICATIONS API ---
 export const applicationsAPI = {
   submitApplication: async (payload) => {

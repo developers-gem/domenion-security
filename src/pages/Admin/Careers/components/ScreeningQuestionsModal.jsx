@@ -8,12 +8,15 @@ import {
   Loader2,
   ToggleLeft,
   ToggleRight,
+  Globe,
+  Briefcase,
   X,
 } from "lucide-react";
-import { careersAPI } from "../../../../services/api";
+import { careersAPI, globalQuestionsAPI } from "../../../../services/api";
 import "../../admin-bootstrap-scoped.css";
 
-export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) {
+export default function ScreeningQuestionsModal({ career, initialTab = "job", onClose, onUpdated }) {
+  const [activeTab, setActiveTab] = useState(career._id === "global" ? "global" : initialTab);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -23,17 +26,27 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
   // Form State for Add / Edit Question
   const [editingQuestionId, setEditingQuestionId] = useState(null);
   const [questionText, setQuestionText] = useState("");
+  const [questionType, setQuestionType] = useState("single_choice");
   const [options, setOptions] = useState(["", ""]);
   const [isRequired, setIsRequired] = useState(true);
   const [isActive, setIsActive] = useState(true);
   const [displayOrder, setDisplayOrder] = useState(0);
 
   const fetchQuestions = useCallback(async () => {
-    if (!career || !career._id) return;
     try {
       setLoading(true);
       setError("");
-      const res = await careersAPI.getAdminQuestions(career._id);
+      let res;
+      if (activeTab === "global") {
+        res = await globalQuestionsAPI.getAdminGlobalQuestions();
+      } else {
+        if (!career || !career._id || career._id === "global") {
+          setQuestions([]);
+          setLoading(false);
+          return;
+        }
+        res = await careersAPI.getAdminQuestions(career._id);
+      }
       const data = res?.data || res || [];
       const sorted = Array.isArray(data)
         ? [...data].sort((a, b) => (a.order || 0) - (b.order || 0))
@@ -44,7 +57,7 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
     } finally {
       setLoading(false);
     }
-  }, [career]);
+  }, [activeTab, career]);
 
   useEffect(() => {
     fetchQuestions();
@@ -53,6 +66,7 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
   const resetForm = () => {
     setEditingQuestionId(null);
     setQuestionText("");
+    setQuestionType("single_choice");
     setOptions(["", ""]);
     setIsRequired(true);
     setIsActive(true);
@@ -62,6 +76,7 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
   const handleStartEdit = (q) => {
     setEditingQuestionId(q._id);
     setQuestionText(q.question);
+    setQuestionType(q.type || "single_choice");
     setOptions(Array.isArray(q.options) && q.options.length >= 2 ? [...q.options] : ["", ""]);
     setIsRequired(Boolean(q.required));
     setIsActive(q.isActive !== false);
@@ -82,7 +97,7 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
 
   const handleRemoveOptionField = (index) => {
     if (options.length <= 2) {
-      setError("A multiple-choice question must have at least 2 options.");
+      setError("Choice questions must have at least 2 options.");
       return;
     }
     setOptions((prev) => prev.filter((_, i) => i !== index));
@@ -98,14 +113,18 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
       return;
     }
 
-    const cleanOptions = options.map((opt) => opt.trim()).filter(Boolean);
-    if (cleanOptions.length < 2) {
-      setError("Please provide at least 2 non-empty multiple-choice options.");
-      return;
+    let cleanOptions = [];
+    if (questionType !== "text") {
+      cleanOptions = options.map((opt) => opt.trim()).filter(Boolean);
+      if (cleanOptions.length < 2) {
+        setError("Please provide at least 2 non-empty options for choice questions.");
+        return;
+      }
     }
 
     const payload = {
       question: questionText.trim(),
+      type: questionType,
       options: cleanOptions,
       required: isRequired,
       isActive: isActive,
@@ -114,12 +133,22 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
 
     try {
       setActionLoading(true);
-      if (editingQuestionId) {
-        await careersAPI.updateQuestion(career._id, editingQuestionId, payload);
-        setSuccess("Screening question updated successfully.");
+      if (activeTab === "global") {
+        if (editingQuestionId) {
+          await globalQuestionsAPI.updateGlobalQuestion(editingQuestionId, payload);
+          setSuccess("Global screening question updated successfully.");
+        } else {
+          await globalQuestionsAPI.addGlobalQuestion(payload);
+          setSuccess("Global screening question created successfully.");
+        }
       } else {
-        await careersAPI.addQuestion(career._id, payload);
-        setSuccess("Screening question added successfully.");
+        if (editingQuestionId) {
+          await careersAPI.updateQuestion(career._id, editingQuestionId, payload);
+          setSuccess("Job-specific screening question updated successfully.");
+        } else {
+          await careersAPI.addQuestion(career._id, payload);
+          setSuccess("Job-specific screening question added successfully.");
+        }
       }
 
       resetForm();
@@ -136,7 +165,11 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
   const handleToggleQuestionStatus = async (q) => {
     try {
       setActionLoading(true);
-      await careersAPI.toggleQuestionStatus(career._id, q._id);
+      if (activeTab === "global") {
+        await globalQuestionsAPI.toggleGlobalQuestionStatus(q._id);
+      } else {
+        await careersAPI.toggleQuestionStatus(career._id, q._id);
+      }
       setSuccess(`Question status changed to '${!q.isActive ? "Active" : "Disabled"}'.`);
       fetchQuestions();
       if (onUpdated) onUpdated();
@@ -152,7 +185,11 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
     if (!window.confirm("Are you sure you want to delete this screening question?")) return;
     try {
       setActionLoading(true);
-      await careersAPI.deleteQuestion(career._id, questionId);
+      if (activeTab === "global") {
+        await globalQuestionsAPI.deleteGlobalQuestion(questionId);
+      } else {
+        await careersAPI.deleteQuestion(career._id, questionId);
+      }
       setSuccess("Screening question deleted successfully.");
       if (editingQuestionId === questionId) {
         resetForm();
@@ -164,6 +201,18 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
       setError(err.message || "Failed to delete question.");
     } finally {
       setActionLoading(false);
+    }
+  };
+
+  const getTypeLabel = (t) => {
+    switch (t) {
+      case "multiple_choice":
+        return "Multiple Choice";
+      case "text":
+        return "Text Answer";
+      case "single_choice":
+      default:
+        return "Single Choice";
     }
   };
 
@@ -179,10 +228,52 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
               <HelpCircle className="text-danger" size={24} />
               <div>
                 <h5 className="modal-title fw-bold text-white mb-0">Screening Questions Management</h5>
-                <span className="text-secondary small">Position: {career.title} ({career.location})</span>
+                <span className="text-secondary small">
+                  {activeTab === "global"
+                    ? "Centralized Global Questions (Applies to EVERY career posting)"
+                    : `Job Position: ${career.title} (${career.location})`}
+                </span>
               </div>
             </div>
             <button type="button" className="btn-close btn-close-white" onClick={onClose} aria-label="Close modal" />
+          </div>
+
+          {/* Modal Category Tabs */}
+          <div className="px-4 pt-3 border-bottom border-secondary bg-dark">
+            <ul className="nav nav-tabs border-0">
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className={`nav-link text-uppercase fw-bold fs-7 d-flex align-items-center gap-2 py-2 px-3 ${
+                    activeTab === "global" ? "active bg-secondary bg-opacity-25 text-warning border-warning border-bottom-0" : "text-secondary border-0"
+                  }`}
+                  onClick={() => {
+                    setActiveTab("global");
+                    resetForm();
+                  }}
+                >
+                  <Globe size={16} />
+                  Global Default Questions
+                </button>
+              </li>
+              {career._id !== "global" && (
+                <li className="nav-item">
+                  <button
+                    type="button"
+                    className={`nav-link text-uppercase fw-bold fs-7 d-flex align-items-center gap-2 py-2 px-3 ${
+                      activeTab === "job" ? "active bg-secondary bg-opacity-25 text-info border-info border-bottom-0" : "text-secondary border-0"
+                    }`}
+                    onClick={() => {
+                      setActiveTab("job");
+                      resetForm();
+                    }}
+                  >
+                    <Briefcase size={16} />
+                    Job-Specific Questions ({career.title})
+                  </button>
+                </li>
+              )}
+            </ul>
           </div>
 
           <div className="modal-body p-4">
@@ -205,7 +296,9 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
               <div className="col-lg-7">
                 <div className="card bg-secondary bg-opacity-10 border-secondary h-100">
                   <div className="card-header bg-dark border-secondary d-flex justify-content-between align-items-center">
-                    <h6 className="fw-bold mb-0 text-white">Configured Questions ({questions.length})</h6>
+                    <h6 className="fw-bold mb-0 text-white">
+                      {activeTab === "global" ? "Global Default Questions" : "Job-Specific Questions"} ({questions.length})
+                    </h6>
                     <button className="btn btn-outline-light btn-sm fw-bold" onClick={resetForm}>
                       + New Question
                     </button>
@@ -219,8 +312,14 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
                     ) : questions.length === 0 ? (
                       <div className="text-center py-5 text-muted">
                         <HelpCircle size={40} className="text-secondary mb-2 mx-auto opacity-50" />
-                        <p className="mb-1 fw-bold text-light">No screening questions configured.</p>
-                        <p className="small mb-0">Applicants will only fill standard contact info and resume upload.</p>
+                        <p className="mb-1 fw-bold text-light">
+                          {activeTab === "global" ? "No global questions configured." : "No job-specific questions configured for this position."}
+                        </p>
+                        <p className="small mb-0">
+                          {activeTab === "global"
+                            ? "Run seed script or add questions above."
+                            : "Applicants for this job will answer only Global Default Questions."}
+                        </p>
                       </div>
                     ) : (
                       <div className="d-flex flex-column gap-3">
@@ -236,7 +335,10 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
                                 <span className="text-danger me-1">{idx + 1}.</span>
                                 {q.question}
                               </span>
-                              <div className="d-flex gap-1 flex-shrink-0">
+                              <div className="d-flex gap-1 flex-shrink-0 flex-wrap justify-content-end">
+                                <span className="badge bg-info bg-opacity-20 text-info border border-info border-opacity-30">
+                                  {getTypeLabel(q.type)}
+                                </span>
                                 <span className={`badge ${q.required ? "bg-warning text-dark" : "bg-secondary"}`}>
                                   {q.required ? "Required" : "Optional"}
                                 </span>
@@ -246,16 +348,24 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
                               </div>
                             </div>
 
-                            {/* Options List */}
+                            {/* Options or Answer Format */}
                             <div className="mb-3 ps-3 border-start border-secondary">
-                              <span className="text-secondary fs-8 uppercase fw-bold d-block mb-1">Multiple Choice Options:</span>
-                              <div className="d-flex flex-wrap gap-1">
-                                {q.options.map((opt, optIdx) => (
-                                  <span key={optIdx} className="badge bg-secondary bg-opacity-50 text-light border border-secondary">
-                                    {opt}
+                              {q.type === "text" ? (
+                                <span className="text-secondary small italic">Text Answer Field</span>
+                              ) : (
+                                <>
+                                  <span className="text-secondary fs-8 uppercase fw-bold d-block mb-1">
+                                    {q.type === "multiple_choice" ? "Multiple Choice Options:" : "Single Choice Options:"}
                                   </span>
-                                ))}
-                              </div>
+                                  <div className="d-flex flex-wrap gap-1">
+                                    {(q.options || []).map((opt, optIdx) => (
+                                      <span key={optIdx} className="badge bg-secondary bg-opacity-50 text-light border border-secondary">
+                                        {opt}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </>
+                              )}
                             </div>
 
                             {/* Question Actions */}
@@ -300,7 +410,9 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
                 <div className="card bg-secondary bg-opacity-10 border-secondary">
                   <div className="card-header bg-dark border-secondary">
                     <h6 className="fw-bold mb-0 text-white">
-                      {editingQuestionId ? "Edit Screening Question" : "Add New Screening Question"}
+                      {editingQuestionId
+                        ? `Edit ${activeTab === "global" ? "Global" : "Job"} Question`
+                        : `Add ${activeTab === "global" ? "Global Default" : "Job-Specific"} Question`}
                     </h6>
                   </div>
                   <div className="card-body p-3">
@@ -313,50 +425,72 @@ export default function ScreeningQuestionsModal({ career, onClose, onUpdated }) 
                         <input
                           type="text"
                           className="form-control bg-dark text-white border-secondary"
-                          placeholder="e.g. Do you have previous security experience?"
+                          placeholder="e.g. Do you hold a security clearance?"
                           value={questionText}
                           onChange={(e) => setQuestionText(e.target.value)}
                         />
                       </div>
 
-                      {/* Options List */}
+                      {/* Question Type */}
                       <div className="mb-3">
-                        <div className="d-flex justify-content-between align-items-center mb-1">
-                          <label className="form-label text-light small fw-bold mb-0">
-                            Multiple-Choice Options <span className="text-danger">* (Min 2)</span>
-                          </label>
-                          <button
-                            type="button"
-                            className="btn btn-outline-danger btn-sm py-0 px-2 fs-8 fw-bold"
-                            onClick={handleAddOptionField}
-                          >
-                            + Add Option
-                          </button>
-                        </div>
-                        <div className="d-flex flex-column gap-2 mt-2">
-                          {options.map((opt, idx) => (
-                            <div key={idx} className="input-group input-group-sm">
-                              <span className="input-group-text bg-dark border-secondary text-secondary">{idx + 1}</span>
-                              <input
-                                type="text"
-                                className="form-control bg-dark text-white border-secondary"
-                                placeholder={`Option ${idx + 1}`}
-                                value={opt}
-                                onChange={(e) => handleOptionChange(idx, e.target.value)}
-                              />
-                              {options.length > 2 && (
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger"
-                                  onClick={() => handleRemoveOptionField(idx)}
-                                >
-                                  <X size={14} />
-                                </button>
-                              )}
-                            </div>
-                          ))}
-                        </div>
+                        <label className="form-label text-light small fw-bold">
+                          Question Type <span className="text-danger">*</span>
+                        </label>
+                        <select
+                          className="form-select bg-dark text-white border-secondary"
+                          value={questionType}
+                          onChange={(e) => setQuestionType(e.target.value)}
+                        >
+                          <option value="single_choice">Single Choice</option>
+                          <option value="multiple_choice">Multiple Choice / Select All That Apply</option>
+                          <option value="text">Text Answer</option>
+                        </select>
                       </div>
+
+                      {/* Options Editor (Only for Choice Questions) */}
+                      {questionType !== "text" ? (
+                        <div className="mb-3">
+                          <div className="d-flex justify-content-between align-items-center mb-1">
+                            <label className="form-label text-light small fw-bold mb-0">
+                              Options <span className="text-danger">* (Min 2)</span>
+                            </label>
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger btn-sm py-0 px-2 fs-8 fw-bold"
+                              onClick={handleAddOptionField}
+                            >
+                              + Add Option
+                            </button>
+                          </div>
+                          <div className="d-flex flex-column gap-2 mt-2">
+                            {options.map((opt, idx) => (
+                              <div key={idx} className="input-group input-group-sm">
+                                <span className="input-group-text bg-dark border-secondary text-secondary">{idx + 1}</span>
+                                <input
+                                  type="text"
+                                  className="form-control bg-dark text-white border-secondary"
+                                  placeholder={`Option ${idx + 1}`}
+                                  value={opt}
+                                  onChange={(e) => handleOptionChange(idx, e.target.value)}
+                                />
+                                {options.length > 2 && (
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline-danger"
+                                    onClick={() => handleRemoveOptionField(idx)}
+                                  >
+                                    <X size={14} />
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="mb-3 p-3 bg-secondary bg-opacity-25 border border-secondary rounded text-muted small italic">
+                          Text Answer questions do not require predefined options. Applicants will provide a typed text response.
+                        </div>
+                      )}
 
                       {/* Controls: Required, Active, Display Order */}
                       <div className="row g-2 mb-3">
