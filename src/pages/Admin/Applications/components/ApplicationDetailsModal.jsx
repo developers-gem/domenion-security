@@ -13,9 +13,11 @@ import {
   AlertCircle,
   FileText,
   Download,
+  HelpCircle,
 } from "lucide-react";
 import { useAuth } from "../../../../context/AuthContext";
 import { applicationsAPI } from "../../../../services/api";
+import "../../admin-bootstrap-scoped.css";
 
 const STATUS_OPTIONS = [
   { value: "submitted", label: "Submitted", color: "secondary" },
@@ -226,6 +228,84 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
                     </>
                   )}
                 </button>
+              )}
+            </div>
+
+            {/* Screening Questions Answers Section */}
+            <div className="mb-4">
+              <label className="form-label text-secondary small fw-bold text-uppercase d-flex align-items-center gap-1 mb-2">
+                <HelpCircle size={16} className="text-danger" />
+                SCREENING QUESTIONS & CANDIDATE ANSWERS
+              </label>
+              {Array.isArray(application.screeningAnswers) && application.screeningAnswers.length > 0 ? (
+                <div className="d-flex flex-column gap-3">
+                  {(() => {
+                    const globalAnswers = application.screeningAnswers.filter((item) => (item.scope || "global") === "global");
+                    const jobAnswers = application.screeningAnswers.filter((item) => item.scope === "job");
+
+                    const renderAnswerItem = (item, idx) => {
+                      const isArrayAns = Array.isArray(item.answer);
+                      return (
+                        <div key={item._id || idx} className="p-3 bg-secondary bg-opacity-15 border border-secondary rounded">
+                          <div className="fw-bold text-white small mb-2">
+                            <span className="text-danger me-1">Q{idx + 1}.</span>
+                            <span className="text-white">{item.question}</span>
+                          </div>
+                          {isArrayAns ? (
+                            <div className="pt-2 border-top border-secondary border-opacity-30">
+                              <span className="text-secondary fs-8 uppercase fw-bold d-block mb-1">Candidate Answer:</span>
+                              <ul className="list-unstyled mb-0 ps-2">
+                                {item.answer.map((ansOpt, aIdx) => (
+                                  <li key={aIdx} className="text-white small d-flex align-items-center gap-2 mb-1">
+                                    <span className="text-danger fw-bold">•</span>
+                                    <span>{ansOpt}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : (
+                            <div className="pt-2 border-top border-secondary border-opacity-30">
+                              <span className="text-secondary fs-8 uppercase fw-bold me-2">Candidate Answer:</span>
+                              <span className="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-30 fw-bold fs-7">
+                                {String(item.answer || "No response")}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    };
+
+                    return (
+                      <>
+                        {globalAnswers.length > 0 && (
+                          <div>
+                            <div className="text-secondary small fw-bold text-uppercase mb-2">
+                              <span className="badge bg-danger text-white me-2">GLOBAL QUESTIONS</span>
+                            </div>
+                            <div className="d-flex flex-column gap-2">
+                              {globalAnswers.map((item, idx) => renderAnswerItem(item, idx))}
+                            </div>
+                          </div>
+                        )}
+
+                        {jobAnswers.length > 0 && (
+                          <div>
+                            <div className="text-secondary small fw-bold text-uppercase mb-2 mt-2">
+                              <span className="badge bg-primary text-white me-2">JOB-SPECIFIC QUESTIONS</span>
+                            </div>
+                            <div className="d-flex flex-column gap-2">
+                              {jobAnswers.map((item, idx) => renderAnswerItem(item, idx))}
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+              ) : (
+                <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded text-muted small italic">
+                  No screening responses submitted.
+                </div>
               )}
             </div>
 

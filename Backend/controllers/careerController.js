@@ -110,10 +110,223 @@ const deleteCareer = async (req, res) => {
   }
 };
 
+const { createAuditLog } = require("../utils/auditLogger");
+
+// @desc    Get screening questions for a job (Public: Active only | Admin: All)
+// @route   GET /api/careers/:id/questions
+// @access  Public / Admin
+const getCareerQuestions = async (req, res) => {
+  try {
+    const career = await Career.findById(req.params.id);
+    if (!career) {
+      return res.status(404).json({ success: false, message: "Career position not found" });
+    }
+
+    const isAdminCall = req.user && (req.user.role === "admin" || req.user.role === "hr" || req.user.role === "recruiter");
+    const activeOnly = req.query.activeOnly === "true" || !isAdminCall;
+
+    let questions = career.screeningQuestions || [];
+    if (activeOnly) {
+      questions = questions.filter((q) => q.isActive === true);
+    }
+
+    questions.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    res.status(200).json({ success: true, count: questions.length, data: questions });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Add a screening question to a job posting
+// @route   POST /api/careers/:id/questions
+// @access  Private/Admin
+const createCareerQuestion = async (req, res) => {
+  try {
+    const { question, type, options, required, order, isActive, active } = req.body;
+
+    if (!question || typeof question !== "string" || !question.trim()) {
+      return res.status(400).json({ success: false, message: "Question text is required" });
+    }
+
+    const validTypes = ["single_choice", "multiple_choice", "text"];
+    const qType = validTypes.includes(type) ? type : "single_choice";
+
+    let cleanOptions = [];
+    if (qType === "text") {
+      cleanOptions = [];
+    } else {
+      if (!Array.isArray(options) || options.length < 2) {
+        return res.status(400).json({ success: false, message: "A choice question must contain at least 2 options" });
+      }
+      cleanOptions = options.map((opt) => String(opt).trim()).filter(Boolean);
+      if (cleanOptions.length < 2) {
+        return res.status(400).json({ success: false, message: "Each option must contain non-empty text (at least 2 valid options required)" });
+      }
+    }
+
+    const career = await Career.findById(req.params.id);
+    if (!career) {
+      return res.status(404).json({ success: false, message: "Career position not found" });
+    }
+
+    const activeState = active !== undefined ? Boolean(active) : (isActive !== undefined ? Boolean(isActive) : true);
+
+    const newQuestion = {
+      question: question.trim(),
+      type: qType,
+      options: cleanOptions,
+      required: required !== undefined ? Boolean(required) : true,
+      order: Number.isInteger(Number(order)) ? Number(order) : (career.screeningQuestions.length || 0),
+      isActive: activeState,
+    };
+
+    career.screeningQuestions.push(newQuestion);
+    await career.save();
+
+    const added = career.screeningQuestions[career.screeningQuestions.length - 1];
+
+    await createAuditLog(req, "CAREER_QUESTION_CREATED", "Career", career._id, {
+      questionId: added._id,
+      questionText: added.question,
+    });
+
+    res.status(201).json({ success: true, data: added });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Update a screening question
+// @route   PUT /api/careers/:id/questions/:questionId
+// @access  Private/Admin
+const updateCareerQuestion = async (req, res) => {
+  try {
+    const { question, type, options, required, order, isActive, active } = req.body;
+
+    if (question !== undefined && (!question || typeof question !== "string" || !question.trim())) {
+      return res.status(400).json({ success: false, message: "Question text cannot be empty" });
+    }
+
+    const career = await Career.findById(req.params.id);
+    if (!career) {
+      return res.status(404).json({ success: false, message: "Career position not found" });
+    }
+
+    const targetQuestion = career.screeningQuestions.id(req.params.questionId);
+    if (!targetQuestion) {
+      return res.status(404).json({ success: false, message: "Screening question not found" });
+    }
+
+    const validTypes = ["single_choice", "multiple_choice", "text"];
+    const newType = type !== undefined ? (validTypes.includes(type) ? type : targetQuestion.type) : targetQuestion.type;
+
+    if (newType === "text") {
+      targetQuestion.options = [];
+    } else {
+      const optsToValidate = options !== undefined ? options : targetQuestion.options;
+      if (!Array.isArray(optsToValidate) || optsToValidate.length < 2) {
+        return res.status(400).json({ success: false, message: "A choice question must contain at least 2 options" });
+      }
+      const cleanOpts = optsToValidate.map((opt) => String(opt).trim()).filter(Boolean);
+      if (cleanOpts.length < 2) {
+        return res.status(400).json({ success: false, message: "Each option must contain non-empty text" });
+      }
+      targetQuestion.options = cleanOpts;
+    }
+
+    targetQuestion.type = newType;
+    if (question !== undefined) targetQuestion.question = question.trim();
+    if (required !== undefined) targetQuestion.required = Boolean(required);
+    if (order !== undefined) targetQuestion.order = Number(order);
+    
+    if (active !== undefined) {
+      targetQuestion.isActive = Boolean(active);
+    } else if (isActive !== undefined) {
+      targetQuestion.isActive = Boolean(isActive);
+    }
+
+    await career.save();
+
+    await createAuditLog(req, "CAREER_QUESTION_UPDATED", "Career", career._id, {
+      questionId: targetQuestion._id,
+      questionText: targetQuestion.question,
+    });
+
+    res.status(200).json({ success: true, data: targetQuestion });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Delete a screening question
+// @route   DELETE /api/careers/:id/questions/:questionId
+// @access  Private/Admin
+const deleteCareerQuestion = async (req, res) => {
+  try {
+    const career = await Career.findById(req.params.id);
+    if (!career) {
+      return res.status(404).json({ success: false, message: "Career position not found" });
+    }
+
+    const targetQuestion = career.screeningQuestions.id(req.params.questionId);
+    if (!targetQuestion) {
+      return res.status(404).json({ success: false, message: "Screening question not found" });
+    }
+
+    const questionText = targetQuestion.question;
+    career.screeningQuestions.pull({ _id: req.params.questionId });
+    await career.save();
+
+    await createAuditLog(req, "CAREER_QUESTION_DELETED", "Career", career._id, {
+      questionId: req.params.questionId,
+      questionText,
+    });
+
+    res.status(200).json({ success: true, message: "Screening question deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// @desc    Toggle active status of a screening question
+// @route   PATCH /api/careers/:id/questions/:questionId/toggle
+// @access  Private/Admin
+const toggleCareerQuestionStatus = async (req, res) => {
+  try {
+    const career = await Career.findById(req.params.id);
+    if (!career) {
+      return res.status(404).json({ success: false, message: "Career position not found" });
+    }
+
+    const targetQuestion = career.screeningQuestions.id(req.params.questionId);
+    if (!targetQuestion) {
+      return res.status(404).json({ success: false, message: "Screening question not found" });
+    }
+
+    targetQuestion.isActive = !targetQuestion.isActive;
+    await career.save();
+
+    await createAuditLog(req, "CAREER_QUESTION_TOGGLED", "Career", career._id, {
+      questionId: targetQuestion._id,
+      isActive: targetQuestion.isActive,
+    });
+
+    res.status(200).json({ success: true, data: targetQuestion });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   createCareer,
   getAllCareers,
   getCareerById,
   updateCareer,
   deleteCareer,
+  getCareerQuestions,
+  createCareerQuestion,
+  updateCareerQuestion,
+  deleteCareerQuestion,
+  toggleCareerQuestionStatus,
 };

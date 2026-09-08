@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminLayout from "../components/AdminLayout";
 import CareerFormModal from "./components/CareerFormModal";
+import ScreeningQuestionsModal from "./components/ScreeningQuestionsModal";
 import {
   Briefcase,
   Plus,
@@ -15,6 +16,7 @@ import {
   Loader2,
   AlertCircle,
   CheckCircle2,
+  HelpCircle,
 } from "lucide-react";
 import { careersAPI } from "../../../services/api";
 
@@ -31,6 +33,11 @@ function AdminCareers() {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
+
+  // Screening questions modal state
+  const [showQuestionsModal, setShowQuestionsModal] = useState(false);
+  const [questionsCareer, setQuestionsCareer] = useState(null);
+  const [questionsTab, setQuestionsTab] = useState("job");
 
   const fetchCareers = async () => {
     setLoading(true);
@@ -118,10 +125,23 @@ function AdminCareers() {
               Career Postings Management
             </h2>
           </div>
-          <button className="btn btn-danger d-flex align-items-center gap-2 px-3 fw-bold" onClick={handleOpenCreateModal}>
-            <Plus size={18} />
-            Create Career Posting
-          </button>
+          <div className="d-flex gap-2 flex-wrap">
+            <button
+              className="btn btn-outline-warning d-flex align-items-center gap-2 px-3 fw-bold"
+              onClick={() => {
+                setQuestionsCareer({ _id: "global", title: "Global Default Questions", location: "All Positions" });
+                setQuestionsTab("global");
+                setShowQuestionsModal(true);
+              }}
+            >
+              <HelpCircle size={18} />
+              Manage Global Questions
+            </button>
+            <button className="btn btn-danger d-flex align-items-center gap-2 px-3 fw-bold" onClick={handleOpenCreateModal}>
+              <Plus size={18} />
+              Create Career Posting
+            </button>
+          </div>
         </div>
 
         {/* Global Notifications */}
@@ -234,6 +254,19 @@ function AdminCareers() {
                         <td className="text-end">
                           <div className="btn-group btn-group-sm">
                             <button
+                              className="btn btn-outline-info d-flex align-items-center gap-1"
+                              onClick={() => {
+                                setQuestionsCareer(item);
+                                setQuestionsTab("job");
+                                setShowQuestionsModal(true);
+                              }}
+                              title="Manage Screening Questions"
+                              disabled={actionLoading}
+                            >
+                              <HelpCircle size={14} />
+                              <span className="d-none d-xl-inline">Questions ({item.screeningQuestions?.length || 0})</span>
+                            </button>
+                            <button
                               className="btn btn-outline-secondary"
                               onClick={() => handleOpenEditModal(item)}
                               title="Edit Career Posting"
@@ -303,6 +336,21 @@ function AdminCareers() {
             onClose={() => setShowModal(false)}
             onSaved={() => {
               setShowModal(false);
+              fetchCareers();
+            }}
+          />
+        )}
+
+        {/* Screening Questions Management Modal */}
+        {showQuestionsModal && questionsCareer && (
+          <ScreeningQuestionsModal
+            career={questionsCareer}
+            initialTab={questionsTab}
+            onClose={() => {
+              setShowQuestionsModal(false);
+              setQuestionsCareer(null);
+            }}
+            onUpdated={() => {
               fetchCareers();
             }}
           />

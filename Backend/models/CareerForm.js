@@ -32,6 +32,32 @@ const careerFormSchema = new mongoose.Schema(
       trim: true,
       default: null,
     },
+    screeningAnswers: [
+      {
+        questionId: {
+          type: mongoose.Schema.Types.ObjectId,
+        },
+        question: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        type: {
+          type: String,
+          enum: ["single_choice", "multiple_choice", "text"],
+          default: "single_choice",
+        },
+        scope: {
+          type: String,
+          enum: ["global", "job"],
+          default: "global",
+        },
+        answer: {
+          type: mongoose.Schema.Types.Mixed,
+          required: true,
+        },
+      },
+    ],
     status: {
       type: String,
       enum: [

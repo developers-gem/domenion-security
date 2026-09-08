@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { ShieldCheck, Lock, Mail, Loader2, AlertCircle } from "lucide-react";
+import "./admin-bootstrap-scoped.css";
 import "./Admin.css";
 
 function AdminLogin() {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 import { careersAPI } from "../../../../services/api";
+import "../../admin-bootstrap-scoped.css";
 
 function CareerFormModal({ career, onClose, onSaved }) {
   const isEditing = Boolean(career && career._id);
@@ -168,6 +169,7 @@ function CareerFormModal({ career, onClose, onSaved }) {
                     <option value="Internship">Internship</option>
                   </select>
                 </div>
+                  
 
                 <div className="col-md-6">
                   <label className="form-label small text-secondary fw-bold">EXPERIENCE REQUIRED</label>

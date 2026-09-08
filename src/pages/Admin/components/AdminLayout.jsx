@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AdminHeader from "./AdminHeader";
 import AdminSidebar from "./AdminSidebar";
+import "../admin-bootstrap-scoped.css";
 import "./AdminComponent.css";
 
 function AdminLayout({ children }) {

@@ -1,24 +1,27 @@
-import Hero from "../../components/Careers/Hero";
-import WhyJoin from "../../components/Careers/WhyJoin";
+import CareersHero from "../../components/Careers/CareersHero";
+import WhyWorkDomenion from "../../components/Careers/WhyWorkDominion";
+import CareerCulture from "../../components/Careers/CareerCulture";
+import CareerValues from "../../components/Careers/CareerValues";
 import OpenPositions from "../../components/Careers/OpenPositions";
-import HiringProcess from "../../components/Careers/HiringProcess";
-import Benefits from "../../components/Careers/Benefits";
-import Training from "../../components/Careers/Training";
-import ApplicationForm from "../../components/Careers/ApplicationForm";
-import CTA from "../../components/services/CTA/CTA";
+import CareerExperience from "../../components/Careers/CareerExperience";
+import CareerCTA from "../../components/Careers/CareerCTA";
 
+/**
+ * Domenion Security Careers Page.
+ * Composes recruitment-focused enterprise components featuring human/team imagery,
+ * editorial benefit rows, values, real job integration, modal application form, and responsive layout.
+ */
 function Careers() {
   return (
-    <>
-      <Hero />
-      <WhyJoin />
+    <main className="w-full overflow-x-hidden bg-white">
+      <CareersHero />
       <OpenPositions />
-      <HiringProcess />
-      <Benefits />
-      <Training />
-      <ApplicationForm />
-      <CTA />
-    </>
+      <WhyWorkDomenion />
+      <CareerCulture />
+      <CareerValues />
+      <CareerExperience />
+      <CareerCTA />
+    </main>
   );
 }
 
