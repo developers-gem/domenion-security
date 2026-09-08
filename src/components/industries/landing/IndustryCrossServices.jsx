@@ -36,12 +36,17 @@ export default function IndustryCrossServices() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">MULTI-LAYERED DEFENSE</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+              MULTI-LAYERED DEFENSE
+            </span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-              One environment. <span className="text-domenion-gold">Multiple layers of protection.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+              One environment.{" "}
+              <span className="text-domenion-gold">
+                Multiple layers of protection.
+              </span>
             </h2>
           </Reveal>
         </div>
@@ -56,7 +61,9 @@ export default function IndustryCrossServices() {
                     <div className="w-8 h-8 rounded bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
                       <Layers size={16} />
                     </div>
-                    <span className="text-domenion-blue font-heading text-xs font-extrabold tracking-widest uppercase">{item.sector}</span>
+                    <span className="text-domenion-blue font-heading text-xs font-extrabold tracking-widest uppercase">
+                      {item.sector}
+                    </span>
                   </div>
 
                   <div className="flex flex-col gap-3">
@@ -67,10 +74,18 @@ export default function IndustryCrossServices() {
                         className="flex items-center justify-between p-3 rounded-lg bg-neutral-light border border-neutral-border hover:border-domenion-gold text-domenion-blue text-xs font-heading font-bold transition-all duration-200 group/link text-decoration-none"
                       >
                         <div className="flex items-center gap-2">
-                          <Check size={14} className="text-domenion-gold flex-shrink-0" />
-                          <span className="group-hover/link:text-domenion-gold transition-colors">{svc.name}</span>
+                          <Check
+                            size={14}
+                            className="text-domenion-gold flex-shrink-0"
+                          />
+                          <span className="group-hover/link:text-domenion-gold transition-colors">
+                            {svc.name}
+                          </span>
                         </div>
-                        <ArrowRight size={13} className="text-domenion-gold group-hover/link:translate-x-1 transition-transform flex-shrink-0" />
+                        <ArrowRight
+                          size={13}
+                          className="text-domenion-gold group-hover/link:translate-x-1 transition-transform flex-shrink-0"
+                        />
                       </Link>
                     ))}
                   </div>
@@ -83,4 +98,3 @@ export default function IndustryCrossServices() {
     </section>
   );
 }
-

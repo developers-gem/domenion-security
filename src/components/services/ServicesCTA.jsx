@@ -19,15 +19,19 @@ export default function ServicesCTA() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-                    Not sure which security <span className="text-domenion-gold">solution you need?</span>
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                    Not sure which security{" "}
+                    <span className="text-domenion-gold">
+                      solution you need?
+                    </span>
                   </h2>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.2}>
                   <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                    Tell us about your environment and requirements. Our security specialists
-                    will help identify the right protection strategy for your facility.
+                    Tell us about your environment and requirements. Our
+                    security specialists will help identify the right protection
+                    strategy for your facility.
                   </p>
                 </Reveal>
 
@@ -38,6 +42,7 @@ export default function ServicesCTA() {
                       variant="primary"
                       size="lg"
                       icon={ArrowRight}
+                      className="transition-all hover:translate-0.5 active:translate-y-0.5"
                     >
                       Request a Security Quote
                     </Button>
@@ -70,8 +75,12 @@ export default function ServicesCTA() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 CONSULTATION</span>
-                    <strong className="text-xs font-bold font-heading">(602) 438-4445</strong>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                      24/7 CONSULTATION
+                    </span>
+                    <strong className="text-xs font-bold font-heading">
+                      (602) 438-4445
+                    </strong>
                   </div>
                 </div>
               </Reveal>
@@ -82,4 +91,3 @@ export default function ServicesCTA() {
     </section>
   );
 }
-

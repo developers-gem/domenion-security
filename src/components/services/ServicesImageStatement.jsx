@@ -27,8 +27,8 @@ export default function ServicesImageStatement() {
 
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-2xl mb-6">
-              Dependable security guard presence, 24/7 rapid emergency dispatch, and custom
-              post order enforcement for mission-critical facilities.
+              Dependable security guard presence, 24/7 rapid emergency dispatch,
+              and custom post order enforcement for mission-critical facilities.
             </p>
           </Reveal>
 
@@ -38,4 +38,3 @@ export default function ServicesImageStatement() {
     </section>
   );
 }
-

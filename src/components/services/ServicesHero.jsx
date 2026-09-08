@@ -19,7 +19,9 @@ export default function ServicesHero() {
               {/* Breadcrumb Nav */}
               <Reveal direction="fade">
                 <div className="flex items-center gap-2 text-xs font-heading font-bold text-domenion-gold mb-4">
-                  <Link to="/" className="hover:underline">Home</Link>
+                  <Link to="/" className="hover:underline">
+                    Home
+                  </Link>
                   <ChevronRight size={13} />
                   <span className="text-white">Services</span>
                 </div>
@@ -35,17 +37,18 @@ export default function ServicesHero() {
 
               {/* Headline */}
               <Reveal direction="right" delay={0.2}>
-                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-                  Protection built <span className="text-domenion-gold">around your needs.</span>
+                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                  Protection built{" "}
+                  <span className="text-domenion-gold">around your needs.</span>
                 </h1>
               </Reveal>
 
               {/* Description */}
               <Reveal direction="right" delay={0.3}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl">
-                  From professional physical security to specialized enterprise defense,
-                  Domenion delivers security solutions designed around the environments
-                  and operations we protect.
+                  From professional physical security to specialized enterprise
+                  defense, Domenion delivers security solutions designed around
+                  the environments and operations we protect.
                 </p>
               </Reveal>
             </div>
@@ -71,8 +74,12 @@ export default function ServicesHero() {
                     <LockKeyhole size={14} />
                     <span>14 CAPABILITIES</span>
                   </div>
-                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">PHYSICAL • CYBER • INFRASTRUCTURE</strong>
-                  <span className="text-gray-600 text-xs mt-0.5">Integrated defense capabilities.</span>
+                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">
+                    PHYSICAL • CYBER • INFRASTRUCTURE
+                  </strong>
+                  <span className="text-gray-600 text-xs mt-0.5">
+                    Integrated defense capabilities.
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -82,4 +89,3 @@ export default function ServicesHero() {
     </section>
   );
 }
-

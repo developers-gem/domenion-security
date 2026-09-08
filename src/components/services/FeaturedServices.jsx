@@ -12,7 +12,7 @@ const FEATURED_SLUGS = [
 
 export default function FeaturedServices() {
   const featuredList = FEATURED_SLUGS.map((slug) =>
-    services.find((s) => s.slug === slug)
+    services.find((s) => s.slug === slug),
   ).filter(Boolean);
 
   return (
@@ -21,12 +21,17 @@ export default function FeaturedServices() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">FEATURED CAPABILITIES</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+              FEATURED CAPABILITIES
+            </span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-              Enterprise security solutions, <span className="text-domenion-gold">built for high-risk environments.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+              Enterprise security solutions,{" "}
+              <span className="text-domenion-gold">
+                built for high-risk environments.
+              </span>
             </h2>
           </Reveal>
         </div>
@@ -36,13 +41,20 @@ export default function FeaturedServices() {
           {featuredList.map((service, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div key={service.slug} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div
+                key={service.slug}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+              >
                 {/* Visual Image Column (Alternates) */}
-                <div className={`lg:col-span-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
+                <div
+                  className={`lg:col-span-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+                >
                   <Reveal direction={isEven ? "left" : "right"}>
                     <div className="relative rounded-2xl overflow-hidden shadow-lg border border-neutral-border group">
                       <img
-                        src={service.heroImage || "/images/physical-security.jpg"}
+                        src={
+                          service.heroImage || "/images/physical-security.jpg"
+                        }
                         alt={service.title}
                         className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                         onError={(e) => {
@@ -58,14 +70,20 @@ export default function FeaturedServices() {
                 </div>
 
                 {/* Content Column (Alternates) */}
-                <div className={`lg:col-span-6 ${isEven ? "lg:order-2" : "lg:order-1"}`}>
+                <div
+                  className={`lg:col-span-6 ${isEven ? "lg:order-2" : "lg:order-1"}`}
+                >
                   <div className="flex flex-col">
                     <Reveal direction={isEven ? "right" : "left"} delay={0.1}>
-                      <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase mb-2">{service.badge}</span>
+                      <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase mb-2">
+                        {service.badge}
+                      </span>
                     </Reveal>
 
                     <Reveal direction={isEven ? "right" : "left"} delay={0.2}>
-                      <h3 className="text-domenion-blue font-heading text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">{service.title}</h3>
+                      <h3 className="text-domenion-blue font-heading text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
+                        {service.title}
+                      </h3>
                     </Reveal>
 
                     <Reveal direction={isEven ? "right" : "left"} delay={0.3}>
@@ -82,6 +100,7 @@ export default function FeaturedServices() {
                           to={`/services/${service.slug}`}
                           variant="primary"
                           icon={ArrowRight}
+                          className="transition-all hover:translate-0.5 active:translate-y-0.5"
                         >
                           Explore {service.badge}
                         </Button>
@@ -97,4 +116,3 @@ export default function FeaturedServices() {
     </section>
   );
 }
-

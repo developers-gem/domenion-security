@@ -19,8 +19,12 @@ export default function IndustryStory() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
-                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">SECURITY IN CONTEXT</span>
-                  <strong className="text-xs font-bold font-heading">ENVIRONMENT-SPECIFIC DEFENSE</strong>
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                    SECURITY IN CONTEXT
+                  </span>
+                  <strong className="text-xs font-bold font-heading">
+                    ENVIRONMENT-SPECIFIC DEFENSE
+                  </strong>
                 </div>
               </div>
             </Reveal>
@@ -30,21 +34,30 @@ export default function IndustryStory() {
           <div className="lg:col-span-5">
             <div className="flex flex-col">
               <Reveal direction="up">
-                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">THE Domenion DIFFERENCE</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                  THE Domenion DIFFERENCE
+                </span>
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
-                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight">
-                  Different environments require <span className="text-domenion-gold">different security strategies.</span>
+                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight capitalize">
+                  Different environments require{" "}
+                  <span className="text-domenion-gold">
+                    different security strategies.
+                  </span>
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
                 <p className="text-gray-700 font-sans text-base sm:text-lg leading-relaxed mb-3 font-medium">
-                  A high-occupancy hospital emergency room cannot be secured like a remote data center or a commercial office tower.
+                  A high-occupancy hospital emergency room cannot be secured
+                  like a remote data center or a commercial office tower.
                 </p>
                 <p className="text-gray-600 font-sans text-base leading-relaxed">
-                  Domenion Security designs custom post orders, visitor verification protocols, and emergency escalation matrices tailored around the physical layout, operational pace, and regulatory requirements of each facility we protect.
+                  Domenion Security designs custom post orders, visitor
+                  verification protocols, and emergency escalation matrices
+                  tailored around the physical layout, operational pace, and
+                  regulatory requirements of each facility we protect.
                 </p>
               </Reveal>
             </div>
@@ -54,4 +67,3 @@ export default function IndustryStory() {
     </section>
   );
 }
-

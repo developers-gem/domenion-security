@@ -23,7 +23,7 @@ export default function IndustriesHero() {
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           {/* Eyebrow */}
           <Reveal direction="fade">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6 capitalize">
               <ShieldCheck size={16} className="text-domenion-gold" />
               <span>INDUSTRIES WE PROTECT</span>
             </div>
@@ -31,16 +31,20 @@ export default function IndustriesHero() {
 
           {/* Headline */}
           <Reveal direction="up" delay={0.1}>
-            <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-              Security built for <span className="text-domenion-gold">the environments that matter.</span>
+            <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+              Security built for{" "}
+              <span className="text-domenion-gold">
+                the environments that matter.
+              </span>
             </h1>
           </Reveal>
 
           {/* Supporting Text */}
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
-              Security requirements change with every environment. Our approach adapts to
-              the people, property, critical infrastructure, and operations that need protection.
+              Security requirements change with every environment. Our approach
+              adapts to the people, property, critical infrastructure, and
+              operations that need protection.
             </p>
           </Reveal>
 
@@ -52,6 +56,7 @@ export default function IndustriesHero() {
                 size="lg"
                 onClick={handleScrollToExplorer}
                 icon={ArrowDown}
+                className="transition-all hover:translate-0.5 active:translate-y-0.5 "
               >
                 Explore Sectors & Environments
               </Button>
@@ -62,4 +67,3 @@ export default function IndustriesHero() {
     </section>
   );
 }
-

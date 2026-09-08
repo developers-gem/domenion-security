@@ -6,23 +6,34 @@ import Reveal from "../../common/Reveal";
 import { industries } from "../../../data/industries";
 
 export default function IndustryExplorer() {
-  const [activeSlug, setActiveSlug] = useState(industries[0]?.slug || "government");
+  const [activeSlug, setActiveSlug] = useState(
+    industries[0]?.slug || "government",
+  );
 
-  const activeIndustry = industries.find((i) => i.slug === activeSlug) || industries[0];
+  const activeIndustry =
+    industries.find((i) => i.slug === activeSlug) || industries[0];
 
   return (
-    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border" id="industry-explorer">
+    <section
+      className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border"
+      id="industry-explorer"
+    >
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">INTERACTIVE SECTOR EXPLORER</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                INTERACTIVE SECTOR EXPLORER
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-                Explore protection tailored <span className="text-domenion-gold">for your environment.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+                Explore protection tailored{" "}
+                <span className="text-domenion-gold">
+                  for your environment.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -30,7 +41,8 @@ export default function IndustryExplorer() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                Hover on desktop or tap on mobile to inspect Domenion Security's specialized capabilities across sectors.
+                Hover on desktop or tap on mobile to inspect Domenion Security's
+                specialized capabilities across sectors.
               </p>
             </Reveal>
           </div>
@@ -56,13 +68,20 @@ export default function IndustryExplorer() {
                     onClick={() => setActiveSlug(ind.slug)}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`font-heading text-sm font-extrabold ${isActive ? "text-domenion-gold" : "text-domenion-gold"}`}>
+                      <span
+                        className={`font-heading text-sm font-extrabold ${isActive ? "text-domenion-gold" : "text-domenion-gold"}`}
+                      >
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-heading text-base font-bold">{ind.title}</span>
+                      <span className="font-heading text-base font-bold">
+                        {ind.title}
+                      </span>
                     </div>
 
-                    <ChevronRight size={16} className={`transition-transform ${isActive ? "text-domenion-gold translate-x-1" : "text-gray-400"}`} />
+                    <ChevronRight
+                      size={16}
+                      className={`transition-transform ${isActive ? "text-domenion-gold translate-x-1" : "text-gray-400"}`}
+                    />
                   </button>
                 );
               })}
@@ -82,7 +101,11 @@ export default function IndustryExplorer() {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <img
-                    src={activeIndustry.heroImage || activeIndustry.overviewImage || "/images/company-security.jpg"}
+                    src={
+                      activeIndustry.heroImage ||
+                      activeIndustry.overviewImage ||
+                      "/images/company-security.jpg"
+                    }
                     alt={activeIndustry.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -121,4 +144,3 @@ export default function IndustryExplorer() {
     </section>
   );
 }
-
