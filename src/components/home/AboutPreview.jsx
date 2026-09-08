@@ -26,10 +26,16 @@ export default function AboutPreview() {
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/60 via-transparent to-transparent" />
 
                 <div className="absolute bottom-6 left-6 right-6 sm:right-auto bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex items-center gap-4">
-                  <span className="w-10 h-10 rounded-lg bg-domenion-gold text-domenion-blue font-heading font-extrabold text-sm flex items-center justify-center flex-shrink-0">01</span>
+                  <span className="w-10 h-10 rounded-lg bg-domenion-gold text-domenion-blue font-heading font-extrabold text-sm flex items-center justify-center flex-shrink-0">
+                    01
+                  </span>
                   <div className="flex flex-col">
-                    <strong className="text-domenion-blue font-heading text-xs font-extrabold tracking-wider">SECURITY WITHOUT COMPROMISE</strong>
-                    <span className="text-gray-600 text-xs mt-0.5">Built Around What Matters</span>
+                    <strong className="text-domenion-blue font-heading text-xs font-extrabold tracking-wider">
+                      SECURITY WITHOUT COMPROMISE
+                    </strong>
+                    <span className="text-gray-600 text-xs mt-0.5">
+                      Built Around What Matters
+                    </span>
                   </div>
                 </div>
               </div>
@@ -40,12 +46,17 @@ export default function AboutPreview() {
           <div className="lg:col-span-6">
             <div className="flex flex-col">
               <Reveal direction="up" delay={0.1}>
-                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">ABOUT DOMENION</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                  ABOUT DOMENION
+                </span>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
                 <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight">
-                  Protection built <span className="text-domenion-gold">around what matters.</span>
+                  Protection Built{" "}
+                  <span className="text-domenion-gold">
+                    Around What Matters.
+                  </span>
                 </h2>
               </Reveal>
 
@@ -53,8 +64,8 @@ export default function AboutPreview() {
                 <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed mb-8">
                   Domenion Security provides comprehensive physical, digital and
                   critical infrastructure security solutions designed to protect
-                  people, property, facilities and information in an increasingly
-                  complex world.
+                  people, property, facilities and information in an
+                  increasingly complex world.
                 </p>
               </Reveal>
 
@@ -62,9 +73,13 @@ export default function AboutPreview() {
               <div className="flex flex-col gap-4">
                 <Reveal direction="up" delay={0.4}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">01</div>
+                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                      01
+                    </div>
                     <div className="flex flex-col">
-                      <h3 className="text-domenion-blue font-heading text-base font-bold">Experienced Protection</h3>
+                      <h3 className="text-domenion-blue font-heading text-base font-bold">
+                        Experienced Protection
+                      </h3>
                       <p className="text-gray-600 text-sm mt-0.5">
                         Professional security solutions built around real-world
                         operational requirements.
@@ -75,9 +90,13 @@ export default function AboutPreview() {
 
                 <Reveal direction="up" delay={0.5}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">02</div>
+                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                      02
+                    </div>
                     <div className="flex flex-col">
-                      <h3 className="text-domenion-blue font-heading text-base font-bold">Integrated Capabilities</h3>
+                      <h3 className="text-domenion-blue font-heading text-base font-bold">
+                        Integrated Capabilities
+                      </h3>
                       <p className="text-gray-600 text-sm mt-0.5">
                         Physical security, mobile patrol, and cybersecurity
                         working together seamlessly.
@@ -88,12 +107,16 @@ export default function AboutPreview() {
 
                 <Reveal direction="up" delay={0.6}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">03</div>
+                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                      03
+                    </div>
                     <div className="flex flex-col">
-                      <h3 className="text-domenion-blue font-heading text-base font-bold">Security-Minded Approach</h3>
+                      <h3 className="text-domenion-blue font-heading text-base font-bold">
+                        Security-Minded Approach
+                      </h3>
                       <p className="text-gray-600 text-sm mt-0.5">
-                        Proactive strategies focused on prevention, preparedness, and
-                        rapid response.
+                        Proactive strategies focused on prevention,
+                        preparedness, and rapid response.
                       </p>
                     </div>
                   </div>
@@ -102,7 +125,12 @@ export default function AboutPreview() {
 
               <Reveal direction="up" delay={0.7}>
                 <div className="mt-8">
-                  <Button to="/about" variant="primary" icon={ArrowRight}>
+                  <Button
+                    to="/about"
+                    variant="primary"
+                    icon={ArrowRight}
+                    className="hover:translate-0.5 active:translate-y-0.5"
+                  >
                     Learn More About Domenion
                   </Button>
                 </div>
@@ -114,4 +142,3 @@ export default function AboutPreview() {
     </section>
   );
 }
-

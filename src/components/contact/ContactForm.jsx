@@ -43,8 +43,15 @@ export default function ContactForm() {
     setSubmitError("");
     setSubmitSuccess("");
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
-      setSubmitError("Please fill in all required fields (Name, Email, Phone, and Message).");
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.message.trim()
+    ) {
+      setSubmitError(
+        "Please fill in all required fields (Name, Email, Phone, and Message).",
+      );
       return;
     }
 
@@ -59,7 +66,9 @@ export default function ContactForm() {
         message: formData.message.trim(),
       });
 
-      setSubmitSuccess("REQUEST RECEIVED — Thank you for contacting Domenion Security! Our security representatives have received your request and will follow up shortly.");
+      setSubmitSuccess(
+        "REQUEST RECEIVED — Thank you for contacting Domenion Security! Our security representatives have received your request and will follow up shortly.",
+      );
       setFormData({
         name: "",
         email: "",
@@ -69,32 +78,45 @@ export default function ContactForm() {
         message: "",
       });
     } catch (err) {
-      setSubmitError(err.message || "We couldn't submit your request right now. Please try again or contact Domenion directly.");
+      setSubmitError(
+        err.message ||
+          "We couldn't submit your request right now. Please try again or contact Domenion directly.",
+      );
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border" id="contact-form-section">
+    <section
+      className="py-20 sm:py-28 bg-neutral-light text-domenion-blue border-b border-neutral-border"
+      id="contact-form-section"
+    >
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Value Promises & Contact Direct Lines */}
           <div className="lg:col-span-5">
             <div className="flex flex-col">
               <Reveal direction="up">
-                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">GET IN TOUCH</span>
+                <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                  GET IN TOUCH
+                </span>
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
                 <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 mb-4 leading-tight">
-                  Let's discuss your <span className="text-domenion-gold">security requirements.</span>
+                  Let's discuss your{" "}
+                  <span className="text-domenion-gold">
+                    security requirements.
+                  </span>
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
                 <p className="text-gray-600 font-sans text-base leading-relaxed mb-6">
-                  Our security directors and specialists are ready to evaluate your site parameters, analyze operational risks, and recommend a tailored protection strategy.
+                  Our security directors and specialists are ready to evaluate
+                  your site parameters, analyze operational risks, and recommend
+                  a tailored protection strategy.
                 </p>
               </Reveal>
 
@@ -102,30 +124,53 @@ export default function ContactForm() {
               <div className="space-y-4 mb-6">
                 <Reveal direction="up" delay={0.25}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-border">
-                    <ShieldCheck size={20} className="text-domenion-gold flex-shrink-0 mt-0.5" />
+                    <ShieldCheck
+                      size={20}
+                      className="text-domenion-gold flex-shrink-0 mt-0.5"
+                    />
                     <div>
-                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">Professional Security Leadership</h4>
-                      <p className="text-gray-500 text-xs leading-relaxed">Consult with directors who understand environmental security vectors.</p>
+                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">
+                        Professional Security Leadership
+                      </h4>
+                      <p className="text-gray-500 text-xs leading-relaxed">
+                        Consult with directors who understand environmental
+                        security vectors.
+                      </p>
                     </div>
                   </div>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.3}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-border">
-                    <Clock3 size={20} className="text-domenion-gold flex-shrink-0 mt-0.5" />
+                    <Clock3
+                      size={20}
+                      className="text-domenion-gold flex-shrink-0 mt-0.5"
+                    />
                     <div>
-                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">Rapid Response Window</h4>
-                      <p className="text-gray-500 text-xs leading-relaxed">Most quote requests receive a detailed response within 24 hours.</p>
+                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">
+                        Rapid Response Window
+                      </h4>
+                      <p className="text-gray-500 text-xs leading-relaxed">
+                        Most quote requests receive a detailed response within
+                        24 hours.
+                      </p>
                     </div>
                   </div>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.35}>
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-neutral-border">
-                    <Headset size={20} className="text-domenion-gold flex-shrink-0 mt-0.5" />
+                    <Headset
+                      size={20}
+                      className="text-domenion-gold flex-shrink-0 mt-0.5"
+                    />
                     <div>
-                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">24/7 Operations Oversight</h4>
-                      <p className="text-gray-500 text-xs leading-relaxed">Active central dispatch available around the clock.</p>
+                      <h4 className="text-domenion-blue font-heading text-sm font-bold mb-1">
+                        24/7 Operations Oversight
+                      </h4>
+                      <p className="text-gray-500 text-xs leading-relaxed">
+                        Active central dispatch available around the clock.
+                      </p>
                     </div>
                   </div>
                 </Reveal>
@@ -134,8 +179,14 @@ export default function ContactForm() {
               {/* Checklist */}
               <div className="space-y-2 mb-6">
                 {PROMISES.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-xs text-gray-700 font-semibold">
-                    <CheckCircle2 size={16} className="text-domenion-gold flex-shrink-0" />
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2.5 text-xs text-gray-700 font-semibold"
+                  >
+                    <CheckCircle2
+                      size={16}
+                      className="text-domenion-gold flex-shrink-0"
+                    />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -143,11 +194,17 @@ export default function ContactForm() {
 
               {/* Direct Lines */}
               <div className="pt-4 border-t border-neutral-border flex flex-col gap-2">
-                <a href="tel:+16024384445" className="inline-flex items-center gap-2 text-xs font-heading font-bold text-domenion-blue hover:text-domenion-gold transition-colors">
+                <a
+                  href="tel:+16024384445"
+                  className="inline-flex items-center gap-2 text-xs font-heading font-bold text-domenion-blue hover:text-domenion-gold transition-colors"
+                >
                   <Phone size={15} className="text-domenion-gold" />
                   <span>Call: (602) 438-4445</span>
                 </a>
-                <a href="mailto:Domenionseurityllc@gmail.com" className="inline-flex items-center gap-2 text-xs font-heading font-bold text-domenion-blue hover:text-domenion-gold transition-colors">
+                <a
+                  href="mailto:Domenionseurityllc@gmail.com"
+                  className="inline-flex items-center gap-2 text-xs tracking-normal font-heading font-bold text-domenion-blue hover:text-domenion-gold transition-colors"
+                >
                   <Mail size={15} className="text-domenion-gold" />
                   <span>Email: Domenionseurityllc@gmail.com</span>
                 </a>
@@ -160,20 +217,30 @@ export default function ContactForm() {
             <Reveal direction="left" delay={0.2}>
               <div className="bg-white border border-neutral-border p-8 rounded-2xl shadow-xl">
                 <div className="mb-6 pb-4 border-b border-neutral-border">
-                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">SECURITY CONSULTATION</span>
-                  <h3 className="text-domenion-blue font-heading text-2xl font-extrabold mt-1">Request a Security Quote</h3>
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                    SECURITY CONSULTATION
+                  </span>
+                  <h3 className="text-domenion-blue font-heading text-2xl font-extrabold mt-1">
+                    Request a Security Quote
+                  </h3>
                 </div>
 
                 {submitSuccess && (
                   <div className="flex items-center gap-3 p-4 mb-6 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-sm font-medium">
-                    <CheckCircle2 size={20} className="text-emerald-600 flex-shrink-0" />
+                    <CheckCircle2
+                      size={20}
+                      className="text-emerald-600 flex-shrink-0"
+                    />
                     <div>{submitSuccess}</div>
                   </div>
                 )}
 
                 {submitError && (
                   <div className="flex items-center gap-3 p-4 mb-6 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-sm font-medium">
-                    <AlertCircle size={20} className="text-rose-600 flex-shrink-0" />
+                    <AlertCircle
+                      size={20}
+                      className="text-rose-600 flex-shrink-0"
+                    />
                     <div>{submitError}</div>
                   </div>
                 )}
@@ -181,7 +248,10 @@ export default function ContactForm() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="contact-name" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                      >
                         Full Name *
                       </label>
                       <input
@@ -198,7 +268,10 @@ export default function ContactForm() {
                     </div>
 
                     <div>
-                      <label htmlFor="contact-email" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                      <label
+                        htmlFor="contact-email"
+                        className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                      >
                         Email Address *
                       </label>
                       <input
@@ -217,7 +290,10 @@ export default function ContactForm() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="contact-phone" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                      <label
+                        htmlFor="contact-phone"
+                        className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                      >
                         Phone Number *
                       </label>
                       <input
@@ -234,7 +310,10 @@ export default function ContactForm() {
                     </div>
 
                     <div>
-                      <label htmlFor="contact-company" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                      <label
+                        htmlFor="contact-company"
+                        className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                      >
                         Company / Property Name
                       </label>
                       <input
@@ -251,7 +330,10 @@ export default function ContactForm() {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-subject" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                    <label
+                      htmlFor="contact-subject"
+                      className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                    >
                       Primary Security Service Needed
                     </label>
                     <select
@@ -262,19 +344,38 @@ export default function ContactForm() {
                       onChange={handleChange}
                       disabled={submitting}
                     >
-                      <option value="Security Guard Services">Security Guard Services</option>
-                      <option value="Professional Mobile Patrol">Professional Mobile Patrol</option>
-                      <option value="Executive Protection">Executive Protection</option>
-                      <option value="Data Center Security">Data Center Security</option>
-                      <option value="Government Security Services">Government Security Services</option>
-                      <option value="Risk Assessment Services">Risk Assessment Services</option>
-                      <option value="Enterprise Cyber Security">Enterprise Cyber Security</option>
-                      <option value="General Inquiry">General Security Inquiry</option>
+                      <option value="Security Guard Services">
+                        Security Guard Services
+                      </option>
+                      <option value="Professional Mobile Patrol">
+                        Professional Mobile Patrol
+                      </option>
+                      <option value="Executive Protection">
+                        Executive Protection
+                      </option>
+                      <option value="Data Center Security">
+                        Data Center Security
+                      </option>
+                      <option value="Government Security Services">
+                        Government Security Services
+                      </option>
+                      <option value="Risk Assessment Services">
+                        Risk Assessment Services
+                      </option>
+                      <option value="Enterprise Cyber Security">
+                        Enterprise Cyber Security
+                      </option>
+                      <option value="General Inquiry">
+                        General Security Inquiry
+                      </option>
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1">
+                    <label
+                      htmlFor="contact-message"
+                      className="block text-xs font-heading font-extrabold text-domenion-blue uppercase mb-1"
+                    >
                       Security Requirements & Site Overview *
                     </label>
                     <textarea
@@ -316,4 +417,3 @@ export default function ContactForm() {
     </section>
   );
 }
-

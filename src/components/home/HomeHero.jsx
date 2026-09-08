@@ -26,20 +26,24 @@ export default function HomeHero() {
           <div className="max-w-[760px] lg:max-w-[800px] flex flex-col items-start text-left">
             {/* Badge (~20px gap to Heading) */}
             <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-domenion-gold/20 border border-domenion-gold/40 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest w-fit mb-5 shadow-sm">
-              <ShieldCheck size={16} className="text-domenion-gold flex-shrink-0" />
+              <ShieldCheck
+                size={16}
+                className="text-domenion-gold flex-shrink-0"
+              />
               <span>ENTERPRISE SECURITY SOLUTIONS</span>
             </div>
 
             {/* Heading (~24px gap to Subtitle) */}
-            <h1 className="font-heading text-5xl sm:text-5xl lg:text-[100px] font-extrabold text-white leading-[1.05] sm:leading-[1.08] tracking-tight mb-6">
-              Security without{" "}
-              <span className="text-domenion-gold">compromise.</span>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-[80px] font-extrabold text-white leading-[1.05] sm:leading-[1.08] tracking-tight mb-6">
+              Security Without{" "}
+              <span className="text-domenion-gold">Compromise.</span>
             </h1>
 
             {/* Subtitle (~28px gap to CTA Button) */}
             <p className="text-white/90 text-lg sm:text-xl font-sans leading-relaxed max-w-[800px] mb-7">
-              Comprehensive physical, digital and critical infrastructure security
-              solutions designed to protect people, property, operations and valuable assets.
+              Comprehensive physical, digital and critical infrastructure
+              security solutions designed to protect people, property,
+              operations and valuable assets.
             </p>
 
             {/* CTA Button */}
@@ -49,7 +53,7 @@ export default function HomeHero() {
                 variant="primary"
                 size="lg"
                 icon={ArrowRight}
-                className="px-7 py-4 min-h-[52px] text-base font-bold shadow-md hover:shadow-lg transition-all"
+                className="px-7 py-4 min-h-[52px] text-base font-bold shadow-md hover:shadow-lg transition-all hover:translate-0.5 active:translate-y-0.5 "
               >
                 Explore Services
               </Button>
@@ -60,4 +64,3 @@ export default function HomeHero() {
     </section>
   );
 }
-

@@ -50,12 +50,17 @@ export default function IndustriesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">INDUSTRIES WE PROTECT</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                INDUSTRIES WE PROTECT
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-                Security tailored to <span className="text-domenion-gold">the environments you operate in.</span>
+                Security Tailored To{" "}
+                <span className="text-domenion-gold">
+                  The Environments You Operate In.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -63,9 +68,10 @@ export default function IndustriesSection() {
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base leading-relaxed lg:text-right mb-6">
-                Every sector faces unique threats, regulatory compliance standards, and
-                operational vulnerabilities. Domenion provides custom-tailored security
-                programs built around your specific industry.
+                Every sector faces unique threats, regulatory compliance
+                standards, and operational vulnerabilities. Domenion provides
+                custom-tailored security programs built around your specific
+                industry.
               </p>
 
               {/* Slider Navigation Counter & Arrows */}
@@ -131,7 +137,11 @@ export default function IndustriesSection() {
                   >
                     <div className="relative h-52 overflow-hidden">
                       <img
-                        src={ind.heroImage || ind.overviewImage || "/images/company-security.jpg"}
+                        src={
+                          ind.heroImage ||
+                          ind.overviewImage ||
+                          "/images/company-security.jpg"
+                        }
                         alt={ind.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         onError={(e) => {
@@ -148,10 +158,15 @@ export default function IndustriesSection() {
                     </div>
 
                     <div className="p-6 flex flex-col gap-2">
-                      <span className="text-[10px] font-extrabold text-domenion-gold tracking-widest uppercase">{ind.badge || "SECURITY SECTOR"}</span>
-                      <h3 className="text-domenion-blue font-heading text-xl font-bold group-hover:text-domenion-gold transition-colors">{ind.title}</h3>
+                      <span className="text-[10px] font-extrabold text-domenion-gold tracking-widest uppercase">
+                        {ind.badge || "SECURITY SECTOR"}
+                      </span>
+                      <h3 className="text-domenion-blue font-heading text-xl font-bold group-hover:text-domenion-gold transition-colors">
+                        {ind.title}
+                      </h3>
                       <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                        {ind.shortDescription || "Specialized security coverage"}
+                        {ind.shortDescription ||
+                          "Specialized security coverage"}
                       </p>
 
                       <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold mt-3 group-hover:translate-x-1 transition-transform">
@@ -169,7 +184,12 @@ export default function IndustriesSection() {
         {/* Bottom Action CTA */}
         <div className="mt-12 text-center">
           <Reveal direction="up" delay={0.4}>
-            <Button to="/industries" variant="primary" icon={ArrowRight}>
+            <Button
+              to="/industries"
+              variant="primary"
+              icon={ArrowRight}
+              className="hover:translate-0.5 active:translate-y-0.5"
+            >
               Explore All Industry Solutions
             </Button>
           </Reveal>
@@ -178,4 +198,3 @@ export default function IndustriesSection() {
     </section>
   );
 }
-

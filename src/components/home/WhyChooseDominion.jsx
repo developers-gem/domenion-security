@@ -1,4 +1,10 @@
-import { ShieldCheck, Clock3, Layers3, MapPinned, ArrowRight } from "lucide-react";
+import {
+  ShieldCheck,
+  Clock3,
+  Layers3,
+  MapPinned,
+  ArrowRight,
+} from "lucide-react";
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 
@@ -37,12 +43,17 @@ export default function WhyChooseDomenion() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY CHOOSE DOMENION</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                WHY CHOOSE DOMENION
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-                Security built on <span className="text-domenion-gold">discipline, readiness and trust.</span>
+                Security Built On{" "}
+                <span className="text-domenion-gold">
+                  Discipline, Readiness And Trust.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -50,9 +61,9 @@ export default function WhyChooseDomenion() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                We combine experienced security professionals, proven operational
-                procedures, and modern surveillance technology to deliver complete
-                peace of mind.
+                We combine experienced security professionals, proven
+                operational procedures, and modern surveillance technology to
+                deliver complete peace of mind.
               </p>
             </Reveal>
           </div>
@@ -67,15 +78,21 @@ export default function WhyChooseDomenion() {
                 <Reveal direction="up" delay={0.1 * idx}>
                   <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-domenion-gold font-heading text-xl font-extrabold">{card.num}</span>
+                      <span className="text-domenion-gold font-heading text-xl font-extrabold">
+                        {card.num}
+                      </span>
                       <div className="w-10 h-10 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
                         <Icon size={22} />
                       </div>
                     </div>
 
-                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2 leading-snug">{card.title}</h3>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2 leading-snug">
+                      {card.title}
+                    </h3>
 
-                    <p className="text-gray-500 text-sm leading-relaxed">{card.desc}</p>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      {card.desc}
+                    </p>
                     <div className="h-0.5 w-8 bg-domenion-gold/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>
@@ -89,10 +106,19 @@ export default function WhyChooseDomenion() {
           <Reveal direction="up" delay={0.4}>
             <div className="bg-domenion-blue text-white rounded-xl p-8 shadow-lg border border-domenion-gold/30 flex flex-col lg:flex-row items-center justify-between gap-6">
               <div className="flex flex-col gap-1 text-center lg:text-left">
-                <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">SECURITY-FIRST. CLIENT-FOCUSED.</span>
-                <h3 className="text-white font-heading text-2xl font-extrabold">A security partner built around your operational needs.</h3>
+                <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                  SECURITY-FIRST. CLIENT-FOCUSED.
+                </span>
+                <h3 className="text-white font-heading text-2xl font-extrabold capitalize leading-snug">
+                  A security partner built around your operational needs.
+                </h3>
               </div>
-              <Button to="/contact" variant="primary" icon={ArrowRight}>
+              <Button
+                to="/contact"
+                variant="primary"
+                icon={ArrowRight}
+                className="hover:translate-0.5 active:translate-y-0.5"
+              >
                 Talk To Our Team
               </Button>
             </div>
@@ -102,4 +128,3 @@ export default function WhyChooseDomenion() {
     </section>
   );
 }
-

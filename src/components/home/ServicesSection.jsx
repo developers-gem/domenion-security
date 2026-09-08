@@ -8,7 +8,8 @@ import { services } from "../../data/services";
 const CORPORATE_OFFICER_IMAGE_PATH = "/images/physical-security.jpg";
 
 export default function ServicesSection() {
-  const featuredPhysical = services.find((s) => s.slug === "physical-security") || services[0];
+  const featuredPhysical =
+    services.find((s) => s.slug === "physical-security") || services[0];
   const gridServices = services
     .filter((s) => s.slug !== "physical-security")
     .slice(0, 4);
@@ -20,12 +21,17 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR SERVICES</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                OUR SERVICES
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
               <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-                Complete security <span className="text-domenion-gold">solutions for every environment.</span>
+                Complete Security{" "}
+                <span className="text-domenion-gold">
+                  Solutions For Every Environment.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -33,9 +39,9 @@ export default function ServicesSection() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                From armed and unarmed security guards to critical data center defense
-                and cybersecurity, Domenion delivers specialized solutions tailored to
-                your exact operational risks.
+                From armed and unarmed security guards to critical data center
+                defense and cybersecurity, Domenion delivers specialized
+                solutions tailored to your exact operational risks.
               </p>
             </Reveal>
           </div>
@@ -64,7 +70,9 @@ export default function ServicesSection() {
                     <span>FEATURED CAPABILITY</span>
                   </div>
 
-                  <span className="text-domenion-gold font-heading text-4xl font-extrabold opacity-60">01</span>
+                  <span className="text-domenion-gold font-heading text-4xl font-extrabold opacity-60">
+                    01
+                  </span>
 
                   <h3 className="text-white font-heading text-2xl sm:text-3xl font-extrabold tracking-tight">
                     {featuredPhysical.title}
@@ -103,10 +111,13 @@ export default function ServicesSection() {
                         </div>
                       </div>
 
-                      <h4 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">{service.title}</h4>
+                      <h4 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">
+                        {service.title}
+                      </h4>
 
                       <p className="text-gray-500 text-xs sm:text-sm mt-2 leading-relaxed line-clamp-2">
-                        {service.shortDescription || "Enterprise protection capability"}
+                        {service.shortDescription ||
+                          "Enterprise protection capability"}
                       </p>
 
                       <span className="inline-block text-domenion-gold font-heading text-xs font-bold mt-4">
@@ -122,8 +133,15 @@ export default function ServicesSection() {
             <div className="pt-2">
               <Reveal direction="up" delay={0.4}>
                 <div className="bg-white border border-neutral-border rounded-xl p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <span className="text-domenion-blue font-heading font-bold text-sm">Looking for complete protection solutions?</span>
-                  <Button to="/services" variant="gold-outline" size="sm" icon={ArrowRight}>
+                  <span className="text-domenion-blue font-heading font-bold text-sm">
+                    Looking for complete protection solutions?
+                  </span>
+                  <Button
+                    to="/services"
+                    variant="gold-outline"
+                    size="sm"
+                    icon={ArrowRight}
+                  >
                     View All Services
                   </Button>
                 </div>
@@ -135,4 +153,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-

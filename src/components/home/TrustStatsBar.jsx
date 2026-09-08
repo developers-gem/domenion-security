@@ -50,16 +50,21 @@ export default function TrustStatsBar() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="bg-neutral-light py-16 sm:py-20 border-y border-neutral-border text-domenion-blue" ref={ref}>
+    <section
+      className="bg-neutral-light py-16 sm:py-20 border-y border-neutral-border text-domenion-blue"
+      ref={ref}
+    >
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <Reveal direction="up">
-            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR TRACK RECORD</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+              OUR TRACK RECORD
+            </span>
           </Reveal>
           <Reveal direction="up" delay={0.1}>
             <h2 className="text-domenion-blue font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mt-2">
-              High-performing security operations across the nation.
+              High-Performing Security Operations Across The Nation.
             </h2>
           </Reveal>
         </div>
@@ -89,8 +94,12 @@ export default function TrustStatsBar() {
                         )}
                       </div>
                     </div>
-                    <h3 className="text-domenion-blue font-heading text-base font-bold">{stat.label}</h3>
-                    <p className="text-gray-500 text-xs sm:text-sm mt-1">{stat.subtext}</p>
+                    <h3 className="text-domenion-blue font-heading text-base font-bold">
+                      {stat.label}
+                    </h3>
+                    <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                      {stat.subtext}
+                    </p>
                     <div className="h-0.5 w-8 bg-domenion-gold/40 mt-4 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>
@@ -102,4 +111,3 @@ export default function TrustStatsBar() {
     </section>
   );
 }
-

@@ -23,13 +23,15 @@ export default function FinalCTA() {
 
                 <Reveal direction="up" delay={0.1}>
                   <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-                    Ready to strengthen <span className="text-domenion-gold">your security?</span>
+                    Ready to strengthen{" "}
+                    <span className="text-domenion-gold">your security?</span>
                   </h2>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.2}>
                   <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                    Tell us what matters most. We'll build a customized security solution around it.
+                    Tell us what matters most. We'll build a customized security
+                    solution around it.
                   </p>
                 </Reveal>
 
@@ -40,6 +42,7 @@ export default function FinalCTA() {
                       variant="primary"
                       size="lg"
                       icon={ArrowRight}
+                      className="hover:translate-0.5 active:translate-y-0.5"
                     >
                       Request a Security Quote
                     </Button>
@@ -72,8 +75,12 @@ export default function FinalCTA() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 PROTECTION</span>
-                    <strong className="text-xs font-bold font-heading">Domenion Security</strong>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                      24/7 PROTECTION
+                    </span>
+                    <strong className="text-xs font-bold font-heading">
+                      Domenion Security
+                    </strong>
                   </div>
                 </div>
               </Reveal>
@@ -84,4 +91,3 @@ export default function FinalCTA() {
     </section>
   );
 }
-

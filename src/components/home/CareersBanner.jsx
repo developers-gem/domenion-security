@@ -21,21 +21,31 @@ export default function CareersBanner() {
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-              Build a career that <span className="text-domenion-gold">protects others.</span>
+            <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+              Build a career that{" "}
+              <span className="text-domenion-gold capitalize">
+                protects others.
+              </span>
             </h2>
           </Reveal>
 
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-              Join a professional security organization where discipline, continuous
-              training, operational excellence, and purpose matter every single day.
+              Join a professional security organization where discipline,
+              continuous training, operational excellence, and purpose matter
+              every single day.
             </p>
           </Reveal>
 
           <Reveal direction="up" delay={0.3}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <Button to="/careers" variant="primary" size="lg" icon={ArrowRight}>
+              <Button
+                to="/careers"
+                variant="primary"
+                size="lg"
+                icon={ArrowRight}
+                className="hover:translate-0.5 active:translate-y-0.5"
+              >
                 View Open Positions
               </Button>
               <div className="flex flex-wrap items-center gap-4 text-xs font-heading font-bold text-domenion-gold">
@@ -50,4 +60,3 @@ export default function CareersBanner() {
     </section>
   );
 }
-

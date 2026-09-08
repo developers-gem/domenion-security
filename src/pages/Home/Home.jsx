@@ -23,7 +23,7 @@ function Home() {
       <SecurityProcess />
       <CareersBanner />
       <FAQSection />
-            <TestimonialsSlider />
+      <TestimonialsSlider />
 
       <FinalCTA />
     </main>

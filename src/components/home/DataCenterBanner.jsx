@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Server, ShieldCheck, Cpu, LockKeyhole } from "lucide-react";
+import {
+  ArrowRight,
+  Server,
+  ShieldCheck,
+  Cpu,
+  LockKeyhole,
+} from "lucide-react";
 import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 
@@ -31,21 +37,25 @@ export default function DataCenterBanner() {
 
               <Reveal direction="up" delay={0.1}>
                 <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-                  DATA CENTER <span className="text-domenion-gold">SECURITY</span>
+                  DATA CENTER{" "}
+                  <span className="text-domenion-gold">SECURITY</span>
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={0.2}>
                 <p className="text-domenion-gold font-heading text-lg sm:text-xl font-bold mb-4">
-                  Protecting mission-critical data centers, infrastructure, systems and operations.
+                  Protecting Mission-Critical Data Centers, Infrastructure,
+                  Systems And Operations.
                 </p>
               </Reveal>
 
               <Reveal direction="up" delay={0.3}>
                 <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-                  Domenion Security provides multi-layered physical and operational security solutions 
-                  specifically engineered for high-density data facilities, enterprise server halls, 
-                  and mission-critical cloud infrastructure across the United States.
+                  Domenion Security provides multi-layered physical and
+                  operational security solutions specifically engineered for
+                  high-density data facilities, enterprise server halls, and
+                  mission-critical cloud infrastructure across the United
+                  States.
                 </p>
               </Reveal>
 
@@ -56,6 +66,7 @@ export default function DataCenterBanner() {
                     variant="primary"
                     size="lg"
                     icon={ArrowRight}
+                    className="hover:translate-0.5 active:translate-y-0.5"
                   >
                     Explore Data Center Defense
                   </Button>
@@ -81,8 +92,13 @@ export default function DataCenterBanner() {
                     <ShieldCheck size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-heading text-base font-bold mb-1">Multi-Layer Physical Defense</h4>
-                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">Biometric access control, man-traps, and armed/unarmed perimeter guards.</p>
+                    <h4 className="text-white font-heading text-base font-bold mb-1">
+                      Multi-Layer Physical Defense
+                    </h4>
+                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
+                      Biometric access control, man-traps, and armed/unarmed
+                      perimeter guards.
+                    </p>
                   </div>
                 </div>
 
@@ -91,8 +107,13 @@ export default function DataCenterBanner() {
                     <Cpu size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-heading text-base font-bold mb-1">Mission-Critical Uptime</h4>
-                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">24/7 continuous operations monitoring preventing unauthorized physical breaches.</p>
+                    <h4 className="text-white font-heading text-base font-bold mb-1">
+                      Mission-Critical Uptime
+                    </h4>
+                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
+                      24/7 continuous operations monitoring preventing
+                      unauthorized physical breaches.
+                    </p>
                   </div>
                 </div>
 
@@ -101,8 +122,13 @@ export default function DataCenterBanner() {
                     <LockKeyhole size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-heading text-base font-bold mb-1">Compliance Readiness</h4>
-                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">Meeting SOC 2, ISO 27001, FISMA, and NIST physical security standards.</p>
+                    <h4 className="text-white font-heading text-base font-bold mb-1">
+                      Compliance Readiness
+                    </h4>
+                    <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
+                      Meeting SOC 2, ISO 27001, FISMA, and NIST physical
+                      security standards.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -113,4 +139,3 @@ export default function DataCenterBanner() {
     </section>
   );
 }
-
