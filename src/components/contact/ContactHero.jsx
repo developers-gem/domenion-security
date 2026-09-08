@@ -31,14 +31,17 @@ export default function ContactHero() {
               </Reveal>
 
               <Reveal direction="right" delay={0.1}>
-                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-                  Let's talk about <span className="text-domenion-gold">your security.</span>
+                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                  Let's talk about{" "}
+                  <span className="text-domenion-gold">your security.</span>
                 </h1>
               </Reveal>
 
               <Reveal direction="right" delay={0.2}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-                  Tell us what you need protected, where you operate, and what matters most. Our team can help you explore the right security approach.
+                  Tell us what you need protected, where you operate, and what
+                  matters most. Our team can help you explore the right security
+                  approach.
                 </p>
               </Reveal>
 
@@ -49,6 +52,7 @@ export default function ContactHero() {
                     size="lg"
                     onClick={handleScrollToForm}
                     icon={ArrowRight}
+                    className="transition-all hover:translate-0.5 active:translate-y-0.5 "
                   >
                     Request a Security Quote
                   </Button>
@@ -82,9 +86,15 @@ export default function ContactHero() {
 
                 {/* Floating Information Block */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
-                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">24/7 CONSULTATION & DISPATCH</span>
-                  <strong className="text-sm font-bold font-heading text-domenion-blue">(602) 438-4445</strong>
-                  <span className="text-gray-600 text-xs mt-0.5">Direct line to operational dispatch</span>
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
+                    24/7 CONSULTATION & DISPATCH
+                  </span>
+                  <strong className="text-sm font-bold font-heading text-domenion-blue">
+                    (602) 438-4445
+                  </strong>
+                  <span className="text-gray-600 text-xs mt-0.5">
+                    Direct line to operational dispatch
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -94,4 +104,3 @@ export default function ContactHero() {
     </section>
   );
 }
-

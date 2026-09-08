@@ -31,12 +31,17 @@ export default function ContactProcess() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHAT HAPPENS NEXT</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                WHAT HAPPENS NEXT
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-                A simple path from <span className="text-domenion-gold">conversation to protection.</span>
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+                A simple path from{" "}
+                <span className="text-domenion-gold">
+                  conversation to protection.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -44,24 +49,35 @@ export default function ContactProcess() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                From initial request to active guard deployment, our team ensures a seamless and transparent onboarding process.
+                From initial request to active guard deployment, our team
+                ensures a seamless and transparent onboarding process.
               </p>
             </Reveal>
           </div>
         </div>
 
         {/* 4 Step Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {PROCESS_STEPS.map((item, idx) => (
-            <div key={item.step}>
-              <Reveal direction="up" delay={0.08 * idx}>
+            <div key={item.step} className="h-full flex flex-col">
+              <Reveal
+                direction="up"
+                delay={0.08 * idx}
+                className="h-full flex-1 flex flex-col"
+              >
                 <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-                    <span className="text-domenion-gold font-heading text-2xl font-extrabold">{item.step}</span>
+                    <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                      {item.step}
+                    </span>
                   </div>
 
-                  <h3 className="text-white font-heading text-base font-bold mb-2 uppercase">{item.title}</h3>
-                  <p className="text-white/75 text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="text-white font-heading text-base font-bold mb-2 uppercase">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/75 text-sm leading-relaxed flex-1">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -71,4 +87,3 @@ export default function ContactProcess() {
     </section>
   );
 }
-

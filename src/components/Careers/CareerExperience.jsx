@@ -20,15 +20,16 @@ export default function CareerExperience() {
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+            <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
               Professionalism is how we show up.
             </h2>
           </Reveal>
 
           <Reveal direction="up" delay={0.2}>
             <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-2xl">
-              From sharp uniforms and punctual shift reporting to vigilant post order execution,
-              Domenion Security officers represent trust and discipline at every location.
+              From sharp uniforms and punctual shift reporting to vigilant post
+              order execution, Domenion Security officers represent trust and
+              discipline at every location.
             </p>
           </Reveal>
         </div>
@@ -36,4 +37,3 @@ export default function CareerExperience() {
     </section>
   );
 }
-

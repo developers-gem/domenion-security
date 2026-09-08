@@ -40,15 +40,18 @@ export default function CareersHero() {
 
               {/* Headline */}
               <Reveal direction="right" delay={0.1}>
-                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-                  Build a career <span className="text-domenion-gold">with purpose.</span>
+                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                  Build a career{" "}
+                  <span className="text-domenion-gold">with purpose.</span>
                 </h1>
               </Reveal>
 
               {/* Description */}
               <Reveal direction="right" delay={0.2}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
-                  Join a team committed to professional security, responsibility, and protecting the people, property, and environments that matter.
+                  Join a team committed to professional security,
+                  responsibility, and protecting the people, property, and
+                  environments that matter.
                 </p>
               </Reveal>
 
@@ -60,6 +63,7 @@ export default function CareersHero() {
                     size="lg"
                     onClick={handleScrollToJobs}
                     icon={ArrowDown}
+                    className="transition-all hover:translate-0.5 active:translate-y-0.5 "
                   >
                     View Open Positions
                   </Button>
@@ -67,6 +71,7 @@ export default function CareersHero() {
                     variant="outline-light"
                     size="lg"
                     onClick={handleScrollToWhy}
+                    className="transition-all hover:translate-0.5 active:translate-y-0.5 "
                   >
                     Why Domenion?
                   </Button>
@@ -86,14 +91,20 @@ export default function CareersHero() {
                   onError={(e) => {
                     e.target.src = "/images/company-security.jpg";
                   }}
-                />  
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
 
                 {/* Floating Information Block */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-domenion-gold/40 shadow-lg flex flex-col text-domenion-blue">
-                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">WHO BUILDS Domenion</span>
-                  <strong className="text-xs font-extrabold font-heading text-domenion-blue uppercase">PEOPLE • DISCIPLINE • TRUST</strong>
-                  <span className="text-gray-600 text-xs mt-0.5">Professional security personnel nationwide.</span>
+                  <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
+                    WHO BUILDS Domenion
+                  </span>
+                  <strong className="text-xs font-extrabold font-heading text-domenion-blue uppercase">
+                    PEOPLE • DISCIPLINE • TRUST
+                  </strong>
+                  <span className="text-gray-600 text-xs mt-0.5">
+                    Professional security personnel nationwide.
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -103,4 +114,3 @@ export default function CareersHero() {
     </section>
   );
 }
-

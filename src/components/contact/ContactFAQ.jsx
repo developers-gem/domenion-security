@@ -39,12 +39,15 @@ export default function ContactFAQ() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Reveal direction="up">
-            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">HELPFUL INFORMATION</span>
+            <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+              HELPFUL INFORMATION
+            </span>
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-              Frequently asked <span className="text-domenion-gold">questions & answers.</span>
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+              Frequently asked{" "}
+              <span className="text-domenion-gold">questions & answers.</span>
             </h2>
           </Reveal>
         </div>
@@ -55,16 +58,22 @@ export default function ContactFAQ() {
             const isOpen = openIndex === idx;
             return (
               <Reveal key={idx} direction="up" delay={0.06 * idx}>
-                <div className={`rounded-xl border transition-all duration-200 overflow-hidden ${
-                  isOpen ? "bg-neutral-light border-domenion-gold/50 shadow-md" : "bg-white border-neutral-border hover:border-domenion-gold/30"
-                }`}>
+                <div
+                  className={`rounded-xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? "bg-neutral-light border-domenion-gold/50 shadow-md"
+                      : "bg-white border-neutral-border hover:border-domenion-gold/30"
+                  }`}
+                >
                   <button
                     type="button"
                     className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none"
                     onClick={() => toggleFAQ(idx)}
                     aria-expanded={isOpen}
                   >
-                    <span className="text-domenion-blue font-heading text-base font-bold pr-4">{item.q}</span>
+                    <span className="text-domenion-blue font-heading text-base font-bold pr-4">
+                      {item.q}
+                    </span>
                     <div className="w-8 h-8 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center flex-shrink-0">
                       {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                     </div>
@@ -93,4 +102,3 @@ export default function ContactFAQ() {
     </section>
   );
 }
-

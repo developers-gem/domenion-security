@@ -26,14 +26,18 @@ export default function ContactCTA() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-                    Let's build the right <span className="text-domenion-gold">security approach together.</span>
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                    Let's build the right{" "}
+                    <span className="text-domenion-gold">
+                      security approach together.
+                    </span>
                   </h2>
                 </Reveal>
 
                 <Reveal direction="up" delay={0.2}>
                   <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                    Tell us what matters most and take the first step toward a more focused, dependable security strategy for your site.
+                    Tell us what matters most and take the first step toward a
+                    more focused, dependable security strategy for your site.
                   </p>
                 </Reveal>
 
@@ -44,6 +48,7 @@ export default function ContactCTA() {
                       size="lg"
                       onClick={handleScrollToForm}
                       icon={ArrowRight}
+                      className="transition-all hover:translate-0.5 active:translate-y-0.5 "
                     >
                       Request a Security Quote
                     </Button>
@@ -76,8 +81,12 @@ export default function ContactCTA() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 DISPATCH DESK</span>
-                    <strong className="text-xs font-bold font-heading">(602) 438-4445</strong>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                      24/7 DISPATCH DESK
+                    </span>
+                    <strong className="text-xs font-bold font-heading">
+                      (602) 438-4445
+                    </strong>
                   </div>
                 </div>
               </Reveal>
@@ -88,4 +97,3 @@ export default function ContactCTA() {
     </section>
   );
 }
-
