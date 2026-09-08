@@ -47,12 +47,17 @@ export default function CoreValues() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR VALUES</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                OUR VALUES
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-                The principles behind <span className="text-domenion-gold">every protection decision.</span>
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+                The principles behind{" "}
+                <span className="text-domenion-gold">
+                  every protection decision.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -60,27 +65,39 @@ export default function CoreValues() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                Effective security requires more than personnel and surveillance systems.
-                It requires a corporate culture built around unyielding accountability,
-                thorough preparation, and mutual trust.
+                Effective security requires more than personnel and surveillance
+                systems. It requires a corporate culture built around unyielding
+                accountability, thorough preparation, and mutual trust.
               </p>
             </Reveal>
           </div>
         </div>
 
         {/* Editorial Value List Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {VALUES_DATA.map((val, idx) => (
-            <div key={val.num}>
-              <Reveal direction="up" delay={0.08 * idx}>
-                <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
+            <div key={val.num} className="h-full flex flex-col">
+              <Reveal
+                direction="up"
+                delay={0.08 * idx}
+                className="h-full flex-1 flex flex-col"
+              >
+                <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col flex-1 h-full group">
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-                    <span className="text-domenion-gold font-heading text-xl font-extrabold">{val.num}</span>
-                    <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">{val.title}</span>
+                    <span className="text-domenion-gold font-heading text-xl font-extrabold">
+                      {val.num}
+                    </span>
+                    <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                      {val.title}
+                    </span>
                   </div>
 
-                  <h3 className="text-white font-heading text-lg font-bold mb-2">{val.subtitle}</h3>
-                  <p className="text-white/75 text-sm leading-relaxed">{val.desc}</p>
+                  <h3 className="text-white font-heading text-lg font-bold mb-2">
+                    {val.subtitle}
+                  </h3>
+                  <p className="text-white/75 text-sm leading-relaxed flex-1">
+                    {val.desc}
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -90,4 +107,3 @@ export default function CoreValues() {
     </section>
   );
 }
-

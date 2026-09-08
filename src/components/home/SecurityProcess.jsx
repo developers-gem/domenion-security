@@ -60,13 +60,17 @@ export default function SecurityProcess() {
         </div>
 
         {/* 4-Step Timeline Workflow */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {PROCESS_STEPS.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div key={step.step}>
-                <Reveal direction="up" delay={0.1 * idx}>
-                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group relative">
+              <div key={step.step} className="h-full flex flex-col">
+                <Reveal
+                  direction="up"
+                  delay={0.1 * idx}
+                  className="h-full flex-1 flex flex-col"
+                >
+                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group relative">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-domenion-gold font-heading text-2xl font-extrabold">
                         {step.step}
@@ -79,12 +83,15 @@ export default function SecurityProcess() {
                     <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
                       {step.title}
                     </span>
+
                     <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2 leading-snug">
                       {step.subtitle}
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">
+
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1">
                       {step.desc}
                     </p>
+
                     <div className="h-0.5 w-8 bg-domenion-gold/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>

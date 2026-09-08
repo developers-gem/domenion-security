@@ -40,12 +40,15 @@ export default function SecurityApproach() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">OUR APPROACH</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                OUR APPROACH
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-                Security isn't <span className="text-domenion-gold">one-size-fits-all.</span>
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 capitalize">
+                Security isn't{" "}
+                <span className="text-domenion-gold">one-size-fits-all.</span>
               </h2>
             </Reveal>
           </div>
@@ -53,16 +56,16 @@ export default function SecurityApproach() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-white/80 font-sans text-base sm:text-lg leading-relaxed">
-                Effective protection starts with understanding the environment, identifying
-                risks, and building a custom operational strategy around the people,
-                assets, and operations that matter most.
+                Effective protection starts with understanding the environment,
+                identifying risks, and building a custom operational strategy
+                around the people, assets, and operations that matter most.
               </p>
             </Reveal>
           </div>
         </div>
 
         {/* 4-Stage Horizontal / Vertical Timeline */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {APPROACH_STAGES.map((stage, idx) => {
             const Icon = stage.icon;
             return (
@@ -70,15 +73,23 @@ export default function SecurityApproach() {
                 <Reveal direction="up" delay={0.1 * idx}>
                   <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{stage.step}</span>
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                        {stage.step}
+                      </span>
                       <div className="w-9 h-9 rounded bg-domenion-gold/15 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
                         <Icon size={20} />
                       </div>
                     </div>
 
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.title}</span>
-                    <h3 className="text-white font-heading text-lg font-bold mb-2">{stage.subtitle}</h3>
-                    <p className="text-white/75 text-sm leading-relaxed">{stage.desc}</p>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
+                      {stage.title}
+                    </span>
+                    <h3 className="text-white font-heading text-lg font-bold mb-2">
+                      {stage.subtitle}
+                    </h3>
+                    <p className="text-white/75 text-sm leading-relaxed">
+                      {stage.desc}
+                    </p>
                   </div>
                 </Reveal>
               </div>
@@ -89,4 +100,3 @@ export default function SecurityApproach() {
     </section>
   );
 }
-

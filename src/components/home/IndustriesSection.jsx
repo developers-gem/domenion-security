@@ -130,12 +130,12 @@ export default function IndustriesSection() {
             {industries.map((ind, index) => {
               const Icon = INDUSTRY_ICONS[ind.slug] || Building2;
               return (
-                <SwiperSlide key={ind.slug}>
+                <SwiperSlide key={ind.slug} className="!h-auto flex">
                   <Link
                     to={`/industries/${ind.slug}`}
-                    className="block rounded-xl overflow-hidden bg-white border border-neutral-border hover:border-domenion-gold/50 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none h-full"
+                    className="rounded-xl overflow-hidden bg-white border border-neutral-border hover:border-domenion-gold/50 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none h-full flex flex-col flex-1 w-full"
                   >
-                    <div className="relative h-52 overflow-hidden">
+                    <div className="relative h-52 overflow-hidden flex-shrink-0">
                       <img
                         src={
                           ind.heroImage ||
@@ -157,19 +157,19 @@ export default function IndustriesSection() {
                       </div>
                     </div>
 
-                    <div className="p-6 flex flex-col gap-2">
+                    <div className="p-6 flex flex-col flex-1">
                       <span className="text-[10px] font-extrabold text-domenion-gold tracking-widest uppercase">
                         {ind.badge || "SECURITY SECTOR"}
                       </span>
-                      <h3 className="text-domenion-blue font-heading text-xl font-bold group-hover:text-domenion-gold transition-colors">
+                      <h3 className="text-domenion-blue font-heading text-xl font-bold group-hover:text-domenion-gold transition-colors mt-1">
                         {ind.title}
                       </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mt-1">
                         {ind.shortDescription ||
                           "Specialized security coverage"}
                       </p>
 
-                      <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold mt-3 group-hover:translate-x-1 transition-transform">
+                      <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold mt-auto pt-4 group-hover:translate-x-1 transition-transform">
                         <span>Explore Industry Solutions</span>
                         <ArrowRight size={16} />
                       </div>

@@ -22,7 +22,7 @@ export default function FinalCTA() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
                     Ready to strengthen{" "}
                     <span className="text-domenion-gold">your security?</span>
                   </h2>

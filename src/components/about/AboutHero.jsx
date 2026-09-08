@@ -23,7 +23,9 @@ export default function AboutHero() {
               {/* Breadcrumb Nav */}
               <Reveal direction="fade">
                 <div className="flex items-center gap-2 text-xs font-heading font-bold text-domenion-gold mb-4">
-                  <Link to="/" className="hover:underline">Home</Link>
+                  <Link to="/" className="hover:underline">
+                    Home
+                  </Link>
                   <ChevronRight size={13} />
                   <span className="text-white">About Us</span>
                 </div>
@@ -39,17 +41,21 @@ export default function AboutHero() {
 
               {/* Headline */}
               <Reveal direction="right" delay={0.2}>
-                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-                  Protection built <span className="text-domenion-gold">around what matters.</span>
+                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
+                  Protection built{" "}
+                  <span className="text-domenion-gold">
+                    around what matters.
+                  </span>
                 </h1>
               </Reveal>
 
               {/* Description */}
               <Reveal direction="right" delay={0.3}>
                 <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed max-w-xl">
-                  Domenion Security provides disciplined, comprehensive security solutions
-                  designed around the people, property, facilities and critical operations
-                  we protect across commercial and enterprise environments.
+                  Domenion Security provides disciplined, comprehensive security
+                  solutions designed around the people, property, facilities and
+                  critical operations we protect across commercial and
+                  enterprise environments.
                 </p>
               </Reveal>
             </div>
@@ -75,8 +81,12 @@ export default function AboutHero() {
                     <LockKeyhole size={14} />
                     <span>01</span>
                   </div>
-                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">PEOPLE • PROPERTY • OPERATIONS</strong>
-                  <span className="text-gray-600 text-xs mt-0.5">Protected with purpose</span>
+                  <strong className="text-domenion-blue font-heading text-sm font-extrabold">
+                    PEOPLE • PROPERTY • OPERATIONS
+                  </strong>
+                  <span className="text-gray-600 text-xs mt-0.5">
+                    Protected with purpose
+                  </span>
                 </div>
               </div>
             </Reveal>
@@ -86,4 +96,3 @@ export default function AboutHero() {
     </section>
   );
 }
-

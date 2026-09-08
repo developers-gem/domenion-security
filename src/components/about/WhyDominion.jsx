@@ -36,12 +36,17 @@ export default function WhyDomenion() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-7">
             <Reveal direction="up">
-              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">WHY Domenion</span>
+              <span className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                WHY Domenion
+              </span>
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
-                Protection backed by <span className="text-domenion-gold">discipline and readiness.</span>
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
+                Protection backed by{" "}
+                <span className="text-domenion-gold">
+                  discipline and readiness.
+                </span>
               </h2>
             </Reveal>
           </div>
@@ -49,30 +54,41 @@ export default function WhyDomenion() {
           <div className="lg:col-span-5">
             <Reveal direction="up" delay={0.2}>
               <p className="text-gray-600 font-sans text-base sm:text-lg leading-relaxed">
-                We combine experienced security personnel, proven operational procedures,
-                and modern surveillance technology to deliver complete peace of mind.
+                We combine experienced security personnel, proven operational
+                procedures, and modern surveillance technology to deliver
+                complete peace of mind.
               </p>
             </Reveal>
           </div>
         </div>
 
         {/* 4 Feature Blocks */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {FEATURE_BLOCKS.map((block, idx) => {
             const Icon = block.icon;
             return (
-              <div key={block.num}>
-                <Reveal direction="up" delay={0.1 * idx}>
-                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+              <div key={block.num} className="h-full flex flex-col">
+                <Reveal
+                  direction="up"
+                  delay={0.1 * idx}
+                  className="h-full flex-1 flex flex-col"
+                >
+                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{block.num}</span>
+                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                        {block.num}
+                      </span>
                       <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
                         <Icon size={20} />
                       </div>
                     </div>
 
-                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">{block.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{block.desc}</p>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">
+                      {block.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1">
+                      {block.desc}
+                    </p>
                   </div>
                 </Reveal>
               </div>
@@ -83,4 +99,3 @@ export default function WhyDomenion() {
     </section>
   );
 }
-

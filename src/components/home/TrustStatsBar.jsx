@@ -69,13 +69,17 @@ export default function TrustStatsBar() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
           {STATS_DATA.map((stat, idx) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.id}>
-                <Reveal direction="up" delay={idx * 0.1}>
-                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+              <div key={stat.id} className="h-full flex flex-col">
+                <Reveal
+                  direction="up"
+                  delay={idx * 0.1}
+                  className="h-full flex-1 flex flex-col"
+                >
+                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group">
                     <div className="flex items-center justify-between mb-3">
                       <div className="w-12 h-12 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
                         {Icon && <Icon size={22} />}
@@ -94,12 +98,15 @@ export default function TrustStatsBar() {
                         )}
                       </div>
                     </div>
+
                     <h3 className="text-domenion-blue font-heading text-base font-bold">
                       {stat.label}
                     </h3>
-                    <p className="text-gray-500 text-xs sm:text-sm mt-1">
+
+                    <p className="text-gray-500 text-xs sm:text-sm mt-1 flex-1">
                       {stat.subtext}
                     </p>
+
                     <div className="h-0.5 w-8 bg-domenion-gold/40 mt-4 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>

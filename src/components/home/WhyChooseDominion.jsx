@@ -70,13 +70,17 @@ export default function WhyChooseDomenion() {
         </div>
 
         {/* 4 Pillar Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {WHY_CARDS.map((card, idx) => {
             const Icon = card.icon;
             return (
-              <div key={card.num}>
-                <Reveal direction="up" delay={0.1 * idx}>
-                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+              <div key={card.num} className="h-full flex flex-col">
+                <Reveal
+                  direction="up"
+                  delay={0.1 * idx}
+                  className="h-full flex-1 flex flex-col"
+                >
+                  <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-domenion-gold font-heading text-xl font-extrabold">
                         {card.num}
@@ -90,9 +94,10 @@ export default function WhyChooseDomenion() {
                       {card.title}
                     </h3>
 
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1">
                       {card.desc}
                     </p>
+
                     <div className="h-0.5 w-8 bg-domenion-gold/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>
