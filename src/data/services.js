@@ -2050,6 +2050,9 @@ export const services = [
     description:
       "Our Transportation Security services protect supply chains, freight operations, public transportation and private logistics through trained security personnel, surveillance and risk management strategies.",
 
+    // Background hero video
+    heroVideo: "/videos/Transportation.mp4",
+
     heroImage: "/images/services/transportation-security/hero.jpg",
 
     overviewImage: "/images/services/transportation-security/overview.jpg",
@@ -3229,21 +3232,19 @@ export const services = [
   },
   {
     slug: "construction-surveillance-technicians",
-
     badge: "CST SURVEILLANCE",
-
     title: "Construction Surveillance Technicians (CST)",
-
     shortDescription:
       "Certified Construction Surveillance Technicians providing visual surveillance, technical threat deterrence, and access control for secure classified construction sites.",
-
     description:
       "Our cleared Construction Surveillance Technicians (CSTs) safeguard sensitive construction sites, SCIFs, and Special Access Program Facilities (SAPFs) against unauthorized technical penetration, covert surveillance implantation, and unauthorized access. We ensure full ICD 705 compliance through continuous visual monitoring, material inspections, and cleared worker escorting.",
 
-    // Custom CST image assets (routed from /public)
-    heroImage: "/images/services/surviellace_CST2.jpg",
-    overviewImage: "/images/services/surviellace_CST1.jpg",
-    benefitsImage: "/images/services/surviellace_CST2.jpg",
+    // Hero background video
+    heroVideo: "/videos/security(CST).mp4",
+
+    heroImage: "/images/services/surviellace_CST1.jpg",
+    overviewImage: "/images/services/surviellace_CST2.jpg",
+    benefitsImage: "/images/services/surviellace_CST3.jpg",
 
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
 

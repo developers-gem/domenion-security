@@ -30,7 +30,9 @@ export default function ServiceDetailCTA({ service }) {
 
                 <Reveal direction="up" delay={0.2}>
                   <p className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
-                    Tell us about your environment, operational risks, and facility requirements. Our security specialists will help design the right protection plan.
+                    Tell us about your environment, operational risks, and
+                    facility requirements. Our security specialists will help
+                    design the right protection plan.
                   </p>
                 </Reveal>
 
@@ -65,7 +67,9 @@ export default function ServiceDetailCTA({ service }) {
               <Reveal direction="left" delay={0.2}>
                 <div className="relative rounded-xl overflow-hidden shadow-xl border border-domenion-gold/30 group">
                   <img
-                    src={service.heroImage || service.overviewImage || "/images/company-security.jpg"}
+                    src={
+                      service.benefitsImage || "/images/company-security.jpg"
+                    }
                     alt={service.title}
                     className="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
@@ -74,8 +78,12 @@ export default function ServiceDetailCTA({ service }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-domenion-blue/80 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg border border-domenion-gold/40 text-domenion-blue flex flex-col">
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">24/7 CONSULTATION</span>
-                    <strong className="text-xs font-bold font-heading">(602) 438-4445</strong>
+                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                      24/7 CONSULTATION
+                    </span>
+                    <strong className="text-xs font-bold font-heading">
+                      (602) 438-4445
+                    </strong>
                   </div>
                 </div>
               </Reveal>
@@ -86,4 +94,3 @@ export default function ServiceDetailCTA({ service }) {
     </section>
   );
 }
-

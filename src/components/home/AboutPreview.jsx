@@ -3,12 +3,12 @@ import Button from "../common/Button";
 import Reveal from "../common/Reveal";
 
 // REPLACEMENT OFFICER IMAGE ASSET: Component prepared for new corporate security officer image asset
-const CORPORATE_OFFICER_IMAGE_PATH = "/images/about-security.jpg";
+const CORPORATE_OFFICER_IMAGE_PATH = "/images/about-security-1.jpg";
 
 export default function AboutPreview() {
   return (
     <section className="py-20 sm:py-28 bg-white text-domenion-blue">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Visual Image with Floating Gold Badge */}
           <div className="lg:col-span-6">
@@ -17,7 +17,7 @@ export default function AboutPreview() {
                 <img
                   src={CORPORATE_OFFICER_IMAGE_PATH}
                   alt="Domenion Security Corporate Operations"
-                  className="w-full h-[450px] sm:h-[520px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-[500px] sm:h-[540px] object-cover group-hover:scale-105 transition-transform duration-700 object-cover object-top mr-10"
                   onError={(e) => {
                     e.target.src = "/images/about-security.jpg";
                   }}
