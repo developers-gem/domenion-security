@@ -3240,21 +3240,21 @@ export const services = [
     description:
       "Our cleared Construction Surveillance Technicians (CSTs) safeguard sensitive construction sites, SCIFs, and Special Access Program Facilities (SAPFs) against unauthorized technical penetration, covert surveillance implantation, and unauthorized access. We ensure full ICD 705 compliance through continuous visual monitoring, material inspections, and cleared worker escorting.",
 
-    heroImage: "/images/services/construction-security/hero.jpg",
-
-    overviewImage: "/images/services/construction-security/overview.jpg",
-
-    benefitsImage: "/images/services/construction-security/benefits.jpg",
+    // Custom CST image assets (routed from /public)
+    heroImage: "/images/services/surviellace_CST2.jpg",
+    overviewImage: "/images/services/surviellace_CST1.jpg",
+    benefitsImage: "/images/services/surviellace_CST2.jpg",
 
     videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
 
     liveVideo: {
       enabled: true,
       streamUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-      poster: "/images/services/construction-security/hero.jpg",
+      poster: "/images/services/surviellace_CST1.jpg",
       badge: "LIVE SURVEILLANCE FEED",
       title: "Real-Time Site Monitoring",
-      description: "Continuous real-time optical and perimeter surveillance over secure construction zones.",
+      description:
+        "Continuous real-time optical and perimeter surveillance over secure construction zones.",
     },
 
     stats: {
