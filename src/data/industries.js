@@ -681,92 +681,114 @@ export const industries = [
   {
     slug: "transportation",
 
-    badge: "TRANSPORTATION SECURITY",
+    badge: "TRANSPORTATION & LOGISTICS",
 
     title: "Transportation Security Solutions",
 
     shortDescription:
-      "Security solutions protecting transportation facilities, terminals, fleets, personnel and passengers.",
+      "Secure transportation networks, cargo, fleets and logistics operations with comprehensive transportation security solutions.",
 
-    heroImage:
-      "/images/industries/transportation/hero.jpg",
+    description:
+      "Our Transportation Security services protect supply chains, freight operations, public transportation and private logistics through trained security personnel, surveillance and risk management strategies.",
 
-    overviewImage:
-      "/images/industries/transportation/overview.jpg",
+    // Background video asset
+    heroVideo: "/videos/Transportation.mp4",
 
-    benefitsImage:
-      "/images/industries/transportation/benefits.jpg",
+    heroImage: "/images/services/transportation-security/hero.jpg",
+
+    overviewImage: "/images/services/transportation-security/overview.jpg",
+
+    benefitsImage: "/images/services/transportation-security/benefits.jpg",
+
+    stats: {
+      officers: "700+",
+      clients: "250+",
+      support: "24/7",
+      cities: "40+",
+    },
 
     overviewTitle:
-      "Protecting Transportation Operations",
+      "Reliable Security For Transportation & Logistics",
 
     overviewDescription:
-      "Transportation environments require dependable security to protect passengers, employees, facilities, vehicles and critical operations.",
+      "Protect vehicles, cargo, terminals and transportation infrastructure with experienced security officers and advanced monitoring systems.",
 
     highlights: [
-      "Transportation Facility Security",
-      "Terminal Security",
-      "Access Control",
-      "Vehicle & Fleet Protection",
-      "Passenger Safety",
+      "Cargo Protection",
+      "Fleet Security",
+      "Terminal Surveillance",
+      "Vehicle Access Control",
       "Emergency Response",
+      "24/7 Monitoring",
     ],
 
     featuresTitle:
-      "Transportation Security Capabilities",
+      "Complete Transportation Security Services",
 
     featuresDescription:
-      "Security programs designed for transportation facilities and complex operational environments.",
+      "Integrated protection for transportation hubs, logistics centers and fleet operations.",
 
     features: [
       {
         icon: ShieldCheck,
-        title: "Facility Protection",
-        text: "Professional security coverage for transportation facilities and terminals.",
-      },
-      {
-        icon: Users,
-        title: "Passenger Security",
-        text: "Security presence supporting passenger and employee safety.",
-      },
-      {
-        icon: LockKeyhole,
-        title: "Access Management",
-        text: "Controlled access to restricted transportation areas.",
+        title: "Cargo Protection",
+        text: "Protect valuable shipments during storage and transit.",
       },
       {
         icon: Camera,
-        title: "Surveillance",
-        text: "Monitoring of critical transportation environments and facilities.",
+        title: "Fleet Monitoring",
+        text: "Continuous monitoring of transportation assets.",
       },
       {
-        icon: Truck,
-        title: "Fleet Protection",
-        text: "Security measures protecting vehicles, equipment and fleet assets.",
+        icon: Users,
+        title: "Driver Verification",
+        text: "Identity verification and personnel screening.",
+      },
+      {
+        icon: ClipboardCheck,
+        title: "Access Control",
+        text: "Secure transportation terminals and restricted zones.",
       },
       {
         icon: Siren,
-        title: "Incident Response",
-        text: "Rapid response procedures for operational security incidents.",
+        title: "Emergency Response",
+        text: "Rapid response for transportation incidents.",
+      },
+      {
+        icon: ScanFace,
+        title: "Risk Monitoring",
+        text: "Proactive monitoring of transportation risks.",
       },
     ],
 
     benefitsTitle:
-      "Security That Keeps Transportation Moving",
+      "Secure Every Mile Of Your Transportation Network",
 
     benefitsDescription:
-      "Our transportation security programs help maintain safe and secure environments without disrupting daily operations.",
+      "Reduce transportation risks while protecting cargo, employees and logistics infrastructure.",
 
     benefits: [
-      "Improved passenger safety",
-      "Protection of transportation assets",
-      "Controlled access to restricted areas",
-      "Professional security presence",
-      "Rapid incident response",
-      "Operational risk reduction",
+      "Cargo theft prevention",
+      "Fleet protection",
+      "24/7 monitoring",
+      "Risk reduction",
+      "Improved logistics security",
+      "Driver safety",
+      "Compliance support",
+      "Business continuity",
     ],
-  },
 
+    benefitStats: {
+      experience: "20+",
+      experienceText: "Years Protecting Logistics",
+
+      satisfaction: "99%",
+      satisfactionText: "Client Satisfaction",
+
+      readiness: "24/7",
+      readinessText: "Rapid Response",
+    },
+  },
 
   /* =====================================================
      09. CONSTRUCTION
