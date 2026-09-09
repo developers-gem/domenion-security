@@ -40,7 +40,7 @@ export default function ServiceDetailAudience({ service }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 capitalize ">
                 Engineered for your <span className="text-domenion-gold">specific facility type.</span>
               </h2>
             </Reveal>
@@ -56,12 +56,12 @@ export default function ServiceDetailAudience({ service }) {
         </div>
 
         {/* 4 Environment Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {AUDIENCE_ENVIRONMENTS.map((env, idx) => {
             const Icon = env.icon;
             return (
-              <div key={env.num}>
-                <Reveal direction="up" delay={0.08 * idx}>
+              <div key={env.num} className="h-full flex flex-col">
+                <Reveal direction="up" delay={0.08 * idx} className="h-full flex flex-1 flex-col">
                   <div className="bg-white border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-domenion-gold font-heading text-2xl font-extrabold">{env.num}</span>

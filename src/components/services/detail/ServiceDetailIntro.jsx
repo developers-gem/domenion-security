@@ -13,7 +13,7 @@ export default function ServiceDetailIntro({ service }) {
               </Reveal>
 
               <Reveal direction="up" delay={0.1}>
-                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+                <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
                   {service.overviewTitle || `Protection built around your ${service.badge || "environment"}.`}
                 </h2>
               </Reveal>

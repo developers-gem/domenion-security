@@ -40,7 +40,7 @@ export default function ServiceDetailHero({ service }) {
 
               {/* Headline */}
               <Reveal direction="right" delay={0.2}>
-                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
                   {service.title}
                 </h1>
               </Reveal>
@@ -55,7 +55,7 @@ export default function ServiceDetailHero({ service }) {
               {/* Buttons */}
               <Reveal direction="right" delay={0.4}>
                 <div className="flex flex-wrap items-center gap-4">
-                  <Button to="/contact" variant="primary" size="lg" icon={ArrowRight}>
+                  <Button to="/contact" variant="primary" size="lg" icon={ArrowRight} className="transition-all hover:translate-0.5 active:translate-y-0.5">
                     Request A Security Quote
                   </Button>
                   <Button to="/services" variant="gold-outline" size="lg">

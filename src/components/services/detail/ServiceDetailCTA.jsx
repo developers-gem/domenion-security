@@ -23,7 +23,7 @@ export default function ServiceDetailCTA({ service }) {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.1}>
-                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                  <h2 className="text-white font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight capitalize">
                     {ctaHeadline}
                   </h2>
                 </Reveal>
@@ -41,6 +41,7 @@ export default function ServiceDetailCTA({ service }) {
                       variant="primary"
                       size="lg"
                       icon={ArrowRight}
+                      className="transition-all hover:translate-0.5 active:translate-y-0.5"
                     >
                       Request a Security Quote
                     </Button>

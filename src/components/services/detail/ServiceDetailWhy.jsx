@@ -40,7 +40,7 @@ export default function ServiceDetailWhy({ service }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+              <h2 className="text-white font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 capitalize">
                 Protection built around <span className="text-domenion-gold">your environment.</span>
               </h2>
             </Reveal>
@@ -56,12 +56,12 @@ export default function ServiceDetailWhy({ service }) {
         </div>
 
         {/* 4 Numbered Differentiator Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {REASONS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div key={item.num}>
-                <Reveal direction="up" delay={0.08 * idx}>
+              <div key={item.num} className="h-full flex flex-col">
+                <Reveal direction="up" delay={0.08 * idx} className="h-full flex flex-1 flex-col">
                   <div className="bg-white/5 border border-domenion-gold/25 rounded-xl p-6 hover:border-domenion-gold hover:bg-white/10 transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-domenion-gold font-heading text-xl font-extrabold">{item.num}</span>
@@ -71,7 +71,7 @@ export default function ServiceDetailWhy({ service }) {
                     </div>
 
                     <h3 className="text-white font-heading text-lg font-bold mb-2">{item.title}</h3>
-                    <p className="text-white/75 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="text-white/75 text-sm leading-relaxed flex-1">{item.desc}</p>
                   </div>
                 </Reveal>
               </div>

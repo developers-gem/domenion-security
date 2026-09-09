@@ -19,7 +19,7 @@ export default function RelatedServices({ currentSlug }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 capitalize">
                 Explore complementary <span className="text-domenion-gold">security services.</span>
               </h2>
             </Reveal>
@@ -36,10 +36,10 @@ export default function RelatedServices({ currentSlug }) {
         </div>
 
         {/* 3 Related Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {relatedList.map((service, idx) => (
-            <div key={service.slug}>
-              <Reveal direction="up" delay={0.1 * idx}>
+            <div key={service.slug} className="h-full flex flex-col">
+              <Reveal direction="up" delay={0.1 * idx} className="h-full flex flex-1 flex-col">
                 <div className="block bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col h-full">
                   <Link to={`/services/${service.slug}`} className="relative h-48 overflow-hidden block">
                     <img
