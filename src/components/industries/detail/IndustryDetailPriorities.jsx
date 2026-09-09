@@ -22,7 +22,7 @@ export default function IndustryDetailPriorities({ industry }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
                 Operational priorities tailored <span className="text-domenion-gold">for {industry.badge || "your sector"}.</span>
               </h2>
             </Reveal>
@@ -38,13 +38,13 @@ export default function IndustryDetailPriorities({ industry }) {
         </div>
 
         {/* Priorities Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {prioritiesList.map((item, idx) => (
-            <div key={idx}>
-              <Reveal direction="up" delay={0.04 * idx}>
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-neutral-border hover:border-domenion-gold/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <div key={idx} className="h-full flex flex-col">
+              <Reveal direction="up" delay={0.04 * idx} className="h-full flex-1 flex flex-col">
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-neutral-border hover:border-domenion-gold/50 shadow-sm hover:shadow-md transition-all duration-200 flex-1 h-full">
                   <CheckCircle2 size={18} className="text-domenion-gold flex-shrink-0" />
-                  <span className="text-domenion-blue font-heading text-sm font-bold">{item}</span>
+                  <span className="text-domenion-blue font-heading text-sm font-bold flex-1">{item}</span>
                 </div>
               </Reveal>
             </div>

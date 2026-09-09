@@ -52,10 +52,10 @@ export default function IndustryDetailHero({ industry }) {
           {/* Buttons */}
           <Reveal direction="up" delay={0.4}>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button to="/contact" variant="primary" size="lg" icon={ArrowRight}>
+              <Button to="/contact" variant="primary" size="lg" icon={ArrowRight} className="transition-all hover:translate-0.5 active:translate-y-0.5">
                 Request a Security Quote
               </Button>
-              <Button to="/industries" variant="outline-light" size="lg">
+              <Button to="/industries" variant="outline-light" size="lg" className="transition-all hover:translate-0.5 active:translate-y-0.5">
                 Explore All Sectors
               </Button>
             </div>

@@ -43,19 +43,19 @@ export default function IndustryApproach({ industry }) {
           </Reveal>
 
           <Reveal direction="up" delay={0.1}>
-            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+            <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
               Security designed around <span className="text-domenion-gold">the environment.</span>
             </h2>
           </Reveal>
         </div>
 
         {/* 4-Step Grid Workflow */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {APPROACH_STEPS.map((stage, idx) => {
             const Icon = stage.icon;
             return (
-              <div key={stage.step}>
-                <Reveal direction="up" delay={0.08 * idx}>
+              <div key={stage.step} className="h-full flex flex-col">
+                <Reveal direction="up" delay={0.08 * idx} className="h-full flex-1 flex-col">
                   <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-domenion-gold font-heading text-2xl font-extrabold">{stage.step}</span>
@@ -66,7 +66,7 @@ export default function IndustryApproach({ industry }) {
 
                     <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.title}</span>
                     <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">{stage.subtitle}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{stage.desc}</p>
+                    <p className="text-gray-500 text-sm leading-relaxed flex-1">{stage.desc}</p>
                   </div>
                 </Reveal>
               </div>

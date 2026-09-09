@@ -301,6 +301,7 @@ export const industries = [
      04. RETAIL
   ===================================================== */
 
+
   {
     slug: "retail",
 

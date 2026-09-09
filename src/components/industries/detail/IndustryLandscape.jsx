@@ -12,7 +12,7 @@ export default function IndustryLandscape({ industry }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
                 Understanding the operational realities of <span className="text-domenion-gold">{industry.badge || "your environment"}.</span>
               </h2>
             </Reveal>

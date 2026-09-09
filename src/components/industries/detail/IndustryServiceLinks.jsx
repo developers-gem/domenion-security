@@ -18,7 +18,7 @@ export default function IndustryServiceLinks({ industry }) {
             </Reveal>
 
             <Reveal direction="up" delay={0.1}>
-              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight">
+              <h2 className="text-domenion-blue font-heading text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 leading-tight capitalize">
                 Recommended protection capabilities <span className="text-domenion-gold">for {industry.badge || "this sector"}.</span>
               </h2>
             </Reveal>
