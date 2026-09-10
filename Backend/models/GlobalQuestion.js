@@ -33,6 +33,19 @@ const globalQuestionSchema = new mongoose.Schema(
       enum: ["global", "job"],
       default: "global",
     },
+    isQuizQuestion: {
+      type: Boolean,
+      default: false,
+    },
+    correctAnswer: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    points: {
+      type: Number,
+      default: 1,
+    },
   },
   { timestamps: true }
 );
