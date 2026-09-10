@@ -21,7 +21,7 @@ function Footer() {
           <div className="lg:col-span-4">
             <Reveal direction="up">
               <div className="flex flex-col gap-4">
-                <Link
+                {/* <Link
                   to="/"
                   className="flex flex-col leading-none w-fit"
                   aria-label="Domenion Security Home"
@@ -32,6 +32,28 @@ function Footer() {
                   <span className="text-domenion-gold font-heading text-xs font-bold tracking-[0.25em] mt-1">
                     SECURITY
                   </span>
+                </Link> */}
+                <Link
+                  to="/"
+                  className="flex items-center gap-3 text-decoration-none group"
+                  aria-label="Domenion Security Home"
+                >
+                  <img
+                    src="/domenion-logo.png"
+                    alt="Domenion Security Shield Logo"
+                    className="h-10 sm:h-12 lg:h-[95px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                    onError={(e) => {
+                      e.target.src = "/500 security logo.png";
+                    }}
+                  />
+                  <div className="flex flex-col justify-center leading-none">
+                    <strong className="text-white font-heading text-base sm:text-lg lg:text-2xl font-extrabold tracking-wider">
+                      DOMENION
+                    </strong>
+                    <small className="text-domenion-gold font-heading text-[9px] sm:text-[10px] lg:text-[15px] font-bold tracking-[0.22em] mt-0.5">
+                      SECURITY
+                    </small>
+                  </div>
                 </Link>
 
                 <p className="text-white/80 text-sm leading-relaxed max-w-sm">
