@@ -96,7 +96,7 @@ function AdminDashboard() {
           <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
               <div className="d-flex align-items-center mb-1">
-                <span className="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 text-uppercase me-2">
+                <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25 text-uppercase me-2">
                   ROLE: {user?.role?.toUpperCase() || "ADMIN"}
                 </span>
                 <span className="text-secondary small fw-medium">AUTHENTICATED SESSION</span>
@@ -112,7 +112,7 @@ function AdminDashboard() {
                 onClick={fetchDashboardStats}
                 disabled={loading}
               >
-                {loading ? <Loader2 size={16} className="animate-spin text-danger me-1" /> : <Activity size={16} className="text-danger me-1" />}
+                {loading ? <Loader2 size={16} className="animate-spin text-white me-1" /> : <Activity size={16} className="text-white me-1" />}
                 Refresh Metrics
               </button>
             </div>
@@ -153,17 +153,17 @@ function AdminDashboard() {
             <div className="card bg-white border shadow-sm h-100 admin-card-light">
               <div className="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
                 <h5 className="fw-bold mb-0 text-dark d-flex align-items-center fs-6">
-                  <Activity size={18} className="text-danger me-2" />
+                  <Activity size={18} className="text-white me-2" />
                   Recent Administrative Audit Activity
                 </h5>
-                <span className="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">
+                <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25">
                   Append-Only
                 </span>
               </div>
               <div className="card-body p-0">
                 {loading ? (
                   <div className="text-center py-5">
-                    <Loader2 size={32} className="text-danger animate-spin mb-2" />
+                    <Loader2 size={32} className="text-white animate-spin mb-2" />
                     <p className="text-muted small">Fetching audit activity...</p>
                   </div>
                 ) : recentLogs.length === 0 ? (
@@ -228,7 +228,7 @@ function AdminDashboard() {
                     <span className="text-secondary small d-flex align-items-center gap-1">
                       <Shield size={14} className="text-muted" /> Admin Role Enforced:
                     </span>
-                    <span className="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">Strict RBAC</span>
+                    <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25">Strict RBAC</span>
                   </li>
                   <li className="list-group-item bg-transparent text-dark border-bottom px-0 py-2 d-flex justify-content-between align-items-center">
                     <span className="text-secondary small d-flex align-items-center gap-1">
@@ -245,7 +245,7 @@ function AdminDashboard() {
                 </ul>
 
                 <div className="mt-4 pt-3 border-top text-center">
-                  <span className="small text-muted d-block mb-2">Module management views (CRUD) integrated for Phase 4B.</span>
+                  <span className="small text-white d-block mb-2">Module management views (CRUD) integrated for Phase 4B.</span>
                   <a href="/" target="_blank" rel="noreferrer" className="btn btn-outline-danger btn-sm w-100 fw-medium">
                     Preview Public Website <ArrowUpRight size={14} className="ms-1" />
                   </a>

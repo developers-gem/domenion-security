@@ -119,7 +119,7 @@ function AdminCareers() {
         {/* Header Title Banner */}
         <div className="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
           <div>
-            <span className="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 text-uppercase me-2">MODULE MANAGEMENT</span>
+            <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25 text-uppercase me-2">MODULE MANAGEMENT</span>
             <h2 className="fw-bold text-dark mb-0 d-flex align-items-center">
               <Briefcase size={24} className="text-danger me-2" />
               Career Postings Management

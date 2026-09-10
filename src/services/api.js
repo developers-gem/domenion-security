@@ -124,6 +124,10 @@ export const globalQuestionsAPI = {
     const response = await API.get("/api/global-questions");
     return response.data;
   },
+  getQuizQuestions: async () => {
+    const response = await API.get("/api/global-questions?quizOnly=true");
+    return response.data;
+  },
   addGlobalQuestion: async (questionData) => {
     const response = await API.post("/api/global-questions", questionData);
     return response.data;
@@ -332,6 +336,61 @@ export const mediaAPI = {
   },
   deleteMediaRecord: async (id) => {
     const response = await API.delete(`/api/media/${id}`);
+    return response.data;
+  },
+};
+
+// --- ASSESSMENTS API ---
+export const assessmentsAPI = {
+  // Admin Methods
+  getAssessments: async () => {
+    const response = await API.get("/api/assessments");
+    return response.data;
+  },
+  getAssessmentById: async (id) => {
+    const response = await API.get(`/api/assessments/${id}`);
+    return response.data;
+  },
+  createAssessment: async (data) => {
+    const response = await API.post("/api/assessments", data);
+    return response.data;
+  },
+  updateAssessment: async (id, data) => {
+    const response = await API.put(`/api/assessments/${id}`, data);
+    return response.data;
+  },
+  deleteAssessment: async (id) => {
+    const response = await API.delete(`/api/assessments/${id}`);
+    return response.data;
+  },
+  toggleAssessmentStatus: async (id) => {
+    const response = await API.patch(`/api/assessments/${id}/toggle`);
+    return response.data;
+  },
+  getAdminResults: async () => {
+    const response = await API.get("/api/assessments/admin/results");
+    return response.data;
+  },
+  getAdminResultById: async (id) => {
+    const response = await API.get(`/api/assessments/admin/results/${id}`);
+    return response.data;
+  },
+
+  // Employee Methods
+  getAvailableAssessments: async () => {
+    const response = await API.get("/api/assessments/employee/available");
+    return response.data;
+  },
+  getEmployeeAssessmentForTaking: async (id) => {
+    const response = await API.get(`/api/assessments/employee/${id}`);
+    return response.data;
+  },
+  submitAssessment: async (id, answers) => {
+    const response = await API.post(`/api/assessments/employee/${id}/submit`, { answers });
+    return response.data;
+  },
+  getMyAttempts: async () => {
+    const response = await API.get("/api/assessments/employee/my-attempts");
     return response.data;
   },
 };

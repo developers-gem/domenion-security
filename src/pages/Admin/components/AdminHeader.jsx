@@ -17,7 +17,7 @@ function AdminHeader({ toggleSidebar }) {
         <div className="d-flex align-items-center">
           <Shield size={22} className="text-danger me-2" />
           <span className="fw-bold text-dark fs-5 letter-spacing me-2">DOMENION SECURITY</span>
-          <span className="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 text-uppercase px-2 py-1 fs-8">
+          <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25 text-uppercase px-2 py-1 fs-8">
             ADMIN
           </span>
         </div>

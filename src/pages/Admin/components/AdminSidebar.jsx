@@ -21,6 +21,7 @@ const sidebarModules = [
   { title: "Careers", path: "/admin/careers", icon: Briefcase, active: true },
   { title: "Applications", path: "/admin/applications", icon: FileText, active: true },
   { title: "Contact Requests", path: "/admin/contact-requests", icon: MessageSquare, active: true },
+  { title: "Employee Assessments", path: "/admin/assessments", icon: FileCheck, active: true },
   // { title: "Quote Requests", path: "/admin/quote-requests", icon: FileQuestion, active: true },
   // { title: "Leads", path: "/admin/leads", icon: TrendingUp, active: true },
   // { title: "Blogs", path: "/admin/blogs", icon: FileCode, active: true },
