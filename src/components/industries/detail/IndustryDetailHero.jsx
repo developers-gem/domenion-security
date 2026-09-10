@@ -134,7 +134,7 @@ export default function IndustryDetailHero({ industry }) {
             playsInline
             preload="auto"
             poster={heroImg}
-            className="w-full h-full object-cover object-center scale-110 translate-y-10 pointer-events-none"
+            className="w-full h-full object-cover object-center opacity-100 scale-110 translate-y-10 pointer-events-none"
           />
         </div>
       ) : (
@@ -144,18 +144,14 @@ export default function IndustryDetailHero({ industry }) {
         />
       )}
 
-      {/* Balanced gradient overlay */}
-      <div
-        className={`absolute inset-0 ${
-          isTransportation
-            ? "bg-gradient-to-r from-domenion-blue/85 via-domenion-blue/70 to-domenion-blue/85"
-            : "bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/70"
-        }`}
-      />
+      {/* Gradient overlay: Completely removed on /industries/transportation */}
+      {!isTransportation && (
+        <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/70" />
+      )}
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          {/* Breadcrumb Nav */}
+          {/* Breadcrumb Nav (Original untouched styling) */}
           <Reveal direction="fade">
             <div className="flex items-center justify-center gap-2 text-xs font-heading font-bold text-domenion-gold mb-4">
               <Link to="/" className="hover:underline">
@@ -172,7 +168,7 @@ export default function IndustryDetailHero({ industry }) {
             </div>
           </Reveal>
 
-          {/* Eyebrow */}
+          {/* Eyebrow (Original untouched styling) */}
           <Reveal direction="up" delay={0.1}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6">
               <ShieldCheck size={15} className="text-domenion-gold" />
@@ -180,21 +176,21 @@ export default function IndustryDetailHero({ industry }) {
             </div>
           </Reveal>
 
-          {/* Headline */}
+          {/* Headline (Shadow added for clarity over raw video) */}
           <Reveal direction="up" delay={0.2}>
-            <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+            <h1 className="text-white font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight [text-shadow:_0_3px_12px_rgb(0_0_0_/_95%),_0_8px_30px_rgb(0_0_0_/_80%)]">
               {industry.title}
             </h1>
           </Reveal>
 
-          {/* Description */}
+          {/* Description (Shadow added for clarity over raw video) */}
           <Reveal direction="up" delay={0.3}>
-            <p className="text-white/85 font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+            <p className="text-white font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-2xl [text-shadow:_0_2px_8px_rgb(0_0_0_/_90%),_0_4px_18px_rgb(0_0_0_/_75%)]">
               {industry.shortDescription || industry.overviewDescription}
             </p>
           </Reveal>
 
-          {/* Buttons */}
+          {/* Buttons (Blur & drop shadow applied) */}
           <Reveal direction="up" delay={0.4}>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Button
@@ -202,7 +198,7 @@ export default function IndustryDetailHero({ industry }) {
                 variant="primary"
                 size="lg"
                 icon={ArrowRight}
-                className="transition-all hover:translate-0.5 active:translate-y-0.5"
+                className="backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.55)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.7)] transition-all hover:translate-0.5 active:translate-y-0.5"
               >
                 Request a Security Quote
               </Button>
@@ -210,7 +206,7 @@ export default function IndustryDetailHero({ industry }) {
                 to="/industries"
                 variant="outline-light"
                 size="lg"
-                className="transition-all hover:translate-0.5 active:translate-y-0.5"
+                className="backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.55)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.7)] transition-all hover:translate-0.5 active:translate-y-0.5"
               >
                 Explore All Sectors
               </Button>
