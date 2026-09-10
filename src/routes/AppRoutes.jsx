@@ -42,8 +42,11 @@ function AppRoutes() {
       <Route path="/service-areas" element={<ServiceAreas />} />
       <Route path="/services/:slug" element={<ServiceDetails />} />
       <Route path="/industries/:slug" element={<IndustryDetails />} />
+
+      {/* commented until will not required the client required  
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsAndConditions />} />
+      */}
 
       {/* Admin Auth Route */}
       <Route path="/admin/login" element={<AdminLogin />} />

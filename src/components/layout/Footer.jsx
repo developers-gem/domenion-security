@@ -279,7 +279,8 @@ function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70 font-heading">
           <p>© {currentYear} Domenion Security. All rights reserved.</p>
 
-          <div className="flex items-center gap-3">
+          {/* hided utill client wont required */}
+          {/* <div className="flex items-center gap-3">
             <Link
               to="/privacy-policy"
               className="hover:text-domenion-gold transition-colors"
@@ -300,7 +301,7 @@ function Footer() {
             >
               Accessibility
             </Link>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-3 text-domenion-gold font-bold">
             <a
