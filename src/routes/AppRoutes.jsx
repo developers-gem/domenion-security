@@ -74,12 +74,12 @@ function AppRoutes() {
           path="/admin/contact-requests"
           element={<AdminContactRequests />}
         />
-        <Route path="/admin/quote-requests" element={<AdminQuoteRequests />} />
+        {/* <Route path="/admin/quote-requests" element={<AdminQuoteRequests />} />
         <Route path="/admin/leads" element={<AdminLeads />} />
         <Route path="/admin/blogs" element={<AdminBlogs />} />
         <Route path="/admin/faqs" element={<AdminFAQs />} />
         <Route path="/admin/cms" element={<AdminCMS />} />
-        <Route path="/admin/media" element={<AdminMedia />} />
+        <Route path="/admin/media" element={<AdminMedia />} /> */}
         <Route path="/admin/assessments" element={<AdminAssessments />} />
       </Route>
     </Routes>

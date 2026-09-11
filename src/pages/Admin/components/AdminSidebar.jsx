@@ -24,16 +24,16 @@ const sidebarModules = [
     icon: MessageSquare,
   },
   { title: "Assessments", path: "/admin/assessments", icon: FileCheck },
-  {
-    title: "Quote Requests",
-    path: "/admin/quote-requests",
-    icon: FileQuestion,
-  },
-  { title: "Leads", path: "/admin/leads", icon: TrendingUp },
-  { title: "Blogs", path: "/admin/blogs", icon: FileCode },
-  { title: "FAQs", path: "/admin/faqs", icon: HelpCircle },
-  { title: "CMS", path: "/admin/cms", icon: FolderKanban },
-  { title: "Media Gallery", path: "/admin/media", icon: Image },
+  // {
+  //   title: "Quote Requests",
+  //   path: "/admin/quote-requests",
+  //   icon: FileQuestion,
+  // },
+  // { title: "Leads", path: "/admin/leads", icon: TrendingUp },
+  // { title: "Blogs", path: "/admin/blogs", icon: FileCode },
+  // { title: "FAQs", path: "/admin/faqs", icon: HelpCircle },
+  // { title: "CMS", path: "/admin/cms", icon: FolderKanban },
+  // { title: "Media Gallery", path: "/admin/media", icon: Image },
 ];
 
 export default function AdminSidebar({ isOpen, closeSidebar }) {

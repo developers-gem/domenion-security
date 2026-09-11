@@ -114,13 +114,7 @@ export default function AdminDashboard() {
             <h1 className="text-xl sm:text-2xl font-bold font-heading text-slate-900">
               Welcome back, {user?.name || "Domenion Security Admin"}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Connected to Domenion Security API on{" "}
-              <strong className="text-slate-800 font-semibold">
-                Port 4000
-              </strong>
-              . Real-time telemetry and management active.
-            </p>
+           
           </div>
 
           <div>
@@ -198,7 +192,7 @@ export default function AdminDashboard() {
 
         {/* Audit Activity Table & System Environment Panel */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Audit Activity Table */}
+          
           <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
             <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-2 font-heading font-bold text-sm text-slate-800">
@@ -272,8 +266,8 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {/* System Environment Information */}
-          <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm p-5 flex flex-col justify-between">
+          
+          {/* <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm p-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 font-heading font-bold text-sm text-slate-800 pb-3 border-b border-slate-100">
                 <Server size={17} className="text-domenion-gold" />
@@ -337,7 +331,7 @@ export default function AdminDashboard() {
                 <ArrowUpRight size={14} />
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </AdminLayout>
