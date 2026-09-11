@@ -14,25 +14,32 @@ import {
   FileText,
   Download,
   HelpCircle,
+  X,
 } from "lucide-react";
 import { useAuth } from "../../../../context/AuthContext";
 import { applicationsAPI } from "../../../../services/api";
-import "../../admin-bootstrap-scoped.css";
 
 const STATUS_OPTIONS = [
-  { value: "submitted", label: "Submitted", color: "secondary" },
-  { value: "reviewing", label: "Reviewing", color: "info" },
-  { value: "shortlisted", label: "Shortlisted", color: "primary" },
-  { value: "interview", label: "Interview Scheduled", color: "warning" },
-  { value: "rejected", label: "Rejected", color: "danger" },
-  { value: "hired", label: "Hired", color: "success" },
+  { value: "submitted", label: "Submitted" },
+  { value: "reviewing", label: "Reviewing" },
+  { value: "shortlisted", label: "Shortlisted" },
+  { value: "interview", label: "Interview Scheduled" },
+  { value: "rejected", label: "Rejected" },
+  { value: "hired", label: "Hired" },
 ];
 
-function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) {
+function ApplicationDetailsModal({
+  application,
+  onClose,
+  onUpdated,
+  onDelete,
+}) {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
 
-  const [currentStatus, setCurrentStatus] = useState(application?.status || "submitted");
+  const [currentStatus, setCurrentStatus] = useState(
+    application?.status || "submitted",
+  );
   const [updating, setUpdating] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState("");
@@ -61,7 +68,7 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
     try {
       setDownloading(true);
       const response = await applicationsAPI.downloadResume(application._id);
-      
+
       // Create blob URL for secure download
       const blob = new Blob([response.data], {
         type: response.headers["content-type"] || "application/octet-stream",
@@ -69,7 +76,7 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      
+
       // Determine file extension
       const filenameHeader = response.headers["content-disposition"];
       let filename = `${application.fullName.replace(/[^a-zA-Z0-9]/g, "_")}_Resume.pdf`;
@@ -92,248 +99,320 @@ function ApplicationDetailsModal({ application, onClose, onUpdated, onDelete }) 
   if (!application) return null;
 
   return (
-    <div className="modal fade show d-block" style={{ backgroundColor: "rgba(0, 0, 0, 0.75)" }} tabIndex="-1">
-      <div className="modal-dialog modal-dialog-centered modal-lg">
-        <div className="modal-content bg-dark text-white border-secondary shadow-lg">
-          <div className="modal-header border-secondary">
-            <div className="d-flex align-items-center gap-2">
-              <User className="text-danger" size={24} />
-              <div>
-                <h5 className="modal-title fw-bold text-white mb-0">{application.fullName}</h5>
-                <span className="text-secondary small">Candidate Profile & Application Details</span>
-              </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+      {/* Modal Dialog Card */}
+      <div className="relative w-full max-w-3xl my-auto bg-slate-900 border border-domenion-gold/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col text-slate-100 max-h-[92vh]">
+        {/* Modal Header */}
+        <div className="px-5 sm:px-6 py-4 border-b border-white/10 bg-domenion-blue/80 flex items-center justify-between flex-shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-domenion-gold/15 border border-domenion-gold/35 flex items-center justify-center text-domenion-gold flex-shrink-0">
+              <User size={20} />
             </div>
-            <button type="button" className="btn-close btn-close-white" onClick={onClose} aria-label="Close modal" />
+            <div>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-white leading-tight">
+                {application.fullName}
+              </h3>
+              <p className="text-xs text-domenion-gold/80 font-mono tracking-wide">
+                Candidate Profile &amp; Application Details
+              </p>
+            </div>
           </div>
 
-          <div className="modal-body p-4">
-            {success && (
-              <div className="alert alert-success d-flex align-items-center mb-3" role="alert">
-                <CheckCircle2 size={18} className="me-2" />
-                <div>{success}</div>
-              </div>
-            )}
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            aria-label="Close modal"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-            {error && (
-              <div className="alert alert-danger d-flex align-items-center mb-3" role="alert">
-                <AlertCircle size={18} className="me-2" />
-                <div>{error}</div>
-              </div>
-            )}
-
-            {/* Applicant Summary Header Bar */}
-            <div className="card bg-secondary bg-opacity-25 border-secondary p-3 mb-4">
-              <div className="row g-3 align-items-center">
-                <div className="col-md-7">
-                  <div className="d-flex align-items-center gap-2 mb-2">
-                    <Mail size={16} className="text-danger" />
-                    <a href={`mailto:${application.email}`} className="text-white text-decoration-none hover-underline">
-                      {application.email}
-                    </a>
-                  </div>
-                  <div className="d-flex align-items-center gap-2">
-                    <Phone size={16} className="text-danger" />
-                    <a href={`tel:${application.phone}`} className="text-white text-decoration-none hover-underline">
-                      {application.phone}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="col-md-5 text-md-end">
-                  <label className="form-label fs-8 text-secondary text-uppercase fw-bold mb-1 d-block">
-                    UPDATE CANDIDATE STATUS
-                  </label>
-                  <div className="d-flex align-items-center justify-content-md-end gap-2">
-                    {updating && <Loader2 size={16} className="animate-spin text-danger" />}
-                    <select
-                      className="form-select bg-dark text-white border-secondary form-select-sm"
-                      style={{ maxWidth: "200px" }}
-                      value={currentStatus}
-                      onChange={handleStatusChange}
-                      disabled={updating}
-                    >
-                      {STATUS_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
+        {/* Modal Body - Scrollable Area */}
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-5 scrollbar-thin scrollbar-thumb-white/10">
+          {/* Notifications */}
+          {success && (
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
+              <CheckCircle2 size={16} className="flex-shrink-0" />
+              <span>{success}</span>
             </div>
+          )}
 
-            {/* Position Details Section */}
-            <div className="row g-3 mb-4">
-              <div className="col-md-6">
-                <div className="p-3 bg-secondary bg-opacity-10 border border-secondary rounded">
-                  <span className="text-secondary small fw-bold text-uppercase d-block mb-1">POSITION APPLIED FOR</span>
-                  <div className="fw-bold text-white fs-6 d-flex align-items-center gap-2">
-                    <Briefcase size={16} className="text-danger" />
-                    {application.careerId?.title || "General Application"}
-                  </div>
-                  <div className="small text-muted mt-1">
-                    Department: {application.careerId?.department || "N/A"}
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="p-3 bg-secondary bg-opacity-10 border border-secondary rounded">
-                  <span className="text-secondary small fw-bold text-uppercase d-block mb-1">LOCATION & DATE</span>
-                  <div className="small text-white d-flex align-items-center gap-2 mb-1">
-                    <MapPin size={14} className="text-danger" />
-                    {application.careerId?.location || "Unspecified Location"}
-                  </div>
-                  <div className="small text-secondary d-flex align-items-center gap-2">
-                    <Calendar size={14} />
-                    Applied on: {new Date(application.createdAt).toLocaleString()}
-                  </div>
-                </div>
-              </div>
+          {error && (
+            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+              <AlertCircle size={16} className="flex-shrink-0" />
+              <span>{error}</span>
             </div>
+          )}
 
-            {/* Resume / CV Section */}
-            <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded mb-4 d-flex justify-content-between align-items-center">
-              <div>
-                <span className="text-secondary small fw-bold text-uppercase me-2 d-block mb-1">
-                  RESUME / CV ATTACHMENT
-                </span>
-                {application.resumeUrl ? (
-                  <span className="text-white small d-inline-flex align-items-center gap-1 fw-medium">
-                    <FileText size={16} className="text-danger" />
-                    Resume Attached ({application.resumeUrl.split("/").pop()})
-                  </span>
-                ) : (
-                  <span className="text-muted small italic">Not provided</span>
-                )}
-              </div>
-
-              {application.resumeUrl && (
-                <button
-                  type="button"
-                  className="btn btn-danger btn-sm d-inline-flex align-items-center gap-1 px-3 fw-bold"
-                  onClick={handleDownloadResume}
-                  disabled={downloading}
+          {/* Applicant Summary Header Bar */}
+          <div className="p-4 rounded-xl bg-slate-800/80 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1.5 text-xs">
+              <div className="flex items-center gap-2 text-slate-200">
+                <Mail size={15} className="text-domenion-gold flex-shrink-0" />
+                <a
+                  href={`mailto:${application.email}`}
+                  className="hover:text-domenion-gold hover:underline transition-colors truncate"
                 >
-                  {downloading ? (
-                    <>
-                      <Loader2 size={14} className="animate-spin" />
-                      Downloading...
-                    </>
-                  ) : (
-                    <>
-                      <Download size={14} />
-                      View / Download Resume
-                    </>
-                  )}
-                </button>
-              )}
+                  {application.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-slate-200">
+                <Phone size={15} className="text-domenion-gold flex-shrink-0" />
+                <a
+                  href={`tel:${application.phone}`}
+                  className="hover:text-domenion-gold hover:underline transition-colors"
+                >
+                  {application.phone}
+                </a>
+              </div>
             </div>
 
-            {/* Screening Questions Answers Section */}
-            <div className="mb-4">
-              <label className="form-label text-secondary small fw-bold text-uppercase d-flex align-items-center gap-1 mb-2">
-                <HelpCircle size={16} className="text-danger" />
-                SCREENING QUESTIONS & CANDIDATE ANSWERS
+            <div className="sm:text-right">
+              <label className="block text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Update Candidate Status
               </label>
-              {Array.isArray(application.screeningAnswers) && application.screeningAnswers.length > 0 ? (
-                <div className="d-flex flex-column gap-3">
-                  {(() => {
-                    const globalAnswers = application.screeningAnswers.filter((item) => (item.scope || "global") === "global");
-                    const jobAnswers = application.screeningAnswers.filter((item) => item.scope === "job");
+              <div className="flex items-center sm:justify-end gap-2">
+                {updating && (
+                  <Loader2
+                    size={15}
+                    className="animate-spin text-domenion-gold"
+                  />
+                )}
+                <select
+                  value={currentStatus}
+                  onChange={handleStatusChange}
+                  disabled={updating}
+                  className="bg-slate-900 border border-white/20 text-white text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-domenion-gold font-medium disabled:opacity-50"
+                >
+                  {STATUS_OPTIONS.map((opt) => (
+                    <option
+                      key={opt.value}
+                      value={opt.value}
+                      className="bg-slate-900 text-white"
+                    >
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
 
-                    const renderAnswerItem = (item, idx) => {
-                      const isArrayAns = Array.isArray(item.answer);
-                      return (
-                        <div key={item._id || idx} className="p-3 bg-secondary bg-opacity-15 border border-secondary rounded">
-                          <div className="fw-bold text-white small mb-2">
-                            <span className="text-danger me-1">Q{idx + 1}.</span>
-                            <span className="text-white">{item.question}</span>
-                          </div>
-                          {isArrayAns ? (
-                            <div className="pt-2 border-top border-secondary border-opacity-30">
-                              <span className="text-secondary fs-8 uppercase fw-bold d-block mb-1">Candidate Answer:</span>
-                              <ul className="list-unstyled mb-0 ps-2">
-                                {item.answer.map((ansOpt, aIdx) => (
-                                  <li key={aIdx} className="text-white small d-flex align-items-center gap-2 mb-1">
-                                    <span className="text-danger fw-bold">•</span>
-                                    <span>{ansOpt}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ) : (
-                            <div className="pt-2 border-top border-secondary border-opacity-30">
-                              <span className="text-secondary fs-8 uppercase fw-bold me-2">Candidate Answer:</span>
-                              <span className="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-30 fw-bold fs-7">
-                                {String(item.answer || "No response")}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    };
+          {/* Position & Timing Info */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-xl bg-slate-800/40 border border-white/5 space-y-1">
+              <span className="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider block">
+                Position Applied For
+              </span>
+              <div className="font-heading font-semibold text-sm text-white flex items-center gap-2">
+                <Briefcase
+                  size={15}
+                  className="text-domenion-gold flex-shrink-0"
+                />
+                <span>
+                  {application.careerId?.title || "General Application"}
+                </span>
+              </div>
+              <p className="text-xs text-slate-400">
+                Department: {application.careerId?.department || "N/A"}
+              </p>
+            </div>
 
-                    return (
-                      <>
-                        {globalAnswers.length > 0 && (
-                          <div>
-                            <div className="text-secondary small fw-bold text-uppercase mb-2">
-                              <span className="badge bg-danger text-white me-2">GLOBAL QUESTIONS</span>
-                            </div>
-                            <div className="d-flex flex-column gap-2">
-                              {globalAnswers.map((item, idx) => renderAnswerItem(item, idx))}
-                            </div>
-                          </div>
-                        )}
+            <div className="p-4 rounded-xl bg-slate-800/40 border border-white/5 space-y-1">
+              <span className="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider block">
+                Location &amp; Date
+              </span>
+              <div className="text-xs text-slate-200 flex items-center gap-2">
+                <MapPin
+                  size={14}
+                  className="text-domenion-gold flex-shrink-0"
+                />
+                <span>
+                  {application.careerId?.location || "Unspecified Location"}
+                </span>
+              </div>
+              <div className="text-xs text-slate-400 flex items-center gap-2 font-mono">
+                <Calendar size={14} />
+                <span>
+                  Applied: {new Date(application.createdAt).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
 
-                        {jobAnswers.length > 0 && (
-                          <div>
-                            <div className="text-secondary small fw-bold text-uppercase mb-2 mt-2">
-                              <span className="badge bg-primary text-white me-2">JOB-SPECIFIC QUESTIONS</span>
-                            </div>
-                            <div className="d-flex flex-column gap-2">
-                              {jobAnswers.map((item, idx) => renderAnswerItem(item, idx))}
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    );
-                  })()}
+          {/* Resume Attachment Row */}
+          <div className="p-4 rounded-xl bg-slate-800/80 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider block mb-1">
+                Resume / CV Attachment
+              </span>
+              {application.resumeUrl ? (
+                <div className="flex items-center gap-1.5 text-xs text-white font-medium">
+                  <FileText size={16} className="text-domenion-gold" />
+                  <span className="truncate max-w-[240px] sm:max-w-xs">
+                    {application.resumeUrl.split("/").pop()}
+                  </span>
                 </div>
               ) : (
-                <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded text-muted small italic">
-                  No screening responses submitted.
-                </div>
+                <span className="text-xs text-slate-500 italic">
+                  No document attached
+                </span>
               )}
             </div>
 
-            {/* Cover Letter / Message */}
-            <div className="mb-3">
-              <label className="form-label text-secondary small fw-bold text-uppercase d-flex align-items-center gap-1">
-                <MessageSquare size={16} className="text-danger" />
-                CANDIDATE COVER LETTER / STATEMENT
-              </label>
-              <div className="p-3 bg-secondary bg-opacity-25 border border-secondary rounded text-light white-space-pre-wrap">
-                {application.message || "No additional notes or message provided by applicant."}
+            {application.resumeUrl && (
+              <button
+                type="button"
+                onClick={handleDownloadResume}
+                disabled={downloading}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-domenion-gold/20 hover:bg-domenion-gold/30 border border-domenion-gold/40 text-domenion-gold text-xs font-semibold tracking-wide transition-all active:translate-y-0.5 disabled:opacity-50 flex-shrink-0"
+              >
+                {downloading ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    <span>Downloading...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download size={14} />
+                    <span>Download Resume</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+
+          {/* Screening Questions Answers Section */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
+              <HelpCircle size={15} className="text-domenion-gold" />
+              <span>Screening Questions &amp; Candidate Answers</span>
+            </div>
+
+            {Array.isArray(application.screeningAnswers) &&
+            application.screeningAnswers.length > 0 ? (
+              <div className="space-y-4">
+                {(() => {
+                  const globalAnswers = application.screeningAnswers.filter(
+                    (item) => (item.scope || "global") === "global",
+                  );
+                  const jobAnswers = application.screeningAnswers.filter(
+                    (item) => item.scope === "job",
+                  );
+
+                  const renderAnswerItem = (item, idx) => {
+                    const isArrayAns = Array.isArray(item.answer);
+                    return (
+                      <div
+                        key={item._id || idx}
+                        className="p-3.5 rounded-xl bg-slate-800/40 border border-white/5 space-y-2 text-xs"
+                      >
+                        <div className="font-semibold text-slate-100 flex items-start gap-1.5">
+                          <span className="text-domenion-gold font-mono font-bold">
+                            Q{idx + 1}.
+                          </span>
+                          <span>{item.question}</span>
+                        </div>
+
+                        <div className="pt-2 border-t border-white/5 flex flex-col sm:flex-row sm:items-center gap-2">
+                          <span className="text-[10px] font-mono uppercase text-slate-400 font-bold flex-shrink-0">
+                            Candidate Answer:
+                          </span>
+                          {isArrayAns ? (
+                            <div className="flex flex-wrap gap-1.5">
+                              {item.answer.map((ansOpt, aIdx) => (
+                                <span
+                                  key={aIdx}
+                                  className="px-2 py-0.5 rounded bg-domenion-gold/15 border border-domenion-gold/30 text-domenion-gold font-mono text-[11px]"
+                                >
+                                  {ansOpt}
+                                </span>
+                              ))}
+                            </div>
+                          ) : (
+                            <span className="px-2.5 py-0.5 rounded bg-domenion-gold/15 border border-domenion-gold/30 text-domenion-gold font-semibold font-mono text-[11px] w-fit">
+                              {String(item.answer || "No response")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  };
+
+                  return (
+                    <>
+                      {globalAnswers.length > 0 && (
+                        <div className="space-y-2">
+                          <span className="px-2 py-0.5 rounded bg-slate-800 border border-white/10 text-[10px] font-mono uppercase font-bold text-slate-300">
+                            Global Questions
+                          </span>
+                          <div className="space-y-2">
+                            {globalAnswers.map((item, idx) =>
+                              renderAnswerItem(item, idx),
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {jobAnswers.length > 0 && (
+                        <div className="space-y-2 pt-2">
+                          <span className="px-2 py-0.5 rounded bg-slate-800 border border-white/10 text-[10px] font-mono uppercase font-bold text-domenion-gold">
+                            Job-Specific Questions
+                          </span>
+                          <div className="space-y-2">
+                            {jobAnswers.map((item, idx) =>
+                              renderAnswerItem(item, idx),
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
-            </div>
+            ) : (
+              <div className="p-4 rounded-xl bg-slate-800/20 border border-white/5 text-slate-400 text-xs italic text-center">
+                No screening responses submitted for this application.
+              </div>
+            )}
           </div>
 
-          <div className="modal-footer border-secondary justify-content-between">
-            <div>
-              {isAdmin && (
-                <button className="btn btn-outline-danger btn-sm d-flex align-items-center gap-1" onClick={() => onDelete(application._id)}>
-                  <Trash2 size={16} />
-                  Delete Application
-                </button>
-              )}
+          {/* Cover Letter / Statement */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
+              <MessageSquare size={15} className="text-domenion-gold" />
+              <span>Candidate Cover Letter / Statement</span>
             </div>
-            <button type="button" className="btn btn-secondary" onClick={onClose}>
-              Close Details
-            </button>
+            <div className="p-4 rounded-xl bg-slate-800/40 border border-white/5 text-xs text-slate-300 leading-relaxed whitespace-pre-wrap">
+              {application.message ||
+                "No additional notes or message provided by applicant."}
+            </div>
           </div>
+        </div>
+
+        {/* Modal Footer */}
+        <div className="px-5 sm:px-6 py-4 border-t border-white/10 bg-slate-900/90 flex items-center justify-between flex-shrink-0">
+          <div>
+            {isAdmin && (
+              <button
+                type="button"
+                onClick={() => onDelete(application._id)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500 hover:text-white text-rose-400 text-xs font-semibold transition-colors"
+              >
+                <Trash2 size={14} />
+                <span>Delete Application</span>
+              </button>
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-slate-200 text-xs font-semibold transition-colors"
+          >
+            Close Details
+          </button>
         </div>
       </div>
     </div>

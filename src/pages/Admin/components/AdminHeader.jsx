@@ -1,53 +1,66 @@
 import { useAuth } from "../../../context/AuthContext";
 import { LogOut, User, Menu, Shield } from "lucide-react";
 
-function AdminHeader({ toggleSidebar }) {
+export default function AdminHeader({ toggleSidebar }) {
   const { user, logout } = useAuth();
 
   return (
-    <header className="admin-header bg-white border-bottom border-light-subtle px-4 py-3 d-flex justify-content-between align-items-center">
-      <div className="d-flex align-items-center">
+    <header className="fixed top-0 inset-x-0 h-16 bg-domenion-blue border-b border-domenion-gold/20 px-4 sm:px-6 flex items-center justify-between z-40 shadow-sm">
+      {/* Brand & Mobile Hamburger */}
+      <div className="flex items-center gap-3">
         <button
-          className="btn btn-sm btn-outline-secondary d-md-none me-3 p-1"
+          type="button"
           onClick={toggleSidebar}
-          aria-label="Toggle navigation menu"
+          className="lg:hidden p-2 text-slate-300 hover:text-white rounded-lg hover:bg-white/10 transition-colors focus:outline-none"
+          aria-label="Toggle navigation"
         >
           <Menu size={20} />
         </button>
-        <div className="d-flex align-items-center">
-          <Shield size={22} className="text-danger me-2" />
-          <span className="fw-bold text-dark fs-5 letter-spacing me-2">DOMENION SECURITY</span>
-          <span className="badge bg-danger bg-opacity-10 text-white border border-danger border-opacity-25 text-uppercase px-2 py-1 fs-8">
-            ADMIN
+
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-lg bg-domenion-gold/15 border border-domenion-gold/35 flex items-center justify-center text-domenion-gold">
+            <Shield size={20} />
+          </div>
+          <div>
+            <span className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-white uppercase block leading-none">
+              Domenion Security
+            </span>
+            <span className="text-[10px] text-domenion-gold font-mono tracking-widest uppercase font-semibold">
+              Operations Center
+            </span>
+          </div>
+          <span className="hidden sm:inline-block ml-2 px-2 py-0.5 rounded-full bg-domenion-gold/15 border border-domenion-gold/40 text-domenion-gold text-[10px] font-mono font-bold tracking-wider uppercase">
+            Admin
           </span>
         </div>
       </div>
 
-      <div className="d-flex align-items-center gap-3">
-        <div className="d-flex align-items-center me-2">
-          <div
-            className="bg-light p-2 rounded-circle me-2 text-secondary d-flex justify-content-center align-items-center border"
-            style={{ width: 38, height: 38 }}
-          >
+      {/* Admin User Badge & Logout Button */}
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-domenion-gold flex-shrink-0">
             <User size={18} />
           </div>
-          <div className="d-none d-sm-block text-start">
-            <div className="fw-bold fs-7 text-dark leading-tight">{user?.name || "Domenion Security Admin"}</div>
-            <div className="text-muted fs-8 leading-tight">{user?.email || "admin@domenionsecurity.com"}</div>
+          <div className="hidden sm:block text-left">
+            <p className="text-xs font-semibold text-white truncate max-w-[140px] leading-tight">
+              {user?.name || "Security Officer"}
+            </p>
+            <p className="text-[11px] text-slate-400 font-mono truncate max-w-[140px] leading-tight">
+              {user?.email || "admin@domenionsecurity.com"}
+            </p>
           </div>
         </div>
 
         <button
-          className="btn admin-logout-btn btn-sm d-flex align-items-center gap-1 px-3 py-1"
+          type="button"
           onClick={logout}
-          title="Sign out of Admin Panel"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white text-xs font-semibold transition-colors duration-150 shadow-sm"
+          title="Sign out"
         >
-          <LogOut size={15} />
-          <span className="d-none d-sm-inline">Logout</span>
+          <LogOut size={14} />
+          <span className="hidden sm:inline">Logout</span>
         </button>
       </div>
     </header>
   );
 }
-
-export default AdminHeader;
