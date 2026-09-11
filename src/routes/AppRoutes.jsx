@@ -23,6 +23,9 @@ import AdminBlogs from "../pages/Admin/Blogs/AdminBlogs";
 import AdminFAQs from "../pages/Admin/FAQs/AdminFAQs";
 import AdminCMS from "../pages/Admin/CMS/AdminCMS";
 import AdminMedia from "../pages/Admin/Media/AdminMedia";
+import AdminAssessments from "../pages/Admin/Assessments/AdminAssessments";
+import EmployeeAssessments from "../pages/Employee/EmployeeAssessments";
+import EmployeeQuizPage from "../pages/Employee/EmployeeQuizPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivacyPolicy from "../pages/privacyPolicy-and-terms-and-conditions/PrivacyPolicy";
 import TermsAndConditions from "../pages/privacyPolicy-and-terms-and-conditions/TermsAndConditions";
@@ -43,10 +46,11 @@ function AppRoutes() {
       <Route path="/services/:slug" element={<ServiceDetails />} />
       <Route path="/industries/:slug" element={<IndustryDetails />} />
 
-      {/* commented until will not required the client required  
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/terms" element={<TermsAndConditions />} />
-      */}
+      {/* Employee Quiz Routes (Authenticated Users) */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/employee/assessments" element={<EmployeeAssessments />} />
+        <Route path="/employee/assessments/:id" element={<EmployeeQuizPage />} />
+      </Route>
 
       {/* Admin Auth Route */}
       <Route path="/admin/login" element={<AdminLogin />} />
@@ -76,6 +80,7 @@ function AppRoutes() {
         <Route path="/admin/faqs" element={<AdminFAQs />} />
         <Route path="/admin/cms" element={<AdminCMS />} />
         <Route path="/admin/media" element={<AdminMedia />} />
+        <Route path="/admin/assessments" element={<AdminAssessments />} />
       </Route>
     </Routes>
   );

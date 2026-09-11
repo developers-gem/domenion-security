@@ -18,6 +18,7 @@ const documentRoutes = require("../routers/documentRoutes");
 const employeeRoutes = require("../routers/employeeRoutes");
 const globalQuestionRoutes = require("../routers/globalQuestionRoutes");
 const auditLogRoutes = require("../routers/auditLogRoutes");
+const assessmentRoutes = require("../routers/assessmentRoutes");
 const { errorHandler } = require("../config/errorHandler");
 
 const app = express();
@@ -90,6 +91,7 @@ app.use("/api/documents", documentRoutes);
 app.use("/api/employees", employeeRoutes);
 app.use("/api/global-questions", globalQuestionRoutes);
 app.use("/api/audit-logs", auditLogRoutes);
+app.use("/api/assessments", assessmentRoutes);
 
 // 404 handler
 app.use((req, res) => {

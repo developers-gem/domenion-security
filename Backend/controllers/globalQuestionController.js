@@ -14,7 +14,16 @@ const getGlobalQuestions = async (req, res) => {
       filter.isActive = true;
     }
 
-    const questions = await GlobalQuestion.find(filter).sort({ order: 1, createdAt: 1 });
+    if (req.query.quizOnly === "true") {
+      filter.isQuizQuestion = true;
+    }
+
+    const query = GlobalQuestion.find(filter).sort({ order: 1, createdAt: 1 });
+    if (!isAdminCall) {
+      query.select("-correctAnswer");
+    }
+
+    const questions = await query;
     res.status(200).json({ success: true, count: questions.length, data: questions });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -26,7 +35,7 @@ const getGlobalQuestions = async (req, res) => {
 // @access  Private/Admin
 const createGlobalQuestion = async (req, res) => {
   try {
-    const { question, type, options, required, order, isActive, active } = req.body;
+    const { question, type, options, required, order, isActive, active, isQuizQuestion, correctAnswer, points } = req.body;
 
     if (!question || typeof question !== "string" || !question.trim()) {
       return res.status(400).json({ success: false, message: "Question text is required" });
@@ -59,6 +68,9 @@ const createGlobalQuestion = async (req, res) => {
       order: Number.isInteger(Number(order)) ? Number(order) : count,
       isActive: activeState,
       scope: "global",
+      isQuizQuestion: Boolean(isQuizQuestion),
+      correctAnswer: correctAnswer ? String(correctAnswer).trim() : "",
+      points: Number(points) > 0 ? Number(points) : 1,
     });
 
     await createAuditLog(req, "GLOBAL_QUESTION_CREATED", "GlobalQuestion", newQuestion._id, {
@@ -76,7 +88,7 @@ const createGlobalQuestion = async (req, res) => {
 // @access  Private/Admin
 const updateGlobalQuestion = async (req, res) => {
   try {
-    const { question, type, options, required, order, isActive, active } = req.body;
+    const { question, type, options, required, order, isActive, active, isQuizQuestion, correctAnswer, points } = req.body;
 
     const targetQuestion = await GlobalQuestion.findById(req.params.id);
     if (!targetQuestion) {
@@ -108,6 +120,9 @@ const updateGlobalQuestion = async (req, res) => {
     if (question !== undefined) targetQuestion.question = question.trim();
     if (required !== undefined) targetQuestion.required = Boolean(required);
     if (order !== undefined) targetQuestion.order = Number(order);
+    if (isQuizQuestion !== undefined) targetQuestion.isQuizQuestion = Boolean(isQuizQuestion);
+    if (correctAnswer !== undefined) targetQuestion.correctAnswer = String(correctAnswer).trim();
+    if (points !== undefined) targetQuestion.points = Number(points) > 0 ? Number(points) : 1;
 
     if (active !== undefined) {
       targetQuestion.isActive = Boolean(active);
