@@ -1,7 +1,19 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { ShieldCheck, Lock, Mail, Loader2, AlertCircle } from "lucide-react";
+import {
+  ShieldCheck,
+  Lock,
+  Mail,
+  Loader2,
+  AlertCircle,
+  Eye,
+  EyeOff,
+  ArrowLeft,
+  CheckCircle2,
+} from "lucide-react";
+
 import "./admin-bootstrap-scoped.css";
 import "./Admin.css";
 
@@ -10,6 +22,7 @@ function AdminLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { login, logout } = useAuth();
   const navigate = useNavigate();
@@ -21,14 +34,19 @@ function AdminLogin() {
 
     try {
       const loggedInUser = await login(email, password);
+
       if (loggedInUser.role === "admin") {
         navigate("/admin/dashboard");
       } else {
-        setError(`Access Denied: Account role (${loggedInUser.role}) is not authorized to access the Admin Panel.`);
+        setError(
+          `Access Denied: Account role (${loggedInUser.role}) is not authorized to access the Admin Panel.`
+        );
         logout();
       }
     } catch (err) {
-      setError(err.message || "Invalid credentials or unauthorized login attempt.");
+      setError(
+        err.message || "Invalid credentials or unauthorized login attempt."
+      );
     } finally {
       setLoading(false);
     }
@@ -36,80 +54,180 @@ function AdminLogin() {
 
   return (
     <div className="admin-login-page">
-      <div className="admin-login-card shadow-lg">
-        <div className="admin-login-header text-center">
-          <div className="admin-brand-icon mb-3">
-            <ShieldCheck size={48} className="text-danger" />
-          </div>
-          <h2 className="fw-bold mb-1">DOMENION SECURITY</h2>
-          <span className="badge bg-danger text-uppercase px-3 py-2 fs-7 letter-spacing mb-3">
-            ADMINISTRATIVE CONTROL PANEL
-          </span>
-          <p className="text-muted small">
-            Authorized personnel only. Please sign in with your administrative credentials.
-          </p>
-        </div>
+      {/* Background Decoration */}
+      <div className="admin-login-bg-shape admin-login-bg-shape-one" />
+      <div className="admin-login-bg-shape admin-login-bg-shape-two" />
 
-        {error && (
-          <div className="alert alert-danger d-flex align-items-center mb-4 small" role="alert">
-            <AlertCircle size={18} className="me-2 flex-shrink-0" />
-            <div>{error}</div>
-          </div>
-        )}
+      <div className="admin-login-wrapper">
+        {/* Login Card */}
+        <div className="admin-login-card">
+          {/* Top Accent */}
+          <div className="admin-login-accent" />
 
-        <form onSubmit={handleSubmit} className="admin-login-form">
-          <div className="mb-3">
-            <label className="form-label text-light small fw-bold">ADMIN EMAIL ADDRESS</label>
-            <div className="input-group">
-              <span className="input-group-text bg-dark border-secondary text-secondary">
-                <Mail size={18} />
-              </span>
-              <input
-                type="email"
-                className="form-control bg-dark text-white border-secondary"
-                placeholder="admin@domenionsecurity.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={loading}
-              />
+          {/* Header */}
+          <div className="admin-login-header text-center">
+            <div className="admin-brand-icon">
+              <ShieldCheck size={38} strokeWidth={1.8} />
+            </div>
+
+            <div className="admin-brand-label">
+              DOMENION SECURITY
+            </div>
+
+            <h1>Admin Portal</h1>
+
+            <p>
+              Secure access to the Domenion Security
+              administrative control panel.
+            </p>
+
+            <div className="admin-security-status">
+              <span className="status-dot" />
+              <CheckCircle2 size={14} />
+              Secure Administrative Access
             </div>
           </div>
 
-          <div className="mb-4">
-            <label className="form-label text-light small fw-bold">PASSWORD</label>
-            <div className="input-group">
-              <span className="input-group-text bg-dark border-secondary text-secondary">
-                <Lock size={18} />
+          {/* Error */}
+          {error && (
+            <div
+              className="admin-login-error"
+              role="alert"
+            >
+              <div className="admin-login-error-icon">
+                <AlertCircle size={19} />
+              </div>
+
+              <div>
+                <strong>Authentication Failed</strong>
+                <span>{error}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="admin-login-form">
+            {/* Email */}
+            <div className="admin-field">
+              <label htmlFor="admin-email">
+                ADMIN EMAIL ADDRESS
+              </label>
+
+              <div className="admin-input-wrapper">
+                <Mail
+                  className="admin-input-icon"
+                  size={19}
+                />
+
+                <input
+                  id="admin-email"
+                  type="email"
+                  placeholder="admin@domenionsecurity.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={loading}
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="admin-field">
+              <div className="admin-password-label">
+                <label htmlFor="admin-password">
+                  PASSWORD
+                </label>
+              </div>
+
+              <div className="admin-input-wrapper">
+                <Lock
+                  className="admin-input-icon"
+                  size={19}
+                />
+
+                <input
+                  id="admin-password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  disabled={loading}
+                  autoComplete="current-password"
+                />
+
+                <button
+                  type="button"
+                  className="admin-password-toggle"
+                  onClick={() =>
+                    setShowPassword((prev) => !prev)
+                  }
+                  disabled={loading}
+                  aria-label={
+                    showPassword
+                      ? "Hide password"
+                      : "Show password"
+                  }
+                >
+                  {showPassword ? (
+                    <EyeOff size={18} />
+                  ) : (
+                    <Eye size={18} />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="admin-login-submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2
+                    size={19}
+                    className="admin-spin"
+                  />
+                  <span>Authenticating...</span>
+                </>
+              ) : (
+                <>
+                  <Lock size={18} />
+                  <span>Sign In to Admin Panel</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Security Note */}
+          <div className="admin-login-security-note">
+            <ShieldCheck size={17} />
+
+            <div>
+              <strong>Protected Area</strong>
+              <span>
+                This portal is restricted to authorized
+                Domenion Security personnel.
               </span>
-              <input
-                type="password"
-                className="form-control bg-dark text-white border-secondary"
-                placeholder="••••••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                disabled={loading}
-              />
             </div>
           </div>
 
-          <button type="submit" className="btn btn-danger w-100 py-2 fw-bold" disabled={loading}>
-            {loading ? (
-              <>
-                <Loader2 size={18} className="me-2 animate-spin" />
-                Authenticating...
-              </>
-            ) : (
-              "Sign In to Admin Panel"
-            )}
-          </button>
-        </form>
+          {/* Footer */}
+          <div className="admin-login-footer">
+            <a href="/">
+              <ArrowLeft size={16} />
+              <span>Return to Domenion Security Website</span>
+            </a>
 
-        <div className="admin-login-footer text-center mt-4 pt-3 border-top border-secondary">
-          <a href="/" className="text-secondary small text-decoration-none hover-white">
-            ← Return to Domenion Security Website
-          </a>
+            <div className="admin-login-footer-divider" />
+
+            <small>
+              © {new Date().getFullYear()} Domenion Security
+            </small>
+          </div>
         </div>
       </div>
     </div>
@@ -117,3 +235,5 @@ function AdminLogin() {
 }
 
 export default AdminLogin;
+
+
