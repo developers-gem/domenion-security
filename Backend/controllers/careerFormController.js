@@ -1,3 +1,405 @@
+// const CareerForm = require("../models/CareerForm");
+// const Career = require("../models/Career");
+// const GlobalQuestion = require("../models/GlobalQuestion");
+// const mongoose = require("mongoose");
+// const path = require("path");
+// const fs = require("fs");
+// const { createAuditLog } = require("../utils/auditLogger");
+
+// const VALID_STATUSES = [
+//   "submitted",
+//   "reviewing",
+//   "shortlisted",
+//   "interview",
+//   "rejected",
+//   "hired",
+// ];
+
+// // @desc    Create a new career form submission (Public, optional resume)
+// // @route   POST /api/career-forms/careerform
+// // @access  Public
+// const createCareerForm = async (req, res) => {
+//   try {
+//     const { fullName, email, phone, message, careerId, screeningAnswers } = req.body;
+//     if (!fullName || !email || !phone) {
+//       if (req.file) {
+//         fs.unlink(req.file.path, () => {});
+//       }
+//       return res.status(400).json({ success: false, message: "Please fill all required fields (Full Name, Email, Phone Number)" });
+//     }
+
+//     // Parse screeningAnswers if string (from FormData) or object/array
+//     let parsedAnswers = [];
+//     if (screeningAnswers) {
+//       if (typeof screeningAnswers === "string") {
+//         try {
+//           parsedAnswers = JSON.parse(screeningAnswers);
+//         } catch {
+//           parsedAnswers = [];
+//         }
+//       } else if (Array.isArray(screeningAnswers)) {
+//         parsedAnswers = screeningAnswers;
+//       }
+//     }
+
+//     let validatedSnapshotAnswers = [];
+
+//     // Backend Screening Question Validation: Global questions + Job-specific questions
+//     const activeGlobalDocs = await GlobalQuestion.find({ isActive: true }).sort({ order: 1, createdAt: 1 });
+//     const activeGlobalQuestions = activeGlobalDocs.map((q) => ({
+//       _id: q._id,
+//       question: q.question,
+//       type: q.type || "single_choice",
+//       options: q.options || [],
+//       required: q.required,
+//       scope: "global",
+//     }));
+
+//     let activeJobQuestions = [];
+//     if (careerId) {
+//       if (!mongoose.Types.ObjectId.isValid(careerId)) {
+//         if (req.file) fs.unlink(req.file.path, () => {});
+//         return res.status(400).json({ success: false, message: "Invalid career ID format" });
+//       }
+
+//       const targetCareer = await Career.findById(careerId);
+//       if (!targetCareer) {
+//         if (req.file) fs.unlink(req.file.path, () => {});
+//         return res.status(404).json({ success: false, message: "Selected position does not exist or may have been removed" });
+//       }
+
+//       activeJobQuestions = (targetCareer.screeningQuestions || [])
+//         .filter((q) => q.isActive === true)
+//         .map((q) => ({
+//           _id: q._id,
+//           question: q.question,
+//           type: q.type || "single_choice",
+//           options: q.options || [],
+//           required: q.required,
+//           scope: "job",
+//         }));
+//     }
+
+//     const allActiveQuestions = [...activeGlobalQuestions, ...activeJobQuestions];
+
+//     // Create lookup map of applicant's submitted answers by questionId
+//     const submittedMap = new Map();
+//     if (Array.isArray(parsedAnswers)) {
+//       for (const item of parsedAnswers) {
+//         if (item && item.questionId) {
+//           submittedMap.set(String(item.questionId), item.answer);
+//         }
+//       }
+//     }
+
+//     // Check each active question (global + job-specific)
+//     for (const question of allActiveQuestions) {
+//       const questionIdStr = String(question._id);
+//       const submittedRawAnswer = submittedMap.get(questionIdStr);
+//       const qType = question.type || "single_choice";
+
+//       if (qType === "multiple_choice") {
+//         let selectedArray = [];
+//         if (Array.isArray(submittedRawAnswer)) {
+//           selectedArray = submittedRawAnswer.map((s) => String(s).trim()).filter(Boolean);
+//         } else if (typeof submittedRawAnswer === "string" && submittedRawAnswer.trim()) {
+//           selectedArray = [submittedRawAnswer.trim()];
+//         }
+
+//         if (question.required && selectedArray.length === 0) {
+//           if (req.file) fs.unlink(req.file.path, () => {});
+//           return res.status(400).json({
+//             success: false,
+//             message: `Screening question '${question.question}' is required. Please select at least one answer.`,
+//           });
+//         }
+
+//         if (selectedArray.length > 0) {
+//           for (const opt of selectedArray) {
+//             if (!question.options.includes(opt)) {
+//               if (req.file) fs.unlink(req.file.path, () => {});
+//               return res.status(400).json({
+//                 success: false,
+//                 message: `Invalid option '${opt}' selected for screening question '${question.question}'.`,
+//               });
+//             }
+//           }
+
+//           validatedSnapshotAnswers.push({
+//             questionId: question._id,
+//             question: question.question,
+//             type: qType,
+//             scope: question.scope,
+//             answer: selectedArray,
+//           });
+//         }
+//       } else if (qType === "text") {
+//         const textAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+
+//         if (question.required && !textAnswer) {
+//           if (req.file) fs.unlink(req.file.path, () => {});
+//           return res.status(400).json({
+//             success: false,
+//             message: `Screening question '${question.question}' is required. This field is required.`,
+//           });
+//         }
+
+//         if (textAnswer) {
+//           validatedSnapshotAnswers.push({
+//             questionId: question._id,
+//             question: question.question,
+//             type: qType,
+//             scope: question.scope,
+//             answer: textAnswer,
+//           });
+//         }
+//       } else {
+//         const singleAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+
+//         if (question.required && !singleAnswer) {
+//           if (req.file) fs.unlink(req.file.path, () => {});
+//           return res.status(400).json({
+//             success: false,
+//             message: `Screening question '${question.question}' is required. Please select an answer.`,
+//           });
+//         }
+
+//         if (singleAnswer) {
+//           const isValidOption = question.options.includes(singleAnswer);
+//           if (!isValidOption) {
+//             if (req.file) fs.unlink(req.file.path, () => {});
+//             return res.status(400).json({
+//               success: false,
+//               message: `Invalid answer selected for '${question.question}'.`,
+//             });
+//           }
+
+//           validatedSnapshotAnswers.push({
+//             questionId: question._id,
+//             question: question.question,
+//             type: qType,
+//             scope: question.scope,
+//             answer: singleAnswer,
+//           });
+//         }
+//       }
+//     }
+
+//     // Reject answers referencing invalid question IDs not in allActiveQuestions
+//     if (Array.isArray(parsedAnswers)) {
+//       const activeQuestionIds = new Set(allActiveQuestions.map((q) => String(q._id)));
+//       for (const item of parsedAnswers) {
+//         if (item && item.questionId && !activeQuestionIds.has(String(item.questionId))) {
+//           if (req.file) fs.unlink(req.file.path, () => {});
+//           return res.status(400).json({
+//             success: false,
+//             message: "Submitted answer references a screening question that is invalid for this application.",
+//           });
+//         }
+//       }
+//     }
+
+//     let resumeUrl = null;
+//     if (req.file) {
+//       resumeUrl = `uploads/resumes/${req.file.filename}`;
+//     }
+
+//     const CareerFormSubmission = await CareerForm.create({
+//       fullName,
+//       email,
+//       phone,
+//       message,
+//       careerId: careerId || undefined,
+//       resumeUrl,
+//       screeningAnswers: validatedSnapshotAnswers,
+//       status: "submitted",
+//     });
+
+//     if (resumeUrl) {
+//       await createAuditLog(req, "APPLICATION_RESUME_UPLOADED", "CareerForm", CareerFormSubmission._id);
+//     }
+
+//     res.status(201).json({ success: true, data: CareerFormSubmission });
+//   } catch (error) {
+//     if (req.file) {
+//       fs.unlink(req.file.path, () => {});
+//     }
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// // @desc    Get all career form submissions (Admin / HR / Recruiter)
+// // @route   GET /api/career-forms
+// // @access  Private (Admin / HR / Recruiter)
+// const getAllCareerForms = async (req, res) => {
+//   try {
+//     const { status, careerId } = req.query;
+//     const filter = {};
+
+//     if (status) {
+//       if (!VALID_STATUSES.includes(status)) {
+//         return res.status(400).json({ success: false, message: `Invalid status filter '${status}'` });
+//       }
+//       filter.status = status;
+//     }
+
+//     if (careerId) {
+//       if (!mongoose.Types.ObjectId.isValid(careerId)) {
+//         return res.status(400).json({ success: false, message: "Invalid career ID format" });
+//       }
+//       filter.careerId = careerId;
+//     }
+
+//     const careerForms = await CareerForm.find(filter)
+//       .populate("careerId", "title location department")
+//       .sort({ createdAt: -1 });
+
+//     res.status(200).json({ success: true, count: careerForms.length, data: careerForms });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// // @desc    Get single career form submission by ID (Admin / HR / Recruiter)
+// // @route   GET /api/career-forms/:id
+// // @access  Private (Admin / HR / Recruiter)
+// const getCareerFormById = async (req, res) => {
+//   try {
+//     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//       return res.status(400).json({ success: false, message: "Invalid application ID format" });
+//     }
+
+//     const careerForm = await CareerForm.findById(req.params.id).populate("careerId", "title location department");
+//     if (!careerForm) {
+//       return res.status(404).json({ success: false, message: "Career form submission not found" });
+//     }
+
+//     res.status(200).json({ success: true, data: careerForm });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// // @desc    Securely download/view application resume file
+// // @route   GET /api/career-forms/:id/resume
+// // @access  Private (Admin / HR / Recruiter)
+// const getCareerFormResume = async (req, res) => {
+//   try {
+//     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//       return res.status(400).json({ success: false, message: "Invalid application ID format" });
+//     }
+
+//     const careerForm = await CareerForm.findById(req.params.id);
+//     if (!careerForm) {
+//       return res.status(404).json({ success: false, message: "Career form submission not found" });
+//     }
+
+//     if (!careerForm.resumeUrl) {
+//       return res.status(404).json({ success: false, message: "No resume attached to this application" });
+//     }
+
+//     const uploadsBaseDir = path.resolve(process.cwd(), "uploads", "resumes");
+//     const fullPath = path.resolve(process.cwd(), careerForm.resumeUrl);
+
+//     // Path traversal safety check
+//     if (!fullPath.startsWith(uploadsBaseDir)) {
+//       return res.status(403).json({ success: false, message: "Access denied to requested file path" });
+//     }
+
+//     if (!fs.existsSync(fullPath)) {
+//       return res.status(404).json({ success: false, message: "Resume file not found on server storage" });
+//     }
+
+//     await createAuditLog(req, "APPLICATION_RESUME_ACCESSED", "CareerForm", careerForm._id);
+
+//     const downloadFileName = `${careerForm.fullName.replace(/[^a-zA-Z0-9]/g, "_")}_Resume${path.extname(fullPath)}`;
+//     res.download(fullPath, downloadFileName);
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// // @desc    Update application status (Admin / HR / Recruiter)
+// // @route   PUT /api/career-forms/:id/status
+// // @access  Private (Admin / HR / Recruiter)
+// const updateCareerFormStatus = async (req, res) => {
+//   try {
+//     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//       return res.status(400).json({ success: false, message: "Invalid application ID format" });
+//     }
+
+//     const { status } = req.body;
+//     if (!status || !VALID_STATUSES.includes(status)) {
+//       return res.status(400).json({
+//         success: false,
+//         message: `Invalid status. Status must be one of: ${VALID_STATUSES.join(", ")}`,
+//       });
+//     }
+
+//     const careerForm = await CareerForm.findById(req.params.id);
+//     if (!careerForm) {
+//       return res.status(404).json({ success: false, message: "Career form submission not found" });
+//     }
+
+//     const oldStatus = careerForm.status || "submitted";
+//     careerForm.status = status;
+//     const updatedForm = await careerForm.save();
+
+//     await createAuditLog(req, "APPLICATION_STATUS_CHANGED", "CareerForm", careerForm._id, {
+//       oldStatus,
+//       newStatus: status,
+//     });
+
+//     res.status(200).json({ success: true, data: updatedForm });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// // @desc    Delete a career form submission (Admin Only)
+// // @route   DELETE /api/career-forms/deletecareerform/:id
+// // @access  Private (Admin Only)
+// const deleteCareerForm = async (req, res) => {
+//   try {
+//     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//       return res.status(400).json({ success: false, message: "Invalid application ID format" });
+//     }
+
+//     const careerForm = await CareerForm.findById(req.params.id);
+//     if (!careerForm) {
+//       return res.status(404).json({ success: false, message: "Career form submission not found" });
+//     }
+
+//     // Clean up resume file if it exists
+//     if (careerForm.resumeUrl) {
+//       const fullPath = path.resolve(process.cwd(), careerForm.resumeUrl);
+//       if (fs.existsSync(fullPath)) {
+//         try {
+//           await fs.promises.unlink(fullPath);
+//         } catch {
+//           // Continue deletion even if file removal fails
+//         }
+//       }
+//     }
+
+//     await careerForm.deleteOne();
+//     await createAuditLog(req, "APPLICATION_DELETED", "CareerForm", req.params.id);
+
+//     return res.status(200).json({ success: true, message: "Career form submission deleted successfully" });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
+// module.exports = {
+//   createCareerForm,
+//   getAllCareerForms,
+//   getCareerFormById,
+//   getCareerFormResume,
+//   updateCareerFormStatus,
+//   deleteCareerForm,
+// };
+
 const CareerForm = require("../models/CareerForm");
 const Career = require("../models/Career");
 const GlobalQuestion = require("../models/GlobalQuestion");
@@ -20,12 +422,40 @@ const VALID_STATUSES = [
 // @access  Public
 const createCareerForm = async (req, res) => {
   try {
-    const { fullName, email, phone, message, careerId, screeningAnswers } = req.body;
+    const {
+      fullName,
+      email,
+      phone,
+      message,
+      careerId,
+      screeningAnswers,
+      employmentRecord, // 1. EXTRACT EMPLOYMENT RECORD
+    } = req.body;
+
     if (!fullName || !email || !phone) {
       if (req.file) {
         fs.unlink(req.file.path, () => {});
       }
-      return res.status(400).json({ success: false, message: "Please fill all required fields (Full Name, Email, Phone Number)" });
+      return res.status(400).json({
+        success: false,
+        message:
+          "Please fill all required fields (Full Name, Email, Phone Number)",
+      });
+    }
+
+    // 2. PARSE EMPLOYMENT RECORD (From FormData JSON string)
+    let parsedEmploymentRecord = null;
+    if (employmentRecord) {
+      if (typeof employmentRecord === "string") {
+        try {
+          parsedEmploymentRecord = JSON.parse(employmentRecord);
+        } catch (err) {
+          console.error("Failed to parse employmentRecord JSON:", err);
+          parsedEmploymentRecord = null;
+        }
+      } else if (typeof employmentRecord === "object") {
+        parsedEmploymentRecord = employmentRecord;
+      }
     }
 
     // Parse screeningAnswers if string (from FormData) or object/array
@@ -45,7 +475,9 @@ const createCareerForm = async (req, res) => {
     let validatedSnapshotAnswers = [];
 
     // Backend Screening Question Validation: Global questions + Job-specific questions
-    const activeGlobalDocs = await GlobalQuestion.find({ isActive: true }).sort({ order: 1, createdAt: 1 });
+    const activeGlobalDocs = await GlobalQuestion.find({ isActive: true }).sort(
+      { order: 1, createdAt: 1 }
+    );
     const activeGlobalQuestions = activeGlobalDocs.map((q) => ({
       _id: q._id,
       question: q.question,
@@ -56,16 +488,21 @@ const createCareerForm = async (req, res) => {
     }));
 
     let activeJobQuestions = [];
-    if (careerId) {
+    if (careerId && careerId !== "general") {
       if (!mongoose.Types.ObjectId.isValid(careerId)) {
         if (req.file) fs.unlink(req.file.path, () => {});
-        return res.status(400).json({ success: false, message: "Invalid career ID format" });
+        return res
+          .status(400)
+          .json({ success: false, message: "Invalid career ID format" });
       }
 
       const targetCareer = await Career.findById(careerId);
       if (!targetCareer) {
         if (req.file) fs.unlink(req.file.path, () => {});
-        return res.status(404).json({ success: false, message: "Selected position does not exist or may have been removed" });
+        return res.status(404).json({
+          success: false,
+          message: "Selected position does not exist or may have been removed",
+        });
       }
 
       activeJobQuestions = (targetCareer.screeningQuestions || [])
@@ -80,7 +517,10 @@ const createCareerForm = async (req, res) => {
         }));
     }
 
-    const allActiveQuestions = [...activeGlobalQuestions, ...activeJobQuestions];
+    const allActiveQuestions = [
+      ...activeGlobalQuestions,
+      ...activeJobQuestions,
+    ];
 
     // Create lookup map of applicant's submitted answers by questionId
     const submittedMap = new Map();
@@ -101,8 +541,13 @@ const createCareerForm = async (req, res) => {
       if (qType === "multiple_choice") {
         let selectedArray = [];
         if (Array.isArray(submittedRawAnswer)) {
-          selectedArray = submittedRawAnswer.map((s) => String(s).trim()).filter(Boolean);
-        } else if (typeof submittedRawAnswer === "string" && submittedRawAnswer.trim()) {
+          selectedArray = submittedRawAnswer
+            .map((s) => String(s).trim())
+            .filter(Boolean);
+        } else if (
+          typeof submittedRawAnswer === "string" &&
+          submittedRawAnswer.trim()
+        ) {
           selectedArray = [submittedRawAnswer.trim()];
         }
 
@@ -134,7 +579,12 @@ const createCareerForm = async (req, res) => {
           });
         }
       } else if (qType === "text") {
-        const textAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+        const textAnswer =
+          typeof submittedRawAnswer === "string"
+            ? submittedRawAnswer.trim()
+            : submittedRawAnswer
+            ? String(submittedRawAnswer).trim()
+            : "";
 
         if (question.required && !textAnswer) {
           if (req.file) fs.unlink(req.file.path, () => {});
@@ -154,7 +604,12 @@ const createCareerForm = async (req, res) => {
           });
         }
       } else {
-        const singleAnswer = typeof submittedRawAnswer === "string" ? submittedRawAnswer.trim() : (submittedRawAnswer ? String(submittedRawAnswer).trim() : "");
+        const singleAnswer =
+          typeof submittedRawAnswer === "string"
+            ? submittedRawAnswer.trim()
+            : submittedRawAnswer
+            ? String(submittedRawAnswer).trim()
+            : "";
 
         if (question.required && !singleAnswer) {
           if (req.file) fs.unlink(req.file.path, () => {});
@@ -187,13 +642,20 @@ const createCareerForm = async (req, res) => {
 
     // Reject answers referencing invalid question IDs not in allActiveQuestions
     if (Array.isArray(parsedAnswers)) {
-      const activeQuestionIds = new Set(allActiveQuestions.map((q) => String(q._id)));
+      const activeQuestionIds = new Set(
+        allActiveQuestions.map((q) => String(q._id))
+      );
       for (const item of parsedAnswers) {
-        if (item && item.questionId && !activeQuestionIds.has(String(item.questionId))) {
+        if (
+          item &&
+          item.questionId &&
+          !activeQuestionIds.has(String(item.questionId))
+        ) {
           if (req.file) fs.unlink(req.file.path, () => {});
           return res.status(400).json({
             success: false,
-            message: "Submitted answer references a screening question that is invalid for this application.",
+            message:
+              "Submitted answer references a screening question that is invalid for this application.",
           });
         }
       }
@@ -204,19 +666,26 @@ const createCareerForm = async (req, res) => {
       resumeUrl = `uploads/resumes/${req.file.filename}`;
     }
 
+    // 3. PERSIST BOTH SCREENING ANSWERS AND EMPLOYMENT RECORD
     const CareerFormSubmission = await CareerForm.create({
       fullName,
       email,
       phone,
       message,
-      careerId: careerId || undefined,
+      careerId: careerId && careerId !== "general" ? careerId : undefined,
       resumeUrl,
       screeningAnswers: validatedSnapshotAnswers,
+      employmentRecord: parsedEmploymentRecord, // SAVED PROPERLY
       status: "submitted",
     });
 
     if (resumeUrl) {
-      await createAuditLog(req, "APPLICATION_RESUME_UPLOADED", "CareerForm", CareerFormSubmission._id);
+      await createAuditLog(
+        req,
+        "APPLICATION_RESUME_UPLOADED",
+        "CareerForm",
+        CareerFormSubmission._id
+      );
     }
 
     res.status(201).json({ success: true, data: CareerFormSubmission });
@@ -238,14 +707,18 @@ const getAllCareerForms = async (req, res) => {
 
     if (status) {
       if (!VALID_STATUSES.includes(status)) {
-        return res.status(400).json({ success: false, message: `Invalid status filter '${status}'` });
+        return res
+          .status(400)
+          .json({ success: false, message: `Invalid status filter '${status}'` });
       }
       filter.status = status;
     }
 
     if (careerId) {
       if (!mongoose.Types.ObjectId.isValid(careerId)) {
-        return res.status(400).json({ success: false, message: "Invalid career ID format" });
+        return res
+          .status(400)
+          .json({ success: false, message: "Invalid career ID format" });
       }
       filter.careerId = careerId;
     }
@@ -254,7 +727,9 @@ const getAllCareerForms = async (req, res) => {
       .populate("careerId", "title location department")
       .sort({ createdAt: -1 });
 
-    res.status(200).json({ success: true, count: careerForms.length, data: careerForms });
+    res
+      .status(200)
+      .json({ success: true, count: careerForms.length, data: careerForms });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -266,12 +741,19 @@ const getAllCareerForms = async (req, res) => {
 const getCareerFormById = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ success: false, message: "Invalid application ID format" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid application ID format" });
     }
 
-    const careerForm = await CareerForm.findById(req.params.id).populate("careerId", "title location department");
+    const careerForm = await CareerForm.findById(req.params.id).populate(
+      "careerId",
+      "title location department"
+    );
     if (!careerForm) {
-      return res.status(404).json({ success: false, message: "Career form submission not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Career form submission not found" });
     }
 
     res.status(200).json({ success: true, data: careerForm });
@@ -286,16 +768,22 @@ const getCareerFormById = async (req, res) => {
 const getCareerFormResume = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ success: false, message: "Invalid application ID format" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid application ID format" });
     }
 
     const careerForm = await CareerForm.findById(req.params.id);
     if (!careerForm) {
-      return res.status(404).json({ success: false, message: "Career form submission not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Career form submission not found" });
     }
 
     if (!careerForm.resumeUrl) {
-      return res.status(404).json({ success: false, message: "No resume attached to this application" });
+      return res
+        .status(404)
+        .json({ success: false, message: "No resume attached to this application" });
     }
 
     const uploadsBaseDir = path.resolve(process.cwd(), "uploads", "resumes");
@@ -303,16 +791,28 @@ const getCareerFormResume = async (req, res) => {
 
     // Path traversal safety check
     if (!fullPath.startsWith(uploadsBaseDir)) {
-      return res.status(403).json({ success: false, message: "Access denied to requested file path" });
+      return res
+        .status(403)
+        .json({ success: false, message: "Access denied to requested file path" });
     }
 
     if (!fs.existsSync(fullPath)) {
-      return res.status(404).json({ success: false, message: "Resume file not found on server storage" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Resume file not found on server storage" });
     }
 
-    await createAuditLog(req, "APPLICATION_RESUME_ACCESSED", "CareerForm", careerForm._id);
+    await createAuditLog(
+      req,
+      "APPLICATION_RESUME_ACCESSED",
+      "CareerForm",
+      careerForm._id
+    );
 
-    const downloadFileName = `${careerForm.fullName.replace(/[^a-zA-Z0-9]/g, "_")}_Resume${path.extname(fullPath)}`;
+    const downloadFileName = `${careerForm.fullName.replace(
+      /[^a-zA-Z0-9]/g,
+      "_"
+    )}_Resume${path.extname(fullPath)}`;
     res.download(fullPath, downloadFileName);
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -325,30 +825,42 @@ const getCareerFormResume = async (req, res) => {
 const updateCareerFormStatus = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ success: false, message: "Invalid application ID format" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid application ID format" });
     }
 
     const { status } = req.body;
     if (!status || !VALID_STATUSES.includes(status)) {
       return res.status(400).json({
         success: false,
-        message: `Invalid status. Status must be one of: ${VALID_STATUSES.join(", ")}`,
+        message: `Invalid status. Status must be one of: ${VALID_STATUSES.join(
+          ", "
+        )}`,
       });
     }
 
     const careerForm = await CareerForm.findById(req.params.id);
     if (!careerForm) {
-      return res.status(404).json({ success: false, message: "Career form submission not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Career form submission not found" });
     }
 
     const oldStatus = careerForm.status || "submitted";
     careerForm.status = status;
     const updatedForm = await careerForm.save();
 
-    await createAuditLog(req, "APPLICATION_STATUS_CHANGED", "CareerForm", careerForm._id, {
-      oldStatus,
-      newStatus: status,
-    });
+    await createAuditLog(
+      req,
+      "APPLICATION_STATUS_CHANGED",
+      "CareerForm",
+      careerForm._id,
+      {
+        oldStatus,
+        newStatus: status,
+      }
+    );
 
     res.status(200).json({ success: true, data: updatedForm });
   } catch (error) {
@@ -362,12 +874,16 @@ const updateCareerFormStatus = async (req, res) => {
 const deleteCareerForm = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ success: false, message: "Invalid application ID format" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid application ID format" });
     }
 
     const careerForm = await CareerForm.findById(req.params.id);
     if (!careerForm) {
-      return res.status(404).json({ success: false, message: "Career form submission not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Career form submission not found" });
     }
 
     // Clean up resume file if it exists
@@ -385,7 +901,10 @@ const deleteCareerForm = async (req, res) => {
     await careerForm.deleteOne();
     await createAuditLog(req, "APPLICATION_DELETED", "CareerForm", req.params.id);
 
-    return res.status(200).json({ success: true, message: "Career form submission deleted successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "Career form submission deleted successfully",
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

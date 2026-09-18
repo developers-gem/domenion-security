@@ -39,9 +39,10 @@ function AppRoutes() {
       <Route path="/about" element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/industries" element={<Industries />} />
+      {/* <Route path="/quiz" element={<CareerApply />} /> */}
+      <Route path="/quiz/:id?" element={<CareerApply />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/careers/:id" element={<CareerDetails />} />
-      {/* <Route path="/careers/:id/apply" element={<CareerApply />} /> */}
       <Route path="/careers/:id/apply" element={<CareerEmploymentForm />} />
 
       <Route path="/contact" element={<Contact />} />
