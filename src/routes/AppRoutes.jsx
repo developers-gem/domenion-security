@@ -29,6 +29,7 @@ import EmployeeQuizPage from "../pages/Employee/EmployeeQuizPage";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivacyPolicy from "../pages/privacyPolicy-and-terms-and-conditions/PrivacyPolicy";
 import TermsAndConditions from "../pages/privacyPolicy-and-terms-and-conditions/TermsAndConditions";
+import CareerEmploymentForm from "../pages/Careers/CareerEmploymentForm";
 
 function AppRoutes() {
   return (
@@ -40,7 +41,9 @@ function AppRoutes() {
       <Route path="/industries" element={<Industries />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/careers/:id" element={<CareerDetails />} />
-      <Route path="/careers/:id/apply" element={<CareerApply />} />
+      {/* <Route path="/careers/:id/apply" element={<CareerApply />} /> */}
+      <Route path="/careers/:id/apply" element={<CareerEmploymentForm />} />
+
       <Route path="/contact" element={<Contact />} />
       <Route path="/service-areas" element={<ServiceAreas />} />
       <Route path="/services/:slug" element={<ServiceDetails />} />
@@ -49,7 +52,10 @@ function AppRoutes() {
       {/* Employee Quiz Routes (Authenticated Users) */}
       <Route element={<ProtectedRoute />}>
         <Route path="/employee/assessments" element={<EmployeeAssessments />} />
-        <Route path="/employee/assessments/:id" element={<EmployeeQuizPage />} />
+        <Route
+          path="/employee/assessments/:id"
+          element={<EmployeeQuizPage />}
+        />
       </Route>
 
       {/* Admin Auth Route */}
