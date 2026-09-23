@@ -1526,10 +1526,10 @@ export default function CareerEmploymentForm() {
                   </p>
                   <p>
                     I understand to operate a personally owned vehicle or fleet
-                    motor vehicle for the furtherance of State business purposes
-                    I must have an acceptable driving record and complete
-                    applicable driver training as required by Arizona
-                    Administrative Code R2-10-207(11).
+                    motor vehicle for the furtherance of Domenion Security
+                    Business Purposes I must have an acceptable driving record
+                    and complete applicable driver training as required by
+                    Arizona Administrative Code R2-10-207(11).
                   </p>
                   <p>
                     I understand the Driver Protection Privacy Act of 1994,
@@ -1794,16 +1794,16 @@ export default function CareerEmploymentForm() {
                   resume) herein is true and complete to the best of my
                   knowledge. I agree and understand that omissions,
                   misstatements and falsifications may cause forfeiture on my
-                  part of all eligibility to any employment with the State of
-                  Arizona and may be cause for rejection of this application,
-                  removal of my name from eligibility lists, or dismissal from
-                  State employment. In addition, I give the State of Arizona the
-                  right to investigate and verify any information obtained
-                  through the application process. Permission is granted and I
-                  release from any and all liability any employer, agency,
-                  individual or educational institution assisting the State of
-                  Arizona in providing relevant, job-related information that
-                  will assist in the process.
+                  part of all eligibility to any employment with the Domenion
+                  SecurityLLC and may be cause for rejection of this
+                  application, removal of my name from eligibility lists, or
+                  dismissal from State employment. In addition, I give the State
+                  of Arizona the right to investigate and verify any information
+                  obtained through the application process. Permission is
+                  granted and I release from any and all liability any employer,
+                  agency, individual or educational institution assisting the
+                  State of Arizona in providing relevant, job-related
+                  information that will assist in the process.
                 </p>
                 <p className="font-bold text-[var(--color-primary)]">
                   My signature below certifies that I have read and understand
