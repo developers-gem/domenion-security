@@ -14,18 +14,36 @@ export default function ServiceDetailHero({ service }) {
   const location = useLocation();
 
   // Match the exact route: either CST slug or the /industries/transportation path
-  const isCST = service?.slug === "construction-surveillance-technicians";
+  
+  const isCST =
+    service?.slug === "construction-surveillance-technicians";
+
   const isTransportationIndustry =
-    location.pathname === "/industries/transportation" ||
+    location.pathname.startsWith("/industries/transportation") ||
     service?.slug === "transportation";
 
-  const isVideoRoute = isCST || isTransportationIndustry;
+  const isCyberSecurity =
+    service?.slug === "cyber-security";
+
+  const isDataCentersIndustry =
+    location.pathname.startsWith("/industries/data-centers") ||
+    service?.slug === "data-centers";
+
+  const isVideoRoute =
+    isCST ||
+    isTransportationIndustry ||
+    isCyberSecurity ||
+    isDataCentersIndustry;
 
   const videoSource = isCST
     ? service?.heroVideo || "/videos/security(CST).mp4"
     : isTransportationIndustry
       ? service?.heroVideo || "/videos/Transportation.mp4"
-      : null;
+      : isCyberSecurity
+        ? service?.heroVideo || "/videos/cyber-security.mp4"
+        : isDataCentersIndustry
+          ? service?.heroVideo || "/videos/data-center-security.mp4"
+          : null;
 
   const bgImg = service?.heroImage;
   const cardImg = service?.heroImage;

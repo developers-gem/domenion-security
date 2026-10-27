@@ -1747,7 +1747,11 @@ export const services = [
     description:
       "Our cyber security services help organizations identify vulnerabilities, prevent cyber attacks, protect sensitive information and maintain regulatory compliance through proactive monitoring, threat detection and incident response.",
 
-    heroImage: "/images/services/cyber-security/hero.jpg",
+        heroVideo: "/videos/cyber-security.mp4",
+
+    heroImage: "/images/services/transportation-security/hero.jpg",
+
+
 
     overviewImage: "/images/services/cyber-security/overview.jpg",
 

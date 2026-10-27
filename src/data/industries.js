@@ -500,6 +500,9 @@ export const industries = [
     shortDescription:
       "Layered physical security protecting critical data centers, infrastructure, technology assets and sensitive facilities.",
 
+    heroVideo: "/videos/data-center-security.mp4",
+
+
     heroImage:
       "/images/industries/data-centers/hero.jpg",
 
