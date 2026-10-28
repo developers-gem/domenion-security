@@ -13,28 +13,40 @@ export default function IndustryDetailHero({ industry }) {
     industry.overviewImage ||
     "/images/company-security.jpg";
 
-  // Check if current route is /industries/transportation
+  // Check if current route has a dedicated background video
   const isTransportation =
     location.pathname.replace(/\/$/, "") === "/industries/transportation" ||
     industry?.slug === "transportation";
 
-  const videoSource = isTransportation
-    ? industry?.heroVideo || "/videos/Transportation.mp4"
-    : industry?.heroVideo;
+  const isDataCenters =
+    location.pathname.replace(/\/$/, "") === "/industries/data-centers" ||
+    industry?.slug === "data-centers";
+
+  const videoSource =
+    industry?.heroVideo ||
+    (isTransportation
+      ? "/videos/Transportation.mp4"
+      : isDataCenters
+      ? "/videos/data-center-security.mp4"
+      : null);
+
+  const hasVideo = Boolean(videoSource);
 
   // Enforce autoplay muted playback at the DOM level
   useEffect(() => {
-    if (isTransportation && videoRef.current) {
+    if (hasVideo && videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch((err) => {
+        console.warn("Autoplay muted failed:", err);
+      });
     }
-  }, [isTransportation, videoSource]);
+  }, [hasVideo, videoSource]);
 
   return (
     <section className="relative py-16 sm:py-24 lg:py-28 bg-domenion-blue text-white overflow-hidden border-b border-domenion-gold/20 text-center">
-      {/* Background Media: Video exclusively for transportation, static image for others */}
-      {isTransportation && videoSource ? (
+      {/* Background Media: Video for pages with videoSource (e.g., data-centers, transportation), static image for others */}
+      {hasVideo && videoSource ? (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <video
             ref={videoRef}
@@ -46,26 +58,30 @@ export default function IndustryDetailHero({ industry }) {
             playsInline
             preload="auto"
             poster={heroImg}
-            className="w-full h-full object-cover object-center opacity-100 scale-110 translate-y-10 pointer-events-none"
+            className={`w-full h-full object-cover object-center opacity-100 pointer-events-none ${
+              isTransportation ? "scale-110 translate-y-10" : ""
+            }`}
           />
+          {/* Subtle cinematic overlay to keep video vibrant while guaranteeing high text legibility */}
+          <div className="absolute inset-0 bg-domenion-blue/30 backdrop-brightness-95 pointer-events-none" />
         </div>
       ) : (
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 scale-105"
+          className="absolute inset-0 bg-cover bg-center opacity-25 scale-105 pointer-events-none"
           style={{ backgroundImage: `url(${heroImg})` }}
         />
       )}
 
-      {/* Gradient overlay: Completely removed on /industries/transportation */}
-      {!isTransportation && (
-        <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/70" />
+      {/* Gradient overlay: Only applied on pages without video */}
+      {!hasVideo && (
+        <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/70 pointer-events-none" />
       )}
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          {/* Breadcrumb Nav (Original untouched styling) */}
+          {/* Breadcrumb Nav */}
           <Reveal direction="fade">
-            <div className="flex items-center justify-center gap-2 text-xs font-heading font-bold text-domenion-gold mb-4">
+            <div className="flex items-center justify-center gap-2 text-xs font-heading font-bold text-domenion-gold mb-4 [text-shadow:_0_1px_8px_rgb(0_0_0_/_90%)]">
               <Link to="/" className="hover:underline">
                 Home
               </Link>
@@ -80,9 +96,9 @@ export default function IndustryDetailHero({ industry }) {
             </div>
           </Reveal>
 
-          {/* Eyebrow (Original untouched styling) */}
+          {/* Eyebrow */}
           <Reveal direction="up" delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-gold/15 border border-domenion-gold/35 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-domenion-blue/80 backdrop-blur-md border border-domenion-gold/45 rounded-full text-domenion-gold font-heading text-xs font-extrabold tracking-widest mb-6 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
               <ShieldCheck size={15} className="text-domenion-gold" />
               <span>{industry.badge || "Domenion INDUSTRY PROTECTION"}</span>
             </div>
