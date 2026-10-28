@@ -14,12 +14,19 @@ export default function DataCenterBanner() {
     <section className="relative py-20 sm:py-28 bg-domenion-blue text-white overflow-hidden border-y border-domenion-gold/30">
       {/* Visual Background with Clean Blue Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="w-full h-full bg-cover bg-center opacity-30 scale-105"
-          style={{
-            backgroundImage: `url(/images/data-center-security.jpg)`,
-          }}
-        />
+       
+<div className="absolute inset-0 overflow-hidden">
+  <video
+    src="/videos/data-center-security.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="w-full h-full object-cover opacity-30"
+  />
+</div>
+
         <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/80" />
       </div>
 

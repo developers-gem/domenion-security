@@ -4,10 +4,19 @@ import Reveal from "../common/Reveal";
 export default function SecurityPhilosophy() {
   return (
     <section className="relative py-24 sm:py-32 bg-domenion-blue text-white overflow-hidden text-center border-b border-domenion-gold/20">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-25 scale-105"
-        style={{ backgroundImage: `url(/images/data-center-security.jpg)` }}
-      />
+     
+<div className="absolute inset-0 overflow-hidden">
+  <video
+    src="/videos/data-center-security.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="w-full h-full object-cover opacity-30"
+  />
+</div>
+
       <div className="absolute inset-0 bg-gradient-to-r from-domenion-blue via-domenion-blue/95 to-domenion-blue/70" />
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
