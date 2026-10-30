@@ -22,12 +22,18 @@ export default function IndustryDetailHero({ industry }) {
     location.pathname.replace(/\/$/, "") === "/industries/data-centers" ||
     industry?.slug === "data-centers";
 
+  const isAirports =
+    location.pathname.replace(/\/$/, "") === "/industries/airports" ||
+    industry?.slug === "airports";
+
   const videoSource =
     industry?.heroVideo ||
     (isTransportation
       ? "/videos/Transportation.mp4"
       : isDataCenters
       ? "/videos/data-center-security.mp4"
+      : isAirports
+      ? "/videos/Airport-Security-Services.mp4"
       : null);
 
   const hasVideo = Boolean(videoSource);
@@ -63,7 +69,7 @@ export default function IndustryDetailHero({ industry }) {
             }`}
           />
           {/* Subtle cinematic overlay to keep video vibrant while guaranteeing high text legibility */}
-          <div className="absolute inset-0 bg-domenion-blue/30 backdrop-brightness-95 pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none" />
         </div>
       ) : (
         <div

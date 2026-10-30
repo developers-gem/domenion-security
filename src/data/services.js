@@ -2165,6 +2165,8 @@ export const services = [
     description:
       "Our Airport Security professionals provide access control, passenger assistance, terminal security, surveillance monitoring and rapid emergency response while maintaining compliance with aviation security standards.",
 
+    heroVideo: "/videos/Airport-Security-Services.mp4",
+
     heroImage: "/images/services/airport-security/hero.jpg",
 
     overviewImage: "/images/services/airport-security/overview.jpg",

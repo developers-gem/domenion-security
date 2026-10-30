@@ -44,7 +44,6 @@ function AppRoutes() {
       <Route path="/careers" element={<Careers />} />
       <Route path="/careers/:id" element={<CareerDetails />} />
       <Route path="/careers/:id/apply" element={<CareerEmploymentForm />} />
-
       <Route path="/contact" element={<Contact />} />
       <Route path="/service-areas" element={<ServiceAreas />} />
       <Route path="/services/:slug" element={<ServiceDetails />} />

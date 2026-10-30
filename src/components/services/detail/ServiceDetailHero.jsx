@@ -22,6 +22,7 @@ export default function ServiceDetailHero({ service }) {
   const isCST =
     service?.slug === "construction-surveillance-technicians";
 
+
   const isTransportationIndustry =
     pathname.startsWith("/industries/transportation") ||
     service?.slug === "transportation";
@@ -33,11 +34,17 @@ export default function ServiceDetailHero({ service }) {
     pathname.startsWith("/industries/data-centers") ||
     service?.slug === "data-centers";
 
+  const isAirportSecurity =
+    pathname.startsWith("/services/airport-security") ||
+    service?.slug === "airport-security";
+
   const isVideoRoute =
     isCST ||
     isTransportationIndustry ||
     isCyberSecurity ||
-    isDataCentersIndustry;
+    isDataCentersIndustry ||
+    isAirportSecurity ||
+    Boolean(service?.heroVideo);
 
   // Select the video for the matching route.
   const videoSource = isCST
@@ -48,7 +55,9 @@ export default function ServiceDetailHero({ service }) {
         ? service?.heroVideo || "/videos/cyber-security.mp4"
         : isDataCentersIndustry
           ? service?.heroVideo || "/videos/data-center-security.mp4"
-          : null;
+          : isAirportSecurity
+            ? service?.heroVideo || "/videos/Airport-Security-Services.mp4"
+            : service?.heroVideo || null;
 
   const bgImg = service?.heroImage;
   const cardImg = service?.heroImage;
@@ -88,7 +97,7 @@ export default function ServiceDetailHero({ service }) {
     <section className="relative isolate min-h-[500px] overflow-hidden border-b border-domenion-gold/20 bg-domenion-blue py-16 text-white sm:py-24 lg:py-28">
       {/* Background video */}
       {isVideoRoute && videoSource && !videoFailed && (
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-domenion-blue">
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <video
             ref={videoRef}
             key={videoSource}
@@ -98,6 +107,7 @@ export default function ServiceDetailHero({ service }) {
             muted
             playsInline
             preload="auto"
+            poster={bgImg}
             aria-hidden="true"
             onError={(event) => {
               const video = event.currentTarget;
@@ -132,18 +142,17 @@ export default function ServiceDetailHero({ service }) {
         />
       )}
 
-      {/* Readability overlays */}
+      {/* Readability overlays: Transparent for video routes to keep video vibrant like Home */}
       {isVideoRoute && (
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-black/35" />
+        <div className="pointer-events-none absolute inset-0 z-[1]" />
       )}
 
-      {!isCST && (
+      {!isVideoRoute && (
         <div
-          className={`pointer-events-none absolute inset-0 z-[1] ${
-            isTransportationIndustry
-              ? "bg-gradient-to-r from-domenion-blue/90 via-domenion-blue/55 to-domenion-blue/15"
-              : "bg-gradient-to-r from-domenion-blue/90 via-domenion-blue/65 to-domenion-blue/35"
-          }`}
+          className={`pointer-events-none absolute inset-0 z-[1] ${isTransportationIndustry
+            ? "bg-gradient-to-r from-domenion-blue/90 via-domenion-blue/55 to-domenion-blue/15"
+            : "bg-gradient-to-r from-domenion-blue/90 via-domenion-blue/65 to-domenion-blue/35"
+            }`}
         />
       )}
 
