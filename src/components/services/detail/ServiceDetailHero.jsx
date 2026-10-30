@@ -25,7 +25,7 @@ export default function ServiceDetailHero({ service }) {
 
   const isTransportationIndustry =
     pathname.startsWith("/industries/transportation") ||
-    service?.slug === "transportation";
+    service?.slug === "transportation-security";
 
   const isCyberSecurity =
     service?.slug === "cyber-security";
@@ -38,13 +38,17 @@ export default function ServiceDetailHero({ service }) {
     pathname.startsWith("/services/airport-security") ||
     service?.slug === "airport-security";
 
+  const isDataCenterSecurity =
+    service?.slug === "data-center-security"
+
   const isVideoRoute =
     isCST ||
     isTransportationIndustry ||
     isCyberSecurity ||
     isDataCentersIndustry ||
     isAirportSecurity ||
-    Boolean(service?.heroVideo);
+    isDataCenterSecurity
+  Boolean(service?.heroVideo);
 
   // Select the video for the matching route.
   const videoSource = isCST
@@ -57,7 +61,9 @@ export default function ServiceDetailHero({ service }) {
           ? service?.heroVideo || "/videos/data-center-security.mp4"
           : isAirportSecurity
             ? service?.heroVideo || "/videos/Airport-Security-Services.mp4"
-            : service?.heroVideo || null;
+            : isDataCenterSecurity
+              ? service?.heroVideo || "/videos/data-center-security.mp4"
+              : service?.heroVideo || null;
 
   const bgImg = service?.heroImage;
   const cardImg = service?.heroImage;

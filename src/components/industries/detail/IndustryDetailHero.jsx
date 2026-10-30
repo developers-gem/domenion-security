@@ -31,10 +31,10 @@ export default function IndustryDetailHero({ industry }) {
     (isTransportation
       ? "/videos/Transportation.mp4"
       : isDataCenters
-      ? "/videos/data-center-security.mp4"
-      : isAirports
-      ? "/videos/Airport-Security-Services.mp4"
-      : null);
+        ? "/videos/data-center-security.mp4"
+        : isAirports
+          ? "/videos/Airport-Security-Services.mp4"
+          : null);
 
   const hasVideo = Boolean(videoSource);
 
@@ -64,9 +64,8 @@ export default function IndustryDetailHero({ industry }) {
             playsInline
             preload="auto"
             poster={heroImg}
-            className={`w-full h-full object-cover object-center opacity-100 pointer-events-none ${
-              isTransportation ? "scale-110 translate-y-10" : ""
-            }`}
+            className={`w-full h-full object-cover object-center opacity-100 pointer-events-none ${isTransportation ? "scale-110 translate-y-10" : ""
+              }`}
           />
           {/* Subtle cinematic overlay to keep video vibrant while guaranteeing high text legibility */}
           <div className="absolute inset-0 pointer-events-none" />
