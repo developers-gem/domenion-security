@@ -597,7 +597,7 @@ export const industries = [
     shortDescription:
       "Specialized security solutions protecting airports, aviation facilities, personnel, passengers and critical infrastructure.",
 
-    heroVideo: "/videos/Airport-Security-Services.mp4",
+    heroVideo: "/videos/airport-security.mp4",
 
     heroImage:
       "/images/industries/airports/hero.jpg",
