@@ -74,10 +74,10 @@ export default function AboutStory() {
               {/* Credibility Checklist */}
               <div className="flex flex-col gap-3 mb-8 capitalize">
                 <Reveal direction="up" delay={0.4}>
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-light border border-neutral-border">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-domenion-gold border border-domenion-gold/70">
                     <CheckCircle2
                       size={18}
-                      className="text-domenion-gold flex-shrink-0"
+                      className="text-domenion-blue flex-shrink-0"
                     />
                     <span className="text-domenion-blue font-heading text-sm font-bold">
                       Professional, state-licensed security officers
@@ -86,10 +86,10 @@ export default function AboutStory() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.5}>
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-light border border-neutral-border">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-domenion-gold border border-domenion-gold/70">
                     <CheckCircle2
                       size={18}
-                      className="text-domenion-gold flex-shrink-0"
+                      className="text-domenion-blue flex-shrink-0"
                     />
                     <span className="text-domenion-blue font-heading text-sm font-bold">
                       Integrated physical guarding, access control & monitoring
@@ -98,10 +98,10 @@ export default function AboutStory() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.6}>
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-neutral-light border border-neutral-border">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-domenion-gold border border-domenion-gold/70">
                     <CheckCircle2
                       size={18}
-                      className="text-domenion-gold flex-shrink-0"
+                      className="text-domenion-blue flex-shrink-0"
                     />
                     <span className="text-domenion-blue font-heading text-sm font-bold">
                       24/7 rapid emergency dispatch & operational readiness

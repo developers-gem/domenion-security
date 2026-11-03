@@ -198,12 +198,12 @@ export default function CareerDetails() {
             <div className="lg:col-span-8 space-y-8">
               {/* Job Description */}
               <Reveal direction="up">
-                <div className="bg-neutral-light border border-neutral-border rounded-2xl p-8 shadow-sm">
+                <div className="bg-domenion-gold border border-domenion-gold/70 rounded-2xl p-8 shadow-sm">
                   <h2 className="text-domenion-blue font-heading text-xl font-extrabold mb-4 flex items-center gap-3">
-                    <Briefcase size={22} className="text-domenion-gold" />
+                    <Briefcase size={22} className="text-domenion-blue" />
                     JOB DESCRIPTION
                   </h2>
-                  <p className="text-gray-700 font-sans text-base leading-relaxed whitespace-pre-line">{career.description}</p>
+                  <p className="text-domenion-blue/80 font-sans text-base leading-relaxed whitespace-pre-line">{career.description}</p>
                 </div>
               </Reveal>
 
@@ -213,22 +213,22 @@ export default function CareerDetails() {
                   ? career.requirements.length > 0
                   : String(career.requirements).trim().length > 0) && (
                   <Reveal direction="up" delay={0.1}>
-                    <div className="bg-neutral-light border border-neutral-border rounded-2xl p-8 shadow-sm">
+                    <div className="bg-domenion-gold border border-domenion-gold/70 rounded-2xl p-8 shadow-sm">
                       <h2 className="text-domenion-blue font-heading text-xl font-extrabold mb-4 flex items-center gap-3">
-                        <ShieldCheck size={22} className="text-domenion-gold" />
+                        <ShieldCheck size={22} className="text-domenion-blue" />
                         REQUIREMENTS & QUALIFICATIONS
                       </h2>
                       {Array.isArray(career.requirements) ? (
                         <ul className="space-y-3">
                           {career.requirements.map((req, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm leading-relaxed">
-                              <CheckCircle2 size={18} className="text-domenion-gold flex-shrink-0 mt-0.5" />
+                            <li key={idx} className="flex items-start gap-3 text-domenion-blue/80 text-sm leading-relaxed">
+                              <CheckCircle2 size={18} className="text-domenion-blue flex-shrink-0 mt-0.5" />
                               <span>{req}</span>
                             </li>
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-gray-700 font-sans text-base leading-relaxed whitespace-pre-line">{career.requirements}</p>
+                        <p className="text-domenion-blue/80 font-sans text-base leading-relaxed whitespace-pre-line">{career.requirements}</p>
                       )}
                     </div>
                   </Reveal>
@@ -297,4 +297,3 @@ export default function CareerDetails() {
     </main>
   );
 }
-

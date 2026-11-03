@@ -70,17 +70,17 @@ export default function SecurityProcess() {
                   delay={0.1 * idx}
                   className="h-full flex-1 flex flex-col"
                 >
-                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group relative">
+                  <div className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group relative">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                      <span className="text-domenion-blue font-heading text-2xl font-extrabold">
                         {step.step}
                       </span>
-                      <div className="w-10 h-10 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                      <div className="w-10 h-10 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                         <Icon size={20} />
                       </div>
                     </div>
 
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
+                    <span className="text-domenion-blue font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">
                       {step.title}
                     </span>
 
@@ -88,11 +88,11 @@ export default function SecurityProcess() {
                       {step.subtitle}
                     </h3>
 
-                    <p className="text-gray-500 text-sm leading-relaxed flex-1">
+                    <p className="text-domenion-blue/80 text-sm leading-relaxed flex-1">
                       {step.desc}
                     </p>
 
-                    <div className="h-0.5 w-8 bg-domenion-gold/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
+                    <div className="h-0.5 w-8 bg-domenion-blue/40 mt-6 rounded-full group-hover:w-16 transition-all duration-300" />
                   </div>
                 </Reveal>
               </div>

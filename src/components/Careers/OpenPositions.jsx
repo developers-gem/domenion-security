@@ -440,20 +440,20 @@ export default function OpenPositions() {
           </div>
         ) : filteredJobs.length === 0 ? (
           /* Premium Empty State */
-          <div className="bg-neutral-light border border-neutral-border rounded-2xl p-10 text-center max-w-xl mx-auto shadow-sm">
-            <div className="w-14 h-14 rounded-2xl bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center mx-auto mb-4">
+          <div className="bg-domenion-gold border border-domenion-gold/70 rounded-2xl p-10 text-center max-w-xl mx-auto shadow-sm">
+            <div className="w-14 h-14 rounded-2xl bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center mx-auto mb-4">
               <Briefcase size={28} />
             </div>
             <h3 className="text-domenion-blue font-heading text-xl font-extrabold mb-2">
               NO CURRENT OPENINGS
             </h3>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-domenion-blue/80 text-sm leading-relaxed mb-6">
               We don't have any open positions listed right now. Please check
               back soon or submit a general inquiry to our recruitment team.
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-domenion-gold text-domenion-blue rounded-xl font-heading text-xs font-extrabold tracking-wider uppercase hover:bg-domenion-gold/90 transition-colors shadow-md text-decoration-none mx-auto"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-domenion-blue text-white rounded-xl font-heading text-xs font-extrabold tracking-wider uppercase hover:bg-white hover:text-domenion-blue transition-colors shadow-md text-decoration-none mx-auto"
             >
               <span>Submit General Inquiry</span>
               <ArrowRight size={15} />
@@ -477,12 +477,12 @@ export default function OpenPositions() {
                     className="h-full flex-1 flex flex-col"
                   >
                     <div
-                      className={`bg-neutral-light border border-neutral-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group ${isClosed ? "opacity-60" : ""}`}
+                      className={`bg-domenion-gold border border-domenion-gold/70 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group ${isClosed ? "opacity-60" : ""}`}
                     >
                       <div className="flex flex-col flex-1">
                         {/* Card Header */}
                         <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase">
+                          <span className="text-domenion-blue font-heading text-[10px] font-extrabold tracking-widest uppercase">
                             {deptText}
                           </span>
                           <span
@@ -500,10 +500,10 @@ export default function OpenPositions() {
                         </div>
 
                         {/* Job Title */}
-                        <h3 className="text-domenion-blue font-heading text-xl font-bold mb-2 group-hover:text-domenion-gold transition-colors">
+                        <h3 className="text-domenion-blue font-heading text-xl font-bold mb-2 group-hover:text-domenion-blue transition-colors">
                           <Link
                             to={`/careers/${job._id}`}
-                            className="text-domenion-blue hover:text-domenion-gold text-decoration-none"
+                            className="text-domenion-blue hover:text-domenion-blue text-decoration-none"
                           >
                             {job.title}
                           </Link>
@@ -511,7 +511,7 @@ export default function OpenPositions() {
 
                         {/* Description Preview */}
                         {descText && (
-                          <p className="text-gray-600 text-xs leading-relaxed line-clamp-3 mb-4 flex-1">
+                          <p className="text-domenion-blue/80 text-xs leading-relaxed line-clamp-3 mb-4 flex-1">
                             {descText}
                           </p>
                         )}
@@ -519,12 +519,12 @@ export default function OpenPositions() {
                         <div className="border-t border-neutral-border my-4 mt-auto" />
 
                         {/* Metadata */}
-                        <div className="space-y-2 text-xs text-gray-500 mb-6">
+                        <div className="space-y-2 text-xs text-domenion-blue/80 mb-6">
                           <div className="flex items-center justify-between">
                             <span className="flex items-center gap-1.5 font-medium">
                               <MapPin
                                 size={14}
-                                className="text-domenion-gold"
+                                className="text-domenion-blue"
                               />
                               <span>
                                 {job.location || "Location Not Specified"}
@@ -534,7 +534,7 @@ export default function OpenPositions() {
                               <span className="flex items-center gap-1.5 font-medium">
                                 <Award
                                   size={14}
-                                  className="text-domenion-gold"
+                                  className="text-domenion-blue"
                                 />
                                 <span>{job.experience}</span>
                               </span>
@@ -545,14 +545,14 @@ export default function OpenPositions() {
                             <span className="flex items-center gap-1.5 font-medium">
                               <Briefcase
                                 size={14}
-                                className="text-domenion-gold"
+                                className="text-domenion-blue"
                               />
                               <span>{job.type || "Full-Time"}</span>
                             </span>
                             <span className="flex items-center gap-1.5 font-medium">
                               <Calendar
                                 size={14}
-                                className="text-domenion-gold"
+                                className="text-domenion-blue"
                               />
                               <span>
                                 {formatDeadline(job.applicationDeadline)}

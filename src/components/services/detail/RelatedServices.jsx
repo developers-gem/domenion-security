@@ -40,7 +40,7 @@ export default function RelatedServices({ currentSlug }) {
           {relatedList.map((service, idx) => (
             <div key={service.slug} className="h-full flex flex-col">
               <Reveal direction="up" delay={0.1 * idx} className="h-full flex flex-1 flex-col">
-                <div className="block bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col h-full">
+                <div className="block bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col h-full">
                   <Link to={`/services/${service.slug}`} className="relative h-48 overflow-hidden block">
                     <img
                       src={service.heroImage || service.overviewImage || "/images/physical-security.jpg"}
@@ -57,17 +57,17 @@ export default function RelatedServices({ currentSlug }) {
                   </Link>
 
                   <div className="p-6 flex flex-col flex-1">
-                    <span className="text-[10px] font-extrabold text-domenion-gold tracking-widest uppercase mb-1">{service.badge || "SECURITY"}</span>
-                    <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors mb-2">
-                      <Link to={`/services/${service.slug}`} className="text-decoration-none text-domenion-blue group-hover:text-domenion-gold">
+                    <span className="text-[10px] font-extrabold text-domenion-blue tracking-widest uppercase mb-1">{service.badge || "SECURITY"}</span>
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-blue transition-colors mb-2">
+                      <Link to={`/services/${service.slug}`} className="text-decoration-none text-domenion-blue group-hover:text-domenion-blue">
                         {service.title}
                       </Link>
                     </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+                    <p className="text-domenion-blue/80 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
                       {service.shortDescription || "Enterprise security capability."}
                     </p>
 
-                    <Link to={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold group-hover:translate-x-1 transition-transform text-decoration-none">
+                    <Link to={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-domenion-blue font-heading text-xs font-bold group-hover:translate-x-1 transition-transform text-decoration-none">
                       <span>Explore Capability</span>
                       <ArrowRight size={14} />
                     </Link>
@@ -81,4 +81,3 @@ export default function RelatedServices({ currentSlug }) {
     </section>
   );
 }
-

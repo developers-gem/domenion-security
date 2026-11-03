@@ -61,7 +61,7 @@ export default function ContactFAQ() {
                 <div
                   className={`rounded-xl border transition-all duration-200 overflow-hidden ${
                     isOpen
-                      ? "bg-neutral-light border-domenion-gold/50 shadow-md"
+                      ? "bg-domenion-gold border-domenion-gold/70 shadow-md"
                       : "bg-white border-neutral-border hover:border-domenion-gold/30"
                   }`}
                 >
@@ -74,7 +74,7 @@ export default function ContactFAQ() {
                     <span className="text-domenion-blue font-heading text-base font-bold pr-4">
                       {item.q}
                     </span>
-                    <div className="w-8 h-8 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center flex-shrink-0">
+                    <div className={`w-8 h-8 rounded-lg ${isOpen ? "bg-domenion-blue border-domenion-blue/20" : "bg-domenion-blue/5 border-domenion-gold/30"} border text-domenion-gold grid place-items-center flex-shrink-0`}>
                       {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                     </div>
                   </button>
@@ -87,7 +87,7 @@ export default function ContactFAQ() {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-neutral-border/60 pt-4">
+                        <div className="px-6 pb-6 text-domenion-blue/80 text-sm leading-relaxed border-t border-domenion-blue/20 pt-4">
                           <p>{item.a}</p>
                         </div>
                       </motion.div>

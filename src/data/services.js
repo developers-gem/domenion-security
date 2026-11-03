@@ -1947,6 +1947,7 @@ export const services = [
       "Our Data Center Security services safeguard servers, networking equipment and critical infrastructure through layered physical security, access control, surveillance and continuous monitoring. We help organizations maintain uptime, compliance and operational resilience.",
 
     heroImage: "/images/services/data-center-security/hero.jpg",
+    
 
     overviewImage: "/images/services/data-center-security/overview.jpg",
 
@@ -2164,8 +2165,6 @@ export const services = [
 
     description:
       "Our Airport Security professionals provide access control, passenger assistance, terminal security, surveillance monitoring and rapid emergency response while maintaining compliance with aviation security standards.",
-
-    heroVideo: "/videos/Airport-Security-Services.mp4",
 
     heroImage: "/images/services/airport-security/hero.jpg",
 

@@ -70,12 +70,12 @@ export default function ContactInformation() {
           {INFO_CARDS.map((card, idx) => {
             const Icon = card.icon;
             const content = (
-              <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group">
+              <div className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col flex-1 h-full group">
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-border">
-                  <span className="text-domenion-gold font-heading text-xs font-extrabold tracking-widest uppercase">
+                  <span className="text-domenion-blue font-heading text-xs font-extrabold tracking-widest uppercase">
                     {card.label}
                   </span>
-                  <div className="w-8 h-8 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                  <div className="w-8 h-8 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                     <Icon size={16} />
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default function ContactInformation() {
                   {card.value}
                 </h3>
 
-                <p className="text-gray-500 text-xs leading-relaxed flex-1">
+                <p className="text-domenion-blue/80 text-xs leading-relaxed flex-1">
                   {card.subtext}
                 </p>
               </div>

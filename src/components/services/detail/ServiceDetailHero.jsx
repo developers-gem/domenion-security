@@ -20,20 +20,27 @@ export default function ServiceDetailHero({ service }) {
 
   // Identify pages that use background videos.
   const isCST =
-    service?.slug === "construction-surveillance-technicians";
+  service?.slug === "construction-surveillance-technicians";
 
+<<<<<<< HEAD
 
   const isTransportationIndustry =
     pathname.startsWith("/industries/transportation") ||
     service?.slug === "transportation-security";
+=======
+const isTransportationIndustry =
+  pathname.startsWith("/industries/transportation") ||
+  service?.slug === "transportation";
+>>>>>>> 2874fad (updsated code)
 
-  const isCyberSecurity =
-    service?.slug === "cyber-security";
+const isCyberSecurity =
+  service?.slug === "cyber-security";
 
-  const isDataCentersIndustry =
-    pathname.startsWith("/industries/data-centers") ||
-    service?.slug === "data-centers";
+const isDataCentersIndustry =
+  pathname.startsWith("/industries/data-centers") ||
+  service?.slug === "data-centers";
 
+<<<<<<< HEAD
   const isAirportSecurity =
     pathname.startsWith("/services/airport-security") ||
     service?.slug === "airport-security";
@@ -64,6 +71,31 @@ export default function ServiceDetailHero({ service }) {
             : isDataCenterSecurity
               ? service?.heroVideo || "/videos/data-center-security.mp4"
               : service?.heroVideo || null;
+=======
+const isAirportSecurity =
+  pathname.startsWith("/industries/airports") ||
+  service?.slug === "airports";
+
+const isVideoRoute =
+  isCST ||
+  isTransportationIndustry ||
+  isCyberSecurity ||
+  isDataCentersIndustry ||
+  isAirportSecurity;
+
+  // Select the video for the matching route.
+  const videoSource = isCST
+  ? service?.heroVideo || "/videos/security(CST).mp4"
+  : isTransportationIndustry
+    ? service?.heroVideo || "/videos/Transportation.mp4"
+    : isCyberSecurity
+      ? service?.heroVideo || "/videos/cyber-security.mp4"
+      : isDataCentersIndustry
+        ? service?.heroVideo || "/videos/data-center-security.mp4"
+        : isAirportSecurity
+          ? service?.heroVideo || "/videos/airport-security.mp4"
+          : null;
+>>>>>>> 2874fad (updsated code)
 
   const bgImg = service?.heroImage;
   const cardImg = service?.heroImage;

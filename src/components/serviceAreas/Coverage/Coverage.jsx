@@ -72,13 +72,13 @@ function Coverage() {
                   const Icon = item.icon;
                   return (
                     <Reveal key={index} direction="up" delay={0.05 * index}>
-                      <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border">
-                        <div className="w-10 h-10 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center flex-shrink-0">
+                      <div className="flex items-start gap-4 p-4 rounded-xl bg-domenion-gold border border-domenion-gold/70">
+                        <div className="w-10 h-10 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center flex-shrink-0">
                           <Icon size={20} />
                         </div>
                         <div className="flex flex-col">
                           <h5 className="text-domenion-blue font-heading text-base font-bold mb-1">{item.title}</h5>
-                          <p className="text-gray-500 text-xs leading-relaxed">{item.text}</p>
+                          <p className="text-domenion-blue/80 text-xs leading-relaxed">{item.text}</p>
                         </div>
                       </div>
                     </Reveal>

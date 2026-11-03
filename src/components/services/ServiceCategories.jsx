@@ -103,9 +103,9 @@ export default function ServiceCategories() {
                   delay={0.1 * idx}
                   className="h-full flex-1 flex flex-col"
                 >
-                  <div className="bg-neutral-light border border-neutral-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-1 h-full flex flex-col">
+                  <div className="bg-domenion-gold border border-domenion-gold/70 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-1 h-full flex flex-col">
                     <div className="flex items-center gap-3 pb-4 mb-4 border-b border-neutral-border">
-                      <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center">
+                      <div className="w-9 h-9 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center">
                         <Icon size={18} />
                       </div>
                       <span className="text-domenion-blue font-heading text-sm font-extrabold tracking-wider uppercase">

@@ -51,23 +51,23 @@ export default function ServicePortfolio() {
               >
                 <Link
                   to={`/services/${service.slug}`}
-                  className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none flex items-center justify-between gap-6 h-full flex-1"
+                  className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none flex items-center justify-between gap-6 h-full flex-1"
                 >
-                  <span className="text-domenion-gold font-heading text-lg font-extrabold flex-shrink-0">
+                  <span className="text-domenion-blue font-heading text-lg font-extrabold flex-shrink-0">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
                   <div className="flex flex-col flex-1">
-                    <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">
+                    <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-blue transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-500 text-xs sm:text-sm mt-1 leading-relaxed line-clamp-2">
+                    <p className="text-domenion-blue/80 text-xs sm:text-sm mt-1 leading-relaxed line-clamp-2">
                       {service.shortDescription ||
                         "Enterprise protection capability"}
                     </p>
                   </div>
 
-                  <div className="w-9 h-9 rounded-full bg-white border border-neutral-border text-domenion-blue grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue group-hover:border-domenion-gold transition-colors flex-shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-white border border-neutral-border text-domenion-blue grid place-items-center group-hover:bg-domenion-blue group-hover:text-domenion-gold group-hover:border-domenion-blue transition-colors flex-shrink-0">
                     <ArrowRight size={18} />
                   </div>
                 </Link>

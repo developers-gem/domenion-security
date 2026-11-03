@@ -82,7 +82,7 @@ export default function AboutIndustries() {
                     </div>
 
                     <div className="flex flex-col mb-4">
-                      <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">
+                      <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-blue transition-colors">
                         {ind.title}
                       </h3>
                       <p className="text-gray-500 text-xs sm:text-sm mt-1 leading-relaxed line-clamp-2">
@@ -114,14 +114,14 @@ export default function AboutIndustries() {
                 >
                   <Link
                     to={`/industries/${ind.slug}`}
-                    className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none h-full flex flex-col justify-between"
+                    className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group text-decoration-none h-full flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-domenion-gold font-heading text-sm font-extrabold">
+                        <span className="text-domenion-blue font-heading text-sm font-extrabold">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-domenion-blue text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                           <Icon size={18} />
                         </div>
                       </div>
@@ -130,14 +130,14 @@ export default function AboutIndustries() {
                         <h3 className="text-domenion-blue font-heading text-lg font-bold group-hover:text-domenion-gold transition-colors">
                           {ind.title}
                         </h3>
-                        <p className="text-gray-500 text-xs sm:text-sm mt-1 leading-relaxed line-clamp-2">
+                        <p className="text-domenion-blue/80 text-xs sm:text-sm mt-1 leading-relaxed line-clamp-2">
                           {ind.shortDescription ||
                             "Specialized security coverage"}
                         </p>
                       </div>
                     </div>
 
-                    <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold group-hover:translate-x-1 transition-transform mt-auto pt-2">
+                    <div className="inline-flex items-center gap-2 text-domenion-blue font-heading text-xs font-bold group-hover:translate-x-1 transition-transform mt-auto pt-2">
                       <span>Explore Sector</span>
                       <ArrowRight size={14} />
                     </div>

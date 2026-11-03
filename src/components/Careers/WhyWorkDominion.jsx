@@ -63,10 +63,10 @@ export default function WhyWorkDomenion() {
           {VALUE_ROWS.map((row, idx) => (
             <div key={row.num}>
               <Reveal direction="up" delay={0.08 * idx}>
-                <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group">
+                <div className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group">
                   <div>
                     <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-border">
-                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                      <span className="text-domenion-blue font-heading text-2xl font-extrabold">
                         {row.num}
                       </span>
                       <h3 className="text-domenion-blue font-heading text-base font-bold uppercase">
@@ -74,7 +74,7 @@ export default function WhyWorkDomenion() {
                       </h3>
                     </div>
 
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-domenion-blue/80 text-sm leading-relaxed">
                       {row.desc}
                     </p>
                   </div>

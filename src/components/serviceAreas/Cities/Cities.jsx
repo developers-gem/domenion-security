@@ -68,25 +68,25 @@ function Cities() {
           {CITIES_DATA.map((city, index) => (
             <div key={city.city}>
               <Reveal direction="up" delay={0.05 * index}>
-                <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group">
+                <div className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group">
                   <div>
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-neutral-border">
                       <div className="flex flex-col">
                         <h4 className="text-domenion-blue font-heading text-xl font-bold">{city.city}</h4>
-                        <span className="text-gray-500 text-xs font-medium">{city.state}</span>
+                        <span className="text-domenion-blue/80 text-xs font-medium">{city.state}</span>
                       </div>
-                      <div className="w-10 h-10 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                      <div className="w-10 h-10 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                         <MapPin size={20} />
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-xs text-gray-600 mb-6">
+                    <div className="flex items-center justify-between text-xs text-domenion-blue/80 mb-6">
                       <div className="flex items-center gap-1.5 font-heading font-semibold">
-                        <ShieldCheck size={16} className="text-domenion-gold" />
+                        <ShieldCheck size={16} className="text-domenion-blue" />
                         <span>{city.guards}</span>
                       </div>
                       <div className="flex items-center gap-1.5 font-heading font-semibold">
-                        <MapPin size={16} className="text-domenion-gold" />
+                        <MapPin size={16} className="text-domenion-blue" />
                         <span>{city.response}</span>
                       </div>
                     </div>
@@ -94,7 +94,7 @@ function Cities() {
 
                   <Link
                     to="/contact"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 bg-domenion-blue text-white rounded-lg text-xs font-heading font-bold hover:bg-domenion-gold hover:text-domenion-blue transition-colors text-decoration-none"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 bg-domenion-blue text-white rounded-lg text-xs font-heading font-bold hover:bg-white hover:text-domenion-blue transition-colors text-decoration-none"
                   >
                     <span>Request Security</span>
                     <ArrowRight size={14} />

@@ -72,15 +72,15 @@ export default function AboutPreview() {
               {/* 3 Credibility Points */}
               <div className="flex flex-col gap-4">
                 <Reveal direction="up" delay={0.4}>
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-domenion-blue text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                       01
                     </div>
                     <div className="flex flex-col">
                       <h3 className="text-domenion-blue font-heading text-base font-bold">
                         Experienced Protection
                       </h3>
-                      <p className="text-gray-600 text-sm mt-0.5">
+                      <p className="text-domenion-blue/80 text-sm mt-0.5">
                         Professional security solutions built around real-world
                         operational requirements.
                       </p>
@@ -89,15 +89,15 @@ export default function AboutPreview() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.5}>
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-domenion-blue text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                       02
                     </div>
                     <div className="flex flex-col">
                       <h3 className="text-domenion-blue font-heading text-base font-bold">
                         Integrated Capabilities
                       </h3>
-                      <p className="text-gray-600 text-sm mt-0.5">
+                      <p className="text-domenion-blue/80 text-sm mt-0.5">
                         Physical security, mobile patrol, and cybersecurity
                         working together seamlessly.
                       </p>
@@ -106,15 +106,15 @@ export default function AboutPreview() {
                 </Reveal>
 
                 <Reveal direction="up" delay={0.6}>
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-domenion-gold/20 text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="flex items-start gap-4 p-4 rounded-xl bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-domenion-blue text-domenion-gold font-heading font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                       03
                     </div>
                     <div className="flex flex-col">
                       <h3 className="text-domenion-blue font-heading text-base font-bold">
                         Security-Minded Approach
                       </h3>
-                      <p className="text-gray-600 text-sm mt-0.5">
+                      <p className="text-domenion-blue/80 text-sm mt-0.5">
                         Proactive strategies focused on prevention,
                         preparedness, and rapid response.
                       </p>

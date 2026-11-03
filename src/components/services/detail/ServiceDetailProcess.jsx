@@ -56,17 +56,17 @@ export default function ServiceDetailProcess({ service }) {
             return (
               <div key={stage.step} className="h-full flex flex-col">
                 <Reveal direction="up" delay={0.08 * idx} className="h-full flex flex-1 flex-col">
-                  <div className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                  <div className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-domenion-gold font-heading text-2xl font-extrabold">{stage.step}</span>
-                      <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                      <span className="text-domenion-blue font-heading text-2xl font-extrabold">{stage.step}</span>
+                      <div className="w-9 h-9 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                         <Icon size={18} />
                       </div>
                     </div>
 
-                    <span className="text-domenion-gold font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.action}</span>
+                    <span className="text-domenion-blue font-heading text-[10px] font-extrabold tracking-widest uppercase mb-1">{stage.action}</span>
                     <h3 className="text-domenion-blue font-heading text-lg font-bold mb-2">{stage.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed flex-1">{stage.desc}</p>
+                    <p className="text-domenion-blue/80 text-sm leading-relaxed flex-1">{stage.desc}</p>
                   </div>
                 </Reveal>
               </div>
@@ -77,4 +77,3 @@ export default function ServiceDetailProcess({ service }) {
     </section>
   );
 }
-

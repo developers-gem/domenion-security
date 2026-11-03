@@ -40,19 +40,19 @@ export default function IndustryServiceLinks({ industry }) {
             <Reveal key={svc.slug} direction="up" delay={0.06 * idx}>
               <Link
                 to={`/services/${svc.slug}`}
-                className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 shadow-sm hover:shadow-md transition-all duration-200 group text-decoration-none gap-4"
+                className="flex flex-col sm:flex-row sm:items-center justify-between p-5 rounded-xl bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 shadow-sm hover:shadow-md transition-all duration-200 group text-decoration-none gap-4"
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-domenion-gold font-heading text-sm font-extrabold">
+                  <span className="text-domenion-blue font-heading text-sm font-extrabold">
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   <div className="flex flex-col">
-                    <h3 className="text-domenion-blue font-heading text-base font-bold group-hover:text-domenion-gold transition-colors">{svc.title}</h3>
-                    <p className="text-gray-500 text-xs sm:text-sm mt-0.5">{svc.shortDescription || "Enterprise protection capability."}</p>
+                    <h3 className="text-domenion-blue font-heading text-base font-bold group-hover:text-domenion-blue transition-colors">{svc.title}</h3>
+                    <p className="text-domenion-blue/80 text-xs sm:text-sm mt-0.5">{svc.shortDescription || "Enterprise protection capability."}</p>
                   </div>
                 </div>
 
-                <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
+                <div className="inline-flex items-center gap-2 text-domenion-blue font-heading text-xs font-bold group-hover:translate-x-1 transition-transform flex-shrink-0">
                   <span>Explore Capability</span>
                   <ArrowRight size={16} />
                 </div>
@@ -64,4 +64,3 @@ export default function IndustryServiceLinks({ industry }) {
     </section>
   );
 }
-

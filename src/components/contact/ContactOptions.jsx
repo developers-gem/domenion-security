@@ -95,15 +95,15 @@ export default function ContactOptions() {
                   className="h-full flex-1 flex flex-col"
                 >
                   <div
-                    className="bg-neutral-light border border-neutral-border hover:border-domenion-gold/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group cursor-pointer"
+                    className="bg-domenion-gold border border-domenion-gold/70 hover:border-domenion-blue/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full group cursor-pointer"
                     onClick={() => handleAction(item)}
                   >
                     <div>
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-border">
-                        <span className="text-domenion-gold font-heading text-2xl font-extrabold">
+                        <span className="text-domenion-blue font-heading text-2xl font-extrabold">
                           {item.num}
                         </span>
-                        <div className="w-9 h-9 rounded-lg bg-domenion-blue/5 border border-domenion-gold/30 text-domenion-gold grid place-items-center group-hover:bg-domenion-gold group-hover:text-domenion-blue transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-domenion-blue border border-domenion-blue/20 text-domenion-gold grid place-items-center group-hover:bg-white group-hover:text-domenion-blue transition-colors">
                           <Icon size={18} />
                         </div>
                       </div>
@@ -111,12 +111,12 @@ export default function ContactOptions() {
                       <h3 className="text-domenion-blue font-heading text-base font-bold mb-2 uppercase">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-xs leading-relaxed mb-6 flex-1">
+                      <p className="text-domenion-blue/80 text-xs leading-relaxed mb-6 flex-1">
                         {item.desc}
                       </p>
                     </div>
 
-                    <div className="inline-flex items-center gap-2 text-domenion-gold font-heading text-xs font-bold group-hover:translate-x-1 transition-transform">
+                    <div className="inline-flex items-center gap-2 text-domenion-blue font-heading text-xs font-bold group-hover:translate-x-1 transition-transform">
                       <span>{item.actionText}</span>
                       <ArrowRight size={15} />
                     </div>

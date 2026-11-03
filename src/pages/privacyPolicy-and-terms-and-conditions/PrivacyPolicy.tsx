@@ -122,7 +122,7 @@ const PrivacyPolicy: React.FC = () => {
             <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
               For inquiries regarding access to your records, surveillance retention schedules, or data privacy requests, reach out directly:
             </p>
-            <div className="bg-domenion-blue/5 p-4 rounded-xl border border-domenion-gold/20 text-sm space-y-1">
+            <div className="bg-domenion-gold p-4 rounded-xl border border-domenion-gold/70 text-sm space-y-1">
               <p><strong>Domenion Security Services Inc.</strong></p>
               <p>Attention: Privacy & Compliance Office</p>
               <p>

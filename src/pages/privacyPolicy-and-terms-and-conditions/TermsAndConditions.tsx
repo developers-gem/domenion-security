@@ -121,7 +121,7 @@ const TermsAndConditions: React.FC = () => {
             <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
               These terms shall be governed by and construed under the laws of the jurisdiction where primary security operations are contracted. Any disputes arising out of these terms shall first be subject to good-faith mediation before formal arbitration proceedings.
             </p>
-            <div className="bg-domenion-blue/5 p-4 rounded-xl border border-domenion-gold/20 text-sm space-y-1 mt-4">
+            <div className="bg-domenion-gold p-4 rounded-xl border border-domenion-gold/70 text-sm space-y-1 mt-4">
               <p><strong>Legal Inquiries:</strong></p>
               <p>Domenion Security Legal Department</p>
               <p>
